@@ -1,0 +1,31 @@
+{
+    "id": "C6BC1083",
+    "path": "~/Personal projects/rtutorial_quarto/index.qmd",
+    "project_path": "index.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1679340081044.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "rmdVisualMode": "false",
+        "rmdVisualWrapConfigured": "true",
+        "source_window_id": "",
+        "Source": "Source",
+        "docOutlineVisible": "1",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "35:0",
+        "cursorPosition": "6,54",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1679340086,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1679340086584,
+    "read_only": false,
+    "read_only_alternatives": []
+}
