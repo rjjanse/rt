@@ -1,0 +1,47 @@
+---
+title: "RStudio"
+author: "Roemer J. Janse"
+---
+
+## Installing the RStudio IDE
+
+One of the most popular IDEs for R is RStudio, developed by Posit. RStudio is an especially great IDE for R because it was developed specifically with R in mind. Although other IDEs exist, these are often more general, meaning there is functionality that is not relevant to R, or that there are implementations missing that could greatly benefit R users. Additionally, if you are ever interested in working with Python, RStudio also supports Python, as well as integration of Python and R into the same document.
+
+RStudio can be downloaded from <https://posit.co/download/rstudio-desktop/>. You should have already downloaded R so you can immediately go to step two and download RStudio desktop.
+
+## Finding your way around RStudio
+
+Now let's see what RStudio offers us compared to the graphical user interface of R itself. When we open RStudio, @fig-rstudio shows what we see:
+
+![Default RStudio](images/rstudio.png){#fig-rstudio fig-alt="RStudio" fig-align="center"}
+
+### Interface
+First, let's see what each window means.
+
+### Settings
+
+Second, let's highlight some good settings that can ease your programming in R. The settings I will highlight here are my personal preference and in no way something you must adhere to, but it is good to know that they exist and that get an idea of the extent to which you can personalize the way RStudio works for you.
+
+To open the settings, you can go to 'Tools' in the menu bar at the top of the screen, and select 'Global options' in the drop-down menu, shown in @fig-global_options.
+
+![Going to global options](images/rstudio_global-options.png){#fig-global_options fig-alt="Location of global options" fig-align="center"}
+
+#### Saving the workspace
+
+A first setting I want to highlight is saving the workspace. By default, when you exit RStudio, RStudio will ask you whether you want to save the workspace. The saved workspace will then be restored upon re-opening R. In other words, any data you created and loaded in would be saved upon quitting RStudio and loaded back in when you start RStudio again. Although this may sound useful, it also means that all data you create needs to be removed manually. This can quickly cause problems with memory and the speed of R and your device. Therefore I suggest that under 'General' you remove the tick from 'Restore .RData into workspace at startup' and set Save workspace to .RData on exit to Never as seen in @fig-workspace. 
+
+![Workspace settings](images/global-options.png){#fig-workspace fig-alt="workspace settings" fig-align="center" width=70%}
+
+#### Code display
+
+To make our code a bit more readable, I suggest changing a few settings under the section 'Code' in the tab 'Display' as seen in @fig-code_display. I prefer changing the following settings regarding my code display: 
+
+- Margin: by default, the code scripts in R show a margin (a vertical line) on the right of a code. This can help you style your code width if you use RStudio on different devices with different screen widths. Personally, I like to turn the margin off by removing the tick from 'Show margin'. 
+
+- Scrolling past end: when you write a code in a script, you can scroll to the end of the script, but not further, However, personally I prefer to have the code that I am looking at be in the middle of the screen. By ticking 'Allow scroll past end of document', I can keep scrolling after the code finishes to center the code in the window. 
+
+- Highlight functions: in R, we can calculate many things using functions (more on this later). However, these normally are the same colour as the rest of your code. I prefer to highlight functions to increase readability. You can do this by ticking 'Highlight R function calls'.
+
+- Rainbow parentheses: many of the code that is written in R uses parentheses: (). However, many parentheses within each other might become very confusion (((()))). Although R highlights the corresponding parenthesis, I find it helpful to additionally colour corresponding parentheses the same colour, while non-corresponding parentheses are coloured different. You can do this by ticking 'Rainbow parentheses'.
+
+![Code display settings](images/global-options_code_display.png){#fig-code_display fig-alt="code display settings" fig-align="center" width=70%}

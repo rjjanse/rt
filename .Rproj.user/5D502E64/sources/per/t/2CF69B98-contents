@@ -26,5 +26,3 @@ format:
 editor: source
 engine: knitr
 
-execute:
-  freeze: auto

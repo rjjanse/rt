@@ -3,7 +3,7 @@
     "path": "~/Personal projects/rtutorial_quarto/_quarto.yml",
     "project_path": "_quarto.yml",
     "type": "yaml",
-    "hash": "0",
+    "hash": "2641793546",
     "contents": "",
     "dirty": false,
     "created": 1679340081501.0,
@@ -11,14 +11,16 @@
     "relative_order": 2,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "15,5",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1679340074,
+    "lastKnownWriteTime": 1679344537,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1679340074,
+    "last_content_update": 1679344537778,
     "read_only": false,
     "read_only_alternatives": []
 }

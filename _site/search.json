@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for data science, such as how to perform regression analyses and plot results."
+  },
+  {
+    "objectID": "r.html",
+    "href": "r.html",
+    "title": "R",
+    "section": "",
+    "text": "R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language, where it also got its name (R being the successor of R in the alphabet). R first appeared in August 1993 and the first official R version 1.0 was released on the 29th of February, 2000 (Source)."
+  },
+  {
+    "objectID": "r.html#installing-r",
+    "href": "r.html#installing-r",
+    "title": "R",
+    "section": "Installing R",
+    "text": "Installing R\nLet’s start by installing R. R can be used on Windows, Apple, and Linux operating systems. To download R, you can go to https://cran.rstudio.com, where you can choose the download link applicable to your platform.\nAfter R is installed, you can open it and you will see the following screen:\n\n\n\nFigure 1: R graphical user interface\n\n\nIn Figure 1, you can see the R console, which allows you write code to subsequently yield results. However, as you might have noticed, the interface is quite limited in the information it shows you. This is why it is a good idea to install an Integrated Development Environment (also called an IDE).\nNext: Installing the RStudio IDE"
+  },
+  {
+    "objectID": "rstudio.html",
+    "href": "rstudio.html",
+    "title": "RStudio",
+    "section": "",
+    "text": "One of the most popular IDEs for R is RStudio, developed by Posit. RStudio is an especially great IDE for R because it was developed specifically with R in mind. Although other IDEs exist, these are often more general, meaning there is functionality that is not relevant to R, or that there are implementations missing that could greatly benefit R users. Additionally, if you are ever interested in working with Python, RStudio also supports Python, as well as integration of Python and R into the same document.\nRStudio can be downloaded from https://posit.co/download/rstudio-desktop/. You should have already downloaded R so you can immediately go to step two and download RStudio desktop."
+  },
+  {
+    "objectID": "rstudio.html#finding-your-way-around-rstudio",
+    "href": "rstudio.html#finding-your-way-around-rstudio",
+    "title": "RStudio",
+    "section": "Finding your way around RStudio",
+    "text": "Finding your way around RStudio\nNow let’s see what RStudio offers us compared to the graphical user interface of R itself. When we open RStudio, Figure 1 shows what we see:\n\n\n\nFigure 1: Default RStudio\n\n\n\nInterface\nFirst, let’s see what each window means.\n\n\nSettings\nSecond, let’s highlight some good settings that can ease your programming in R. The settings I will highlight here are my personal preference and in no way something you must adhere to, but it is good to know that they exist and that get an idea of the extent to which you can personalize the way RStudio works for you.\nTo open the settings, you can go to ‘Tools’ in the menu bar at the top of the screen, and select ‘Global options’ in the drop-down menu, shown in Figure 2.\n\n\n\nFigure 2: Going to global options\n\n\n\nSaving the workspace\nA first setting I want to highlight is saving the workspace. By default, when you exit RStudio, RStudio will ask you whether you want to save the workspace. The saved workspace will then be restored upon re-opening R. In other words, any data you created and loaded in would be saved upon quitting RStudio and loaded back in when you start RStudio again. Although this may sound useful, it also means that all data you create needs to be removed manually. This can quickly cause problems with memory and the speed of R and your device. Therefore I suggest that under ‘General’ you remove the tick from ‘Restore .RData into workspace at startup’ and set Save workspace to .RData on exit to Never as seen in Figure 3.\n\n\n\nFigure 3: Workspace settings\n\n\n\n\nCode display\nTo make our code a bit more readable, I suggest changing a few settings under the section ‘Code’ in the tab ‘Display’ as seen in Figure 4. I prefer changing the following settings regarding my code display:\n\nMargin: by default, the code scripts in R show a margin (a vertical line) on the right of a code. This can help you style your code width if you use RStudio on different devices with different screen widths. Personally, I like to turn the margin off by removing the tick from ‘Show margin’.\nScrolling past end: when you write a code in a script, you can scroll to the end of the script, but not further, However, personally I prefer to have the code that I am looking at be in the middle of the screen. By ticking ‘Allow scroll past end of document’, I can keep scrolling after the code finishes to center the code in the window.\nHighlight functions: in R, we can calculate many things using functions (more on this later). However, these normally are the same colour as the rest of your code. I prefer to highlight functions to increase readability. You can do this by ticking ‘Highlight R function calls’.\nRainbow parentheses: many of the code that is written in R uses parentheses: (). However, many parentheses within each other might become very confusion (((()))). Although R highlights the corresponding parenthesis, I find it helpful to additionally colour corresponding parentheses the same colour, while non-corresponding parentheses are coloured different. You can do this by ticking ‘Rainbow parentheses’.\n\n\n\n\nFigure 4: Code display settings"
+  }
+]
