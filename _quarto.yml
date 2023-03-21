@@ -16,6 +16,9 @@ website:
      
 format:
   html:
+    code-line-numbers: true
+    code-link: true
+    code-fold: true
     theme: solar
     toc: true
     toc-title: Contents

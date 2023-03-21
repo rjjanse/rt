@@ -7,7 +7,7 @@ author: "Roemer J. Janse"
 
 One of the most popular IDEs for R is RStudio, developed by Posit. RStudio is an especially great IDE for R because it was developed specifically with R in mind. Although other IDEs exist, these are often more general, meaning there is functionality that is not relevant to R, or that there are implementations missing that could greatly benefit R users. Additionally, if you are ever interested in working with Python, RStudio also supports Python, as well as integration of Python and R into the same document.
 
-RStudio can be downloaded from <https://posit.co/download/rstudio-desktop/>. You should have already downloaded R so you can immediately go to step two and download RStudio desktop.
+RStudio can be downloaded from <https://posit.co/download/rstudio-desktop/>. You have already downloaded R in the previous section so you can immediately go to step two and download RStudio desktop.
 
 ## Finding your way around RStudio
 
@@ -17,15 +17,15 @@ Now let's see what RStudio offers us compared to the graphical user interface of
 
 ### Interface
 
-First, let's see what each window in the RStudio IDE, as numbered in @fig-rstudio_interface, means.
+First, let's see what each section in the RStudio window, as numbered in @fig-rstudio_interface, means.
 
-1. The first window is the script. In the script is where you will write most of your code. Scripts are text files that are saved on your device and you can load in later, meaning any code you write you can reuse later, without writing it again.
+1. The first section is the script. In the script is where you will write most of your code. Scripts are text files that are saved on your device and you can load in later, meaning any code you write you can reuse later, without writing it again.
 
-2. The second window is the console. Any code you run in the script will show its output in the console. Additionally, if you quickly want to see the output of some code, you can write it in the console instead of the script (but it won't be saved then).
+2. The second section is the console. Any code you run in the script will show its output in the console. Additionally, if you quickly want to see the output of some code, you can write it in the console instead of the script (but it won't be saved then).
 
-3. The third window is the global environment. Any data you create wil show up in here and from here you can inspect the data and details related to the data.
+3. The third section is the global environment. Any data you create wil show up in here and from here you can inspect the data and details related to the data.
 
-4. The fourth window contains multiple tabs, of which many are relevant to any R user. 
+4. The fourth section contains multiple tabs, of which many are relevant to any R user. 
     i. The first tab is the 'Files' tab. When you are working on some code in R, it is possible to determine from where files are loaded and where files are saved by default. This location is automatically opened in the 'Files' tab, from where you can inspect the location and load any files by hand.
     ii. The second tab is the 'Plots' tab. Whenever you create a plot (i.e., figure) in R, it will show up in this tab, so that you can visually inspect whether you like it before exporting it.
     iii. In the third tab, 'Packages', you can find all Packages (more on those later) you have installed and see which ones are loaded. Additionally, you can update packages from this tab.
@@ -34,7 +34,7 @@ First, let's see what each window in the RStudio IDE, as numbered in @fig-rstudi
 
 ![RStudio interface](images/rstudio_interface.png){#fig-rstudio_interface fig-alt="Labelled RStudio interface" fig-align="center"}
 
-These are all the important windows and tabs any RStudio user should know about. Don't worry if you don't immediately understand or remember what the windows do or represent. Throughout the tutorial, they will come back and through practice you will get a good understanding of what you see in your RStudio window.
+These are all the important sections and tabs any RStudio user should know about. Don't worry if you don't immediately understand or remember what the windows do or represent. Throughout the tutorial, they will come back and through practice you will get a good understanding of what you see in your RStudio window.
 
 ### Settings
 
@@ -54,7 +54,7 @@ A first setting I want to highlight is saving the workspace. By default, when yo
 
 To make our code a bit more readable, I suggest changing a few settings under the section 'Code' in the tab 'Display' as seen in @fig-code_display. I prefer changing the following settings regarding my code display: 
 
-- Margin: by default, the code scripts in R show a margin (a vertical line) on the right of a code. This can help you style your code width if you use RStudio on different devices with different screen widths. Personally, I like to turn the margin off by removing the tick from 'Show margin'. 
+- Margin: by default, the scripts in R show a margin (a vertical line) on the right of a code. This can help you style your code width if you use RStudio on different devices with different screen widths. Personally, I like to turn the margin off by removing the tick from 'Show margin'. 
 
 - Scrolling past end: when you write a code in a script, you can scroll to the end of the script, but not further, However, personally I prefer to have the code that I am looking at be in the middle of the screen. By ticking 'Allow scroll past end of document', I can keep scrolling after the code finishes to center the code in the window. 
 
