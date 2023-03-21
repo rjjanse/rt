@@ -16,7 +16,25 @@ Now let's see what RStudio offers us compared to the graphical user interface of
 ![Default RStudio](images/rstudio.png){#fig-rstudio fig-alt="RStudio" fig-align="center"}
 
 ### Interface
-First, let's see what each window means.
+
+First, let's see what each window in the RStudio IDE, as numbered in @fig-rstudio_interface, means.
+
+1. The first window is the script. In the script is where you will write most of your code. Scripts are text files that are saved on your device and you can load in later, meaning any code you write you can reuse later, without writing it again.
+
+2. The second window is the console. Any code you run in the script will show its output in the console. Additionally, if you quickly want to see the output of some code, you can write it in the console instead of the script (but it won't be saved then).
+
+3. The third window is the global environment. Any data you create wil show up in here and from here you can inspect the data and details related to the data.
+
+4. The fourth window contains multiple tabs, of which many are relevant to any R user. 
+    i. The first tab is the 'Files' tab. When you are working on some code in R, it is possible to determine from where files are loaded and where files are saved by default. This location is automatically opened in the 'Files' tab, from where you can inspect the location and load any files by hand.
+    ii. The second tab is the 'Plots' tab. Whenever you create a plot (i.e., figure) in R, it will show up in this tab, so that you can visually inspect whether you like it before exporting it.
+    iii. In the third tab, 'Packages', you can find all Packages (more on those later) you have installed and see which ones are loaded. Additionally, you can update packages from this tab.
+    iv. The 'Help' tab, the fourth of the tabs available, allows you to search for functions and packages and helps you understand how they work and how to enter data into them to obtain the desires results.
+    v. The last tab of interest for now, the 'Viewer' tab, allows you to view created documents. Sometimes, R allows you to documents, such as HTML documents (of which we will see an example later on), which can then be visually inspected in the viewer before export.
+
+![RStudio interface](images/rstudio_interface.png)(#fig-rstudio_interface fig-alt="Labelled RStudio interface" fig-align="center")
+
+These are all the important windows and tabs any RStudio user should know about. Don't worry if you don't immediately understand or remember what the windows do or represent. Throughout the tutorial, they will come back and through practice you will get a good understanding of what you see in your RStudio window.
 
 ### Settings
 
