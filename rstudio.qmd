@@ -32,7 +32,7 @@ First, let's see what each window in the RStudio IDE, as numbered in @fig-rstudi
     iv. The 'Help' tab, the fourth of the tabs available, allows you to search for functions and packages and helps you understand how they work and how to enter data into them to obtain the desires results.
     v. The last tab of interest for now, the 'Viewer' tab, allows you to view created documents. Sometimes, R allows you to documents, such as HTML documents (of which we will see an example later on), which can then be visually inspected in the viewer before export.
 
-![RStudio interface](images/rstudio_interface.png)(#fig-rstudio_interface fig-alt="Labelled RStudio interface" fig-align="center")
+![RStudio interface](images/rstudio_interface.png){#fig-rstudio_interface fig-alt="Labelled RStudio interface" fig-align="center"}
 
 These are all the important windows and tabs any RStudio user should know about. Don't worry if you don't immediately understand or remember what the windows do or represent. Throughout the tutorial, they will come back and through practice you will get a good understanding of what you see in your RStudio window.
 
