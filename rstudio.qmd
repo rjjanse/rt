@@ -42,6 +42,6 @@ To make our code a bit more readable, I suggest changing a few settings under th
 
 - Highlight functions: in R, we can calculate many things using functions (more on this later). However, these normally are the same colour as the rest of your code. I prefer to highlight functions to increase readability. You can do this by ticking 'Highlight R function calls'.
 
-- Rainbow parentheses: many of the code that is written in R uses parentheses: (). However, many parentheses within each other might become very confusion (((()))). Although R highlights the corresponding parenthesis, I find it helpful to additionally colour corresponding parentheses the same colour, while non-corresponding parentheses are coloured different. You can do this by ticking 'Rainbow parentheses'.
+- Rainbow parentheses: many of the code that is written in R uses parentheses: (). However, many parentheses within each other might become very confusing: (((()))). Although R highlights the corresponding parenthesis, I find it helpful to additionally colour corresponding parentheses the same colour, while non-corresponding parentheses are coloured different. You can do this by ticking 'Rainbow parentheses'.
 
 ![Code display settings](images/global-options_code_display.png){#fig-code_display fig-alt="code display settings" fig-align="center" width=70%}

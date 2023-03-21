@@ -5,7 +5,7 @@ author: "Roemer J. Janse"
 
 ## R: an introduction
 
-R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language, where it also got its name (R being the successor of R in the alphabet). R first appeared in August 1993 and the first official R version 1.0 was released on the 29^th^ of February, 2000 ([Source](https://en.wikipedia.org/wiki/R_(programming_language))).
+R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29^th^ of February, 2000 ([Source](https://en.wikipedia.org/wiki/R_(programming_language))).
 
 ## Installing R
 
