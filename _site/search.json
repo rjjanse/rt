@@ -4,14 +4,14 @@
     "href": "index.html",
     "title": "Introduction",
     "section": "",
-    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for data science, such as how to perform regression analyses and plot results.\nThroughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the button that says ‘Code’, as shown below.\n\nCode# Answer\n\n\nNext: R"
+    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for data science, such as how to perform regression analyses and plot results.\nThroughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the button that says ‘Code’, as shown below.\n\n\nCode\n# Answer\n\n\nNext: R"
   },
   {
     "objectID": "r.html",
     "href": "r.html",
     "title": "R",
     "section": "",
-    "text": "R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language, where it also got its name (R being the successor of R in the alphabet). R first appeared in August 1993 and the first official R version 1.0 was released on the 29th of February, 2000 (Source)."
+    "text": "R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29th of February, 2000 (Source)."
   },
   {
     "objectID": "r.html#installing-r",

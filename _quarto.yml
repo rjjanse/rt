@@ -17,10 +17,9 @@ website:
 format:
   html:
     code-line-numbers: true
-    code-link: true
     code-fold: true
     theme: solar
-    toc: true
+    toc: false
     toc-title: Contents
     toc-depth: 4
     toc-location: right
