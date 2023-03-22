@@ -17,6 +17,7 @@ website:
 format:
   html:
     code-fold: true
+    code-line-numbers: true
     code-summary: "Answer"
     theme: solar
     toc: false
