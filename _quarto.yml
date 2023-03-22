@@ -20,9 +20,6 @@ format:
     code-fold: true
     theme: solar
     toc: false
-    toc-title: Contents
-    toc-depth: 4
-    toc-location: right
     fig-cap-location: margin
 
 editor: source

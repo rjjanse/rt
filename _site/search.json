@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Introduction",
     "section": "",
-    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for data science, such as how to perform regression analyses and plot results.\nThroughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the button that says ‘Code’, as shown below.\n\n\nCode\n# Answer\n\n\nNext: R"
+    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for data science, such as how to perform regression analyses and plot results.\nThroughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the button that says ‘Code’, as shown below.\n#| echo: true\n# Answer\nNext: R"
   },
   {
     "objectID": "r.html",

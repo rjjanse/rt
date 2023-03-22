@@ -7,7 +7,7 @@ Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of
 
 Throughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the button that says 'Code', as shown below.
 
-```{r}
+```r
 #| echo: true
 # Answer
 ```
