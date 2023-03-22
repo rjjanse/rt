@@ -16,8 +16,8 @@ website:
      
 format:
   html:
-    code-line-numbers: true
     code-fold: true
+    code-summary: "Answer"
     theme: solar
     toc: false
     fig-cap-location: margin
