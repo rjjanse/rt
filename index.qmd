@@ -7,7 +7,8 @@ Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of
 
 Throughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the 'Answer' button. An example is shown below.
 
-
+#### Exercises
+0: Open the answer
 
 ```{r}
 #| echo: true

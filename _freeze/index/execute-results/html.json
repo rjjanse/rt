@@ -1,7 +1,7 @@
 {
-  "hash": "085a14794237d3e20424b003ab0b1b71",
+  "hash": "359291f93c70941f9e646349300b638a",
   "result": {
-    "markdown": "---\ntitle: \"Introduction\"\nauthor: \"Roemer J. Janse\"\n---\n\n\nHi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for data science, such as how to perform regression analyses and plot results.\n\nThroughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the button that says 'Code', as shown below.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Answer\n```\n:::\n\n\n**Next:** [R](r.qmd)",
+    "markdown": "---\ntitle: \"Introduction\"\nauthor: \"Roemer J. Janse\"\n---\n\n\nHi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for data science, such as how to perform regression analyses and plot results.\n\nThroughout the tutorial, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the 'Answer' button. An example is shown below.\n\n#### Exercises\n0: Open the answer\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Well done!\n```\n:::\n\n\n**Next:** [R](r.qmd)",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
