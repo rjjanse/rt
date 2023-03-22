@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -122,13 +127,13 @@ ul.task-list{list-style: none;}
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Contents</h2>
    
   <ul>
   <li><a href="#installing-the-rstudio-ide" id="toc-installing-the-rstudio-ide" class="nav-link active" data-scroll-target="#installing-the-rstudio-ide">Installing the RStudio IDE</a></li>
   <li><a href="#finding-your-way-around-rstudio" id="toc-finding-your-way-around-rstudio" class="nav-link" data-scroll-target="#finding-your-way-around-rstudio">Finding your way around RStudio</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#interface" id="toc-interface" class="nav-link" data-scroll-target="#interface">Interface</a></li>
   <li><a href="#settings" id="toc-settings" class="nav-link" data-scroll-target="#settings">Settings</a>
   <ul class="collapse">
@@ -158,6 +163,7 @@ ul.task-list{list-style: none;}
           </div>
   </div>
     
+  
     
   </div>
   
@@ -175,7 +181,7 @@ ul.task-list{list-style: none;}
 <div id="fig-rstudio" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/rstudio.png" class="img-fluid figure-img" alt="RStudio"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 1: Default RStudio</figcaption><p></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;1: Default RStudio</figcaption><p></p>
 </figure>
 </div>
 <section id="interface" class="level3 page-columns page-full">
@@ -197,7 +203,7 @@ ul.task-list{list-style: none;}
 <div id="fig-rstudio_interface" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/rstudio_interface.png" class="img-fluid figure-img" alt="Labelled RStudio interface"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 2: RStudio interface</figcaption><p></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;2: RStudio interface</figcaption><p></p>
 </figure>
 </div>
 <p>These are all the important sections and tabs any RStudio user should know about. Don’t worry if you don’t immediately understand or remember what the windows do or represent. Throughout the tutorial, they will come back and through practice you will get a good understanding of what you see in your RStudio window.</p>
@@ -209,7 +215,7 @@ ul.task-list{list-style: none;}
 <div id="fig-global_options" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="images/rstudio_global-options.png" class="img-fluid figure-img" alt="Location of global options"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 3: Going to global options</figcaption><p></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;3: Going to global options</figcaption><p></p>
 </figure>
 </div>
 <section id="saving-the-workspace" class="level4 page-columns page-full">
@@ -217,8 +223,8 @@ ul.task-list{list-style: none;}
 <p>A first setting I want to highlight is saving the workspace. By default, when you exit RStudio, RStudio will ask you whether you want to save the workspace. The saved workspace will then be restored upon re-opening R. In other words, any data you created and loaded in would be saved upon quitting RStudio and loaded back in when you start RStudio again. Although this may sound useful, it also means that all data you create needs to be removed manually. This can quickly cause problems with memory and the speed of R and your device. Therefore I suggest that under ‘General’ you remove the tick from ‘Restore .RData into workspace at startup’ and set Save workspace to .RData on exit to Never as seen in <a href="#fig-workspace">Figure&nbsp;4</a>.</p>
 <div id="fig-workspace" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="images/global-options.png" class="img-fluid figure-img" alt="workspace settings" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 4: Workspace settings</figcaption><p></p>
+<p><img src="images/global-options.png" class="img-fluid figure-img" style="width:70.0%" alt="workspace settings"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;4: Workspace settings</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -233,8 +239,8 @@ ul.task-list{list-style: none;}
 </ul>
 <div id="fig-code_display" class="quarto-figure quarto-figure-center anchored page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><img src="images/global-options_code_display.png" class="img-fluid figure-img" alt="code display settings" style="width:70.0%"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure 5: Code display settings</figcaption><p></p>
+<p><img src="images/global-options_code_display.png" class="img-fluid figure-img" style="width:70.0%" alt="code display settings"></p>
+<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;5: Code display settings</figcaption><p></p>
 </figure>
 </div>
 
@@ -285,7 +291,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -313,31 +336,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
