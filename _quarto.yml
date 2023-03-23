@@ -9,10 +9,37 @@ website:
         - section: "Home"
           contents:
             - index.qmd
-        - section: "Getting started"
+        - section: "Set-up"
           contents:
             - r.qmd
             - rstudio.qmd
+        - section: "Getting started with R"
+          contents:
+            - basics.qmd
+            - packages.qmd
+            - data.qmd
+            - tidyverse.qmd
+        - section: "Doing and reporting"
+          contents:
+            - regression.qmd
+            - imputation.qmd
+            - plotting.qmd
+            - table1.qmd
+            - rmarkdown.qmd
+        - section: "Going further with R"
+          contents: 
+            - functions.qmd
+            - looping.qmd
+        - section: "Practical applications"
+          contents:
+            - prediction.qmd
+            - competing_risks.qmd
+            - confounding.qmd
+            - agreement.qmd
+        - section: "Summary"
+          contents: 
+            - summary.qmd
+            - further_resources.qmd
      
 format:
   html:

@@ -1,0 +1,27 @@
+---
+title: "R Basics"
+---
+
+<!-- To do:
+•	Annotation
+•	Basic mathematic operators
+o	Addition, substraction, multiplication, division, and modulus/remainder
+•	Functions
+•	Basic functions
+o	Sum, mean, median, summary, quintiles, min, max, table
+•	Storing values in objects
+o	Single value
+	What operator to use: <- or =
+o	Vector (& what is a vector)
+o	List
+o	Matrices
+	Transforming to matrices
+o	Dataframes
+	Dimensions: nrow, ncol
+	Setting column names
+	Transforming to data frames
+	Transforming matrices to data frames
+•	Finding source code of a function
+•	Methods() of functions
+•	Global environment
+o	Get & assign -->

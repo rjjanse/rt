@@ -1,6 +1,5 @@
 ---
 title: "RStudio"
-author: "Roemer J. Janse"
 ---
 
 ## Installing the RStudio IDE
@@ -63,3 +62,5 @@ To make our code a bit more readable, I suggest changing a few settings under th
 - Rainbow parentheses: many of the code that is written in R uses parentheses: (). However, many parentheses within each other might become very confusing: (((()))). Although R highlights the corresponding parenthesis, I find it helpful to additionally colour corresponding parentheses the same colour, while non-corresponding parentheses are coloured different. You can do this by ticking 'Rainbow parentheses'.
 
 ![Code display settings](images/global-options_code_display.png){#fig-code_display fig-alt="code display settings" fig-align="center" width=70%}
+
+**Next:** [R Basics](basics.qmd)
