@@ -1,6 +1,5 @@
 ---
 title: "R"
-author: "Roemer J. Janse"
 ---
 
 ## R: an introduction
