@@ -63,4 +63,10 @@ To make our code a bit more readable, I suggest changing a few settings under th
 
 ![Code display settings](images/global-options_code_display.png){#fig-code_display fig-alt="code display settings" fig-align="center" width=70%}
 
+#### RStudio appearance
+
+When working in RStudio, I prefer the screen to not be too bright. Additionally, I modified the way the code looks to my own preferences. You can try what works best for you under 'Appearance' (@fig-appearance).
+
+![RStudio appearance settings](images/global-options_appearance.png){#fig-appearance fig-alt="appearance settings" fig-align="center" width=70%}
+
 **Next:** [R Basics](basics.qmd)

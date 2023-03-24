@@ -62,7 +62,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating slimcontent">
+<body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
@@ -132,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basics.html" class="sidebar-item-text sidebar-link">R Basics</a>
+  <a href="./basics.html" class="sidebar-item-text sidebar-link">Basics</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -230,9 +230,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#installing-the-rstudio-ide" id="toc-installing-the-rstudio-ide" class="nav-link active" data-scroll-target="#installing-the-rstudio-ide">Installing the RStudio IDE</a></li>
+  <li><a href="#finding-your-way-around-rstudio" id="toc-finding-your-way-around-rstudio" class="nav-link" data-scroll-target="#finding-your-way-around-rstudio">Finding your way around RStudio</a>
+  <ul>
+  <li><a href="#interface" id="toc-interface" class="nav-link" data-scroll-target="#interface">Interface</a></li>
+  <li><a href="#settings" id="toc-settings" class="nav-link" data-scroll-target="#settings">Settings</a>
+  <ul class="collapse">
+  <li><a href="#saving-the-workspace" id="toc-saving-the-workspace" class="nav-link" data-scroll-target="#saving-the-workspace">Saving the workspace</a></li>
+  <li><a href="#code-display" id="toc-code-display" class="nav-link" data-scroll-target="#code-display">Code display</a></li>
+  <li><a href="#appearance" id="toc-appearance" class="nav-link" data-scroll-target="#appearance">Appearance</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -256,16 +273,16 @@ ul.task-list li input[type="checkbox"] {
 <p>One of the most popular IDEs for R is RStudio, developed by Posit. RStudio is an especially great IDE for R because it was developed specifically with R in mind. Although other IDEs exist, these are often more general, meaning there is functionality that is not relevant to R, or that there are implementations missing that could greatly benefit R users. Additionally, if you are ever interested in working with Python, RStudio also supports Python, as well as integration of Python and R into the same document.</p>
 <p>RStudio can be downloaded from <a href="https://posit.co/download/rstudio-desktop/" class="uri">https://posit.co/download/rstudio-desktop/</a>. You have already downloaded R in the previous section so you can immediately go to step two and download RStudio desktop.</p>
 </section>
-<section id="finding-your-way-around-rstudio" class="level2 page-columns page-full">
+<section id="finding-your-way-around-rstudio" class="level2">
 <h2 class="anchored" data-anchor-id="finding-your-way-around-rstudio">Finding your way around RStudio</h2>
 <p>Now let’s see what RStudio offers us compared to the graphical user interface of R itself. When we open RStudio, <a href="#fig-rstudio">Figure&nbsp;1</a> shows what we see:</p>
-<div id="fig-rstudio" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="fig-rstudio" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <p><img src="images/rstudio.png" class="img-fluid figure-img" alt="RStudio"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;1: Default RStudio</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Default RStudio</figcaption><p></p>
 </figure>
 </div>
-<section id="interface" class="level3 page-columns page-full">
+<section id="interface" class="level3">
 <h3 class="anchored" data-anchor-id="interface">Interface</h3>
 <p>First, let’s see what each section in the RStudio window, as numbered in <a href="#fig-rstudio_interface">Figure&nbsp;2</a>, means.</p>
 <ol type="1">
@@ -281,35 +298,35 @@ ul.task-list li input[type="checkbox"] {
 <li>The last tab of interest for now, the ‘Viewer’ tab, allows you to view created documents. Sometimes, R allows you to documents, such as HTML documents (of which we will see an example later on), which can then be visually inspected in the viewer before export.</li>
 </ol></li>
 </ol>
-<div id="fig-rstudio_interface" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="fig-rstudio_interface" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <p><img src="images/rstudio_interface.png" class="img-fluid figure-img" alt="Labelled RStudio interface"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;2: RStudio interface</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: RStudio interface</figcaption><p></p>
 </figure>
 </div>
 <p>These are all the important sections and tabs any RStudio user should know about. Don’t worry if you don’t immediately understand or remember what the windows do or represent. Throughout the tutorial, they will come back and through practice you will get a good understanding of what you see in your RStudio window.</p>
 </section>
-<section id="settings" class="level3 page-columns page-full">
+<section id="settings" class="level3">
 <h3 class="anchored" data-anchor-id="settings">Settings</h3>
 <p>Second, let’s highlight some good settings that can ease your programming in R. The settings I will highlight here are my personal preference and in no way something you must adhere to, but it is good to know that they exist and that get an idea of the extent to which you can personalize the way RStudio works for you.</p>
 <p>To open the settings, you can go to ‘Tools’ in the menu bar at the top of the screen, and select ‘Global options’ in the drop-down menu, shown in <a href="#fig-global_options">Figure&nbsp;3</a>.</p>
-<div id="fig-global_options" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="fig-global_options" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <p><img src="images/rstudio_global-options.png" class="img-fluid figure-img" alt="Location of global options"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;3: Going to global options</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Going to global options</figcaption><p></p>
 </figure>
 </div>
-<section id="saving-the-workspace" class="level4 page-columns page-full">
+<section id="saving-the-workspace" class="level4">
 <h4 class="anchored" data-anchor-id="saving-the-workspace">Saving the workspace</h4>
 <p>A first setting I want to highlight is saving the workspace. By default, when you exit RStudio, RStudio will ask you whether you want to save the workspace. The saved workspace will then be restored upon re-opening R. In other words, any data you created and loaded in would be saved upon quitting RStudio and loaded back in when you start RStudio again. Although this may sound useful, it also means that all data you create needs to be removed manually. This can quickly cause problems with memory and the speed of R and your device. Therefore I suggest that under ‘General’ you remove the tick from ‘Restore .RData into workspace at startup’ and set Save workspace to .RData on exit to Never as seen in <a href="#fig-workspace">Figure&nbsp;4</a>.</p>
-<div id="fig-workspace" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="fig-workspace" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <p><img src="images/global-options.png" class="img-fluid figure-img" style="width:70.0%" alt="workspace settings"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;4: Workspace settings</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;4: Workspace settings</figcaption><p></p>
 </figure>
 </div>
 </section>
-<section id="code-display" class="level4 page-columns page-full">
+<section id="code-display" class="level4">
 <h4 class="anchored" data-anchor-id="code-display">Code display</h4>
 <p>To make our code a bit more readable, I suggest changing a few settings under the section ‘Code’ in the tab ‘Display’ as seen in <a href="#fig-code_display">Figure&nbsp;5</a>. I prefer changing the following settings regarding my code display:</p>
 <ul>
@@ -318,10 +335,20 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Highlight functions: in R, we can calculate many things using functions (more on this later). However, these normally are the same colour as the rest of your code. I prefer to highlight functions to increase readability. You can do this by ticking ‘Highlight R function calls’.</p></li>
 <li><p>Rainbow parentheses: many of the code that is written in R uses parentheses: (). However, many parentheses within each other might become very confusing: (((()))). Although R highlights the corresponding parenthesis, I find it helpful to additionally colour corresponding parentheses the same colour, while non-corresponding parentheses are coloured different. You can do this by ticking ‘Rainbow parentheses’.</p></li>
 </ul>
-<div id="fig-code_display" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="fig-code_display" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <p><img src="images/global-options_code_display.png" class="img-fluid figure-img" style="width:70.0%" alt="code display settings"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;5: Code display settings</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;5: Code display settings</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="appearance" class="level4">
+<h4 class="anchored" data-anchor-id="appearance">Appearance</h4>
+<p>When working in RStudio, I prefer the screen to not be too bright. Additionally, I modified the way the code looks to my own preferences. You can try what works best for you under ‘Appearance’ (<a href="#fig-appearance">Figure&nbsp;6</a>).</p>
+<div id="fig-appearance" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/global-options_appearance.png" class="img-fluid figure-img" style="width:70.0%" alt="appearance settings"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6: Appearance settings</figcaption><p></p>
 </figure>
 </div>
 <p><strong>Next:</strong> <a href="./basics.html">R Basics</a></p>

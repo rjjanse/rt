@@ -47,8 +47,10 @@ format:
     code-line-numbers: true
     code-summary: "Answer"
     theme: solar
-    toc: false
-    fig-cap-location: margin
+    toc: true
+    toc-depth: 4
+    toc-title: "Contents"
+    fig-cap-location: bottom
 
 editor: source
 engine: knitr

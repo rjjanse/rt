@@ -6,7 +6,6 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Roemer J. Janse">
 
 <title>R</title>
 <style>
@@ -63,7 +62,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating slimcontent">
+<body class="nav-sidebar floating">
 
 
 <div id="quarto-search-results"></div>
@@ -132,8 +131,10 @@ ul.task-list li input[type="checkbox"] {
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
-  basics.qmd
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./basics.html" class="sidebar-item-text sidebar-link">R Basics</a>
+  </div>
+</li>
           <li class="sidebar-item">
   packages.qmd
   </li>
@@ -229,9 +230,17 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#r-an-introduction" id="toc-r-an-introduction" class="nav-link active" data-scroll-target="#r-an-introduction">R: an introduction</a></li>
+  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r">Installing R</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -242,12 +251,6 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Roemer J. Janse </p>
-          </div>
-  </div>
     
   
     
@@ -260,14 +263,14 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="r-an-introduction">R: an introduction</h2>
 <p>R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29<sup>th</sup> of February, 2000 (<a href="https://en.wikipedia.org/wiki/R_(programming_language)">Source</a>).</p>
 </section>
-<section id="installing-r" class="level2 page-columns page-full">
+<section id="installing-r" class="level2">
 <h2 class="anchored" data-anchor-id="installing-r">Installing R</h2>
 <p>Let’s start by installing R. R can be used on Windows, Apple, and Linux operating systems. To download R, you can go to <a href="https://cran.rstudio.com" class="uri">https://cran.rstudio.com</a>, where you can choose the download link applicable to your platform.</p>
 <p>After R is installed, you can open it and you will see the following screen:</p>
-<div id="fig-r_gui" class="quarto-figure quarto-figure-center anchored page-columns page-full">
-<figure class="figure page-columns page-full">
+<div id="fig-r_gui" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
 <p><img src="images/rgui.png" class="img-fluid figure-img" alt="R graphical user interface"></p>
-<p></p><figcaption class="figure-caption margin-caption">Figure&nbsp;1: R graphical user interface</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: R graphical user interface</figcaption><p></p>
 </figure>
 </div>
 <p>In <a href="#fig-r_gui">Figure&nbsp;1</a>, you can see the R console, which allows you write code to subsequently yield results. However, as you might have noticed, the interface is quite limited in the information it shows you. This is why it is a good idea to install an Integrated Development Environment (also called an IDE).</p>
