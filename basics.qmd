@@ -94,11 +94,20 @@ Now that we know the basic mathematic operators, we could calculate the standard
 #| code-fold: false
 # Calculate the mean
 (3 + 8 + 3 + 7 + 1) / 5
+```
 
+```{r}
+#| code-fold: false
 # Use the calculated mean to calculate the standard deviation
 (((3 - 4.4) ^ 2 + (8 - 4.4) ^ 2 + (3 - 4.4) ^ 2 + (7 - 4.4) ^ 2 + (1 - 4.4) ^ 2) / (5 - 1)) ^ 0.5
 
 ```
+
+::: {.column-margin}
+A sample's standard deviation $s$ is obtained by calculating:
+
+$$\sqrt\frac{\sum{(x-\overline{x})^2}}{n-1}$$
+:::
 
 However, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:
 

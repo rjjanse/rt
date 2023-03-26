@@ -122,10 +122,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 
 <div id="quarto-search-results"></div>
@@ -304,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -376,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-5"><a href="#cb3-5"></a><span class="dv">8</span> <span class="sc">%%</span> <span class="dv">2</span>  <span class="co"># Modulo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>R follows the <a href="https://en.wikipedia.org/wiki/Order_of_operations#Programming_languages">conventional order of mathematic operation</a>.</p>
 <p>However, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.</p>
-<p>The results of the selected code can be found in the console. If the code takes some time, you can see it is done when a new line of the console starts with &gt; (<a href="#fig-ready">Figure&nbsp;1 (a)</a>).</p>
+<p>The results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with &gt; (<a href="#fig-ready">Figure&nbsp;1 (a)</a>).</p>
 <div class="callout-important callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -430,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </figure>
 </div>
 </section>
-<section id="functions" class="level2">
+<section id="functions" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <p>Now that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:</p>
 <div class="cell">
@@ -439,13 +440,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.4</code></pre>
 </div>
+</div>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Use the calculated mean to calculate the standard deviation</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>(((<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">7</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">^</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.966479</code></pre>
 </div>
 </div>
-<p>However, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>A sample’s standard deviation <span class="math inline">\(s\)</span> is obtained by calculating:</p>
+<p><span class="math display">\[\sqrt\frac{\sum{(x-\overline{x})^2}}{n-1}\]</span></p>
+</div></div><p>However, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Calculate standard deviation</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a><span class="fu">sd</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
