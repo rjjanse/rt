@@ -299,6 +299,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#annotation" id="toc-annotation" class="nav-link active" data-scroll-target="#annotation">Annotation</a></li>
   <li><a href="#basic-mathematic-operators-and-running-code" id="toc-basic-mathematic-operators-and-running-code" class="nav-link" data-scroll-target="#basic-mathematic-operators-and-running-code">Basic mathematic operators and running code</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   </ul>
 </nav>
     </div>
@@ -334,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7"></a>    <span class="fu">extract2</span>(<span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a>    <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1-9"><a href="#cb1-9"></a>    <span class="fu">paste0</span>(., <span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. So let’s see how we can increase this code’s clarity with annotation:</p>
+<p>In this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Calculate proportion of setosa observations with sepal length above 5</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>iris <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>    <span class="co"># Keep only setosa species</span></span>
@@ -376,7 +377,8 @@ What to annotate?
 <span id="cb3-3"><a href="#cb3-3"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>   <span class="co"># Multiplication</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="dv">8</span> <span class="sc">/</span> <span class="dv">2</span>   <span class="co"># Division</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a><span class="dv">8</span> <span class="sc">%%</span> <span class="dv">2</span>  <span class="co"># Modulo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>However, all this code is useless if we do not actually run it. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.</p>
+<p>R will follow the <a href="https://en.wikipedia.org/wiki/Order_of_operations#Programming_languages">conventional order of mathematic operation</a>.</p>
+<p>However, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.</p>
 <p>The results of the selected code can be found in the console. If the code takes some time, you can see it is done when a new line of the console starts with &gt;.</p>
 <div class="callout-important callout callout-style-simple">
 <div class="callout-body d-flex">
@@ -384,10 +386,29 @@ What to annotate?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>If you select a specific part of code to run, make sure to be encompassing! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with +.</p>
+<p>If you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with +.</p>
 </div>
 </div>
 </div>
+<p>If we run the example code for the basic mathematic operators, we will get the following results:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<p>Before each result, you can see <code>[1]</code>. This indicates that that specific line of code starts with the n<sup>th</sup> result. When a single code starts printing multiple results, this can help identify what n a certain result is.</p>
 <div id="fig-console" class="quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -411,6 +432,27 @@ What to annotate?
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Console states</figcaption><p></p>
 </figure>
 </div>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<p>Now that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Calculate the mean</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">5</span> <span class="co"># = 4.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Use the calculated mean to calculate the standard deviation</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>(((<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">7</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">^</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.966479</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">sd</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.966479</code></pre>
+</div>
+</div>
+<p>However, the more numbers we have, the less feasible this becomes. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the mean, instead of typing out all the numbers,</p>
 
 <!-- To do:
 •   Functions
