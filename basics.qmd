@@ -57,14 +57,14 @@ Now let's (finally) see some real code! Let's start with some basic operators:
 8 %% 2  # Modulo
 ```
 
-R will follow the [conventional order of mathematic operation](https://en.wikipedia.org/wiki/Order_of_operations#Programming_languages).
+R follows the [conventional order of mathematic operation](https://en.wikipedia.org/wiki/Order_of_operations#Programming_languages).
 
 However, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part. 
 
-The results of the selected code can be found in the console. If the code takes some time, you can see it is done when a new line of the console starts with >.
+The results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with > (@fig-ready).
 
 ::: {.callout-important appearance="simple"}
-If you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with +.
+If you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with + (@fig-waiting). To cancel a waiting command, you can press esc.
 :::
 
 If we run the example code for the basic mathematic operators, we will get the following results:
@@ -109,7 +109,7 @@ sd(c(3, 8, 3, 7, 1))
 ```
 
 :::{.callout-note appearance="simple"}
-We will see the `c()` function used when calculating the standard deviation in the next section, so don't worry about it for now!.
+The `c()` function we used when calculating the standard deviation will be elaborated upon in the next section, so don't worry about it for now!
 ::: 
 
 
