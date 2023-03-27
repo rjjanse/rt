@@ -69,7 +69,7 @@ If you select a specific part of code to run, make sure to be inclusive! For ins
 
 If we run the example code for the basic mathematic operators, we will get the following results:
 ```{r}
-#| echo: false
+#| code-fold: false
 1 + 1   # Addition
 3 - 1   # Substraction
 2 * 3   # Multiplication
@@ -118,10 +118,90 @@ sd(c(3, 8, 3, 7, 1))
 ```
 
 :::{.callout-note appearance="simple"}
-The `c()` function we used when calculating the standard deviation will be elaborated upon in the next section, so don't worry about it for now!
+In the standard deviation function, we use the `c()` function. Later we will elaborate on this, but for now it is enough to remember that `c()` creates a **c**ollection of data, which is more often called an object.
 ::: 
 
+Let's see some standard functions that will be of great help to you.
 
+### Sum
+`sum()`, as it name suggests, sums the supplied values. It has the following arguments:
+
+- `...`: the ellipsis indicates that any number of values can be supplied here. The sum function can take numeric values, integers, and booleans/logicals (i.e., it can sum the amount of `TRUE`s).
+
+- `na.rm = FALSE`: na.rm indicates whether any missing values should be dropped. By default, this is `FALSE`, meaning that the function will return `NA` if there is any `NA`s present in the data you are trying to sum. If you want to sum all valid values (thus drop all `NA`s), you can specify `na.rm = TRUE`.
+
+See the below examples:
+```{r}
+#| code-fold: false
+sum(3, 4, 5, 6)
+sum(3, NA, 5, 6)
+sum(3, NA, 5, 6, na.rm = TRUE)
+```
+
+:::{.callout-note appearance="simple"}
+In the `sum()` function, `na.rm` has the default value `FALSE`. This means that this argument does not have to be defined. If we would not define it, it would just use `FALSE`.
+:::
+
+### Mean and median
+To get the mean or median from some data, you can use the `mean()` and `median()` functions. `mean()` has the following arguments:
+
+- `x`: a collection (or object) of data containing the data for which a mean should be calculated.
+
+- `trim = 0`: what proportion of the outskirts of the data should be trimmed (e.g., 0.05 trims 5% of data on each side). It defaults to 0.
+
+- `na.rm = FALSE`: whether `NA`s should be dropped (as in `sum()`)
+
+`median()` has the same arguments, except that it doesn't have `trim`.
+
+Here are some examples:
+```{r}
+#| code-fold: false
+mean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))
+mean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), trim = 0.1)
+median(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))
+```
+
+:::{.callout-important appearance="simple"}
+Notice how with the mean, we specified that 0.1 was the value for `trim`, but we did not specify that `c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)` was the value for `x`. This is because R inputs values for arguments in order: the first supplied value will be used for the first argument, the second supplied value will be used for the second argument, etc. However, sometimes I do not want to specify the second value, but I do want to specify the third value. In this case I can name the argument as in `trim = 0.1`, so that R knows the 0.1 is meant for `trim`.
+:::
+
+### Min and max
+Now that we know how to calculate the mean and median from some data, we might also be interest in finding the lowest and highest value (for example, to detect the 1044 outlier). We can do this with `min()` and `max()`, which both take only one argument: `...` as in the `sum()` function. 
+
+To get the minimum and maximum value from the data we just calculated the mean and median of, we could do the following:
+```{r}
+#| code-fold: false
+min(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)
+max(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)
+```
+
+### Summary and quintile
+Now we know how to calculate the mean, median, minimum, and maximum values from some data, but what if we also want to know the 1^st^ and 3^rd^ quartile? Additionally, we do not want to use a function for each separate value. In this case, you can use `summary()`, which calculates the minimum, 1^st^ quartile, mean, median, 3^rd^ quartile, and maximum all at once. The summary function has multiple arguments, but only one is relevant for now:
+
+- `object`: the data of which you want to get a summary.
+
+For example:
+```{r}
+#| code-fold: false
+summary(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))
+```
+
+However, maybe we are more interested in the 1^st^ and 99^th^ quantiles. In that case we could use `quantile()`. You can supply the following arguments to `quantile()`:
+
+- `x`: a collection of data (or object) of which you want to calculate quantiles.
+
+- `probs = seq(0, 1, 0.25)`: the probabilities (or quantiles) you want to calculate. It defaults to `seq(0, 1, 0.25)`, which just means a sequence from 0 to 1 with increments of 0.25.
+
+- `na.rm = FALSE`: whether `NA`s should be dropped.
+
+- `names = TRUE`: whether the output should show the name (or specified quantile).
+
+So we could do:
+```{r}
+#| code-fold: false
+quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), probs = c(0.01, 0.99))
+quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), probs = c(0.01, 0.99), names = FALSE)
+```
 
 
 <!-- To do:

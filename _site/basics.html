@@ -300,7 +300,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#annotation" id="toc-annotation" class="nav-link active" data-scroll-target="#annotation">Annotation</a></li>
   <li><a href="#basic-mathematic-operators-and-running-code" id="toc-basic-mathematic-operators-and-running-code" class="nav-link" data-scroll-target="#basic-mathematic-operators-and-running-code">Basic mathematic operators and running code</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
+  <ul>
+  <li><a href="#sum" id="toc-sum" class="nav-link" data-scroll-target="#sum">Sum</a></li>
+  <li><a href="#mean-and-median" id="toc-mean-and-median" class="nav-link" data-scroll-target="#mean-and-median">Mean and median</a></li>
+  <li><a href="#min-and-max" id="toc-min-and-max" class="nav-link" data-scroll-target="#min-and-max">Min and max</a></li>
+  <li><a href="#summary-and-quintile" id="toc-summary-and-quintile" class="nav-link" data-scroll-target="#summary-and-quintile">Summary and quintile</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -390,18 +396,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>If we run the example code for the basic mathematic operators, we will get the following results:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>   <span class="co"># Addition</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>   <span class="co"># Substraction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>   <span class="co"># Multiplication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="dv">8</span> <span class="sc">/</span> <span class="dv">2</span>   <span class="co"># Division</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="dv">8</span> <span class="sc">%%</span> <span class="dv">2</span>  <span class="co"># Modulo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
@@ -435,15 +446,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <p>Now that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Calculate the mean</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Calculate the mean</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.4</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Use the calculated mean to calculate the standard deviation</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>(((<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">7</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">^</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Use the calculated mean to calculate the standard deviation</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>(((<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">7</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">^</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.966479</code></pre>
 </div>
@@ -454,8 +465,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[\sqrt\frac{\sum{(x-\overline{x})^2}}{n-1}\]</span></p>
 </div></div><p>However, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Calculate standard deviation</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">sd</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Calculate standard deviation</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">sd</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.966479</code></pre>
 </div>
@@ -466,8 +477,125 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>The <code>c()</code> function we used when calculating the standard deviation will be elaborated upon in the next section, so don’t worry about it for now!</p>
+<p>In the standard deviation function, we use the <code>c()</code> function. Later we will elaborate on this, but for now it is enough to remember that <code>c()</code> creates a <strong>c</strong>ollection of data, which is more often called an object.</p>
 </div>
+</div>
+</div>
+<p>Let’s see some standard functions that will be of great help to you.</p>
+<section id="sum" class="level3">
+<h3 class="anchored" data-anchor-id="sum">Sum</h3>
+<p><code>sum()</code>, as it name suggests, sums the supplied values. It has the following arguments:</p>
+<ul>
+<li><p><code>...</code>: the ellipsis indicates that any number of values can be supplied here. The sum function can take numeric values, integers, and booleans/logicals (i.e., it can sum the amount of <code>TRUE</code>s).</p></li>
+<li><p><code>na.rm = FALSE</code>: na.rm indicates whether any missing values should be dropped. By default, this is <code>FALSE</code>, meaning that the function will return <code>NA</code> if there is any <code>NA</code>s present in the data you are trying to sum. If you want to sum all valid values (thus drop all <code>NA</code>s), you can specify <code>na.rm = TRUE</code>.</p></li>
+</ul>
+<p>See the below examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 18</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 14</code></pre>
+</div>
+</div>
+<div class="callout-note callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In the <code>sum()</code> function, <code>na.rm</code> has the default value <code>FALSE</code>. This means that this argument does not have to be defined. If we would not define it, it would just use <code>FALSE</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="mean-and-median" class="level3">
+<h3 class="anchored" data-anchor-id="mean-and-median">Mean and median</h3>
+<p>To get the mean or median from some data, you can use the <code>mean()</code> and <code>median()</code> functions. <code>mean()</code> has the following arguments:</p>
+<ul>
+<li><p><code>x</code>: a collection (or object) of data containing the data for which a mean should be calculated.</p></li>
+<li><p><code>trim = 0</code>: what proportion of the outskirts of the data should be trimmed (e.g., 0.05 trims 5% of data on each side). It defaults to 0.</p></li>
+<li><p><code>na.rm = FALSE</code>: whether <code>NA</code>s should be dropped (as in <code>sum()</code>)</p></li>
+</ul>
+<p><code>median()</code> has the same arguments, except that it doesn’t have <code>trim</code>.</p>
+<p>Here are some examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 98.63636</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), <span class="at">trim =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.555556</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+</div>
+<div class="callout-important callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Notice how with the mean, we specified that 0.1 was the value for <code>trim</code>, but we did not specify that <code>c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)</code> was the value for <code>x</code>. This is because R inputs values for arguments in order: the first supplied value will be used for the first argument, the second supplied value will be used for the second argument, etc. However, sometimes I do not want to specify the second value, but I do want to specify the third value. In this case I can name the argument as in <code>trim = 0.1</code>, so that R knows the 0.1 is meant for <code>trim</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="min-and-max" class="level3">
+<h3 class="anchored" data-anchor-id="min-and-max">Min and max</h3>
+<p>Now that we know how to calculate the mean and median from some data, we might also be interest in finding the lowest and highest value (for example, to detect the 1044 outlier). We can do this with <code>min()</code> and <code>max()</code>, which both take only one argument: <code>...</code> as in the <code>sum()</code> function.</p>
+<p>To get the minimum and maximum value from the data we just calculated the mean and median of, we could do the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">min</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">max</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1044</code></pre>
+</div>
+</div>
+</section>
+<section id="summary-and-quintile" class="level3">
+<h3 class="anchored" data-anchor-id="summary-and-quintile">Summary and quintile</h3>
+<p>Now we know how to calculate the mean, median, minimum, and maximum values from some data, but what if we also want to know the 1<sup>st</sup> and 3<sup>rd</sup> quartile? Additionally, we do not want to use a function for each separate value. In this case, you can use <code>summary()</code>, which calculates the minimum, 1<sup>st</sup> quartile, mean, median, 3<sup>rd</sup> quartile, and maximum all at once. The summary function has multiple arguments, but only one is relevant for now:</p>
+<ul>
+<li><code>object</code>: the data of which you want to get a summary.</li>
+</ul>
+<p>For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   0.00    3.00    4.00   98.64    7.50 1044.00 </code></pre>
+</div>
+</div>
+<p>However, maybe we are more interested in the 1<sup>st</sup> and 99<sup>th</sup> quantiles. In that case we could use <code>quantile()</code>. You can supply the following arguments to <code>quantile()</code>:</p>
+<ul>
+<li><p><code>x</code>: a collection of data (or object) of which you want to calculate quantiles.</p></li>
+<li><p><code>probs = seq(0, 1, 0.25)</code>: the probabilities (or quantiles) you want to calculate. It defaults to <code>seq(0, 1, 0.25)</code>, which just means a sequence from 0 to 1 with increments of 0.25.</p></li>
+<li><p><code>na.rm = FALSE</code>: whether <code>NA</code>s should be dropped.</p></li>
+<li><p><code>names = TRUE</code>: whether the output should show the name (or specified quantile).</p></li>
+</ul>
+<p>So we could do:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   1%   99% 
+  0.1 940.4 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>), <span class="at">names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]   0.1 940.4</code></pre>
 </div>
 </div>
 
@@ -494,6 +622,7 @@ o   Get & assign
 Errors -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
