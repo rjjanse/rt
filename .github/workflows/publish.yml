@@ -27,14 +27,11 @@ jobs:
         with:
           cache-version: 1
 
-      - name: Install dependencies manually
+      - name: Install jsonlite manually
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages:
-            any::knitr
-            any::rmarkdown
             any::jsonlite
-            any::xml2
             
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
