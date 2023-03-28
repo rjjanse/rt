@@ -203,11 +203,84 @@ quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), probs = c(0.01, 0.99))
 quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), probs = c(0.01, 0.99), names = FALSE)
 ```
 
+### Table
+We have now seen some functions that we can use to get some descriptives about continuous data. However, sometimes we just want to count the amount of different observations. For this we can use `table()`. Some of the relevant arguments for the table function are the following:
 
-<!-- To do:
-•	Functions
-•	Basic functions
-o	Sum, mean, median, summary, quintiles, min, max, table
+- `...`: the variables to be supplied to table, as we saw in earlier functions.
+
+- `useNA = c("no", "ifany", "always")`: should `NA`s be tabulated (conditional on if any are present) or not. The `c("no", "ifany", "always")`, means that `useNA` takes any of the three following values: `"no"`, `"ifany"`, or `"always"`.
+
+For example:
+```{r}
+#| code-fold: false
+table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA))
+table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA), useNA = "ifany")
+table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), useNA = "always")
+```
+
+You can also use `table()` to create a cross-table:
+
+```{r}
+#| code-fold: false
+table(c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), 
+    c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE))
+```
+
+For the cross-tabulation, values are compered based on their order in the data you supply (e.g., the first value, `FALSE` in the first set is compared to the first value, `TRUE`, in the second set.)
+
+## Storing values
+We have now seen how we can calculate some values using basic mathematic operators and functions. However, just typing out our data can become quite tiresome, so preferably I would store them in a variable. In R, things that store data are often called subjects. Let's look at some different ways we can store data.
+
+### Single value
+We can assign a single value by using the `<-` operator (which has the easy keyboard shortcut alt + - in RStudio). To then see the object, we can simply run it. For example:
+
+```{r}
+#| code-fold: false
+x <- sum(4, 9)
+x
+
+x <- 4 + 5
+x
+```
+
+:::{.callout-caution appearance="simple"}
+Note that we defined the object `x` twice. When defining an object that already exists, the old object is overridden. 
+:::
+
+### Vectors
+When we want to assign multiple values to a single variable, we can create a vector. There are two simple ways to create a vector. First, we can use the c function (`c()`), that we saw before when discussing functions. `c()` creates a simple collection of any type of value. We call this collection a vector.
+
+```{r}
+#| code-fold: false
+x <- c(4, 6, 9, 3, 2)
+x
+
+# Using a vector in the sum function
+sum(x)
+```
+
+You can also create a vector of sequential integers by using `:`:
+
+```{r}
+#| code-fold: false
+x <- 5:17
+x
+```
+
+Additionally, you can create any sequence using the `seq()` function which takes the arguments `from`, `to`, and `by`, meaning respectively the start, finish, and increments of the sequence.
+
+```{r}
+#| code-fold: false
+x <- seq(5, 7, 0.5)
+x
+```
+
+### Lists
+
+
+
+
+<!--
 •	Storing values in objects
 o	Single value
 	What operator to use: <- or =
