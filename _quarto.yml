@@ -16,6 +16,7 @@ website:
         - section: "Getting started with R"
           contents:
             - basics.qmd
+            - accessing.qmd
             - packages.qmd
             - data.qmd
             - tidyverse.qmd

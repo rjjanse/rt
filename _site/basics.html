@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Basics</title>
+<title>Creating and storing data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -133,7 +133,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Basics</h1>
+      <h1 class="quarto-secondary-nav-title">Creating and storing data</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -196,9 +196,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./basics.html" class="sidebar-item-text sidebar-link active">Basics</a>
+  <a href="./basics.html" class="sidebar-item-text sidebar-link active">Creating and storing data</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  accessing.qmd
+  </li>
           <li class="sidebar-item">
   packages.qmd
   </li>
@@ -313,7 +316,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#single-value" id="toc-single-value" class="nav-link" data-scroll-target="#single-value">Single value</a></li>
   <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
   <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
+  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames">Data frames</a></li>
   </ul></li>
+  <li><a href="#the-global-environment" id="toc-the-global-environment" class="nav-link" data-scroll-target="#the-global-environment">The global environment</a></li>
   </ul>
 </nav>
     </div>
@@ -322,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Basics</h1>
+<h1 class="title d-none d-lg-block">Creating and storing data</h1>
 </div>
 
 
@@ -595,12 +601,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>So we could do:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), </span>
+<span id="cb38-2"><a href="#cb38-2"></a>         <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   1%   99% 
   0.1 940.4 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>), <span class="at">names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), </span>
+<span id="cb40-2"><a href="#cb40-2"></a>         <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>), <span class="at">names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]   0.1 940.4</code></pre>
 </div>
@@ -621,13 +629,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 FALSE  TRUE 
     3     5 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>), <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>), </span>
+<span id="cb44-2"><a href="#cb44-2"></a>      <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE  &lt;NA&gt; 
     3     5     1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), </span>
+<span id="cb46-2"><a href="#cb46-2"></a>      <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE  &lt;NA&gt; 
@@ -637,7 +647,7 @@ FALSE  TRUE  &lt;NA&gt;
 <p>You can also use <code>table()</code> to create a cross-table:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), </span>
-<span id="cb48-2"><a href="#cb48-2"></a>    <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-2"><a href="#cb48-2"></a>      <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         FALSE TRUE
@@ -646,6 +656,16 @@ FALSE  TRUE  &lt;NA&gt;
 </div>
 </div>
 <p>For the cross-tabulation, values are compered based on their order in the data you supply (e.g., the first value, <code>FALSE</code> in the first set is compared to the first value, <code>TRUE</code>, in the second set.)</p>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>We now went through some arguments for commonly used functions together, but it is good that you know what arguments a function takes and where you can find this. If you want to know more about any function, for example for <code>sum()</code>, you can open the documentation by running <code>?sum</code>. In the help panel on the lower right in RStudio, you will find the documentation with the function, its default values, elaboration on the arguments it takes, details, and examples. You can also click on a function and press F1 to open the help panel.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="storing-values" class="level2">
@@ -673,6 +693,16 @@ FALSE  TRUE  &lt;NA&gt;
 </div>
 <div class="callout-body-container">
 <p>Note that we defined the object <code>x</code> twice. When defining an object that already exists, the old object is overridden.</p>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>To assign a value to an object, you can also use <code>=</code> instead of <code>&lt;-</code>. However, this is often unclear and may be confused with defining arguments in functions. It is therefore strongly recommended to only assign objects using <code>&lt;-</code>.</p>
 </div>
 </div>
 </div>
@@ -708,9 +738,116 @@ FALSE  TRUE  &lt;NA&gt;
 <pre><code>[1] 5.0 5.5 6.0 6.5 7.0</code></pre>
 </div>
 </div>
+<p>We could also multiply two vectors with each other (given they have the same length) or a vector with a single value:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb62-2"><a href="#cb62-2"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb62-3"><a href="#cb62-3"></a></span>
+<span id="cb62-4"><a href="#cb62-4"></a>x <span class="sc">*</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 8 9 8 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2  4  6  8 10</code></pre>
+</div>
+</div>
+<p>Lastly, you could create a named vector (i.e., each value has a name):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Obs1"</span> <span class="ot">=</span> <span class="dv">42</span>, <span class="st">"Obs2"</span> <span class="ot">=</span> <span class="dv">28</span>, <span class="st">"Obs3"</span> <span class="ot">=</span> <span class="dv">91</span>)</span>
+<span id="cb66-2"><a href="#cb66-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Obs1 Obs2 Obs3 
+  42   28   91 </code></pre>
+</div>
+</div>
 </section>
 <section id="lists" class="level3">
 <h3 class="anchored" data-anchor-id="lists">Lists</h3>
+<p>A list is also a collection of data, but it can store much more than just values, such as vectors, and whole data sets:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">head</span>(iris, <span class="dv">3</span>), <span class="fu">head</span>(mtcars, <span class="dv">3</span>))</span>
+<span id="cb68-2"><a href="#cb68-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+
+[[2]]
+               mpg cyl disp  hp drat    wt  qsec vs am gear carb
+Mazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+Mazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
+</div>
+</div>
+<p>However, you cannot immediately apply mathematic operators on a list or use a list in data. If we have a list with data (for example different objects), we first have to unlist:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb70-2"><a href="#cb70-2"></a><span class="fu">unlist</span>(x) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8 4</code></pre>
+</div>
+</div>
+<p>When you create a model, they are always stored in lists too, with many information alongside the results. We will come across this later in the tutorial.</p>
+</section>
+<section id="matrices" class="level3">
+<h3 class="anchored" data-anchor-id="matrices">Matrices</h3>
+<p>If we want data with more than one dimension (i.e., columns and rows), we could create a matrix with the matrix function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">31</span>, <span class="dv">3</span>, <span class="dv">18</span>, <span class="dv">7</span>, <span class="dv">84</span>, <span class="dv">20</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb72-2"><a href="#cb72-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   31    7
+[2,]    3   84
+[3,]   18   20</code></pre>
+</div>
+</div>
+<p>We can also supply a single value that fills the entire matrix:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="st">"Hello, World!"</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb74-2"><a href="#cb74-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]            [,2]            [,3]           
+[1,] "Hello, World!" "Hello, World!" "Hello, World!"
+[2,] "Hello, World!" "Hello, World!" "Hello, World!"
+[3,] "Hello, World!" "Hello, World!" "Hello, World!"
+[4,] "Hello, World!" "Hello, World!" "Hello, World!"
+[5,] "Hello, World!" "Hello, World!" "Hello, World!"</code></pre>
+</div>
+</div>
+<p>Matrices are useful because they have multiple dimensions, which allows us to store different variables of the same person in multiple columns along the same row.</p>
+</section>
+<section id="data-frames" class="level3">
+<h3 class="anchored" data-anchor-id="data-frames">Data frames</h3>
+<p>Matrices give us a flexible way to store data with rows and columns, but miss some flexibility when it comes to manipulating the data and performing calculations, loading it into functions, etc. In this case, data frames offer a good solution. Data frames look exactly matrices, but are much easier to manipulate and use for analyses. Data frames are likely what will compose most of the data you use in R.</p>
+<p>We can create a data frame with the <code>data.frame()</code> function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb76-2"><a href="#cb76-2"></a>                <span class="at">value1 =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
+<span id="cb76-3"><a href="#cb76-3"></a>                <span class="at">value2 =</span> <span class="fu">c</span>(<span class="fl">9.4</span>, <span class="fl">8.3</span>, <span class="fl">2.8</span>, <span class="fl">5.6</span>, <span class="fl">2.7</span>))</span>
+<span id="cb76-4"><a href="#cb76-4"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  id value1 value2
+1  1      5    9.4
+2  2      2    8.3
+3  3      0    2.8
+4  4      2    5.6
+5  5      4    2.7</code></pre>
+</div>
+</div>
+<p>When working with data frames, there are some useful functions you can use:</p>
+<ul>
+<li><p>To determine how many rows and columns a data frame (or matrix) has, you can use <code>nrow()</code> and <code>ncol()</code>.</p></li>
+<li><p>To change the row and column names, you can use <code>rownames()</code> and <code>colnames()</code>. To see how these functions work, you can access the examples in their documentation with <code>?rownames</code> and <code>?colnames</code>.</p></li>
+<li><p>To change a data frame to a matrix or a matrix to a data frame, you can use <code>as.matrix()</code> and <code>as.data.frame()</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-global-environment" class="level2">
+<h2 class="anchored" data-anchor-id="the-global-environment">The global environment</h2>
 <!--
 •   Storing values in objects
 o   Single value
@@ -731,7 +868,6 @@ o   Get & assign
 Errors -->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

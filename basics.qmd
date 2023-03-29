@@ -1,5 +1,5 @@
 ---
-title: "Basics"
+title: "Creating and storing data"
 ---
 
 ## Annotation
@@ -199,8 +199,10 @@ However, maybe we are more interested in the 1^st^ and 99^th^ quantiles. In that
 So we could do:
 ```{r}
 #| code-fold: false
-quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), probs = c(0.01, 0.99))
-quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), probs = c(0.01, 0.99), names = FALSE)
+quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), 
+         probs = c(0.01, 0.99))
+quantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), 
+         probs = c(0.01, 0.99), names = FALSE)
 ```
 
 ### Table
@@ -214,8 +216,10 @@ For example:
 ```{r}
 #| code-fold: false
 table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA))
-table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA), useNA = "ifany")
-table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), useNA = "always")
+table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA), 
+      useNA = "ifany")
+table(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), 
+      useNA = "always")
 ```
 
 You can also use `table()` to create a cross-table:
@@ -223,10 +227,14 @@ You can also use `table()` to create a cross-table:
 ```{r}
 #| code-fold: false
 table(c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), 
-    c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE))
+      c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE))
 ```
 
 For the cross-tabulation, values are compered based on their order in the data you supply (e.g., the first value, `FALSE` in the first set is compared to the first value, `TRUE`, in the second set.)
+
+:::{.callout-tip appearance="simple"}
+We now went through some arguments for commonly used functions together, but it is good that you know what arguments a function takes and where you can find this. If you want to know more about any function, for example for `sum()`, you can open the documentation by running `?sum`. In the help panel on the lower right in RStudio, you will find the documentation with the function, its default values, elaboration on the arguments it takes, details, and examples. You can also click on a function and press F1 to open the help panel.
+:::
 
 ## Storing values
 We have now seen how we can calculate some values using basic mathematic operators and functions. However, just typing out our data can become quite tiresome, so preferably I would store them in a variable. In R, things that store data are often called subjects. Let's look at some different ways we can store data.
@@ -245,6 +253,10 @@ x
 
 :::{.callout-caution appearance="simple"}
 Note that we defined the object `x` twice. When defining an object that already exists, the old object is overridden. 
+:::
+
+:::{.callout-tip appearance="simple"}
+To assign a value to an object, you can also use `=` instead of `<-`. However, this is often unclear and may be confused with defining arguments in functions. It is therefore strongly recommended to only assign objects using `<-`.
 :::
 
 ### Vectors
@@ -275,10 +287,85 @@ x <- seq(5, 7, 0.5)
 x
 ```
 
+We could also multiply two vectors with each other (given they have the same length) or a vector with a single value:
+
+```{r}
+#| code-fold: false
+x <- 1:5
+y <- 5:1
+
+x * y
+
+x * 2
+```
+
+Lastly, you could create a named vector (i.e., each value has a name):
+
+```{r}
+#| code-fold: false
+x <- c("Obs1" = 42, "Obs2" = 28, "Obs3" = 91)
+x
+```
+
 ### Lists
+A list is also a collection of data, but it can store much more than just values, such as vectors, and whole data sets:
 
+```{r}
+#| code-fold: false
+x <- list(head(iris, 3), head(mtcars, 3))
+x
+```
 
+However, you cannot immediately apply mathematic operators on a list or use a list in data. If we have a list with data (for example different objects), we first have to unlist:
 
+```{r}
+#| code-fold: false
+x <- list(4, 2)
+unlist(x) * 2
+```
+
+When you create a model, they are always stored in lists too, with many information alongside the results. We will come across this later in the tutorial.
+
+### Matrices
+If we want data with more than one dimension (i.e., columns and rows), we could create a matrix with the matrix function:
+
+```{r}
+#| code-fold: false
+x <- matrix(c(31, 3, 18, 7, 84, 20), nrow = 3, ncol = 2)
+x
+```
+
+We can also supply a single value that fills the entire matrix:
+```{r}
+#| code-fold: false
+x <- matrix("Hello, World!", nrow = 5, ncol = 3)
+x
+```
+
+Matrices are useful because they have multiple dimensions, which allows us to store different variables of the same person in multiple columns along the same row.
+
+### Data frames
+Matrices give us a flexible way to store data with rows and columns, but miss some flexibility when it comes to manipulating the data and performing calculations, loading it into functions, etc. In this case, data frames offer a good solution. Data frames look exactly matrices, but are much easier to manipulate and use for analyses. Data frames are likely what will compose most of the data you use in R.
+
+We can create a data frame with the `data.frame()` function:
+
+```{r}
+#| code-fold: false
+x <- data.frame(id = 1:5,
+                value1 = c(5, 2, 0, 2, 4),
+                value2 = c(9.4, 8.3, 2.8, 5.6, 2.7))
+x
+```
+
+When working with data frames, there are some useful functions you can use:
+
+- To determine how many rows and columns a data frame (or matrix) has, you can use `nrow()` and `ncol()`.
+
+- To change the row and column names, you can use `rownames()` and `colnames()`. To see how these functions work, you can access the examples in their documentation with `?rownames` and `?colnames`.
+
+- To change a data frame to a matrix or a matrix to a data frame, you can use `as.matrix()` and `as.data.frame()`.
+
+## The global environment
 
 <!--
 •	Storing values in objects
