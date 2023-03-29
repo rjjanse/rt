@@ -368,18 +368,6 @@ When working with data frames, there are some useful functions you can use:
 ## The global environment
 
 <!--
-•	Storing values in objects
-o	Single value
-	What operator to use: <- or =
-o	Vector (& what is a vector)
-o	List
-o	Matrices
-	Transforming to matrices
-o	Dataframes
-	Dimensions: nrow, ncol
-	Setting column names
-	Transforming to data frames
-	Transforming matrices to data frames
 •	Finding source code of a function
 •	Methods() of functions
 •	Global environment
