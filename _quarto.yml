@@ -15,7 +15,7 @@ website:
             - rstudio.qmd
         - section: "Getting started with R"
           contents:
-            - basics.qmd
+            - creating.qmd
             - accessing.qmd
             - packages.qmd
             - data.qmd
