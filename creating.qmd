@@ -366,11 +366,69 @@ When working with data frames, there are some useful functions you can use:
 - To change a data frame to a matrix or a matrix to a data frame, you can use `as.matrix()` and `as.data.frame()`.
 
 ## The global environment
+We have seen some ways to create and store data now. However, where can we find back what we have created? This is where the global environment comes in. Whenever you create an object in your code, that object will be stored in the global environment, which is just a general storage space. A great benefit that RStudio gives us is being able to see the global environment and whatever is stored in there, and to get a quick indication of what kind of data is stored.
 
-<!--
-•	Finding source code of a function
-•	Methods() of functions
-•	Global environment
-o	Get & assign
-Errors -->
+Before we see the global environment, let's first clean it with the following code:
 
+```r
+rm(list = ls())
+```
+
+With the `rm()` function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (`list = `), is the whole global environment (`ls()`).
+
+Now let's create some new data to showcase the global environment in RStudio:
+
+```r
+# Load pre-existing data frame
+data <- iris
+
+# Create vector
+vector <- 1:13
+
+# Create single value
+val <- 42
+
+# Create vector of strings
+strings <- c("Hello", "I", "am", "a", "vector")
+```
+
+Now let's look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like @fig-ge (the colours might differ depending on your theme).
+
+From the global environment, we can learn a few things:
+
+- The current memory usage is 121 MiB, in the upper middle of the image).
+
+- We have one structured data object, `data`. This data object has 150 observations (rows) of 5 variables (columns).
+
+- `strings` is a character (`chr`) with 5 values (`[1:5`). We then see the first values.
+
+- `val` is a single value, 42.
+
+- `vector` is an integener (`int`) with 13 values ([1:13]`) and we can see the first values.
+
+This already gives us quite some information, but we can also get some more information on the structured data. If you press the small blue button with an arrow, next to `data`, you will see that it opens, as in @fig-ge_open. This let's us learn the following information about `data`:
+
+- We can see each of the columns of `data`. The first four are numerical (`num`).
+
+- The fifth column, `Species`, is a factor (i.e., categorical) with three levels (of which the first one is "setosa").
+
+::: {#fig-global_environment layout-ncol=2}
+![Global environment](images/ge.png){#fig-ge fig-alt="global environment" width=45%}
+
+![Global environment with opened data](images/ge_open.png){#fig-ge_open fig-alt="global environment with opened data" width=45%}
+
+The global environment
+:::
+
+## Dealing with warnings and errors
+We have now gone through the basics of creating and storing data. However, sometimes, we supply a wrong value to a function or mess up a parenthesis somewhere. This can give either warnings or errors. In both cases, it is important to realize what is happening. Warnings are messages printed in the console that try to tell us that something might be wrong in the data or not suited, or that the data was manipulated in the function to make sure the function could work. For example, if I try to change a character string to numeric with `as.numeric()`, I will get the warning: `Warning message: NAs introduced by coercion`, but the function still completed.
+
+Sometimes, warnings are expected or not a problem. In that case, you can put the whole code inside the function `supressWarnings()`, to silence the warning. It is however **always** of **paramount importance** that you annotate what the warning was and why it can be suppressed.
+
+Sometimes, you might get an error instead of a warning. This means that the function could not continue to run and you have to fix the error before being able to run the function.
+
+Not all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add 'R' at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as [stackoverflow](https://stackoverflow.com/). When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.
+
+Now that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.
+
+**Next:** [Accessing and manipulating data](accessing.qmd)

@@ -1,0 +1,4 @@
+Finding source code of a function
+Methods() of functions
+Get & assign
+Value types (strings, numeric) and transforming

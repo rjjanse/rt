@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta charset="utf-8" />
+<meta name="generator" content="quarto-1.2.335" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 
 
 <title>Creating and storing data</title>
@@ -85,23 +87,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<!-- htmldependencies:E3FAD763 -->
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -126,15 +112,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </head>
 
-<body class="nav-sidebar floating slimcontent">
+<body>
 
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <nav class="quarto-secondary-nav" 
+        data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" 
+        aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
+        onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"
+  >
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Creating and storing data</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <button type="button" 
+        class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
     </div>
@@ -161,7 +152,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
+  <a href="/index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
       </ul>
@@ -176,12 +167,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r.html" class="sidebar-item-text sidebar-link">R</a>
+  <a href="/r.html" class="sidebar-item-text sidebar-link">R</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">RStudio</a>
+  <a href="/rstudio.html" class="sidebar-item-text sidebar-link">RStudio</a>
   </div>
 </li>
       </ul>
@@ -196,12 +187,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./creating.html" class="sidebar-item-text sidebar-link active">Creating and storing data</a>
+  <a href="/creating.html" class="sidebar-item-text sidebar-link active">Creating and storing data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./accessing.html" class="sidebar-item-text sidebar-link">Accessing and manipulating data</a>
+  <a href="/accessing.html" class="sidebar-item-text sidebar-link">Accessing and manipulating data</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -299,39 +290,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Contents</h2>
-   
-  <ul>
-  <li><a href="#annotation" id="toc-annotation" class="nav-link active" data-scroll-target="#annotation">Annotation</a></li>
-  <li><a href="#basic-mathematic-operators-and-running-code" id="toc-basic-mathematic-operators-and-running-code" class="nav-link" data-scroll-target="#basic-mathematic-operators-and-running-code">Basic mathematic operators and running code</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
-  <ul>
-  <li><a href="#sum" id="toc-sum" class="nav-link" data-scroll-target="#sum">Sum</a></li>
-  <li><a href="#mean-and-median" id="toc-mean-and-median" class="nav-link" data-scroll-target="#mean-and-median">Mean and median</a></li>
-  <li><a href="#min-and-max" id="toc-min-and-max" class="nav-link" data-scroll-target="#min-and-max">Min and max</a></li>
-  <li><a href="#summary-and-quintile" id="toc-summary-and-quintile" class="nav-link" data-scroll-target="#summary-and-quintile">Summary and quintile</a></li>
-  <li><a href="#table" id="toc-table" class="nav-link" data-scroll-target="#table">Table</a></li>
-  </ul></li>
-  <li><a href="#storing-values" id="toc-storing-values" class="nav-link" data-scroll-target="#storing-values">Storing values</a>
-  <ul>
-  <li><a href="#single-value" id="toc-single-value" class="nav-link" data-scroll-target="#single-value">Single value</a></li>
-  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors">Vectors</a></li>
-  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists">Lists</a></li>
-  <li><a href="#matrices" id="toc-matrices" class="nav-link" data-scroll-target="#matrices">Matrices</a></li>
-  <li><a href="#data-frames" id="toc-data-frames" class="nav-link" data-scroll-target="#data-frames">Data frames</a></li>
-  </ul></li>
-  <li><a href="#the-global-environment" id="toc-the-global-environment" class="nav-link" data-scroll-target="#the-global-environment">The global environment</a></li>
-  <li><a href="#dealing-with-warnings-and-errors" id="toc-dealing-with-warnings-and-errors" class="nav-link" data-scroll-target="#dealing-with-warnings-and-errors">Dealing with warnings and errors</a></li>
-  </ul>
-</nav>
+        <div id="quarto-toc-target"></div>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Creating and storing data</h1>
+<h1 class="title">Creating and storing data</h1>
 </div>
 
 
@@ -345,26 +311,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   
 
 </header>
-
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#annotation" id="toc-annotation">Annotation</a></li>
+  <li><a href="#basic-mathematic-operators-and-running-code" id="toc-basic-mathematic-operators-and-running-code">Basic mathematic operators and running code</a></li>
+  <li><a href="#functions" id="toc-functions">Functions</a>
+  <ul>
+  <li><a href="#sum" id="toc-sum">Sum</a></li>
+  <li><a href="#mean-and-median" id="toc-mean-and-median">Mean and median</a></li>
+  <li><a href="#min-and-max" id="toc-min-and-max">Min and max</a></li>
+  <li><a href="#summary-and-quintile" id="toc-summary-and-quintile">Summary and quintile</a></li>
+  <li><a href="#table" id="toc-table">Table</a></li>
+  </ul></li>
+  <li><a href="#storing-values" id="toc-storing-values">Storing values</a>
+  <ul>
+  <li><a href="#single-value" id="toc-single-value">Single value</a></li>
+  <li><a href="#vectors" id="toc-vectors">Vectors</a></li>
+  <li><a href="#lists" id="toc-lists">Lists</a></li>
+  <li><a href="#matrices" id="toc-matrices">Matrices</a></li>
+  <li><a href="#data-frames" id="toc-data-frames">Data frames</a></li>
+  </ul></li>
+  <li><a href="#the-global-environment" id="toc-the-global-environment">The global environment</a></li>
+  <li><a href="#dealing-with-warnings-and-errors" id="toc-dealing-with-warnings-and-errors">Dealing with warnings and errors</a></li>
+  </ul>
+</nav>
 <section id="annotation" class="level2">
-<h2 class="anchored" data-anchor-id="annotation">Annotation</h2>
+<h2>Annotation</h2>
 <p>Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to <strong>extensively</strong> annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">"setosa"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="fu">extract2</span>(<span class="st">"Sepal.Length"</span>) <span class="sc">%&gt;%</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="fu">extract2</span>(<span class="st">&quot;Sepal.Length&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a>    <span class="fu">is_greater_than</span>(<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1-5"><a href="#cb1-5"></a>    <span class="fu">table</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a>    <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb1-7"><a href="#cb1-7"></a>    <span class="fu">extract2</span>(<span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb1-8"><a href="#cb1-8"></a>    <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a>    <span class="fu">paste0</span>(., <span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="fu">paste0</span>(., <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
 <p>In this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Calculate proportion of setosa observations with sepal length above 5</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Calculate proportion of setosa observations with sepal length above 5</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>iris <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a>    <span class="co"># Keep only setosa species</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>    <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">"setosa"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a>    <span class="co"># Keep only the sepal length values</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>    <span class="fu">extract2</span>(<span class="st">"Sepal.Length"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="fu">extract2</span>(<span class="st">&quot;Sepal.Length&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a>    <span class="co"># Determine whether each value is greater than 5 or not</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>    <span class="fu">is_greater_than</span>(<span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a>    <span class="co"># Count lengths above and below 5</span></span>
@@ -376,12 +367,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-15"><a href="#cb2-15"></a>    <span class="co"># Multiply by 100</span></span>
 <span id="cb2-16"><a href="#cb2-16"></a>    <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb2-17"><a href="#cb2-17"></a>    <span class="co"># Add percentage sign</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>    <span class="fu">paste0</span>(., <span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-18"><a href="#cb2-18"></a>    <span class="fu">paste0</span>(., <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
 <p>It is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.</p>
 <div class="callout-tip callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
 <p>You can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.</p>
@@ -390,99 +381,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="basic-mathematic-operators-and-running-code" class="level2">
-<h2 class="anchored" data-anchor-id="basic-mathematic-operators-and-running-code">Basic mathematic operators and running code</h2>
+<h2>Basic mathematic operators and running code</h2>
 <p>Now let’s (finally) see some real code! Let’s start with some basic operators:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>   <span class="co"># Addition</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>   <span class="co"># Addition</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>   <span class="co"># Substraction</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>   <span class="co"># Multiplication</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="dv">8</span> <span class="sc">/</span> <span class="dv">2</span>   <span class="co"># Division</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="dv">8</span> <span class="sc">%%</span> <span class="dv">2</span>  <span class="co"># Modulo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="dv">8</span> <span class="sc">%%</span> <span class="dv">2</span>  <span class="co"># Modulo</span></span></code></pre></div>
 <p>R follows the <a href="https://en.wikipedia.org/wiki/Order_of_operations#Programming_languages">conventional order of mathematic operation</a>.</p>
 <p>However, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.</p>
-<p>The results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with &gt; (<a href="#fig-ready">Figure&nbsp;1 (a)</a>).</p>
+<p>The results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with &gt; (<a href="#fig-ready">Figure 1 (a)</a>).</p>
 <div class="callout-important callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
-<p>If you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with + (<a href="#fig-waiting">Figure&nbsp;1 (b)</a>). To cancel a waiting command, you can press esc.</p>
+<p>If you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with + (<a href="#fig-waiting">Figure 1 (b)</a>). To cancel a waiting command, you can press esc.</p>
 </div>
 </div>
 </div>
 <p>If we run the example code for the basic mathematic operators, we will get the following results:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>   <span class="co"># Addition</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>   <span class="co"># Addition</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>   <span class="co"># Substraction</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>   <span class="co"># Substraction</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>   <span class="co"># Multiplication</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>   <span class="co"># Multiplication</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="dv">8</span> <span class="sc">/</span> <span class="dv">2</span>   <span class="co"># Division</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="dv">8</span> <span class="sc">/</span> <span class="dv">2</span>   <span class="co"># Division</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="dv">8</span> <span class="sc">%%</span> <span class="dv">2</span>  <span class="co"># Modulo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="dv">8</span> <span class="sc">%%</span> <span class="dv">2</span>  <span class="co"># Modulo</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
 </div>
 <p>Before each result, you can see <code>[1]</code>. This indicates that that specific line of code starts with the n<sup>th</sup> result. When a single code starts printing multiple results, this can help identify what n a certain result is.</p>
 <div id="fig-console" class="quarto-layout-panel">
-<figure class="figure">
+<figure>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-ready" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/console_ready.png" class="img-fluid figure-img" alt="ready console" data-ref-parent="fig-console"></p>
-<p></p><figcaption class="figure-caption">(a) Ready</figcaption><p></p>
+<div id="fig-ready" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img src="images/console_ready.png" class="img-fluid" alt="ready console" data-ref-parent="fig-console" /></p>
+<p><figcaption>(a) Ready</figcaption></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-waiting" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/console_waiting.png" class="img-fluid figure-img" alt="waiting console" data-ref-parent="fig-console"></p>
-<p></p><figcaption class="figure-caption">(b) Waiting for input to finish</figcaption><p></p>
+<div id="fig-waiting" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img src="images/console_waiting.png" class="img-fluid" alt="waiting console" data-ref-parent="fig-console" /></p>
+<p><figcaption>(b) Waiting for input to finish</figcaption></p>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Console states</figcaption><p></p>
+<p><figcaption>Figure 1: Console states</figcaption></p>
 </figure>
 </div>
 </section>
-<section id="functions" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<section id="functions" class="level2">
+<h2>Functions</h2>
 <p>Now that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Calculate the mean</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Calculate the mean</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="dv">3</span> <span class="sc">+</span> <span class="dv">7</span> <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">5</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.4</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Use the calculated mean to calculate the standard deviation</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>(((<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">7</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">^</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Use the calculated mean to calculate the standard deviation</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>(((<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">8</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">7</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">4.4</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> (<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>)) <span class="sc">^</span> <span class="fl">0.5</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.966479</code></pre>
 </div>
 </div>
-
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="column-margin">
 <p>A sample’s standard deviation <span class="math inline">\(s\)</span> is obtained by calculating:</p>
 <p><span class="math display">\[\sqrt\frac{\sum{(x-\overline{x})^2}}{n-1}\]</span></p>
-</div></div><p>However, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:</p>
+</div>
+<p>However, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Calculate standard deviation</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">sd</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Calculate standard deviation</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">sd</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">1</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.966479</code></pre>
 </div>
@@ -490,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
 <p>In the standard deviation function, we use the <code>c()</code> function. Later we will elaborate on this, but for now it is enough to remember that <code>c()</code> creates a <strong>c</strong>ollection of data, which is more often called an object.</p>
@@ -499,7 +490,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Let’s see some standard functions that will be of great help to you.</p>
 <section id="sum" class="level3">
-<h3 class="anchored" data-anchor-id="sum">Sum</h3>
+<h3>Sum</h3>
 <p><code>sum()</code>, as it name suggests, sums the supplied values. It has the following arguments:</p>
 <ul>
 <li><p><code>...</code>: the ellipsis indicates that any number of values can be supplied here. The sum function can take numeric values, integers, and booleans/logicals (i.e., it can sum the amount of <code>TRUE</code>s).</p></li>
@@ -507,15 +498,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>See the below examples:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 18</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] NA</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">sum</span>(<span class="dv">3</span>, <span class="cn">NA</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 14</code></pre>
 </div>
@@ -523,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
 <p>In the <code>sum()</code> function, <code>na.rm</code> has the default value <code>FALSE</code>. This means that this argument does not have to be defined. If we would not define it, it would just use <code>FALSE</code>.</p>
@@ -532,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="mean-and-median" class="level3">
-<h3 class="anchored" data-anchor-id="mean-and-median">Mean and median</h3>
+<h3>Mean and median</h3>
 <p>To get the mean or median from some data, you can use the <code>mean()</code> and <code>median()</code> functions. <code>mean()</code> has the following arguments:</p>
 <ul>
 <li><p><code>x</code>: a collection (or object) of data containing the data for which a mean should be calculated.</p></li>
@@ -542,15 +533,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>median()</code> has the same arguments, except that it doesn’t have <code>trim</code>.</p>
 <p>Here are some examples:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 98.63636</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), <span class="at">trim =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), <span class="at">trim =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.555556</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">median</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
@@ -558,7 +549,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="callout-important callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
 <p>Notice how with the mean, we specified that 0.1 was the value for <code>trim</code>, but we did not specify that <code>c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)</code> was the value for <code>x</code>. This is because R inputs values for arguments in order: the first supplied value will be used for the first argument, the second supplied value will be used for the second argument, etc. However, sometimes I do not want to specify the second value, but I do want to specify the third value. In this case I can name the argument as in <code>trim = 0.1</code>, so that R knows the 0.1 is meant for <code>trim</code>.</p>
@@ -567,29 +558,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="min-and-max" class="level3">
-<h3 class="anchored" data-anchor-id="min-and-max">Min and max</h3>
+<h3>Min and max</h3>
 <p>Now that we know how to calculate the mean and median from some data, we might also be interest in finding the lowest and highest value (for example, to detect the 1044 outlier). We can do this with <code>min()</code> and <code>max()</code>, which both take only one argument: <code>...</code> as in the <code>sum()</code> function.</p>
 <p>To get the minimum and maximum value from the data we just calculated the mean and median of, we could do the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">min</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">min</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">max</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">max</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1044</code></pre>
 </div>
 </div>
 </section>
 <section id="summary-and-quintile" class="level3">
-<h3 class="anchored" data-anchor-id="summary-and-quintile">Summary and quintile</h3>
+<h3>Summary and quintile</h3>
 <p>Now we know how to calculate the mean, median, minimum, and maximum values from some data, but what if we also want to know the 1<sup>st</sup> and 3<sup>rd</sup> quartile? Additionally, we do not want to use a function for each separate value. In this case, you can use <code>summary()</code>, which calculates the minimum, 1<sup>st</sup> quartile, mean, median, 3<sup>rd</sup> quartile, and maximum all at once. The summary function has multiple arguments, but only one is relevant for now:</p>
 <ul>
 <li><code>object</code>: the data of which you want to get a summary.</li>
 </ul>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">summary</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    0.00    3.00    4.00   98.64    7.50 1044.00 </code></pre>
@@ -604,21 +595,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>So we could do:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), </span>
-<span id="cb38-2"><a href="#cb38-2"></a>         <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), </span>
+<span id="cb38-2"><a href="#cb38-2"></a>         <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   1%   99% 
   0.1 940.4 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), </span>
-<span id="cb40-2"><a href="#cb40-2"></a>         <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>), <span class="at">names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">quantile</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">1044</span>), </span>
+<span id="cb40-2"><a href="#cb40-2"></a>         <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.01</span>, <span class="fl">0.99</span>), <span class="at">names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]   0.1 940.4</code></pre>
 </div>
 </div>
 </section>
 <section id="table" class="level3">
-<h3 class="anchored" data-anchor-id="table">Table</h3>
+<h3>Table</h3>
 <p>We have now seen some functions that we can use to get some descriptives about continuous data. However, sometimes we just want to count the amount of different observations. For this we can use <code>table()</code>. Some of the relevant arguments for the table function are the following:</p>
 <ul>
 <li><p><code>...</code>: the variables to be supplied to table, as we saw in earlier functions.</p></li>
@@ -626,21 +617,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
     3     5 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>), </span>
-<span id="cb44-2"><a href="#cb44-2"></a>      <span class="at">useNA =</span> <span class="st">"ifany"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">NA</span>), </span>
+<span id="cb44-2"><a href="#cb44-2"></a>      <span class="at">useNA =</span> <span class="st">&quot;ifany&quot;</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE  &lt;NA&gt; 
     3     5     1 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), </span>
-<span id="cb46-2"><a href="#cb46-2"></a>      <span class="at">useNA =</span> <span class="st">"always"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), </span>
+<span id="cb46-2"><a href="#cb46-2"></a>      <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE  &lt;NA&gt; 
@@ -649,8 +640,8 @@ FALSE  TRUE  &lt;NA&gt;
 </div>
 <p>You can also use <code>table()</code> to create a cross-table:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), </span>
-<span id="cb48-2"><a href="#cb48-2"></a>      <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a><span class="fu">table</span>(<span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>), </span>
+<span id="cb48-2"><a href="#cb48-2"></a>      <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>))</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       
         FALSE TRUE
@@ -662,7 +653,7 @@ FALSE  TRUE  &lt;NA&gt;
 <div class="callout-tip callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
 <p>We now went through some arguments for commonly used functions together, but it is good that you know what arguments a function takes and where you can find this. If you want to know more about any function, for example for <code>sum()</code>, you can open the documentation by running <code>?sum</code>. In the help panel on the lower right in RStudio, you will find the documentation with the function, its default values, elaboration on the arguments it takes, details, and examples. You can also click on a function and press F1 to open the help panel.</p>
@@ -672,19 +663,19 @@ FALSE  TRUE  &lt;NA&gt;
 </section>
 </section>
 <section id="storing-values" class="level2">
-<h2 class="anchored" data-anchor-id="storing-values">Storing values</h2>
+<h2>Storing values</h2>
 <p>We have now seen how we can calculate some values using basic mathematic operators and functions. However, just typing out our data can become quite tiresome, so preferably I would store them in a variable. In R, things that store data are often called subjects. Let’s look at some different ways we can store data.</p>
 <section id="single-value" class="level3">
-<h3 class="anchored" data-anchor-id="single-value">Single value</h3>
+<h3>Single value</h3>
 <p>We can assign a single value by using the <code>&lt;-</code> operator (which has the easy keyboard shortcut alt + - in RStudio). To then see the object, we can simply run it. For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">4</span>, <span class="dv">9</span>)</span>
-<span id="cb50-2"><a href="#cb50-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="dv">4</span>, <span class="dv">9</span>)</span>
+<span id="cb50-2"><a href="#cb50-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 13</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">5</span></span>
-<span id="cb52-2"><a href="#cb52-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>x <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
@@ -692,7 +683,7 @@ FALSE  TRUE  &lt;NA&gt;
 <div class="callout-caution callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
 <p>Note that we defined the object <code>x</code> twice. When defining an object that already exists, the old object is overridden.</p>
@@ -702,7 +693,7 @@ FALSE  TRUE  &lt;NA&gt;
 <div class="callout-tip callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
-<i class="callout-icon"></i>
+<i class='callout-icon'></i>
 </div>
 <div class="callout-body-container">
 <p>To assign a value to an object, you can also use <code>=</code> instead of <code>&lt;-</code>. However, this is often unclear and may be confused with defining arguments in functions. It is therefore strongly recommended to only assign objects using <code>&lt;-</code>.</p>
@@ -711,54 +702,54 @@ FALSE  TRUE  &lt;NA&gt;
 </div>
 </section>
 <section id="vectors" class="level3">
-<h3 class="anchored" data-anchor-id="vectors">Vectors</h3>
+<h3>Vectors</h3>
 <p>When we want to assign multiple values to a single variable, we can create a vector. There are two simple ways to create a vector. First, we can use the c function (<code>c()</code>), that we saw before when discussing functions. <code>c()</code> creates a simple collection of any type of value. We call this collection a vector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
-<span id="cb54-2"><a href="#cb54-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">2</span>)</span>
+<span id="cb54-2"><a href="#cb54-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4 6 9 3 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># Using a vector in the sum function</span></span>
-<span id="cb56-2"><a href="#cb56-2"></a><span class="fu">sum</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a><span class="co"># Using a vector in the sum function</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a><span class="fu">sum</span>(x)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 24</code></pre>
 </div>
 </div>
 <p>You can also create a vector of sequential integers by using <code>:</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">17</span></span>
-<span id="cb58-2"><a href="#cb58-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">17</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  5  6  7  8  9 10 11 12 13 14 15 16 17</code></pre>
 </div>
 </div>
 <p>Additionally, you can create any sequence using the <code>seq()</code> function which takes the arguments <code>from</code>, <code>to</code>, and <code>by</code>, meaning respectively the start, finish, and increments of the sequence.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">7</span>, <span class="fl">0.5</span>)</span>
-<span id="cb60-2"><a href="#cb60-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">7</span>, <span class="fl">0.5</span>)</span>
+<span id="cb60-2"><a href="#cb60-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5.0 5.5 6.0 6.5 7.0</code></pre>
 </div>
 </div>
 <p>We could also multiply two vectors with each other (given they have the same length) or a vector with a single value:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<div class="sourceCode" id="cb62"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
 <span id="cb62-2"><a href="#cb62-2"></a>y <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">1</span></span>
 <span id="cb62-3"><a href="#cb62-3"></a></span>
-<span id="cb62-4"><a href="#cb62-4"></a>x <span class="sc">*</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb62-4"><a href="#cb62-4"></a>x <span class="sc">*</span> y</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5 8 9 8 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>x <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  4  6  8 10</code></pre>
 </div>
 </div>
 <p>Lastly, you could create a named vector (i.e., each value has a name):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Obs1"</span> <span class="ot">=</span> <span class="dv">42</span>, <span class="st">"Obs2"</span> <span class="ot">=</span> <span class="dv">28</span>, <span class="st">"Obs3"</span> <span class="ot">=</span> <span class="dv">91</span>)</span>
-<span id="cb66-2"><a href="#cb66-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Obs1&quot;</span> <span class="ot">=</span> <span class="dv">42</span>, <span class="st">&quot;Obs2&quot;</span> <span class="ot">=</span> <span class="dv">28</span>, <span class="st">&quot;Obs3&quot;</span> <span class="ot">=</span> <span class="dv">91</span>)</span>
+<span id="cb66-2"><a href="#cb66-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Obs1 Obs2 Obs3 
   42   28   91 </code></pre>
@@ -766,11 +757,11 @@ FALSE  TRUE  &lt;NA&gt;
 </div>
 </section>
 <section id="lists" class="level3">
-<h3 class="anchored" data-anchor-id="lists">Lists</h3>
+<h3>Lists</h3>
 <p>A list is also a collection of data, but it can store much more than just values, such as vectors, and whole data sets:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">head</span>(iris, <span class="dv">3</span>), <span class="fu">head</span>(mtcars, <span class="dv">3</span>))</span>
-<span id="cb68-2"><a href="#cb68-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">head</span>(iris, <span class="dv">3</span>), <span class="fu">head</span>(mtcars, <span class="dv">3</span>))</span>
+<span id="cb68-2"><a href="#cb68-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
@@ -787,8 +778,8 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 </div>
 <p>However, you cannot immediately apply mathematic operators on a list or use a list in data. If we have a list with data (for example different objects), we first have to unlist:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">4</span>, <span class="dv">2</span>)</span>
-<span id="cb70-2"><a href="#cb70-2"></a><span class="fu">unlist</span>(x) <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb70-2"><a href="#cb70-2"></a><span class="fu">unlist</span>(x) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8 4</code></pre>
 </div>
@@ -796,11 +787,11 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 <p>When you create a model, they are always stored in lists too, with many information alongside the results. We will come across this later in the tutorial.</p>
 </section>
 <section id="matrices" class="level3">
-<h3 class="anchored" data-anchor-id="matrices">Matrices</h3>
+<h3>Matrices</h3>
 <p>If we want data with more than one dimension (i.e., columns and rows), we could create a matrix with the matrix function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">31</span>, <span class="dv">3</span>, <span class="dv">18</span>, <span class="dv">7</span>, <span class="dv">84</span>, <span class="dv">20</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb72-2"><a href="#cb72-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">31</span>, <span class="dv">3</span>, <span class="dv">18</span>, <span class="dv">7</span>, <span class="dv">84</span>, <span class="dv">20</span>), <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb72-2"><a href="#cb72-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2]
 [1,]   31    7
@@ -810,28 +801,28 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 </div>
 <p>We can also supply a single value that fills the entire matrix:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="st">"Hello, World!"</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
-<span id="cb74-2"><a href="#cb74-2"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="st">&quot;Hello, World!&quot;</span>, <span class="at">nrow =</span> <span class="dv">5</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb74-2"><a href="#cb74-2"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1]            [,2]            [,3]           
-[1,] "Hello, World!" "Hello, World!" "Hello, World!"
-[2,] "Hello, World!" "Hello, World!" "Hello, World!"
-[3,] "Hello, World!" "Hello, World!" "Hello, World!"
-[4,] "Hello, World!" "Hello, World!" "Hello, World!"
-[5,] "Hello, World!" "Hello, World!" "Hello, World!"</code></pre>
+[1,] &quot;Hello, World!&quot; &quot;Hello, World!&quot; &quot;Hello, World!&quot;
+[2,] &quot;Hello, World!&quot; &quot;Hello, World!&quot; &quot;Hello, World!&quot;
+[3,] &quot;Hello, World!&quot; &quot;Hello, World!&quot; &quot;Hello, World!&quot;
+[4,] &quot;Hello, World!&quot; &quot;Hello, World!&quot; &quot;Hello, World!&quot;
+[5,] &quot;Hello, World!&quot; &quot;Hello, World!&quot; &quot;Hello, World!&quot;</code></pre>
 </div>
 </div>
 <p>Matrices are useful because they have multiple dimensions, which allows us to store different variables of the same person in multiple columns along the same row.</p>
 </section>
 <section id="data-frames" class="level3">
-<h3 class="anchored" data-anchor-id="data-frames">Data frames</h3>
+<h3>Data frames</h3>
 <p>Matrices give us a flexible way to store data with rows and columns, but miss some flexibility when it comes to manipulating the data and performing calculations, loading it into functions, etc. In this case, data frames offer a good solution. Data frames look exactly matrices, but are much easier to manipulate and use for analyses. Data frames are likely what will compose most of the data you use in R.</p>
 <p>We can create a data frame with the <code>data.frame()</code> function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<div class="sourceCode" id="cb76"><pre class="sourceCode numberSource r cell-code number-lines"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
 <span id="cb76-2"><a href="#cb76-2"></a>                <span class="at">value1 =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>),</span>
 <span id="cb76-3"><a href="#cb76-3"></a>                <span class="at">value2 =</span> <span class="fu">c</span>(<span class="fl">9.4</span>, <span class="fl">8.3</span>, <span class="fl">2.8</span>, <span class="fl">5.6</span>, <span class="fl">2.7</span>))</span>
-<span id="cb76-4"><a href="#cb76-4"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb76-4"><a href="#cb76-4"></a>x</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  id value1 value2
 1  1      5    9.4
@@ -850,13 +841,13 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 </section>
 </section>
 <section id="the-global-environment" class="level2">
-<h2 class="anchored" data-anchor-id="the-global-environment">The global environment</h2>
+<h2>The global environment</h2>
 <p>We have seen some ways to create and store data now. However, where can we find back what we have created? This is where the global environment comes in. Whenever you create an object in your code, that object will be stored in the global environment, which is just a general storage space. A great benefit that RStudio gives us is being able to see the global environment and whatever is stored in there, and to get a quick indication of what kind of data is stored.</p>
 <p>Before we see the global environment, let’s first clean it with the following code:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode numberSource r number-lines"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
 <p>With the <code>rm()</code> function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (<code>list =</code>), is the whole global environment (<code>ls()</code>).</p>
 <p>Now let’s create some new data to showcase the global environment in RStudio:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># Load pre-existing data frame</span></span>
+<div class="sourceCode" id="cb79"><pre class="sourceCode numberSource r number-lines"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># Load pre-existing data frame</span></span>
 <span id="cb79-2"><a href="#cb79-2"></a>data <span class="ot">&lt;-</span> iris</span>
 <span id="cb79-3"><a href="#cb79-3"></a></span>
 <span id="cb79-4"><a href="#cb79-4"></a><span class="co"># Create vector</span></span>
@@ -866,8 +857,8 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 <span id="cb79-8"><a href="#cb79-8"></a>val <span class="ot">&lt;-</span> <span class="dv">42</span></span>
 <span id="cb79-9"><a href="#cb79-9"></a></span>
 <span id="cb79-10"><a href="#cb79-10"></a><span class="co"># Create vector of strings</span></span>
-<span id="cb79-11"><a href="#cb79-11"></a>strings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Hello"</span>, <span class="st">"I"</span>, <span class="st">"am"</span>, <span class="st">"a"</span>, <span class="st">"vector"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now let’s look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like <a href="#fig-ge">Figure&nbsp;2 (a)</a> (the colours might differ depending on your theme).</p>
+<span id="cb79-11"><a href="#cb79-11"></a>strings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hello&quot;</span>, <span class="st">&quot;I&quot;</span>, <span class="st">&quot;am&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;vector&quot;</span>)</span></code></pre></div>
+<p>Now let’s look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like <a href="#fig-ge">Figure 2 (a)</a> (the colours might differ depending on your theme).</p>
 <p>From the global environment, we can learn a few things:</p>
 <ul>
 <li><p>The current memory usage is 121 MiB, in the upper middle of the image).</p></li>
@@ -876,49 +867,53 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 <li><p><code>val</code> is a single value, 42.</p></li>
 <li><p><code>vector</code> is an integener (<code>int</code>) with 13 values ([1:13]`) and we can see the first values.</p></li>
 </ul>
-<p>This already gives us quite some information, but we can also get some more information on the structured data. If you press the small blue button with an arrow, next to <code>data</code>, you will see that it opens, as in <a href="#fig-ge_open">Figure&nbsp;2 (b)</a>. This let’s us learn the following information about <code>data</code>:</p>
+<p>This already gives us quite some information, but we can also get some more information on the structured data. If you press the small blue button with an arrow, next to <code>data</code>, you will see that it opens, as in <a href="#fig-ge_open">Figure 2 (b)</a>. This let’s us learn the following information about <code>data</code>:</p>
 <ul>
 <li><p>We can see each of the columns of <code>data</code>. The first four are numerical (<code>num</code>).</p></li>
 <li><p>The fifth column, <code>Species</code>, is a factor (i.e., categorical) with three levels (of which the first one is “setosa”).</p></li>
 </ul>
 <div id="fig-global_environment" class="quarto-layout-panel">
-<figure class="figure">
+<figure>
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-ge" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/ge.png" class="img-fluid figure-img" alt="global environment" data-ref-parent="fig-global_environment"></p>
-<p></p><figcaption class="figure-caption">(a) Global environment</figcaption><p></p>
+<div id="fig-ge" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img src="images/ge.png" class="img-fluid" alt="global environment" data-ref-parent="fig-global_environment" /></p>
+<p><figcaption>(a) Global environment</figcaption></p>
 </figure>
 </div>
 </div>
 <div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
-<div id="fig-ge_open" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="images/ge_open.png" class="img-fluid figure-img" alt="global environment with opened data" data-ref-parent="fig-global_environment"></p>
-<p></p><figcaption class="figure-caption">(b) Global environment with opened data</figcaption><p></p>
+<div id="fig-ge_open" class="quarto-figure quarto-figure-center">
+<figure>
+<p><img src="images/ge_open.png" class="img-fluid" alt="global environment with opened data" data-ref-parent="fig-global_environment" /></p>
+<p><figcaption>(b) Global environment with opened data</figcaption></p>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: The global environment</figcaption><p></p>
+<p><figcaption>Figure 2: The global environment</figcaption></p>
 </figure>
 </div>
 </section>
 <section id="dealing-with-warnings-and-errors" class="level2">
-<h2 class="anchored" data-anchor-id="dealing-with-warnings-and-errors">Dealing with warnings and errors</h2>
+<h2>Dealing with warnings and errors</h2>
 <p>We have now gone through the basics of creating and storing data. However, sometimes, we supply a wrong value to a function or mess up a parenthesis somewhere. This can give either warnings or errors. In both cases, it is important to realize what is happening. Warnings are messages printed in the console that try to tell us that something might be wrong in the data or not suited, or that the data was manipulated in the function to make sure the function could work. For example, if I try to change a character string to numeric with <code>as.numeric()</code>, I will get the warning: <code>Warning message: NAs introduced by coercion</code>, but the function still completed.</p>
 <p>Sometimes, warnings are expected or not a problem. In that case, you can put the whole code inside the function <code>supressWarnings()</code>, to silence the warning. It is however <strong>always</strong> of <strong>paramount importance</strong> that you annotate what the warning was and why it can be suppressed.</p>
 <p>Sometimes, you might get an error instead of a warning. This means that the function could not continue to run and you have to fix the error before being able to run the function.</p>
 <p>Not all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add ‘R’ at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as <a href="https://stackoverflow.com/">stackoverflow</a>. When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.</p>
 <p>Now that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.</p>
-<p><strong>Next:</strong> <a href="./accessing.html">Accessing and manipulating data</a></p>
-
-
+<p><strong>Next:</strong> <a href="accessing.qmd">Accessing and manipulating data</a></p>
+<div id="quarto-navigation-envelope" class="hidden">
+<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Creating and storing data</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Creating and storing data</span> <span class="hidden" data-render-id="quarto-int-next">Accessing and manipulating data</span> <span class="hidden" data-render-id="quarto-int-prev">RStudio</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-1">Home</span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Introduction</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-2">Set-up</span> <span class="hidden" data-render-id="quarto-int-sidebar:/r.html">R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/rstudio.html">RStudio</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-3">Getting started with R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/creating.html">Creating and storing data</span> <span class="hidden" data-render-id="quarto-int-sidebar:/accessing.html">Accessing and manipulating data</span> <span class="hidden" data-render-id="quarto-int-sidebar:undefined">further_resources.qmd</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-4">Doing and reporting</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-5">Going further with R</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-6">Practical applications</span> <span class="hidden" data-render-id="quarto-int-sidebar:quarto-sidebar-section-7">Summary</span></p>
+</div>
+<div id="quarto-meta-markdown" class="hidden">
+<p><span class="hidden" data-render-id="quarto-metatitle">Creating and storing data</span> <span class="hidden" data-render-id="quarto-twittercardtitle">Creating and storing data</span> <span class="hidden" data-render-id="quarto-ogcardtitle">Creating and storing data</span></p>
+</div>
 </section>
 
 </main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+<script id = "quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1053,6 +1048,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 </div> <!-- /content -->
 
+</body>
 
-
-</body></html>
+</html>
