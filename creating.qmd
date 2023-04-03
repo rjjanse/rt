@@ -374,7 +374,7 @@ Before we see the global environment, let's first clean it with the following co
 rm(list = ls())
 ```
 
-With the `rm()` function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (`list = `), is the whole global environment (`ls()`).
+With the `rm()` function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (`list = `), is the whole global environment (`ls()`). It is useful to remove objects you do not need to keep your global environment clean. Not only does it help in available working memory, it is also good to work in an organized (global) environment.
 
 Now let's create some new data to showcase the global environment in RStudio:
 
@@ -396,7 +396,7 @@ Now let's look at our global environment. If you remember, the upper right windo
 
 From the global environment, we can learn a few things:
 
-- The current memory usage is 121 MiB, in the upper middle of the image).
+- The current memory usage is 121 MiB, in the upper middle of the image.
 
 - We have one structured data object, `data`. This data object has 150 observations (rows) of 5 variables (columns).
 
@@ -429,6 +429,52 @@ Sometimes, you might get an error instead of a warning. This means that the func
 
 Not all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add 'R' at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as [stackoverflow](https://stackoverflow.com/). When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.
 
-Now that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.
+## Exercises
+### 1. Create and store numbers
+Create a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called `vec`.
+
+```{r}
+# Answer 1: using c()
+vec <- c(5, 6, 7, 8, 9, 10)
+
+# Answer 2: using the `:` operator
+vec <- 5:10
+
+# Answer 3: using seq()
+vev <- seq(5, 10, 1)
+```
+
+### 2. Calculate quantiles
+Calculate the 2.5^th^ and 97.5^th^ percentile of the object `vec`.
+
+```{r}
+quantile(vec, probs = c(0.025, 0.975))
+```
+
+### 3. Create a matrix
+Using the data in `vec`, create a matrix with two columns and three rows.
+
+```{r}
+matrix(vec, nrow = 3, ncol = 2)
+```
+
+### 4. Getting help
+Open the documentation for `rm()`.
+
+```{r}
+#| eval: false
+?rm
+```
+
+### 5. Cleaning up
+Now use `rm()` to remove vec again.
+
+```{r}
+rm(vec)
+```
+
+## Next topic
+Now that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data. 
 
 **Next:** [Accessing and manipulating data](accessing.qmd)
+

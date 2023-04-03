@@ -2,4 +2,11 @@
 title: "Accessing and manipulating data"
 ---
 
-*placeholder*
+## Accessing data
+Now that we have seen some basic R operations, such as functions and creating some data, let's see some ways to access this data and play with it. For this we'll mainly be working with dataframes and matrices. As an example, we will use the `iris` dataset, which is loaded into R by default. You can view the data just by running `iris` in your console:
+
+```{r}
+#| code-fold: false
+iris
+```
+

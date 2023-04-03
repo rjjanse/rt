@@ -1,4 +1,28 @@
 Finding source code of a function
 Methods() of functions
-Get & assign
-Value types (strings, numeric) and transforming
+
+
+accessing:
+    - viewing data
+        - global environment
+        - head
+        - tail
+    - value types
+        - integers
+        - numeric
+        - cahracters
+        - date
+    - get and assign
+    - subsetting
+        - $, single [, double [[
+    - multiplying columns
+    - which()
+    - logicals
+        - !=
+        - ==
+        - >=
+        - <=
+        - |
+        - &
+        - !
+    - sampling

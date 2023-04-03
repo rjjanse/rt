@@ -323,6 +323,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#the-global-environment" id="toc-the-global-environment" class="nav-link" data-scroll-target="#the-global-environment">The global environment</a></li>
   <li><a href="#dealing-with-warnings-and-errors" id="toc-dealing-with-warnings-and-errors" class="nav-link" data-scroll-target="#dealing-with-warnings-and-errors">Dealing with warnings and errors</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#create-and-store-numbers" id="toc-create-and-store-numbers" class="nav-link" data-scroll-target="#create-and-store-numbers">1. Create and store numbers</a></li>
+  <li><a href="#calculate-quantiles" id="toc-calculate-quantiles" class="nav-link" data-scroll-target="#calculate-quantiles">2. Calculate quantiles</a></li>
+  <li><a href="#create-a-matrix" id="toc-create-a-matrix" class="nav-link" data-scroll-target="#create-a-matrix">3. Create a matrix</a></li>
+  <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help">4. Getting help</a></li>
+  <li><a href="#cleaning-up" id="toc-cleaning-up" class="nav-link" data-scroll-target="#cleaning-up">5. Cleaning up</a></li>
+  </ul></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
     </div>
@@ -854,7 +863,7 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 <p>We have seen some ways to create and store data now. However, where can we find back what we have created? This is where the global environment comes in. Whenever you create an object in your code, that object will be stored in the global environment, which is just a general storage space. A great benefit that RStudio gives us is being able to see the global environment and whatever is stored in there, and to get a quick indication of what kind of data is stored.</p>
 <p>Before we see the global environment, let’s first clean it with the following code:</p>
 <div class="sourceCode" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>With the <code>rm()</code> function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (<code>list =</code>), is the whole global environment (<code>ls()</code>).</p>
+<p>With the <code>rm()</code> function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (<code>list =</code>), is the whole global environment (<code>ls()</code>). It is useful to remove objects you do not need to keep your global environment clean. Not only does it help in available working memory, it is also good to work in an organized (global) environment.</p>
 <p>Now let’s create some new data to showcase the global environment in RStudio:</p>
 <div class="sourceCode" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># Load pre-existing data frame</span></span>
 <span id="cb79-2"><a href="#cb79-2"></a>data <span class="ot">&lt;-</span> iris</span>
@@ -870,7 +879,7 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 <p>Now let’s look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like <a href="#fig-ge">Figure&nbsp;2 (a)</a> (the colours might differ depending on your theme).</p>
 <p>From the global environment, we can learn a few things:</p>
 <ul>
-<li><p>The current memory usage is 121 MiB, in the upper middle of the image).</p></li>
+<li><p>The current memory usage is 121 MiB, in the upper middle of the image.</p></li>
 <li><p>We have one structured data object, <code>data</code>. This data object has 150 observations (rows) of 5 variables (columns).</p></li>
 <li><p><code>strings</code> is a character (<code>chr</code>) with 5 values (<code>[1:5</code>). We then see the first values.</p></li>
 <li><p><code>val</code> is a single value, 42.</p></li>
@@ -911,6 +920,79 @@ Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1</code></pre>
 <p>Sometimes, warnings are expected or not a problem. In that case, you can put the whole code inside the function <code>supressWarnings()</code>, to silence the warning. It is however <strong>always</strong> of <strong>paramount importance</strong> that you annotate what the warning was and why it can be suppressed.</p>
 <p>Sometimes, you might get an error instead of a warning. This means that the function could not continue to run and you have to fix the error before being able to run the function.</p>
 <p>Not all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add ‘R’ at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as <a href="https://stackoverflow.com/">stackoverflow</a>. When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.</p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="create-and-store-numbers" class="level3">
+<h3 class="anchored" data-anchor-id="create-and-store-numbers">1. Create and store numbers</h3>
+<p>Create a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called <code>vec</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a><span class="co"># Answer 1: using c()</span></span>
+<span id="cb80-2"><a href="#cb80-2"></a>vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb80-3"><a href="#cb80-3"></a></span>
+<span id="cb80-4"><a href="#cb80-4"></a><span class="co"># Answer 2: using the `:` operator</span></span>
+<span id="cb80-5"><a href="#cb80-5"></a>vec <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb80-6"><a href="#cb80-6"></a></span>
+<span id="cb80-7"><a href="#cb80-7"></a><span class="co"># Answer 3: using seq()</span></span>
+<span id="cb80-8"><a href="#cb80-8"></a>vev <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="calculate-quantiles" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-quantiles">2. Calculate quantiles</h3>
+<p>Calculate the 2.5<sup>th</sup> and 97.5<sup>th</sup> percentile of the object <code>vec</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">quantile</span>(vec, <span class="at">probs =</span> <span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> 2.5% 97.5% 
+5.125 9.875 </code></pre>
+</div>
+</div>
+</section>
+<section id="create-a-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="create-a-matrix">3. Create a matrix</h3>
+<p>Using the data in <code>vec</code>, create a matrix with two columns and three rows.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="fu">matrix</span>(vec, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    5    8
+[2,]    6    9
+[3,]    7   10</code></pre>
+</div>
+</div>
+</section>
+<section id="getting-help" class="level3">
+<h3 class="anchored" data-anchor-id="getting-help">4. Getting help</h3>
+<p>Open the documentation for <code>rm()</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a>?rm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="cleaning-up" class="level3">
+<h3 class="anchored" data-anchor-id="cleaning-up">5. Cleaning up</h3>
+<p>Now use <code>rm()</code> to remove vec again.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1"></a><span class="fu">rm</span>(vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
 <p>Now that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.</p>
 <p><strong>Next:</strong> <a href="./accessing.html">Accessing and manipulating data</a></p>
 
