@@ -10,4 +10,30 @@ Now that we have seen some basic R operations, such as functions and creating so
 iris
 ```
 
-*To be continued*
+Although this is fine for small datasets, and seems okay for the `iris` datset, data will easily be too large to properly display in the console. In that case, we can choose to see only the beginning or the end of the data, using the `head()` and `tail()` functions. With these functions, you can specify the number of rows in a certain dataset that you want to see. For example, to see the first 4 and the last 5 rows of the iris dataset, we can do the following:
+
+```{r}
+#| code-fold: false
+head(iris, n = 4)
+
+tail(iris, n = 5)
+```
+
+:::{.callout-important appearance="simple"}
+Note that because iris is loaded in by default, it does not appear in your global environment. To have it appear there, you can simply run:
+```r
+iris <- iris
+```
+:::
+
+This is already much clearer. Nonetheless, we might want to see the whole data, for example to quickly look for inconsistencies. You can do this just by clicking on the name of the data in your global environment, or by using the `view()` function:
+
+```r
+view(iris)
+```
+
+When we use `view()` or open data from the global environment, RStudio offers as some quick tools to get a better overview of our data. After opening the data, you will see something similar to @fig-view.
+
+[Viewing data](images/view.png)
+
+We can now scroll through the data and see all columns. If you wonder how many rows and columns you have, you can see this at the bottom of the window. Note that the window only shows 50 columns. To see more columns, you can ... (to be continued)

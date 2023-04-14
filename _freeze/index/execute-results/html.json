@@ -2,9 +2,7 @@
   "hash": "62e0ea8abbd90bc6d42201c5ffc77d92",
   "result": {
     "markdown": "---\ntitle: \"Introduction\"\n---\n\n\nHi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for epidemiologic data analysis (which has many overlaps with data science), such as how to perform regression analyses and plot results.\n\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\n\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the 'Answer' button. An example is shown below.\n\n#### Exercises\n0: Open the answer\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Well done!\n```\n:::\n\n\n**Next:** [R](r.qmd)",
-    "supporting": [
-      "index_files"
-    ],
+    "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
