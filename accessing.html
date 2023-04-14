@@ -485,7 +485,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 150          5.9         3.0          5.1         1.8  virginica</code></pre>
 </div>
 </div>
-<p><em>To be continued</em></p>
+<p>Although this is fine for small datasets, and seems okay for the <code>iris</code> datset, data will easily be too large to properly display in the console. In that case, we can choose to see only the beginning or the end of the data, using the <code>head()</code> and <code>tail()</code> functions. With these functions, you can specify the number of rows in a certain dataset that you want to see. For example, to see the first 4 and the last 5 rows of the iris dataset, we can do the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">head</span>(iris, <span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">tail</span>(iris, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+146          6.7         3.0          5.2         2.3 virginica
+147          6.3         2.5          5.0         1.9 virginica
+148          6.5         3.0          5.2         2.0 virginica
+149          6.2         3.4          5.4         2.3 virginica
+150          5.9         3.0          5.1         1.8 virginica</code></pre>
+</div>
+</div>
+<div class="callout-important callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Note that because iris is loaded in by default, it does not appear in your global environment. To have it appear there, you can simply run:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>iris <span class="ot">&lt;-</span> iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p>This is already much clearer. Nonetheless, we might want to see the whole data, for example to quickly look for inconsistencies. You can do this just by clicking on the name of the data in your global environment, or by using the <code>view()</code> function:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">view</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When we use <code>view()</code> or open data from the global environment, RStudio offers as some quick tools to get a better overview of our data. After opening the data, you will see something similar to <strong>?@fig-view</strong>.</p>
+<p><a href="images/view.png">Viewing data</a></p>
+<p>We can now scroll through the data and see all columns. If you wonder how many rows and columns you have, you can see this at the bottom of the window. Note that the window only shows 50 columns. To see more columns, you can … (to be continued)</p>
 
 
 </section>
