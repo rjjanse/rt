@@ -4,9 +4,8 @@ Methods() of functions
 
 accessing:
     - viewing data
-        - global environment
-        - head
-        - tail
+        
+        - tibble
     - value types
         - integers
         - numeric
