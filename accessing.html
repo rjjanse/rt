@@ -303,6 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#accessing-data" id="toc-accessing-data" class="nav-link active" data-scroll-target="#accessing-data">Accessing data</a></li>
+  <li><a href="#value-types" id="toc-value-types" class="nav-link" data-scroll-target="#value-types">Value types</a></li>
   </ul>
 </nav>
     </div>
@@ -518,9 +519,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>This is already much clearer. Nonetheless, we might want to see the whole data, for example to quickly look for inconsistencies. You can do this just by clicking on the name of the data in your global environment, or by using the <code>view()</code> function:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">view</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>When we use <code>view()</code> or open data from the global environment, RStudio offers as some quick tools to get a better overview of our data. After opening the data, you will see something similar to <strong>?@fig-view</strong>.</p>
-<p><a href="images/view.png">Viewing data</a></p>
-<p>We can now scroll through the data and see all columns. If you wonder how many rows and columns you have, you can see this at the bottom of the window. Note that the window only shows 50 columns. To see more columns, you can … (to be continued)</p>
+<p>When we use <code>view()</code> or open data from the global environment, RStudio offers as some quick tools to get a better overview of our data. After opening the data, you will see something similar to <a href="#fig-view">Figure&nbsp;1</a>, where you can see some areas of interest demarcated.</p>
+<div id="fig-view" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/view.png" style="height:60.0%" alt="Viewing data" class="figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Viewing data</figcaption><p></p>
+</figure>
+</div>
+<p>We can now scroll through the data and see all columns. If you wonder how many rows and columns you have, you can see this at the bottom of the window. The viewer will only show 50 columns at a time, but you can click through the columns if you have more than 50. If you want to see only entries that meet a certain condition, you can press the filter button at the top of the viewer to filter certain values. Lastly, you can sort a column as ascending or descending by clicking on the little arrows to the right of the column name. Note that any operation you perform on the data in the viewer (sorting, filtering), does not affect the actual data, only the data you see. In other words, you only manipulate what you see in the data, not the data itself.</p>
+</section>
+<section id="value-types" class="level2">
+<h2 class="anchored" data-anchor-id="value-types">Value types</h2>
 
 
 </section>
