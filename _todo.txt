@@ -4,16 +4,13 @@ Methods() of functions
 
 accessing:
     - viewing data
-        
-        - tibble
+ 
     - value types
         - integers
         - numeric
         - cahracters
         - date
     - get and assign
-    - subsetting
-        - $, single [, double [[
     - multiplying columns
     - which()
     - logicals
@@ -26,3 +23,7 @@ accessing:
         - !
     - sampling
     -
+
+
+dplyr:
+    -tibble

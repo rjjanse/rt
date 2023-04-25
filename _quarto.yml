@@ -37,10 +37,12 @@ website:
             - competing_risks.qmd
             - confounding.qmd
             - agreement.qmd
-        - section: "Summary"
+        - section: "Recap"
           contents: 
             - summary.qmd
             - further_resources.qmd
+            - rython.qmd
+            - slow.qmd
      
 format:
   html:
