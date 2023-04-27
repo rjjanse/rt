@@ -188,8 +188,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">packages.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
  <span class="menu-text">data.qmd</span>
   </li>
@@ -298,16 +301,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#accessing-data" id="toc-accessing-data" class="nav-link active" data-scroll-target="#accessing-data">Accessing data</a></li>
+  <li><a href="#comparing-values" id="toc-comparing-values" class="nav-link" data-scroll-target="#comparing-values">Comparing values</a></li>
+  <li><a href="#boolean-operators" id="toc-boolean-operators" class="nav-link" data-scroll-target="#boolean-operators">Boolean operators</a></li>
   <li><a href="#accessing-the-data" id="toc-accessing-the-data" class="nav-link" data-scroll-target="#accessing-the-data">Accessing the data</a>
   <ul>
   <li><a href="#dollar-operator" id="toc-dollar-operator" class="nav-link" data-scroll-target="#dollar-operator">Dollar operator: $</a></li>
   <li><a href="#single-brackets" id="toc-single-brackets" class="nav-link" data-scroll-target="#single-brackets">Single brackets: []</a></li>
   <li><a href="#double-brackets" id="toc-double-brackets" class="nav-link" data-scroll-target="#double-brackets">Double brackets: [[]]</a></li>
   </ul></li>
-  <li><a href="#logicals" id="toc-logicals" class="nav-link" data-scroll-target="#logicals">Logicals</a></li>
   <li><a href="#which" id="toc-which" class="nav-link" data-scroll-target="#which">Which</a></li>
+  <li><a href="#mutating-data" id="toc-mutating-data" class="nav-link" data-scroll-target="#mutating-data">Mutating data</a></li>
   <li><a href="#get-and-assign" id="toc-get-and-assign" class="nav-link" data-scroll-target="#get-and-assign">Get and assign</a></li>
   <li><a href="#value-types" id="toc-value-types" class="nav-link" data-scroll-target="#value-types">Value types</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#store-new-data" id="toc-store-new-data" class="nav-link" data-scroll-target="#store-new-data">1. Store new data</a></li>
+  <li><a href="#subset-column" id="toc-subset-column" class="nav-link" data-scroll-target="#subset-column">2. Subset column</a></li>
+  <li><a href="#keep-certain-values" id="toc-keep-certain-values" class="nav-link" data-scroll-target="#keep-certain-values">3. Keep certain values</a></li>
+  <li><a href="#mutate-variables" id="toc-mutate-variables" class="nav-link" data-scroll-target="#mutate-variables">4. Mutate variables</a></li>
+  <li><a href="#change-values-to-character" id="toc-change-values-to-character" class="nav-link" data-scroll-target="#change-values-to-character">5. Change values to character</a></li>
+  <li><a href="#check-character-type" id="toc-check-character-type" class="nav-link" data-scroll-target="#check-character-type">6. Check character type</a></li>
+  </ul></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
     </div>
@@ -532,14 +547,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We can now scroll through the data and see all columns. If you wonder how many rows and columns you have, you can see this at the bottom of the window. The viewer will only show 50 columns at a time, but you can click through the columns if you have more than 50. If you want to see only entries that meet a certain condition, you can press the filter button at the top of the viewer to filter certain values. Lastly, you can sort a column as ascending or descending by clicking on the little arrows to the right of the column name. Note that any operation you perform on the data in the viewer (sorting, filtering), does not affect the actual data, only the data you see. In other words, you only manipulate what you see in the data, not the data itself.</p>
 </section>
+<section id="comparing-values" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-values">Comparing values</h2>
+<p>Before we see how to access the data, let’s take a sidestep to see how we can compare values in R. To compare values and get returned <code>TRUE</code> or <code>FALSE</code> (called Booleans) there are some important operators:</p>
+<ul>
+<li><code>&gt;</code>: Greater than; is the value before the operator greater than the value after the operator.</li>
+<li><code>&lt;</code>: Smaller than; is the value before the operator smaller than the value after the operator.</li>
+<li><code>&gt;=</code>: Greater than or equal to; is the value before the operator greater than or equal to the value after the operator.</li>
+<li><code>&lt;=</code>: Smaller than or equal to; is the value before the operator smaller than or equal to the value after the operator.</li>
+<li><code>==</code>: Equal; is the value before the operator equal to the value after the operator.</li>
+<li><code>!=</code>: Not equal; is the value before the operator not equal to the value after the operator.</li>
+</ul>
+<p>Let’s see some examples of using these operators:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Greater than</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Smaller than</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Greater than or equal to</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="dv">3</span> <span class="sc">&gt;=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Smaller than or equal to</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="dv">3</span> <span class="sc">&lt;=</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Equal</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Not equal</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="dv">3</span> <span class="sc">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="boolean-operators" class="level2">
+<h2 class="anchored" data-anchor-id="boolean-operators">Boolean operators</h2>
+<p>Now that we can compare values and get returned <code>TRUE</code> or <code>FALSE</code>, we can also make multiple comparisons using Boolean operators (also know as logical operators). If the conditions specified match, these will return <code>TRUE</code>, otherwise <code>FALSE</code>.</p>
+<ul>
+<li><code>|</code>: OR; the value before or after the operator should be <code>TRUE</code>.</li>
+<li><code>&amp;</code>: AND; the values before and after the operator should be <code>TRUE</code>.</li>
+<li><code>!</code>: NOT; the match should not be <code>TRUE</code>.</li>
+</ul>
+<p>Using them works as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># OR</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> <span class="dv">3</span> <span class="sc">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># AND</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span> <span class="dv">3</span> <span class="sc">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># NOT</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="sc">!</span>(<span class="dv">3</span> <span class="sc">==</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
 <section id="accessing-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-the-data">Accessing the data</h2>
-<p>We now have a data frame with data inside, loaded in our environment. However, how can we actually access that data? For that, we can ‘subset’ the data. There is three ways we can do that:</p>
+<p>Back to accessing the data! We now have a data frame with data inside, loaded in our environment. However, how can we actually access that data? For that, we can ‘subset’ the data. There is three ways we can do that:</p>
 <section id="dollar-operator" class="level3">
 <h3 class="anchored" data-anchor-id="dollar-operator">Dollar operator: $</h3>
 <p>The dollar operator, <code>$</code>, allows you to quickly subset a column from the data. This is a good way to have a quick look in your data. For example, if we want to subset the column <code>Sepal.Length</code>, we can simply do the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>iris<span class="sc">$</span>Sepal.Length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>iris<span class="sc">$</span>Sepal.Length</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4 5.1
  [19] 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5 4.9 5.0
@@ -558,13 +645,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="single-brackets">Single brackets: []</h3>
 <p>Imagine we want a specific row, a specific column, or even a specific cell from our data. In that case, <code>$</code> is insufficient. Luckily, we can use single brackets: <code>[]</code>. When using single brackets on a data frame, we can put two things in-between the brackets: the row-number we are interested in and the column we are interested in. These can be both index numbers and row/column names. If we want to select all rows or all columns, we can leave that argument empty. Let’s see some examples:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Select the value in the 14th row and 4th column</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>iris[<span class="dv">14</span>, <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Select the value in the 14th row and 4th column</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>iris[<span class="dv">14</span>, <span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Select the second column by name with all rows</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>iris[, <span class="st">"Sepal.Width"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="co"># Select the second column by name with all rows</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>iris[, <span class="st">"Sepal.Width"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 3.7 3.4 3.0 3.0 4.0 4.4 3.9 3.5
  [19] 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2
@@ -576,8 +663,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [127] 2.8 3.0 2.8 3.0 2.8 3.8 2.8 2.8 2.6 3.0 3.4 3.1 3.0 3.1 3.1 3.1 2.7 3.2
 [145] 3.3 3.0 2.5 3.0 3.4 3.0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Select the value in the 11th row and 4th column by index and name</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a>iris[<span class="dv">11</span>, <span class="st">"Petal.Width"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Select the value in the 11th row and 4th column by index and name</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>iris[<span class="dv">11</span>, <span class="st">"Petal.Width"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2</code></pre>
 </div>
@@ -601,15 +688,15 @@ Meow?
 </div>
 <p>Now we can go even further with our brackets. When we subset our data frame once, we get a vector of values. Imagine we want to subset the 4<sup>th</sup> value of the column <code>Sepal.Width</code>, we can simply do:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>iris[, <span class="st">"Sepal.Width"</span>][<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>iris[, <span class="st">"Sepal.Width"</span>][<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.1</code></pre>
 </div>
 </div>
 <p>However, our fun doesn’t stop here! What if we didn’t want the 4<sup>th</sup> value, but all values larger than 3.0? Easy; let’s see how it works:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># We can get a vector of the column Sepal.Width as we saw before</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>iris[, <span class="st">"Sepal.Width"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># We can get a vector of the column Sepal.Width as we saw before</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>iris[, <span class="st">"Sepal.Width"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 3.7 3.4 3.0 3.0 4.0 4.4 3.9 3.5
  [19] 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2
@@ -621,8 +708,8 @@ Meow?
 [127] 2.8 3.0 2.8 3.0 2.8 3.8 2.8 2.8 2.6 3.0 3.4 3.1 3.0 3.1 3.1 3.1 2.7 3.2
 [145] 3.3 3.0 2.5 3.0 3.4 3.0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># From this vector, we can get per value a logical (TRUE or FALSE) whether it is &gt;3.0</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>iris[, <span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># From this vector, we can get per value a Boolean (TRUE or FALSE) whether it is &gt;3.0</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>iris[, <span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
  [13] FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
@@ -638,20 +725,20 @@ Meow?
 [133] FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
 [145]  TRUE FALSE FALSE FALSE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># We can use these logicals to subset the column to only keep values &gt;3.0</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>iris[, <span class="st">"Sepal.Width"</span>][iris[<span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># We can use these Booleans to subset the column to only keep values &gt;3.0</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>iris[, <span class="st">"Sepal.Width"</span>][iris[<span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 3.5 3.2 3.1 3.6 3.9 3.4 3.4 3.1 3.7 3.4 4.0 4.4 3.9 3.5 3.8 3.8 3.4 3.7 3.6
 [20] 3.3 3.4 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2 3.5 3.6 3.4 3.5 3.2 3.5 3.8
 [39] 3.8 3.2 3.7 3.3 3.2 3.2 3.1 3.3 3.1 3.2 3.4 3.1 3.3 3.6 3.2 3.2 3.8 3.2 3.3
 [58] 3.2 3.8 3.4 3.1 3.1 3.1 3.1 3.2 3.3 3.4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="do">## To make it more readable, we could of course store the logicals in their own vector which we use to subset</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="co"># Create vector with logicals</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>larger_than_3 <span class="ot">&lt;-</span> iris[, <span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="co"># Subset Sepal.Width</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a>iris[, <span class="st">"Sepal.Width"</span>][larger_than_3]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="do">## To make it more readable, we could of course store the Booleans in their own vector which we use to subset</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="co"># Create vector with Booleans</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>larger_than_3 <span class="ot">&lt;-</span> iris[, <span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="co"># Subset Sepal.Width</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>iris[, <span class="st">"Sepal.Width"</span>][larger_than_3]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 3.5 3.2 3.1 3.6 3.9 3.4 3.4 3.1 3.7 3.4 4.0 4.4 3.9 3.5 3.8 3.8 3.4 3.7 3.6
 [20] 3.3 3.4 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2 3.5 3.6 3.4 3.5 3.2 3.5 3.8
@@ -676,17 +763,259 @@ Meow?
 </div>
 </section>
 </section>
-<section id="logicals" class="level2">
-<h2 class="anchored" data-anchor-id="logicals">Logicals</h2>
-</section>
 <section id="which" class="level2">
 <h2 class="anchored" data-anchor-id="which">Which</h2>
+<p>What if we wanted to know not the exact values greater than 3, but the row numbers in the data set? In that case, we could use <code>which()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="fu">which</span>(iris[, <span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   1   3   4   5   6   7   8  10  11  12  15  16  17  18  19  20  21  22  23
+[20]  24  25  27  28  29  30  31  32  33  34  35  36  37  38  40  41  43  44  45
+[39]  47  48  49  50  51  52  53  57  66  71  86  87 101 110 111 116 118 121 125
+[58] 126 132 137 138 140 141 142 144 145 149</code></pre>
+</div>
+</div>
+<p>We now have the line numbers with which (pun intended) we can subset those values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>iris[<span class="fu">which</span>(iris[, <span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span>), <span class="st">"Sepal.Width"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 3.5 3.2 3.1 3.6 3.9 3.4 3.4 3.1 3.7 3.4 4.0 4.4 3.9 3.5 3.8 3.8 3.4 3.7 3.6
+[20] 3.3 3.4 3.4 3.5 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2 3.5 3.6 3.4 3.5 3.2 3.5 3.8
+[39] 3.8 3.2 3.7 3.3 3.2 3.2 3.1 3.3 3.1 3.2 3.4 3.1 3.3 3.6 3.2 3.2 3.8 3.2 3.3
+[58] 3.2 3.8 3.4 3.1 3.1 3.1 3.1 3.2 3.3 3.4</code></pre>
+</div>
+</div>
+<p>We can even use our Boolean operators to show that using <code>which()</code> gives the same results as we saw before when not using <code>which()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>iris[<span class="fu">which</span>(iris[, <span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span>), <span class="st">"Sepal.Width"</span>] <span class="sc">==</span> iris[, <span class="st">"Sepal.Width"</span>][iris[<span class="st">"Sepal.Width"</span>] <span class="sc">&gt;</span> <span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[16] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[31] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[46] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+[61] TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
+</div>
+</div>
+<p>The main advantage of <code>which()</code> is that it might be more readable in your code.</p>
+</section>
+<section id="mutating-data" class="level2">
+<h2 class="anchored" data-anchor-id="mutating-data">Mutating data</h2>
+<p>It is great to be able to subset specific data from our data frames, but it is much more fun to do some statistics with it! A great thing about the subsetted columns of data is that you can easily perform calculations on them.</p>
+<p>For example, to multiply all values in in the column <code>Sepal.Width</code> by 3, we can simply do:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a>iris[[<span class="st">"Sepal.Width"</span>]] <span class="sc">*</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 10.5  9.0  9.6  9.3 10.8 11.7 10.2 10.2  8.7  9.3 11.1 10.2  9.0  9.0 12.0
+ [16] 13.2 11.7 10.5 11.4 11.4 10.2 11.1 10.8  9.9 10.2  9.0 10.2 10.5 10.2  9.6
+ [31]  9.3 10.2 12.3 12.6  9.3  9.6 10.5 10.8  9.0 10.2 10.5  6.9  9.6 10.5 11.4
+ [46]  9.0 11.4  9.6 11.1  9.9  9.6  9.6  9.3  6.9  8.4  8.4  9.9  7.2  8.7  8.1
+ [61]  6.0  9.0  6.6  8.7  8.7  9.3  9.0  8.1  6.6  7.5  9.6  8.4  7.5  8.4  8.7
+ [76]  9.0  8.4  9.0  8.7  7.8  7.2  7.2  8.1  8.1  9.0 10.2  9.3  6.9  9.0  7.5
+ [91]  7.8  9.0  7.8  6.9  8.1  9.0  8.7  8.7  7.5  8.4  9.9  8.1  9.0  8.7  9.0
+[106]  9.0  7.5  8.7  7.5 10.8  9.6  8.1  9.0  7.5  8.4  9.6  9.0 11.4  7.8  6.6
+[121]  9.6  8.4  8.4  8.1  9.9  9.6  8.4  9.0  8.4  9.0  8.4 11.4  8.4  8.4  7.8
+[136]  9.0 10.2  9.3  9.0  9.3  9.3  9.3  8.1  9.6  9.9  9.0  7.5  9.0 10.2  9.0</code></pre>
+</div>
+</div>
+<p>We can also multiply all values by a value specific to them. For exapmle. to multiply <code>Sepal.Width</code> by <code>Sepal.Length</code>, we could run:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>iris[[<span class="st">"Sepal.Width"</span>]] <span class="sc">*</span> iris[[<span class="st">"Sepal.Length"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 17.85 14.70 15.04 14.26 18.00 21.06 15.64 17.00 12.76 15.19 19.98 16.32
+ [13] 14.40 12.90 23.20 25.08 21.06 17.85 21.66 19.38 18.36 18.87 16.56 16.83
+ [25] 16.32 15.00 17.00 18.20 17.68 15.04 14.88 18.36 21.32 23.10 15.19 16.00
+ [37] 19.25 17.64 13.20 17.34 17.50 10.35 14.08 17.50 19.38 14.40 19.38 14.72
+ [49] 19.61 16.50 22.40 20.48 21.39 12.65 18.20 15.96 20.79 11.76 19.14 14.04
+ [61] 10.00 17.70 13.20 17.69 16.24 20.77 16.80 15.66 13.64 14.00 18.88 17.08
+ [73] 15.75 17.08 18.56 19.80 19.04 20.10 17.40 14.82 13.20 13.20 15.66 16.20
+ [85] 16.20 20.40 20.77 14.49 16.80 13.75 14.30 18.30 15.08 11.50 15.12 17.10
+ [97] 16.53 17.98 12.75 15.96 20.79 15.66 21.30 18.27 19.50 22.80 12.25 21.17
+[109] 16.75 25.92 20.80 17.28 20.40 14.25 16.24 20.48 19.50 29.26 20.02 13.20
+[121] 22.08 15.68 21.56 17.01 22.11 23.04 17.36 18.30 17.92 21.60 20.72 30.02
+[133] 17.92 17.64 15.86 23.10 21.42 19.84 18.00 21.39 20.77 21.39 15.66 21.76
+[145] 22.11 20.10 15.75 19.50 21.08 17.70</code></pre>
+</div>
+</div>
+<p>It is important to realize that if you are calculating with columns, each mutating value has to be of the same length as the column, or of length 1. If the mutating value is of the same length as the column (e.g., another column), each row in one column is mutated with the row in the other column. If the mutating value is of length 1 (e.g., the number 3), all rows in one column are mutated by the same value.</p>
+<p>You can also perform functions on subsetted data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">summary</span>(iris[[<span class="st">"Sepal.Width"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.000   2.800   3.000   3.057   3.300   4.400 </code></pre>
+</div>
+</div>
 </section>
 <section id="get-and-assign" class="level2">
 <h2 class="anchored" data-anchor-id="get-and-assign">Get and assign</h2>
+<p>The last important thing we should discuss about acessing the data are the functions <code>get()</code> and <code>assign()</code>. Although we can easily assign new data while writing our code (<code>data &lt;- iris</code>), at a certain point we might want to automate it (and later on we will see how to do that). In that case, the name of the data we want might vary. When a value might vary, such as a column, it is often possible to use strings, such as <code>"iris"</code>. However, for assigning data, this does not work:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>data <span class="ot">&lt;-</span> <span class="st">"iris"</span></span>
+<span id="cb57-2"><a href="#cb57-2"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "iris"</code></pre>
+</div>
+</div>
+<p>We just assigned the string <code>"iris"</code>, instead of the data <code>iris</code>. In this case, <code>assign()</code> allows us to achieve our objective:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">assign</span>(<span class="st">"data"</span>, iris)</span>
+<span id="cb59-2"><a href="#cb59-2"></a><span class="fu">head</span>(data, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa</code></pre>
+</div>
+</div>
+<p>In the same way, if we want to flexibly get data from the global environment, we can use <code>get()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a>data <span class="ot">&lt;-</span> <span class="fu">get</span>(<span class="st">"iris"</span>)</span>
+<span id="cb61-2"><a href="#cb61-2"></a><span class="fu">head</span>(data, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa</code></pre>
+</div>
+</div>
 </section>
 <section id="value-types" class="level2">
 <h2 class="anchored" data-anchor-id="value-types">Value types</h2>
+<p>The last thing to discuss for now are value types. A few times we talked about strings, which is a specific type a value can have in R. The most important value types to know for now are:</p>
+<ul>
+<li>numeric: a <em>real</em> number, for example 1.42, 8.42, and -5.0.</li>
+<li>integer: an integer, for exapmle 4, -3, and 7. In R, an integer is made explicit with <code>L</code>, for example: <code>10L</code>.</li>
+<li>date: a date, such as 2000-02-09, 2000-02-29, and 1912-06-23. Dates are stored behind the scene as an integer showing the distance from a set date. In R, this date is generally 1970-01-01, also known as the origin. Dates in R are generally written in the format yyyy-mm-dd.</li>
+<li>string: a text, for example “hello”, “4”, or “==”. Strings are always enclosed with single or double quotation marks (’, “).</li>
+<li>logical: a Boolean; <code>TRUE</code> or <code>FALSE</code>.</li>
+</ul>
+<p>To check the type of a value, we can use <code>class()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">class</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">class</span>(3L)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "integer"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a><span class="fu">class</span>(<span class="st">"3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+<p>Additionally, we can transform values into different types, using certain functions:</p>
+<ul>
+<li><code>as.numeric()</code>: transform value to numeric.</li>
+<li><code>as.integer()</code>: transform value to integer.</li>
+<li><code>as.character()</code>: transform value to string</li>
+<li><code>as.Date()</code>: transform value to date. This function often needs an origin supplied. Note that Date is written with a capital D.</li>
+</ul>
+<p>Here are some examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a><span class="fu">as.numeric</span>(<span class="st">"5"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a><span class="fu">as.integer</span>(<span class="fl">3.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="fu">as.character</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "7"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a><span class="fu">as.Date</span>(<span class="st">"1992-06-06"</span>, <span class="at">origin =</span> <span class="st">"1970-01-01"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1992-06-06"</code></pre>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="store-new-data" class="level3">
+<h3 class="anchored" data-anchor-id="store-new-data">1. Store new data</h3>
+<p>Besides the dataset <code>iris</code>, another available dataset in R is <code>mtcars</code>. Load this data into a new data frame called <code>data</code> using <code>assign()</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="fu">assign</span>(<span class="st">"data"</span>, mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="subset-column" class="level3">
+<h3 class="anchored" data-anchor-id="subset-column">2. Subset column</h3>
+<p>Now subset the column <code>disp</code> and store this in a variable called <code>var</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># Use dollar operator (generally unrecommended)</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a>var <span class="ot">&lt;-</span> data<span class="sc">$</span>disp</span>
+<span id="cb78-3"><a href="#cb78-3"></a></span>
+<span id="cb78-4"><a href="#cb78-4"></a><span class="co"># Use single brackets</span></span>
+<span id="cb78-5"><a href="#cb78-5"></a>var <span class="ot">&lt;-</span> data[, <span class="st">"disp"</span>]</span>
+<span id="cb78-6"><a href="#cb78-6"></a></span>
+<span id="cb78-7"><a href="#cb78-7"></a><span class="co"># Use double brackets</span></span>
+<span id="cb78-8"><a href="#cb78-8"></a>var <span class="ot">&lt;-</span> data[[<span class="st">"disp"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="keep-certain-values" class="level3">
+<h3 class="anchored" data-anchor-id="keep-certain-values">3. Keep certain values</h3>
+<p>From the variable <code>var</code>, keep only values greater than 110.5 and store this in a variable called <code>var_new</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># With which()</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a>var_new <span class="ot">&lt;-</span> var[<span class="fu">which</span>(var <span class="sc">&gt;</span> <span class="fl">110.5</span>)]</span>
+<span id="cb79-3"><a href="#cb79-3"></a></span>
+<span id="cb79-4"><a href="#cb79-4"></a><span class="co"># Without which()</span></span>
+<span id="cb79-5"><a href="#cb79-5"></a>var_new <span class="ot">&lt;-</span> var[var <span class="sc">&gt;</span> <span class="fl">110.5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="mutate-variables" class="level3">
+<h3 class="anchored" data-anchor-id="mutate-variables">4. Mutate variables</h3>
+<p>Now divided all values in <code>var_new</code> by 10 and store this in a variable called <code>var_div</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>var_div <span class="ot">&lt;-</span> var_new <span class="sc">/</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="change-values-to-character" class="level3">
+<h3 class="anchored" data-anchor-id="change-values-to-character">5. Change values to character</h3>
+<p>Now change the values in the variable <code>var_div</code> to character values and store these in a variable called <code>var_char</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a>var_char <span class="ot">&lt;-</span> <span class="fu">as.character</span>(var_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="check-character-type" class="level3">
+<h3 class="anchored" data-anchor-id="check-character-type">6. Check character type</h3>
+<p>Make sure the first value in the variable <code>var_char</code> is not of the type numeric (called <code>"numeric"</code>).</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a><span class="fu">class</span>(var_char[<span class="dv">1</span>]) <span class="sc">!=</span> <span class="st">"numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
+<p>We now know how we can access our data and manipulate it. Next up, we will learn about packages, which allows us to do so much more with our data then we have seen until now.</p>
+<p><strong>Next:</strong> <a href="./packages.html">Packages</a></p>
 
 
 </section>
