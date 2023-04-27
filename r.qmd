@@ -4,7 +4,11 @@ title: "R"
 
 ## R: an introduction
 
-R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29^th^ of February, 2000 ([Source](https://en.wikipedia.org/wiki/R_(programming_language))).
+R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29^th^ of February, 2000 ([Source](https://en.wikipedia.org/wiki/R_(programming_language))). 
+
+:::{.callout-note appearance="simple"}
+Strictly speaking, when we are programming in R, we are not _actually_ programming in R. R is only a [language definition](https://cran.r-project.org/doc/manuals/r-release/R-lang.html), a long set of rules and definitions explaining how R should work. When we code, we actually code in an [R implementation](https://en.wikipedia.org/wiki/R_(programming_language)#Implementations): an implementation of the R language definition written in more abstract (read: more computer-friendly, less human-friendly) languages. The R implementation we will be using (and most people use) is written in C, Fortran, and R.
+:::
 
 ## Installing R
 

@@ -1,3 +1,57 @@
 ---
 title: "Packages"
 ---
+
+## Packages
+We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.
+
+Packages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.
+
+## Pre-installed packages
+Some packages come pre-installed with R. For example, `sum()` comes from the `base` package, while `sd()` comes from the `stats` package. We can see the currently installed packages in RStudio in the lower right window in the tab 'packages', as seen in @fig-packages. Mind you that in @fig-packages, there might be different packages than in your window, as I also have other packages installed.
+
+In @fig-packages, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.
+
+![Installed packages](images/packages.png){#fig-packages fig-alt="Installed packages" fig-align="center" height=70%}
+
+If we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:
+```r
+?stats
+```
+
+We could also open a more extensive documentation on a package using `library()`:
+```r
+library(help = "stats")
+```
+This overview shows us not only detailed information on the package, but also the functions the package supplies.
+
+:::{.callout-tip appearance="simple"}
+When we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called `{base}`.
+:::
+
+## Installing packages
+Although the pre-installed packages give us a lot of functionality, we might still want more. Yes, with `{stats}` we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the `{survival}` package. To install it...
+
+<!-- installing happens from cran, how to install, something about require()? -->
+
+### R tools
+
+### Installing from GitHub
+
+## Loading packages
+
+## Updating packages
+
+### Library
+
+### Pacman
+
+## A warning
+
+### Dependencies
+
+### Trust
+
+## Exercises
+
+## Next topic
