@@ -1,17 +1,80 @@
 [
   {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "Packages",
+    "section": "",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves."
+  },
+  {
+    "objectID": "packages.html#packages",
+    "href": "packages.html#packages",
+    "title": "Packages",
+    "section": "",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves."
+  },
+  {
+    "objectID": "packages.html#pre-installed-packages",
+    "href": "packages.html#pre-installed-packages",
+    "title": "Packages",
+    "section": "Pre-installed packages",
+    "text": "Pre-installed packages\nSome packages come pre-installed with R. For example, sum() comes from the base package, while sd() comes from the stats package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in Figure 1. Mind you that in Figure 1, there might be different packages than in your window, as I also have other packages installed.\nIn Figure 1, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.\n\n\n\nFigure 1: Installed packages\n\n\nIf we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:\n?stats\nWe could also open a more extensive documentation on a package using library():\nlibrary(help = \"stats\")\nThis overview shows us not only detailed information on the package, but also the functions the package supplies.\n\n\n\n\n\n\nWhen we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called {base}."
+  },
+  {
+    "objectID": "packages.html#installing-packages",
+    "href": "packages.html#installing-packages",
+    "title": "Packages",
+    "section": "Installing packages",
+    "text": "Installing packages\nAlthough the pre-installed packages give us a lot of functionality, we might still want more. Yes, with {stats} we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the {survival} package. To install it…\n\n\nR tools\n\n\nInstalling from GitHub"
+  },
+  {
+    "objectID": "packages.html#loading-packages",
+    "href": "packages.html#loading-packages",
+    "title": "Packages",
+    "section": "Loading packages",
+    "text": "Loading packages"
+  },
+  {
+    "objectID": "packages.html#updating-packages",
+    "href": "packages.html#updating-packages",
+    "title": "Packages",
+    "section": "Updating packages",
+    "text": "Updating packages\n\nLibrary\n\n\nPacman"
+  },
+  {
+    "objectID": "packages.html#a-warning",
+    "href": "packages.html#a-warning",
+    "title": "Packages",
+    "section": "A warning",
+    "text": "A warning\n\nDependencies\n\n\nTrust"
+  },
+  {
+    "objectID": "packages.html#exercises",
+    "href": "packages.html#exercises",
+    "title": "Packages",
+    "section": "Exercises",
+    "text": "Exercises"
+  },
+  {
+    "objectID": "packages.html#next-topic",
+    "href": "packages.html#next-topic",
+    "title": "Packages",
+    "section": "Next topic",
+    "text": "Next topic"
+  },
+  {
     "objectID": "r.html",
     "href": "r.html",
     "title": "R",
     "section": "",
-    "text": "R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29th of February, 2000 (Source)."
+    "text": "R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29th of February, 2000 (Source).\n\n\n\n\n\n\nStrictly speaking, when we are programming in R, we are not actually programming in R. R is only a language definition, a long set of rules and definitions explaining how R should work. When we code, we actually code in an R implementation: an implementation of the R language definition written in more abstract (read: more computer-friendly, less human-friendly) languages. The R implementation we will be using (and most people use) is written in C, Fortran, and R."
   },
   {
     "objectID": "r.html#r-an-introduction",
     "href": "r.html#r-an-introduction",
     "title": "R",
     "section": "",
-    "text": "R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29th of February, 2000 (Source)."
+    "text": "R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29th of February, 2000 (Source).\n\n\n\n\n\n\nStrictly speaking, when we are programming in R, we are not actually programming in R. R is only a language definition, a long set of rules and definitions explaining how R should work. When we code, we actually code in an R implementation: an implementation of the R language definition written in more abstract (read: more computer-friendly, less human-friendly) languages. The R implementation we will be using (and most people use) is written in C, Fortran, and R."
   },
   {
     "objectID": "r.html#installing-r",

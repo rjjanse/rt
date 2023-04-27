@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -262,7 +296,32 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#pre-installed-packages" id="toc-pre-installed-packages" class="nav-link" data-scroll-target="#pre-installed-packages">Pre-installed packages</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a>
+  <ul>
+  <li><a href="#r-tools" id="toc-r-tools" class="nav-link" data-scroll-target="#r-tools">R tools</a></li>
+  <li><a href="#installing-from-github" id="toc-installing-from-github" class="nav-link" data-scroll-target="#installing-from-github">Installing from GitHub</a></li>
+  </ul></li>
+  <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages">Loading packages</a></li>
+  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages">Updating packages</a>
+  <ul>
+  <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library">Library</a></li>
+  <li><a href="#pacman" id="toc-pacman" class="nav-link" data-scroll-target="#pacman">Pacman</a></li>
+  </ul></li>
+  <li><a href="#a-warning" id="toc-a-warning" class="nav-link" data-scroll-target="#a-warning">A warning</a>
+  <ul>
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
+  <li><a href="#trust" id="toc-trust" class="nav-link" data-scroll-target="#trust">Trust</a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -284,8 +343,77 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<p>We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.</p>
+<p>Packages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.</p>
+</section>
+<section id="pre-installed-packages" class="level2">
+<h2 class="anchored" data-anchor-id="pre-installed-packages">Pre-installed packages</h2>
+<p>Some packages come pre-installed with R. For example, <code>sum()</code> comes from the <code>base</code> package, while <code>sd()</code> comes from the <code>stats</code> package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in <a href="#fig-packages">Figure&nbsp;1</a>. Mind you that in <a href="#fig-packages">Figure&nbsp;1</a>, there might be different packages than in your window, as I also have other packages installed.</p>
+<p>In <a href="#fig-packages">Figure&nbsp;1</a>, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.</p>
+<div id="fig-packages" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/packages.png" style="height:70.0%" alt="Installed packages" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Installed packages</figcaption>
+</figure>
+</div>
+<p>If we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>?stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We could also open a more extensive documentation on a package using <code>library()</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(<span class="at">help =</span> <span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This overview shows us not only detailed information on the package, but also the functions the package supplies.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>When we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called <code>{base}</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="installing-packages" class="level2">
+<h2 class="anchored" data-anchor-id="installing-packages">Installing packages</h2>
+<p>Although the pre-installed packages give us a lot of functionality, we might still want more. Yes, with <code>{stats}</code> we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the <code>{survival}</code> package. To install it…</p>
+<!-- installing happens from cran, how to install, something about require()? -->
+<section id="r-tools" class="level3">
+<h3 class="anchored" data-anchor-id="r-tools">R tools</h3>
+</section>
+<section id="installing-from-github" class="level3">
+<h3 class="anchored" data-anchor-id="installing-from-github">Installing from GitHub</h3>
+</section>
+</section>
+<section id="loading-packages" class="level2">
+<h2 class="anchored" data-anchor-id="loading-packages">Loading packages</h2>
+</section>
+<section id="updating-packages" class="level2">
+<h2 class="anchored" data-anchor-id="updating-packages">Updating packages</h2>
+<section id="library" class="level3">
+<h3 class="anchored" data-anchor-id="library">Library</h3>
+</section>
+<section id="pacman" class="level3">
+<h3 class="anchored" data-anchor-id="pacman">Pacman</h3>
+</section>
+</section>
+<section id="a-warning" class="level2">
+<h2 class="anchored" data-anchor-id="a-warning">A warning</h2>
+<section id="dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="dependencies">Dependencies</h3>
+</section>
+<section id="trust" class="level3">
+<h3 class="anchored" data-anchor-id="trust">Trust</h3>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
