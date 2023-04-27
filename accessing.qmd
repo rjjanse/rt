@@ -38,8 +38,62 @@ When we use `view()` or open data from the global environment, RStudio offers as
 
 We can now scroll through the data and see all columns. If you wonder how many rows and columns you have, you can see this at the bottom of the window. The viewer will only show 50 columns at a time, but you can click through the columns if you have more than 50. If you want to see only entries that meet a certain condition, you can press the filter button at the top of the viewer to filter certain values. Lastly, you can sort a column as ascending or descending by clicking on the little arrows to the right of the column name. Note that any operation you perform on the data in the viewer (sorting, filtering), does not affect the actual data, only the data you see. In other words, you only manipulate what you see in the data, not the data itself.
 
+## Comparing values
+Before we see how to access the data, let's take a sidestep to see how we can compare values in R. To compare values and get returned `TRUE` or `FALSE` (called Booleans) there are some important operators:
+
+- `>`: Greater than; is the value before the operator greater than the value after the operator.
+- `<`: Smaller than; is the value before the operator smaller than the value after the operator.
+- `>=`: Greater than or equal to; is the value before the operator greater than or equal to the value after the operator.
+- `<=`: Smaller than or equal to; is the value before the operator smaller than or equal to the value after the operator.
+- `==`: Equal; is the value before the operator equal to the value after the operator.
+- `!=`: Not equal; is the value before the operator not equal to the value after the operator.
+
+Let's see some examples of using these operators:
+```{r}
+#| code-fold: false
+# Greater than
+5 > 3
+
+# Smaller than
+3 < 5
+
+# Greater than or equal to
+3 >= 3
+
+# Smaller than or equal to
+3 <= 5
+
+# Equal
+3 == 3
+
+# Not equal
+3 != 3
+
+```
+
+## Boolean operators
+Now that we can compare values and get returned `TRUE` or `FALSE`, we can also make multiple comparisons using Boolean operators (also know as logical operators). If the conditions specified match, these will return `TRUE`, otherwise `FALSE`.
+
+- `|`: OR; the value before or after the operator should be `TRUE`.
+- `&`: AND; the values before and after the operator should be `TRUE`. 
+- `!`: NOT; the match should not be `TRUE`.
+
+Using them works as follows:
+```{r}
+#| code-fold: false
+# OR
+3 == 3 | 3 != 3
+
+# AND
+3 == 3 & 3 != 3
+
+# NOT
+!(3 == 3)
+
+```
+
 ## Accessing the data
-We now have a data frame with data inside, loaded in our environment. However, how can we actually access that data? For that, we can 'subset' the data. There is three ways we can do that:
+Back to accessing the data! We now have a data frame with data inside, loaded in our environment. However, how can we actually access that data? For that, we can 'subset' the data. There is three ways we can do that:
 
 ### Dollar operator: $
 The dollar operator, `$`, allows you to quickly subset a column from the data. This is a good way to have a quick look in your data. For example, if we want to subset the column `Sepal.Length`, we can simply do the following:
@@ -86,14 +140,14 @@ However, our fun doesn't stop here! What if we didn't want the 4^th^ value, but 
 # We can get a vector of the column Sepal.Width as we saw before
 iris[, "Sepal.Width"]
 
-# From this vector, we can get per value a logical (TRUE or FALSE) whether it is >3.0
+# From this vector, we can get per value a Boolean (TRUE or FALSE) whether it is >3.0
 iris[, "Sepal.Width"] > 3
 
-# We can use these logicals to subset the column to only keep values >3.0
+# We can use these Booleans to subset the column to only keep values >3.0
 iris[, "Sepal.Width"][iris["Sepal.Width"] > 3]
 
-## To make it more readable, we could of course store the logicals in their own vector which we use to subset
-# Create vector with logicals
+## To make it more readable, we could of course store the Booleans in their own vector which we use to subset
+# Create vector with Booleans
 larger_than_3 <- iris[, "Sepal.Width"] > 3
 
 # Subset Sepal.Width
@@ -110,10 +164,160 @@ In vectors and matrices, using double brackets instead of single brackets will d
 Although the `$` operator is a quick way to access some data, it is recommended to not use it in the actual scripts you write. You can use `$` to check out some data in the console or have quickly check something, but in your script you should use `[]` or `[[]]`. This allows you to easily transform code into your own functions (which we will see later). Additionally, dollar operators do not allow logicals, while brackets do.
 :::
 
-## Logicals
-
 ## Which
+What if we wanted to know not the exact values greater than 3, but the row numbers in the data set? In that case, we could use `which()`:
+```{r}
+#| code-fold: false
+which(iris[, "Sepal.Width"] > 3)
+```
+
+We now have the line numbers with which (pun intended) we can subset those values:
+```{r}
+#| code-fold: false
+iris[which(iris[, "Sepal.Width"] > 3), "Sepal.Width"]
+
+```
+
+We can even use our Boolean operators to show that using `which()` gives the same results as we saw before when not using `which()`:
+```{r}
+#| code-fold: false
+iris[which(iris[, "Sepal.Width"] > 3), "Sepal.Width"] == iris[, "Sepal.Width"][iris["Sepal.Width"] > 3]
+
+```
+
+The main advantage of `which()` is that it might be more readable in your code.
+
+## Mutating data
+It is great to be able to subset specific data from our data frames, but it is much more fun to do some statistics with it! A great thing about the subsetted columns of data is that you can easily perform calculations on them.
+
+For example, to multiply all values in in the column `Sepal.Width` by 3, we can simply do:
+```{r}
+#| code-fold: false
+iris[["Sepal.Width"]] * 3
+```
+
+We can also multiply all values by a value specific to them. For exapmle. to multiply `Sepal.Width` by `Sepal.Length`, we could run:
+```{r}
+#| code-fold: false
+iris[["Sepal.Width"]] * iris[["Sepal.Length"]]
+```
+
+It is important to realize that if you are calculating with columns, each mutating value has to be of the same length as the column, or of length 1. If the mutating value is of the same length as the column (e.g., another column), each row in one column is mutated with the row in the other column. If the mutating value is of length 1 (e.g., the number 3), all rows in one column are mutated by the same value.
+
+You can also perform functions on subsetted data:
+```{r}
+#| code-fold: false
+summary(iris[["Sepal.Width"]])
+```
 
 ## Get and assign
+The last important thing we should discuss about acessing the data are the functions `get()` and `assign()`. Although we can easily assign new data while writing our code (`data <- iris`), at a certain point we might want to automate it (and later on we will see how to do that). In that case, the name of the data we want might vary. When a value might vary, such as a column, it is often possible to use strings, such as `"iris"`. However, for assigning data, this does not work:
+```{r}
+#| code-fold: false
+data <- "iris"
+data
+```
+
+We just assigned the string `"iris"`, instead of the data `iris`. In this case, `assign()` allows us to achieve our objective:
+
+```{r}
+#| code-fold: false
+assign("data", iris)
+head(data, n = 5)
+
+```
+
+In the same way, if we want to flexibly get data from the global environment, we can use `get()`:
+```{r}
+#| code-fold: false
+data <- get("iris")
+head(data, n = 5)
+
+```
 
 ## Value types
+The last thing to discuss for now are value types. A few times we talked about strings, which is a specific type a value can have in R. The most important value types to know for now are:
+
+- numeric: a _real_ number, for example 1.42, 8.42, and -5.0.
+- integer: an integer, for exapmle 4, -3, and 7. In R, an integer is made explicit with `L`, for example: `10L`.
+- date: a date, such as 2000-02-09, 2000-02-29, and 1912-06-23. Dates are stored behind the scene as an integer showing the distance from a set date. In R, this date is generally 1970-01-01, also known as the origin. Dates in R are generally written in the format yyyy-mm-dd.
+- string: a text, for example "hello", "4", or "==". Strings are always enclosed with single or double quotation marks (', ").
+- logical: a Boolean; `TRUE` or `FALSE`.
+
+To check the type of a value, we can use `class()`:
+```{r}
+#| code-fold: false
+class(3)
+class(3L)
+class("3")
+```
+
+Additionally, we can transform values into different types, using certain functions:
+
+- `as.numeric()`: transform value to numeric.
+- `as.integer()`: transform value to integer.
+- `as.character()`: transform value to string
+- `as.Date()`: transform value to date. This function often needs an origin supplied. Note that Date is written with a capital D.
+
+Here are some examples:
+```{r}
+#| code-fold: false
+as.numeric("5")
+as.integer(3.9)
+as.character(7)
+as.Date("1992-06-06", origin = "1970-01-01")
+
+```
+
+## Exercises
+### 1. Store new data
+Besides the dataset `iris`, another available dataset in R is `mtcars`. Load this data into a new data frame called `data` using `assign()`.
+```{r}
+assign("data", mtcars)
+```
+
+### 2. Subset column
+Now subset the column `disp` and store this in a variable called `var`.
+```{r}
+# Use dollar operator (generally unrecommended)
+var <- data$disp
+
+# Use single brackets
+var <- data[, "disp"]
+
+# Use double brackets
+var <- data[["disp"]]
+```
+
+### 3. Keep certain values
+From the variable `var`, keep only values greater than 110.5 and store this in a variable called `var_new`.
+```{r}
+# With which()
+var_new <- var[which(var > 110.5)]
+
+# Without which()
+var_new <- var[var > 110.5]
+```
+
+### 4. Mutate variables
+Now divided all values in `var_new` by 10 and store this in a variable called `var_div`.
+```{r}
+var_div <- var_new / 10
+```
+
+### 5. Change values to character
+Now change the values in the variable `var_div` to character values and store these in a variable called `var_char`.
+```{r}
+var_char <- as.character(var_new)
+```
+
+### 6. Check character type
+Make sure the first value in the variable `var_char` is not of the type numeric (called `"numeric"`).
+```{r}
+class(var_char[1]) != "numeric"
+```
+
+## Next topic
+We now know how we can access our data and manipulate it. Next up, we will learn about packages, which allows us to do so much more with our data then we have seen until now.
+
+**Next:** [Packages](packages.qmd)

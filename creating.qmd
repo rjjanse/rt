@@ -119,6 +119,8 @@ sd(c(3, 8, 3, 7, 1))
 
 :::{.callout-note appearance="simple"}
 In the standard deviation function, we use the `c()` function. Later we will elaborate on this, but for now it is enough to remember that `c()` creates a **c**ollection of data, which is more often called an object.
+
+Be aware that R is case-sensitive: `c()` as a function differs from `C()`.
 ::: 
 
 Let's see some standard functions that will be of great help to you.

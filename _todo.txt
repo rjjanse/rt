@@ -2,25 +2,8 @@ Finding source code of a function
 Methods() of functions
 
 
-accessing:
-    - viewing data
- 
-    - value types
-        - integers
-        - numeric
-        - cahracters
-        - date
-    - get and assign
-    - multiplying columns
-    - which()
-    - logicals
-        - !=
-        - ==
-        - >=
-        - <=
-        - |
-        - &
-        - !
+
+
     - sampling
     -
 
