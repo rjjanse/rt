@@ -19,7 +19,7 @@ If we want to check out what a package does, we can ask for help on a package in
 ?stats
 ```
 
-We could also open a more extensive documentation on a package using `library()`:
+We could also open an extensive overview of a package's details using `library()`:
 ```r
 library(help = "stats")
 ```
@@ -30,21 +30,67 @@ When we talk about packages, for example when asking a question on stack overflo
 :::
 
 ## Installing packages
-Although the pre-installed packages give us a lot of functionality, we might still want more. Yes, with `{stats}` we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the `{survival}` package. To install it...
+Although the pre-installed packages give us a lot of functionality, we might still want more. Yes, with `{stats}` we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the `{survival}` package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: 'choose a website identical to the original download website, but with a different server'. This way, you can pick a server in your own country increasing download speeds.
+
+```r
+install.packages("survival")
+```
+
+:::{.column-margin}
+When packages are installed, they will always give the message `MD5 sums checked`. MD5 is an algorithm that can help identify unintentional data/file corruption ([more](https://en.wikipedia.org/wiki/MD5)).
+:::
+
+When we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.
 
 <!-- installing happens from cran, how to install, something about require()? -->
 
 ### R tools
+Sometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from [CRAN](https://cran.r-project.org/bin/windows/Rtools/).
+
+### Package versions
+Packages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases: 
+
+- The package is built for your current version of R: there will be no problem.
+
+- The package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.
+
+- The package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or in the worst case switch back to an older version of R.
 
 ### Installing from GitHub
+Sometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install `{devtools}`:
+
+```r
+install.packages("devtools")
+```
+
+From `{devtools}`, we can use the `install_github()` function to install a package. For instance, if we wanted to install `{KMunicate}` from GitHub, we could run:
+
+```r
+install_github("ellessenne/KMunicate-package")
+```
+
+where `ellessenne` is the GitHub user's username and `KMunicate-package` the repository of the package.
 
 ## Loading packages
+The good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using `library()`. If we wanted to load `{survival}` after installing it previously, we can do:
+
+```r
+library("survival")
+```
+
+We could also load multiple packages at once with `library()`:
+
+```r
+library("survival", "stats")
+```
 
 ## Updating packages
 
 ### Library
 
 ### Pacman
+
+## Require
 
 ## A warning
 

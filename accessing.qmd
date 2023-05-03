@@ -196,7 +196,7 @@ For example, to multiply all values in in the column `Sepal.Width` by 3, we can 
 iris[["Sepal.Width"]] * 3
 ```
 
-We can also multiply all values by a value specific to them. For exapmle. to multiply `Sepal.Width` by `Sepal.Length`, we could run:
+We can also multiply all values by a value specific to them. For example. to multiply `Sepal.Width` by `Sepal.Length`, we could run:
 ```{r}
 #| code-fold: false
 iris[["Sepal.Width"]] * iris[["Sepal.Length"]]
@@ -308,7 +308,7 @@ var_div <- var_new / 10
 ### 5. Change values to character
 Now change the values in the variable `var_div` to character values and store these in a variable called `var_char`.
 ```{r}
-var_char <- as.character(var_new)
+var_char <- as.character(var_div)
 ```
 
 ### 6. Check character type

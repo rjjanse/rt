@@ -96,7 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 
 <div id="quarto-search-results"></div>
@@ -302,13 +302,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#packages" id="toc-packages" class="nav-link active" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#pre-installed-packages" id="toc-pre-installed-packages" class="nav-link" data-scroll-target="#pre-installed-packages">Pre-installed packages</a></li>
-  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a></li>
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a>
+  <ul>
+  <li><a href="#r-tools" id="toc-r-tools" class="nav-link" data-scroll-target="#r-tools">R tools</a></li>
+  <li><a href="#installing-from-github" id="toc-installing-from-github" class="nav-link" data-scroll-target="#installing-from-github">Installing from GitHub</a></li>
+  </ul></li>
   <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages">Loading packages</a></li>
   <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages">Updating packages</a>
   <ul>
   <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library">Library</a></li>
   <li><a href="#pacman" id="toc-pacman" class="nav-link" data-scroll-target="#pacman">Pacman</a></li>
   </ul></li>
+  <li><a href="#require" id="toc-require" class="nav-link" data-scroll-target="#require">Require</a></li>
   <li><a href="#a-warning" id="toc-a-warning" class="nav-link" data-scroll-target="#a-warning">A warning</a>
   <ul>
   <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
@@ -320,7 +325,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -356,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>If we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>?stats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We could also open a more extensive documentation on a package using <code>library()</code>:</p>
+<p>We could also open an extensive overview of a package’s details using <code>library()</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(<span class="at">help =</span> <span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This overview shows us not only detailed information on the package, but also the functions the package supplies.</p>
 <div class="callout callout-style-simple callout-tip">
@@ -370,8 +375,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="installing-packages" class="level2">
+<section id="installing-packages" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="installing-packages">Installing packages</h2>
+<p>Although the pre-installed packages give us a lot of functionality, we might still want more. Yes, with <code>{stats}</code> we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the <code>{survival}</code> package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: ‘choose a website identical to the original download website, but with a different server’. This way, you can pick a server in your own country increasing download speeds.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">install.packages</span>(<span class="st">"survival"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>When packages are installed, they will always give the message <code>MD5 sums checked</code>. MD5 is an algorithm that can help identify unintentional data/file corruption (<a href="https://en.wikipedia.org/wiki/MD5">more</a>).</p>
+</div></div><p>When we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.</p>
+<!-- installing happens from cran, how to install, something about require()? -->
+<section id="r-tools" class="level3">
+<h3 class="anchored" data-anchor-id="r-tools">R tools</h3>
+</section>
+<section id="installing-from-github" class="level3">
+<h3 class="anchored" data-anchor-id="installing-from-github">Installing from GitHub</h3>
+</section>
 </section>
 <section id="loading-packages" class="level2">
 <h2 class="anchored" data-anchor-id="loading-packages">Loading packages</h2>
@@ -384,6 +402,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pacman" class="level3">
 <h3 class="anchored" data-anchor-id="pacman">Pacman</h3>
 </section>
+</section>
+<section id="require" class="level2">
+<h2 class="anchored" data-anchor-id="require">Require</h2>
 </section>
 <section id="a-warning" class="level2">
 <h2 class="anchored" data-anchor-id="a-warning">A warning</h2>
