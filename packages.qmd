@@ -89,6 +89,10 @@ Sometimes, we may get the warning that certain functions become masked:
 
 ```{r}
 #| code-fold: false
+# Install dplyr
+install.packages("dplyr")
+
+# Load dplyr
 library("dplyr")
 
 ```
