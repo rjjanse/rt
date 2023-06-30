@@ -305,14 +305,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages">Installing packages</a>
   <ul>
   <li><a href="#r-tools" id="toc-r-tools" class="nav-link" data-scroll-target="#r-tools">R tools</a></li>
+  <li><a href="#package-versions" id="toc-package-versions" class="nav-link" data-scroll-target="#package-versions">Package versions</a></li>
   <li><a href="#installing-from-github" id="toc-installing-from-github" class="nav-link" data-scroll-target="#installing-from-github">Installing from GitHub</a></li>
   </ul></li>
-  <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages">Loading packages</a></li>
-  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages">Updating packages</a>
+  <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages">Loading packages</a>
   <ul>
-  <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library">Library</a></li>
+  <li><a href="#masking" id="toc-masking" class="nav-link" data-scroll-target="#masking">Masking</a></li>
   <li><a href="#pacman" id="toc-pacman" class="nav-link" data-scroll-target="#pacman">Pacman</a></li>
+  <li><a href="#annotating-package-loading" id="toc-annotating-package-loading" class="nav-link" data-scroll-target="#annotating-package-loading">Annotating package loading</a></li>
   </ul></li>
+  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages">Updating packages</a></li>
+  <li><a href="#uninstalling-packages" id="toc-uninstalling-packages" class="nav-link" data-scroll-target="#uninstalling-packages">Uninstalling packages</a></li>
   <li><a href="#require" id="toc-require" class="nav-link" data-scroll-target="#require">Require</a></li>
   <li><a href="#a-warning" id="toc-a-warning" class="nav-link" data-scroll-target="#a-warning">A warning</a>
   <ul>
@@ -351,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="pre-installed-packages" class="level2">
 <h2 class="anchored" data-anchor-id="pre-installed-packages">Pre-installed packages</h2>
-<p>Some packages come pre-installed with R. For example, <code>sum()</code> comes from the <code>base</code> package, while <code>sd()</code> comes from the <code>stats</code> package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in <a href="#fig-packages">Figure&nbsp;1</a>. Mind you that in <a href="#fig-packages">Figure&nbsp;1</a>, there might be different packages than in your window, as I also have other packages installed.</p>
+<p>Some packages come pre-installed with R. For example, <code>sum()</code> comes from the <code>base</code> package, while <code>sd()</code> comes from the <code>stats</code> package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in <a href="#fig-packages">Figure&nbsp;1</a>. Mind you that in <a href="#fig-packages">Figure&nbsp;1</a>, there might be different packages than in your window, depending on what packages are already or not yet installed.</p>
 <p>In <a href="#fig-packages">Figure&nbsp;1</a>, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.</p>
 <div id="fig-packages" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -383,25 +386,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="no-row-height column-margin column-container"><div class="">
 <p>When packages are installed, they will always give the message <code>MD5 sums checked</code>. MD5 is an algorithm that can help identify unintentional data/file corruption (<a href="https://en.wikipedia.org/wiki/MD5">more</a>).</p>
 </div></div><p>When we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.</p>
-<!-- installing happens from cran, how to install, something about require()? -->
 <section id="r-tools" class="level3">
 <h3 class="anchored" data-anchor-id="r-tools">R tools</h3>
+<p>Sometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from <a href="https://cran.r-project.org/bin/windows/Rtools/">CRAN</a>.</p>
+</section>
+<section id="package-versions" class="level3">
+<h3 class="anchored" data-anchor-id="package-versions">Package versions</h3>
+<p>Packages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases:</p>
+<ul>
+<li><p>The package is built for your current version of R: there will be no problem.</p></li>
+<li><p>The package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.</p></li>
+<li><p>The package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or, less ideally, switch back to an older version of R.</p></li>
+</ul>
 </section>
 <section id="installing-from-github" class="level3">
 <h3 class="anchored" data-anchor-id="installing-from-github">Installing from GitHub</h3>
+<p>Sometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install <code>{devtools}</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">install.packages</span>(<span class="st">"devtools"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>From <code>{devtools}</code>, we can use the <code>install_github()</code> function to install a package. For instance, if we wanted to install <code>{KMunicate}</code> from GitHub, we could run:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">install_github</span>(<span class="st">"ellessenne/KMunicate-package"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where <code>ellessenne</code> is the GitHub user’s username and <code>KMunicate-package</code> the repository of the package.</p>
 </section>
 </section>
 <section id="loading-packages" class="level2">
 <h2 class="anchored" data-anchor-id="loading-packages">Loading packages</h2>
-</section>
-<section id="updating-packages" class="level2">
-<h2 class="anchored" data-anchor-id="updating-packages">Updating packages</h2>
-<section id="library" class="level3">
-<h3 class="anchored" data-anchor-id="library">Library</h3>
+<p>The good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using <code>library()</code>. If we wanted to load <code>{survival}</code> after installing it previously, we can do:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(<span class="st">"survival"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We could also load multiple packages at once with <code>library()</code>:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(<span class="st">"survival"</span>, <span class="st">"stats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The help function for <code>library()</code> shows that there is also a function called <code>require()</code>. In general, this works similar to <code>library()</code> but is used more often within functions. Whereas <code>library()</code> will return an error if the package is not installed, <code>require()</code> will only give a warning.</p>
+<section id="masking" class="level3">
+<h3 class="anchored" data-anchor-id="masking">Masking</h3>
+<p>Sometimes, we may get the warning that certain functions become masked:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+</div>
+<p>Loading the package <code>{dplyr}</code> caused, among others, the function <code>filter()</code> from <code>{stats}</code> to be masked. This means that if we call <code>filter()</code>, we will call the function from <code>{dplyr}</code>, not from <code>{stats}</code>, which might have a different functionality. If we still want to use <code>filter()</code> from <code>{stats}</code>, we can prespecify the package with a double colon <code>::</code>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>stats<span class="sc">::</span><span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>In general, we can call functions from installed packages without loading the package, by using <code>::</code>. Without loading <code>{survival}</code>, we can still call <code>survival::coxph()</code>, so long as <code>{survival}</code> is installed.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="pacman" class="level3">
 <h3 class="anchored" data-anchor-id="pacman">Pacman</h3>
+<p>It can be a hassle to first install packages and then load them with library. By using the package <code>{pacman}</code>, we can simplify this process. We only need to install it once on our device and after that we load any package with:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"survival"</span>, <span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>{pacman}</code> will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function <code>p_load()</code> immediately from <code>{pacman}</code> with <code>::</code>, we do not need to load <code>{pacman}</code> first.</p>
+<p>Note that <code>{pacman}</code> does not tell you whether a function becomes masked.</p>
 </section>
+<section id="annotating-package-loading" class="level3">
+<h3 class="anchored" data-anchor-id="annotating-package-loading">Annotating package loading</h3>
+<p>Although we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Load packages</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"dplyr"</span>,         <span class="co"># Data manipulation</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>               <span class="st">"tidyr"</span>,         <span class="co"># Pivoting data</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>               <span class="st">"magrittr"</span>,      <span class="co"># Efficient pipe structures</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>               <span class="st">"stringr"</span>,       <span class="co"># Better regexing</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>               <span class="st">"mice"</span>,          <span class="co"># Multiple imputation</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>               <span class="st">"summarytools"</span>,  <span class="co"># Summarizing data frames</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>               <span class="st">"haven"</span>          <span class="co"># Load SPSS data</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="updating-packages" class="level2">
+<h2 class="anchored" data-anchor-id="updating-packages">Updating packages</h2>
+</section>
+<section id="uninstalling-packages" class="level2">
+<h2 class="anchored" data-anchor-id="uninstalling-packages">Uninstalling packages</h2>
 </section>
 <section id="require" class="level2">
 <h2 class="anchored" data-anchor-id="require">Require</h2>
