@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://github.com/rjjanse/rt/packages.html</loc>
-    <lastmod>2023-05-03T19:47:51.681Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/rjjanse/rt/r.html</loc>
-    <lastmod>2023-05-03T19:47:52.557Z</lastmod>
+    <lastmod>2023-06-30T09:33:44.558Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/rjjanse/rt/index.html</loc>
-    <lastmod>2023-05-03T19:47:54.305Z</lastmod>
-  </url>
-  <url>
-    <loc>https://github.com/rjjanse/rt/rstudio.html</loc>
-    <lastmod>2023-05-03T19:47:54.937Z</lastmod>
+    <lastmod>2023-06-30T09:33:06.530Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/rjjanse/rt/accessing.html</loc>
-    <lastmod>2023-05-03T19:48:08.306Z</lastmod>
+    <lastmod>2023-06-30T09:33:05.014Z</lastmod>
   </url>
   <url>
     <loc>https://github.com/rjjanse/rt/creating.html</loc>
-    <lastmod>2023-05-03T19:48:11.622Z</lastmod>
+    <lastmod>2023-06-30T09:32:54.590Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rjjanse/rt/r.html</loc>
+    <lastmod>2023-06-30T09:33:05.338Z</lastmod>
+  </url>
+  <url>
+    <loc>https://github.com/rjjanse/rt/rstudio.html</loc>
+    <lastmod>2023-06-30T09:33:07.046Z</lastmod>
   </url>
 </urlset>
