@@ -89,9 +89,12 @@ Sometimes, we may get the warning that certain functions become masked:
 
 ```{r}
 #| code-fold: false
-#| code-echo: false
+# Here we set the mirror for downloading, but this is only needed for the tutorial to render: in your own R, you do not need to do this.
+options(repos = c(CRAN = "https://mirror.lyrahosting.com/CRAN/"))
+
 # Install dplyr
-install.packages("dplyr")
+# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.
+install.packages("dplyr", quiet = TRUE)
 
 ```
 
@@ -141,13 +144,13 @@ pacman::p_load("dplyr",         # Data manipulation
 
 ## Updating and unistalling packages
 ### Updating
-Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio. Alternatively, we can just rerun the package installation using `install.package()` to update it. Note that we cannot use `{pacman}` here, as `{pacman}` will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use `update.packages()`, although this might not update packages to a version suitable for new major R versions.
+Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio. Alternatively, we can just rerun the package installation using `install.packages()` to update it. Note that we cannot use `{pacman}` here, as `{pacman}` will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use `update.packages()`, although this might not update packages to a version suitable for new major R versions.
 
 ### Uninstalling
-If we want to get rid of a package, maybe to clean up some space on our device, we can remove it using `detach()`. 
+If we want to get rid of a package, maybe to clean up some space on our device, we can remove it using `remove.packages()`. 
 
 :::{.callout-tip appearance="simple"}
-Sometimes we want to update a package, but that package needs an updated version of a package such as `{rlang}`. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that `{rlang}` can be updated too. However, if we agree, the R session will restart and immediately load `{rlang}` again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of `{rlang}` (or similar cases), first we need to `detach()` `{rlang}`, then reinstall `{rlang}`, and then update the package we wanted to update originally.
+Sometimes we want to update a package, but that package needs an updated version of a package such as `{rlang}`. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that `{rlang}` can be updated too. However, if we agree, the R session will restart and immediately load `{rlang}` again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of `{rlang}` (or similar cases), first we need to use `remove.packages()` to uninstall `{rlang}`, then reinstall `{rlang}`, and then update the package we wanted to update originally.
 :::
 
 ## A warning
@@ -168,12 +171,12 @@ Anyone can write packages for R, including you and me. On the one hand, this mea
 Install the package `{tidyverse}`.
 
 ```{r}
-#| code-echo: false
-# Answer 1: using install.packages()
-install.packages("tidyverse")
-
-# Answer 2: using {pacman}
+# Answer 1: using {pacman}
 pacman::p_load("tidyverse")
+
+# Answer 2: using install.packages()
+# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.
+install.packages("tidyverse", quiet = TRUE)
 
 ```
 
@@ -181,13 +184,14 @@ pacman::p_load("tidyverse")
 Now load the package `{tidyverse}`
 
 ```{r}
-# Answer 1: using library() after install.packages()
+# Answer 1: using {pacman}, the package is already loaded after installing
+
+# Answer 2: using library() after install.packages()
 library("tidyverse")
 
-# Answer 2: using {pacman}, the package is already loaded after installing
 ```
 
 ## Next topic
-Now that we know the basics of R packages, let's start looking at one of the most famous collections of packages in R: the Tidyverse!
+Now that we know the basics of R packages, let's start looking at how we can harness their power to load in our own data.
 
-**Next:** [Tidyverse](tidyverse.qmd)
+**Next:** [Data](data.qmd)
