@@ -157,7 +157,7 @@ Although packages are a great way of avoiding writing all kinds of code ourselve
 Almost all R packages are built using another R package. This is why installing `{dplyr}` actually installs a lot of other packages, which are all required to allow `{dplyr}` to function. These are called dependencies. Because packages are dependent on other packages, depracation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as `{dplyr}`, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is depracated). Dependencies can become dangerous quickly, as talked about shortly [here](https://www.r-bloggers.com/2018/02/17-dependencies/) and [here](https://www.tinyverse.org/).
 
 :::{.column-margin}
-
+**Deprecate:** to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. [Link](https://www.merriam-webster.com/dictionary/deprecate).
 :::
 
 ### Trust
