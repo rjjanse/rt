@@ -1,3 +1,22 @@
+Data:
+- base
+- readr
+- excel: readxl & writexl
+- haven: spss, sas & stata
+- RData & RDa: save & load
+
+
+
+
+
+
+
+
+
+
+
+
+
 Finding source code of a function
 Methods() of functions
 

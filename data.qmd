@@ -2,4 +2,35 @@
 title: "Data"
 ---
 
-## 
+## Why we need to load data
+We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.
+
+##  The basics
+### Working directionary
+When we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using `getwd()`. If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use `setwd()`, specifying the path to the directionary.
+
+### File
+All methods of reading data require an argument `file`, which `?base::load()` defines as *a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done)*. This file is simply a path to the document we want to load in. For example: `C:/users/username/documents/rtutorial/data/definitely_real_data.csv`. Note that the `file` argument must always end in the file name (*definitely_real_data*) including extension (*.csv*).
+
+### Tilde expansion
+Remembering where all your data is stored and writing it all out (`C:/users/username/...`) can cost quite some effort. Luckily, we have a concept called *tilde expansion*. When we set our working directionary with `setwd()`, we can stop specifying that part in the `file` argument and instead only specify a tilde (*~*). Instead of calling `C:/users/username/documents/rtutorial`, we can set our working directionary to the documents folder:
+
+```r
+setwd("C:/users/username/documents/rtutorial")
+```
+
+Subsequently, we can specify any `file` argument as `~/data/definitely_real_data.csv`.
+
+## Delimited data
+Data is often shared in a .csv format, which stands for Comma Separated Values. If we were to open this file in a normal text editor, you would see that each column of a row is separated by a comma between the values. This is a form of delimited data, where there is a certain character (comma, semicolon, tab) that allows the computer to discern between columns. To read such data, we can use different functions:
+
+- `read.csv()` allows the reading in of data separated with commas where decimal markers are dots
+
+- `read.csv2()` allows the reading in of data separated with semicolons where decimal markers are commas
+
+- `read.delim()` allows the reading in of data separated with tabs where decimal markers are dots
+
+- `read.delim2()` allows the reading in of data separated with tabs where decimal markers are commas
+
+These functions only differ in the defaults: if you specify arguments such as sep and dec, they can perform the same actions.
+
