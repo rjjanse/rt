@@ -210,6 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link">Data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">Tidyverse</a>
   </div>
 </li>
@@ -490,7 +495,7 @@ Attaching package: 'dplyr'</code></pre>
 <section id="pacman" class="level3">
 <h3 class="anchored" data-anchor-id="pacman">Pacman</h3>
 <p>It can be a hassle to first install packages and then load them with library. By using the package <code>{pacman}</code>, we can simplify this process. We only need to install it once on our device and after that we load any package with:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"survival"</span>, <span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"survival"</span>, <span class="st">"dplyr"</span>, <span class="st">"curl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>{pacman}</code> will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function <code>p_load()</code> immediately from <code>{pacman}</code> with <code>::</code>, we do not need to load <code>{pacman}</code> first.</p>
 <p>Note that <code>{pacman}</code> does not tell you whether a function becomes masked.</p>
 </section>
@@ -534,7 +539,7 @@ Attaching package: 'dplyr'</code></pre>
 <p>Although packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.</p>
 <section id="dependencies" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="dependencies">Dependencies</h3>
-<p>Almost all R packages are built using another R package. This is why installing <code>{dplyr}</code> actually installs a lot of other packages, which are all required to allow <code>{dplyr}</code> to function. These are called dependencies. Because packages are dependent on other packages, depracation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as <code>{dplyr}</code>, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is depracated). Dependencies can become dangerous quickly, as talked about shortly <a href="https://www.r-bloggers.com/2018/02/17-dependencies/">here</a> and <a href="https://www.tinyverse.org/">here</a>.</p>
+<p>Almost all R packages are built using another R package. This is why installing <code>{dplyr}</code> actually installs a lot of other packages, which are all required to allow <code>{dplyr}</code> to function. These are called dependencies. Because packages are dependent on other packages, deprecation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as <code>{dplyr}</code>, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is deprecated). Dependencies can become dangerous quickly, as talked about shortly <a href="https://www.r-bloggers.com/2018/02/17-dependencies/">here</a> and <a href="https://www.tinyverse.org/">here</a>.</p>
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><strong>Deprecate:</strong> to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. <a href="https://www.merriam-webster.com/dictionary/deprecate">Link</a>.</p>
@@ -581,7 +586,7 @@ Attaching package: 'dplyr'</code></pre>
 <section id="next-topic" class="level2">
 <h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
 <p>Now that we know the basics of R packages, let’s start looking at how we can harness their power to load in our own data.</p>
-<p><strong>Next:</strong> <a href="data.qmd">Data</a></p>
+<p><strong>Next:</strong> <a href="./data.html">Data</a></p>
 
 
 </section>

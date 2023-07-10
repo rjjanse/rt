@@ -119,7 +119,7 @@ In general, we can call functions from installed packages without loading the pa
 It can be a hassle to first install packages and then load them with library. By using the package `{pacman}`, we can simplify this process. We only need to install it once on our device and after that we load any package with:
 
 ```r
-pacman::p_load("survival", "dplyr")
+pacman::p_load("survival", "dplyr", "curl")
 
 ```
 

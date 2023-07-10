@@ -1,7 +1,5 @@
 Data:
-- base
-- readr
-- excel: readxl & writexl
+
 - haven: spss, sas & stata
 - RData & RDa: save & load
 
