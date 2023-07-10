@@ -139,16 +139,55 @@ pacman::p_load("dplyr",         # Data manipulation
 )
 ```
 
-## Updating packages
+## Updating and unistalling packages
+### Updating
+Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio. Alternatively, we can just rerun the package installation using `install.package()` to update it. Note that we cannot use `{pacman}` here, as `{pacman}` will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use `update.packages()`, although this might not update packages to a version suitable for new major R versions.
 
-## Uninstalling packages
+### Uninstalling
+If we want to get rid of a package, maybe to clean up some space on our device, we can remove it using `detach()`. 
+
+:::{.callout-tip appearance="simple"}
+Sometimes we want to update a package, but that package needs an updated version of a package such as `{rlang}`. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that `{rlang}` can be updated too. However, if we agree, the R session will restart and immediately load `{rlang}` again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of `{rlang}` (or similar cases), first we need to `detach()` `{rlang}`, then reinstall `{rlang}`, and then update the package we wanted to update originally.
+:::
 
 ## A warning
+Although packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.
 
 ### Dependencies
+Almost all R packages are built using another R package. This is why installing `{dplyr}` actually installs a lot of other packages, which are all required to allow `{dplyr}` to function. These are called dependencies. Because packages are dependent on other packages, depracation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as `{dplyr}`, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is depracated). Dependencies can become dangerous quickly, as talked about shortly [here](https://www.r-bloggers.com/2018/02/17-dependencies/) and [here](https://www.tinyverse.org/).
+
+:::{.column-margin}
+
+:::
 
 ### Trust
+Anyone can write packages for R, including you and me. On the one hand, this means that everyone can contribute their code to the ease of all other R users. However, this also means that individuals with malicious intent can create R packages. Therefore, you should always be careful when installing R packages. Although CRAN is an archive with many trusted packages, it is not a protection against malicious packages or a guarantee of safety. More on this can be read [here](https://support.posit.co/hc/en-us/articles/360042593974-R-and-R-Package-Security).
 
 ## Exercises
+### 1. Installing a new package
+Install the package `{tidyverse}`.
+
+```{r}
+#| code-echo: false
+# Answer 1: using install.packages()
+install.packages("tidyverse")
+
+# Answer 2: using {pacman}
+pacman::p_load("tidyverse")
+
+```
+
+### 2. Loading a new package
+Now load the package `{tidyverse}`
+
+```{r}
+# Answer 1: using library() after install.packages()
+library("tidyverse")
+
+# Answer 2: using {pacman}, the package is already loaded after installing
+```
 
 ## Next topic
+Now that we know the basics of R packages, let's start looking at one of the most famous collections of packages in R: the Tidyverse!
+
+**Next:** [Tidyverse](tidyverse.qmd)
