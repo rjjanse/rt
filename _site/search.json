@@ -203,18 +203,32 @@
     "text": ".Rdata and .Rda\nWhile working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:\n\nload() loads the specified file into R.\nsave() saves an objects onto the device.\n\nWhen we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:\n# Save iris to current working directionary\nsave(iris, file = \"~/iris.Rdata\")\n\n# Load iris\nload(\"iris.Rdata\")"
   },
   {
-    "objectID": "data.html#bows-and-floors",
-    "href": "data.html#bows-and-floors",
+    "objectID": "data.html#projectiles-and-carpeting",
+    "href": "data.html#projectiles-and-carpeting",
     "title": "Data",
-    "section": "Bows and floors",
-    "text": "Bows and floors\n\nArrow (formerly known as feather)\n\n\nParquet"
+    "section": "Projectiles and carpeting",
+    "text": "Projectiles and carpeting\n\nArrow (formerly known as Feather)\nSometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the {Arrow} package. A quick start to working with Arrow can be found here.\n\n\nParquet\nAlthough fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the {Arrow} package and a quick start can again be found here."
   },
   {
     "objectID": "data.html#sql",
     "href": "data.html#sql",
     "title": "Data",
     "section": "SQL",
-    "text": "SQL"
+    "text": "SQL\nSometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using {RODBC}, which allows general database access. You can connect to the database with odbcConnect() and then pass SQL queries into data using sqlQuery():\ndat &lt;- sqlQuery(odbcConnect(\"database\"), \"select * from DATA.DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1\")"
+  },
+  {
+    "objectID": "data.html#exercises",
+    "href": "data.html#exercises",
+    "title": "Data",
+    "section": "Exercises",
+    "text": "Exercises\n\n0. Downloading data\nFor these exercises, we will work with some freely available data that you can download here. If the link does not work, you can look for the file State funded schools inspections and outcomes as at 31 December 2022 here.\n\n\n1. Loading new data\nLoad the data you just downloaded into a variable called dat.\n\n\nAnswer\n# Load necessary packages\npacman::p_load(\"rio\", \"readr\")\n\n# Define file so that I only have to type it once for each example\nfile &lt;- \"C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv\"\n\n# Answer 1: using import\ndat &lt;- import(file)\n\n# Answer 2: using read_csv\n# suppressWarnings and show_col_types = FALSE for clean output\ndat &lt;- suppressWarnings(read_csv(file, show_col_types = FALSE))\n\n# Answer 3: using read.csv\ndat &lt;- read.csv(file)\n\n\n\n\n2. Storing data\nNow save the data to a file called example_data.Rdata.\n\n\nAnswer\n# Answer 1: use save()\nsave(dat, file = \"example_data.Rdata\")\n\n# Answer 2: use export()\nexport(dat, \"example_data.Rdata\")"
+  },
+  {
+    "objectID": "data.html#next-topic",
+    "href": "data.html#next-topic",
+    "title": "Data",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse"
   },
   {
     "objectID": "index.html",
@@ -327,26 +341,5 @@
     "title": "RStudio",
     "section": "Finding your way around RStudio",
     "text": "Finding your way around RStudio\nNow let’s see what RStudio offers us compared to the graphical user interface of R itself. When we open RStudio, Figure 1 shows what we see:\n\n\n\nFigure 1: Default RStudio\n\n\n\nInterface\nFirst, let’s see what each section in the RStudio window, as numbered in Figure 2, means.\n\nThe first section is the script. In the script is where you will write most of your code. Scripts are text files that are saved on your device and you can load in later, meaning any code you write you can reuse later, without writing it again.\nThe second section is the console. Any code you run in the script will show its output in the console. Additionally, if you quickly want to see the output of some code, you can write it in the console instead of the script (but it won’t be saved then).\nThe third section is the global environment. Any data you create wil show up in here and from here you can inspect the data and details related to the data.\nThe fourth section contains multiple tabs, of which many are relevant to any R user.\n\nThe first tab is the ‘Files’ tab. When you are working on some code in R, it is possible to determine from where files are loaded and where files are saved by default. This location is automatically opened in the ‘Files’ tab, from where you can inspect the location and load any files by hand.\nThe second tab is the ‘Plots’ tab. Whenever you create a plot (i.e., figure) in R, it will show up in this tab, so that you can visually inspect whether you like it before exporting it.\nIn the third tab, ‘Packages’, you can find all Packages (more on those later) you have installed and see which ones are loaded. Additionally, you can update packages from this tab.\nThe ‘Help’ tab, the fourth of the tabs available, allows you to search for functions and packages and helps you understand how they work and how to enter data into them to obtain the desires results.\nThe last tab of interest for now, the ‘Viewer’ tab, allows you to view created documents. Sometimes, R allows you to documents, such as HTML documents (of which we will see an example later on), which can then be visually inspected in the viewer before export.\n\n\n\n\n\nFigure 2: RStudio interface\n\n\nThese are all the important sections and tabs any RStudio user should know about. Don’t worry if you don’t immediately understand or remember what the windows do or represent. Throughout the tutorial, they will come back and through practice you will get a good understanding of what you see in your RStudio window.\n\n\nSettings\nSecond, let’s highlight some good settings that can ease your programming in R. The settings I will highlight here are my personal preference and in no way something you must adhere to, but it is good to know that they exist and that get an idea of the extent to which you can personalize the way RStudio works for you.\nTo open the settings, you can go to ‘Tools’ in the menu bar at the top of the screen, and select ‘Global options’ in the drop-down menu, shown in Figure 3.\n\n\n\nFigure 3: Going to global options\n\n\n\nSaving the workspace\nA first setting I want to highlight is saving the workspace. By default, when you exit RStudio, RStudio will ask you whether you want to save the workspace. The saved workspace will then be restored upon re-opening R. In other words, any data you created and loaded in would be saved upon quitting RStudio and loaded back in when you start RStudio again. Although this may sound useful, it also means that all data you create needs to be removed manually. This can quickly cause problems with memory and the speed of R and your device. Therefore I suggest that under ‘General’ you remove the tick from ‘Restore .RData into workspace at startup’ and set Save workspace to .RData on exit to Never as seen in Figure 4.\n\n\n\nFigure 4: Workspace settings\n\n\n\n\nCode display\nTo make our code a bit more readable, I suggest changing a few settings under the section ‘Code’ in the tab ‘Display’ as seen in Figure 5. I prefer changing the following settings regarding my code display:\n\nMargin: by default, the scripts in R show a margin (a vertical line) on the right of a code. This can help you style your code width if you use RStudio on different devices with different screen widths. Personally, I like to turn the margin off by removing the tick from ‘Show margin’.\nScrolling past end: when you write a code in a script, you can scroll to the end of the script, but not further, However, personally I prefer to have the code that I am looking at be in the middle of the screen. By ticking ‘Allow scroll past end of document’, I can keep scrolling after the code finishes to center the code in the window.\nHighlight functions: in R, we can calculate many things using functions (more on this later). However, these normally are the same colour as the rest of your code. I prefer to highlight functions to increase readability. You can do this by ticking ‘Highlight R function calls’.\nRainbow parentheses: many of the code that is written in R uses parentheses: (). However, many parentheses within each other might become very confusing: (((()))). Although R highlights the corresponding parenthesis, I find it helpful to additionally colour corresponding parentheses the same colour, while non-corresponding parentheses are coloured different. You can do this by ticking ‘Rainbow parentheses’.\n\n\n\n\nFigure 5: Code display settings\n\n\n\n\nRStudio appearance\nWhen working in RStudio, I prefer the screen to not be too bright. Additionally, I modified the way the code looks to my own preferences. You can try what works best for you under ‘Appearance’ (Figure 6).\n\n\n\nFigure 6: RStudio appearance settings\n\n\nNext: Creating and storing data"
-  },
-  {
-    "objectID": "data.html#projectiles-and-carpeting",
-    "href": "data.html#projectiles-and-carpeting",
-    "title": "Data",
-    "section": "Projectiles and carpeting",
-    "text": "Projectiles and carpeting\n\nArrow (formerly known as Feather)\n\n\nParquet"
-  },
-  {
-    "objectID": "data.html#exercises",
-    "href": "data.html#exercises",
-    "title": "Data",
-    "section": "Exercises",
-    "text": "Exercises\n\n0. Downloading data\nFor these exercises, we will work with some freely available data that you can download here. If the link does not work, you can look for the file State funded schools inspections and outcomes as at 31 December 2022 here.\n\n\n1. Loading new data\nLoad the data you just downloaded into a variable called dat.\n\n\nAnswer\n# Load necessary packages\npacman::p_load(\"rio\", \"readr\")\n\n# Define file so that I only have to type it once for each example\nfile &lt;- \"C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv\"\n\n# Answer 1: using import\ndat &lt;- import(file)\n\n# Answer 2: using read_csv\n# suppressWarnings and show_col_types = FALSE for clean output\ndat &lt;- suppressWarnings(read_csv(file, show_col_types = FALSE))\n\n# Answer 3: using read.csv\ndat &lt;- read.csv(file)\n\n\n\n\n2. Storing data\nNow save the data to a file called example_data.Rdata.\n\n\nAnswer\n# Answer 1: use save()\nsave(dat, file = \"example_data.Rdata\")\n\n# Answer 2: use export()\nexport(dat, \"example_data.Rdata\")"
-  },
-  {
-    "objectID": "data.html#next-topic",
-    "href": "data.html#next-topic",
-    "title": "Data",
-    "section": "Next topic",
-    "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse"
   }
 ]
