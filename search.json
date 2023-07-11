@@ -361,6 +361,13 @@
     "href": "tidyverse.html#installing-tidyverse",
     "title": "Tidyverse",
     "section": "Installing tidyverse",
-    "text": "Installing tidyverse\nTo install all packages of the tidyverse, we can simply run:\n# Install the tidyverse\ninstall.packages(\"tidyverse\")\nor of course:\n\n# Install tidyverse and load core tidyverse\npacman::p_load(\"tidyverse\")\n\nHowever, note that loading {tidyverse} only loads the core packages. If we want to load packages from the tidyverse that are not part of the core set, we need to load those packages separately:\n\n# Load core tidyverse\nlibrary(tidyverse)\n\n# ALso load the magrittr package\nlibrary(magrittr)\n\n\nAttaching package: 'magrittr'\n\n\nThe following object is masked from 'package:purrr':\n\n    set_names\n\n\nThe following object is masked from 'package:tidyr':\n\n    extract"
+    "text": "Installing tidyverse\nTo install all packages of the tidyverse, we can simply run:\n# Install the tidyverse\ninstall.packages(\"tidyverse\")\nor of course:\n# Install tidyverse and load core tidyverse\npacman::p_load(\"tidyverse\")\n── Attaching core tidyverse packages ──── tidyverse 2.0.0 ──\n✔ dplyr     1.1.2     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.1     \n── Conflicts ──────────----──────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package to force all conflicts to \nbecome errors\nHowever, note that loading {tidyverse} only loads the core packages as we see in the output. If we want to load packages from the tidyverse that are not part of the core set, we need to load those packages separately:\n# Load core tidyverse\nlibrary(tidyverse)\n\n# ALso load the magrittr package\nlibrary(magrittr)"
+  },
+  {
+    "objectID": "tidyverse.html#next-topic",
+    "href": "tidyverse.html#next-topic",
+    "title": "Tidyverse",
+    "section": "Next topic",
+    "text": "Next topic\nNext, we will take a good look at a central concept in the tidyverse: tibbles.\nNext: Tibbles"
   }
 ]
