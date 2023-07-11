@@ -316,8 +316,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#delimited-data-with-base-and-readr" id="toc-delimited-data-with-base-and-readr" class="nav-link" data-scroll-target="#delimited-data-with-base-and-readr">Delimited data with {base} and {readr}</a></li>
   <li><a href="#excel-files" id="toc-excel-files" class="nav-link" data-scroll-target="#excel-files">Excel files</a></li>
   <li><a href="#spss-sas-and-stata-data" id="toc-spss-sas-and-stata-data" class="nav-link" data-scroll-target="#spss-sas-and-stata-data">SPSS, SAS, and Stata data</a></li>
-  <li><a href="#making-your-life-easier" id="toc-making-your-life-easier" class="nav-link" data-scroll-target="#making-your-life-easier">Making your life easier</a></li>
+  <li><a href="#foreign" id="toc-foreign" class="nav-link" data-scroll-target="#foreign">Foreign</a></li>
+  <li><a href="#making-your-life-easier" id="toc-making-your-life-easier" class="nav-link" data-scroll-target="#making-your-life-easier">Making your life easier</a>
+  <ul>
+  <li><a href="#point-and-click-import" id="toc-point-and-click-import" class="nav-link" data-scroll-target="#point-and-click-import">Point-and-click import</a></li>
+  <li><a href="#rio" id="toc-rio" class="nav-link" data-scroll-target="#rio">Rio</a></li>
+  </ul></li>
   <li><a href="#rdata-and-.rda" id="toc-rdata-and-.rda" class="nav-link" data-scroll-target="#rdata-and-.rda">.Rdata and .Rda</a></li>
+  <li><a href="#chickens-bows-and-floors" id="toc-chickens-bows-and-floors" class="nav-link" data-scroll-target="#chickens-bows-and-floors">Chickens, bows, and floors</a>
+  <ul>
+  <li><a href="#arrow-formerly-known-as-feather" id="toc-arrow-formerly-known-as-feather" class="nav-link" data-scroll-target="#arrow-formerly-known-as-feather">Arrow (formerly known as feather)</a></li>
+  <li><a href="#parquet" id="toc-parquet" class="nav-link" data-scroll-target="#parquet">Parquet</a></li>
+  </ul></li>
   <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql">SQL</a></li>
   </ul>
 </nav>
@@ -415,25 +425,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>write_dta()</code> writes an R object to a Stata .dta file.</p></li>
 </ul>
 </section>
+<section id="foreign" class="level2">
+<h2 class="anchored" data-anchor-id="foreign">Foreign</h2>
+<p>If we have data that cannot be loaded in with any of the above functions, we can always have a look whether <code>{foreign}</code> has any functions that can read in the data. <code>{foreign}</code> offers reading of files such as .ssd, .dbf, .arff, .epiinfo, and more.</p>
+</section>
 <section id="making-your-life-easier" class="level2">
 <h2 class="anchored" data-anchor-id="making-your-life-easier">Making your life easier</h2>
+<section id="point-and-click-import" class="level3">
+<h3 class="anchored" data-anchor-id="point-and-click-import">Point-and-click import</h3>
 <p>Of course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (<a href="#fig-import">Figure&nbsp;1</a>):</p>
 <div id="fig-import" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/import.png" class="img-fluid figure-img" alt="import"></p>
+<p><img src="images/import.png" alt="import" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Import data</figcaption><p></p>
 </figure>
 </div>
 <p>From there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (<a href="#fig-viewer">Figure&nbsp;2</a>). In the upper right corner of the viewer, we can select our data with ‘Browse’, which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press ‘Import’ and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.</p>
 <div id="fig-viewer" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/viewer.png" class="img-fluid figure-img" alt="data-viewer"></p>
+<p><img src="images/viewer.png" style="height:70.0%" alt="data-viewer" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: Preview of import</figcaption><p></p>
 </figure>
 </div>
 </section>
+<section id="rio" class="level3">
+<h3 class="anchored" data-anchor-id="rio">Rio</h3>
+<p>If we do not want to think about what function to use at all, we can use the R Input/Output package <code>{rio}</code>, which provides the functions <code>import()</code> and <code>export()</code>. These functions automatically recognize the format of the file and choose the correct method of reading in the data. Additionally, <code>{rio}</code> allows us to read and write directly from and to .zip files.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Import data</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">import</span>(<span class="st">"iris.xlsx"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># Export data</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">export</span>(iris, <span class="st">"iris.tsv.zip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
 <section id="rdata-and-.rda" class="level2">
 <h2 class="anchored" data-anchor-id="rdata-and-.rda">.Rdata and .Rda</h2>
+<p>While working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:</p>
+<ul>
+<li><p><code>load()</code> loads the specified file into R.</p></li>
+<li><p><code>save()</code> saves an objects onto the device.</p></li>
+</ul>
+<p>When we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:</p>
+<pre><code># Save iris to current working directionary
+save(iris, file = "~/iris.Rdata")
+
+# Load iris
+load("iris.Rdata")
+</code></pre>
+</section>
+<section id="chickens-bows-and-floors" class="level2">
+<h2 class="anchored" data-anchor-id="chickens-bows-and-floors">Chickens, bows, and floors</h2>
+<section id="arrow-formerly-known-as-feather" class="level3">
+<h3 class="anchored" data-anchor-id="arrow-formerly-known-as-feather">Arrow (formerly known as feather)</h3>
+</section>
+<section id="parquet" class="level3">
+<h3 class="anchored" data-anchor-id="parquet">Parquet</h3>
+</section>
 </section>
 <section id="sql" class="level2">
 <h2 class="anchored" data-anchor-id="sql">SQL</h2>
