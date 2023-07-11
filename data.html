@@ -323,12 +323,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#rio" id="toc-rio" class="nav-link" data-scroll-target="#rio">Rio</a></li>
   </ul></li>
   <li><a href="#rdata-and-.rda" id="toc-rdata-and-.rda" class="nav-link" data-scroll-target="#rdata-and-.rda">.Rdata and .Rda</a></li>
-  <li><a href="#bows-and-floors" id="toc-bows-and-floors" class="nav-link" data-scroll-target="#bows-and-floors">Bows and floors</a>
+  <li><a href="#projectiles-and-carpeting" id="toc-projectiles-and-carpeting" class="nav-link" data-scroll-target="#projectiles-and-carpeting">Projectiles and carpeting</a>
   <ul>
-  <li><a href="#arrow-formerly-known-as-feather" id="toc-arrow-formerly-known-as-feather" class="nav-link" data-scroll-target="#arrow-formerly-known-as-feather">Arrow (formerly known as feather)</a></li>
+  <li><a href="#arrow-formerly-known-as-feather" id="toc-arrow-formerly-known-as-feather" class="nav-link" data-scroll-target="#arrow-formerly-known-as-feather">Arrow (formerly known as Feather)</a></li>
   <li><a href="#parquet" id="toc-parquet" class="nav-link" data-scroll-target="#parquet">Parquet</a></li>
   </ul></li>
   <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql">SQL</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#downloading-data" id="toc-downloading-data" class="nav-link" data-scroll-target="#downloading-data">0. Downloading data</a></li>
+  <li><a href="#loading-new-data" id="toc-loading-new-data" class="nav-link" data-scroll-target="#loading-new-data">1. Loading new data</a></li>
+  <li><a href="#storing-data" id="toc-storing-data" class="nav-link" data-scroll-target="#storing-data">2. Storing data</a></li>
+  </ul></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
     </div>
@@ -466,24 +473,77 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>save()</code> saves an objects onto the device.</p></li>
 </ul>
 <p>When we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:</p>
-<pre><code># Save iris to current working directionary
-save(iris, file = "~/iris.Rdata")
-
-# Load iris
-load("iris.Rdata")
-</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Save iris to current working directionary</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">save</span>(iris, <span class="at">file =</span> <span class="st">"~/iris.Rdata"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Load iris</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">load</span>(<span class="st">"iris.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="bows-and-floors" class="level2">
-<h2 class="anchored" data-anchor-id="bows-and-floors">Bows and floors</h2>
+<section id="projectiles-and-carpeting" class="level2">
+<h2 class="anchored" data-anchor-id="projectiles-and-carpeting">Projectiles and carpeting</h2>
 <section id="arrow-formerly-known-as-feather" class="level3">
-<h3 class="anchored" data-anchor-id="arrow-formerly-known-as-feather">Arrow (formerly known as feather)</h3>
+<h3 class="anchored" data-anchor-id="arrow-formerly-known-as-feather">Arrow (formerly known as Feather)</h3>
+<p>Sometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the <code>{Arrow}</code> package. A quick start to working with Arrow can be found <a href="https://arrow.apache.org/docs/r/">here</a>.</p>
 </section>
 <section id="parquet" class="level3">
 <h3 class="anchored" data-anchor-id="parquet">Parquet</h3>
+<p>Although fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the <code>{Arrow}</code> package and a quick start can again be found <a href="https://arrow.apache.org/docs/r/">here</a>.</p>
 </section>
 </section>
 <section id="sql" class="level2">
 <h2 class="anchored" data-anchor-id="sql">SQL</h2>
+<p>Sometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using <code>{RODBC}</code>, which allows general database access. You can connect to the database with <code>odbcConnect()</code> and then pass SQL queries into data using <code>sqlQuery()</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">sqlQuery</span>(<span class="fu">odbcConnect</span>(<span class="st">"database"</span>), <span class="st">"select * from DATA.DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="downloading-data" class="level3">
+<h3 class="anchored" data-anchor-id="downloading-data">0. Downloading data</h3>
+<p>For these exercises, we will work with some freely available data that you can download <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1145026/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv">here</a>. If the link does not work, you can look for the file <em>State funded schools inspections and outcomes as at 31 December 2022</em> <a href="https://www.gov.uk/government/statistics/state-funded-schools-inspections-and-outcomes-as-at-31-december-2022">here</a>.</p>
+</section>
+<section id="loading-new-data" class="level3">
+<h3 class="anchored" data-anchor-id="loading-new-data">1. Loading new data</h3>
+<p>Load the data you just downloaded into a variable called <code>dat</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"rio"</span>, <span class="st">"readr"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># Define file so that I only have to type it once for each example</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>file <span class="ot">&lt;-</span> <span class="st">"C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv"</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># Answer 1: using import</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(file)</span>
+<span id="cb9-9"><a href="#cb9-9"></a></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co"># Answer 2: using read_csv</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># suppressWarnings and show_col_types = FALSE for clean output</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>dat <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">read_csv</span>(file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb9-13"><a href="#cb9-13"></a></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co"># Answer 3: using read.csv</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="storing-data" class="level3">
+<h3 class="anchored" data-anchor-id="storing-data">2. Storing data</h3>
+<p>Now save the data to a file called <em>example_data.Rdata</em>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Answer 1: use save()</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">save</span>(dat, <span class="at">file =</span> <span class="st">"example_data.Rdata"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># Answer 2: use export()</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">export</span>(dat, <span class="st">"example_data.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
+<p>Now that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!</p>
+<p><strong>Next:</strong> <a href="./tidyverse.html">Tidyverse</a></p>
 
 
 </section>

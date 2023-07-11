@@ -203,18 +203,32 @@
     "text": ".Rdata and .Rda\nWhile working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:\n\nload() loads the specified file into R.\nsave() saves an objects onto the device.\n\nWhen we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:\n# Save iris to current working directionary\nsave(iris, file = \"~/iris.Rdata\")\n\n# Load iris\nload(\"iris.Rdata\")"
   },
   {
-    "objectID": "data.html#bows-and-floors",
-    "href": "data.html#bows-and-floors",
+    "objectID": "data.html#projectiles-and-carpeting",
+    "href": "data.html#projectiles-and-carpeting",
     "title": "Data",
-    "section": "Bows and floors",
-    "text": "Bows and floors\n\nArrow (formerly known as feather)\n\n\nParquet"
+    "section": "Projectiles and carpeting",
+    "text": "Projectiles and carpeting\n\nArrow (formerly known as Feather)\nSometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the {Arrow} package. A quick start to working with Arrow can be found here.\n\n\nParquet\nAlthough fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the {Arrow} package and a quick start can again be found here."
   },
   {
     "objectID": "data.html#sql",
     "href": "data.html#sql",
     "title": "Data",
     "section": "SQL",
-    "text": "SQL"
+    "text": "SQL\nSometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using {RODBC}, which allows general database access. You can connect to the database with odbcConnect() and then pass SQL queries into data using sqlQuery():\ndat &lt;- sqlQuery(odbcConnect(\"database\"), \"select * from DATA.DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1\")"
+  },
+  {
+    "objectID": "data.html#exercises",
+    "href": "data.html#exercises",
+    "title": "Data",
+    "section": "Exercises",
+    "text": "Exercises\n\n0. Downloading data\nFor these exercises, we will work with some freely available data that you can download here. If the link does not work, you can look for the file State funded schools inspections and outcomes as at 31 December 2022 here.\n\n\n1. Loading new data\nLoad the data you just downloaded into a variable called dat.\n\n\nAnswer\n# Load necessary packages\npacman::p_load(\"rio\", \"readr\")\n\n# Define file so that I only have to type it once for each example\nfile &lt;- \"C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv\"\n\n# Answer 1: using import\ndat &lt;- import(file)\n\n# Answer 2: using read_csv\n# suppressWarnings and show_col_types = FALSE for clean output\ndat &lt;- suppressWarnings(read_csv(file, show_col_types = FALSE))\n\n# Answer 3: using read.csv\ndat &lt;- read.csv(file)\n\n\n\n\n2. Storing data\nNow save the data to a file called example_data.Rdata.\n\n\nAnswer\n# Answer 1: use save()\nsave(dat, file = \"example_data.Rdata\")\n\n# Answer 2: use export()\nexport(dat, \"example_data.Rdata\")"
+  },
+  {
+    "objectID": "data.html#next-topic",
+    "href": "data.html#next-topic",
+    "title": "Data",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse"
   },
   {
     "objectID": "index.html",
