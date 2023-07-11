@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -72,7 +106,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./creating.html">Getting started with R</a></li><li class="breadcrumb-item"><a href="./tidyverse.html">Tidyverse</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Into the Tidyverse</a></li><li class="breadcrumb-item"><a href="./tidyverse.html">Tidyverse</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -95,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text">Start</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -165,51 +199,71 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Data</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Tidyverse</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Going further with R</span></a>
+ <span class="menu-text">Into the Tidyverse</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">functions.qmd</span>
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">tibbles.qmd</span>
   </li>
           <li class="sidebar-item">
- <span class="menu-text">looping.qmd</span>
+ <span class="menu-text">dplyr.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">tidyr.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">magrittr.qmd</span>
   </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Doing and reporting</span></a>
+ <span class="menu-text">Into the multiverse</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">regression.qmd</span>
+ <span class="menu-text">datatable.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Going further with R</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">random.qmd</span>
   </li>
           <li class="sidebar-item">
- <span class="menu-text">imputation.qmd</span>
+ <span class="menu-text">functions.qmd</span>
   </li>
           <li class="sidebar-item">
- <span class="menu-text">plotting.qmd</span>
+ <span class="menu-text">looping.qmd</span>
   </li>
           <li class="sidebar-item">
- <span class="menu-text">table1.qmd</span>
+ <span class="menu-text">regex.qmd</span>
   </li>
           <li class="sidebar-item">
  <span class="menu-text">rmarkdown.qmd</span>
@@ -218,36 +272,56 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Practical applications</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">General use</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">regression.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">plotting.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">table1.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Specific use</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">imputation.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">confounding.qmd</span>
+  </li>
           <li class="sidebar-item">
  <span class="menu-text">prediction.qmd</span>
   </li>
           <li class="sidebar-item">
  <span class="menu-text">competing_risks.qmd</span>
   </li>
-          <li class="sidebar-item">
- <span class="menu-text">confounding.qmd</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">agreement.qmd</span>
-  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
  <span class="menu-text">Recap</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">summary.qmd</span>
   </li>
@@ -272,7 +346,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
+  <li><a href="#what-is-the-tidyverse" id="toc-what-is-the-tidyverse" class="nav-link active" data-scroll-target="#what-is-the-tidyverse">What is the tidyverse</a></li>
+  <li><a href="#installing-tidyverse" id="toc-installing-tidyverse" class="nav-link" data-scroll-target="#installing-tidyverse">Installing tidyverse</a></li>
   </ul>
 </nav>
     </div>
@@ -296,8 +371,95 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="what-is-the-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-tidyverse">What is the tidyverse</h2>
+<p>R is a great language for statistical programming, but can sometimes be strenuous to work with smoothly. The <a href="https://www.tidyverse.org/">tidyverse</a> is a collection of packages that aims to make it easier to perform these strenuous operations. This ranges from data manipulation and visualization to working specifically with dates. The tidyverse allows these operations to be done in an easy-to-read and easy-to-write style, with all packages integrating with one another fluently (I swear, this is not an advertisement).</p>
+<p>There are some packages that form the core of the tidyverse, that are all discussed in this tutorial:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Focususes on</th>
+<th>Discussed in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>{tibble}</code></td>
+<td>Better data frames</td>
+<td><a href="tibbles.qmd">Tibbles</a></td>
+</tr>
+<tr class="even">
+<td><code>{dplyr}</code></td>
+<td>Data manipulation</td>
+<td><a href="dplyr.qmd">Dplyr</a></td>
+</tr>
+<tr class="odd">
+<td><code>{tidyr}</code></td>
+<td>Data tidying</td>
+<td><a href="tidyr.qmd">Tidyr</a></td>
+</tr>
+<tr class="even">
+<td><code>{readr}</code></td>
+<td>Reading in data</td>
+<td><a href="./data.html">Data</a></td>
+</tr>
+<tr class="odd">
+<td><code>{purr}</code></td>
+<td>Programming with functions</td>
+<td><a href="functions.qmd">Functions</a></td>
+</tr>
+<tr class="even">
+<td><code>{stringr}</code></td>
+<td>Working with strings</td>
+<td><a href="regex.qmd">Regex</a></td>
+</tr>
+<tr class="odd">
+<td><code>{ggplot2}</code></td>
+<td>Data visualization</td>
+<td><a href="plotting.qmd">Plotting</a></td>
+</tr>
+<tr class="even">
+<td><code>{forcats}</code></td>
+<td>Working with factors</td>
+<td><a href="plotting.qmd">Plotting</a></td>
+</tr>
+</tbody>
+</table>
+<p>Besides these packages, the tidyverse also contains other packages that support these packages or add other functionality.</p>
+</section>
+<section id="installing-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="installing-tidyverse">Installing tidyverse</h2>
+<p>To install all packages of the tidyverse, we can simply run:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Install the tidyverse</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or of course:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Install tidyverse and load core tidyverse</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, note that loading <code>{tidyverse}</code> only loads the core packages. If we want to load packages from the tidyverse that are not part of the core set, we need to load those packages separately:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Load core tidyverse</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># ALso load the magrittr package</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'magrittr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:purrr':
+
+    set_names</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'package:tidyr':
+
+    extract</code></pre>
+</div>
+</div>
 
 
 </section>
