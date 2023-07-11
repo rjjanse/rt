@@ -20,6 +20,10 @@ website:
             - packages.qmd
             - data.qmd
             - tidyverse.qmd
+        - section: "Going further with R"
+          contents: 
+            - functions.qmd
+            - looping.qmd
         - section: "Doing and reporting"
           contents:
             - regression.qmd
@@ -27,10 +31,6 @@ website:
             - plotting.qmd
             - table1.qmd
             - rmarkdown.qmd
-        - section: "Going further with R"
-          contents: 
-            - functions.qmd
-            - looping.qmd
         - section: "Practical applications"
           contents:
             - prediction.qmd
