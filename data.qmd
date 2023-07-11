@@ -10,7 +10,7 @@ We have already seen how to create data from scratch, but it is more likely that
 When we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using `getwd()`. If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use `setwd()`, specifying the path to the directionary.
 
 ### File
-All methods of reading data require an argument `file`, which `?base::load()` defines as *a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done)*. This file is simply a path to the document we want to load in. For example: `C:/users/username/documents/rtutorial/data/definitely_real_data.csv`. Note that the `file` argument must always end in the file name (*definitely_real_data*) including extension (*.csv*).
+All methods of reading data require an argument `file` (sometimes called `path` or `data_file`), which `?base::load()` defines as *a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done)*. This file is simply a path to the document we want to load in. For example: `C:/users/username/documents/rtutorial/data/definitely_real_data.csv`. Note that the `file` argument must always end in the file name (*definitely_real_data*) including extension (*.csv*).
 
 ### Tilde expansion
 Remembering where all your data is stored and writing it all out (`C:/users/username/...`) can cost quite some effort. Luckily, we have a concept called *tilde expansion*. When we set our working directionary with `setwd()`, we can stop specifying that part in the `file` argument and instead only specify a tilde (*~*). Instead of calling `C:/users/username/documents/rtutorial`, we can set our working directionary to the documents folder:
@@ -66,10 +66,10 @@ If the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we ca
 
 ```r
 # Load first sheet of Excel file
-dat <- read_excel("~/data/definitely_real_data.csv")
+dat <- read_excel("~/data/definitely_real_data.xlsx")
 
 # Load third sheet of Excel file
-dat <- read_excel("~/data/definitely_real_data.csv", sheet = 3)
+dat <- read_excel("~/data/definitely_real_data.xlsx", sheet = 3)
 ```
 
 Using the function `read_excel()` automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use `read_xlsx()` or `read_xls()`.
@@ -81,8 +81,31 @@ write_xlsx(iris, "~/data/iris.xlsx")
 ```
 
 ## SPSS, SAS, and Stata data
+If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (x) or Stata (x), we can use `{haven}` to read these data:
 
+- `read_spss()` can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (`read_sav()` or `read_por()`).
 
+- `write_sav()` creates an SPSS .sav file (or .zsav if `compress = TRUE`).
 
+- `read_sas()` reads in SAS .sas7bdat files.
+
+- `read_xpt()`reads in SAS transport .xpt files.
+
+- `write_sas()` is a deprecated function and does not perform reliabily. An alternative is the `write_xpt()` function to write an R object to a SAS transport (.xpt) file.
+
+- `read_dta()` allows reading of Stata .dta files.
+
+- `write_dta()` writes an R object to a Stata .dta file.
+
+## Making your life easier
+Of course it's nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (@fig-import):
+
+![Import data](images/import.png){#fig-import fig-alt="import" fig-align="center"}
+
+From there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (@fig-viewer). In the upper right corner of the viewer, we can select our data with 'Browse', which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press 'Import' and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.
+
+![Preview of import](images/viewer.png){#fig-viewer fig-alt="data-viewer" fig-align="center"}
 
 ## .Rdata and .Rda
+
+## SQL
