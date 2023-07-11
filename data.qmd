@@ -141,10 +141,17 @@ load("iris.Rdata")
 
 ## Projectiles and carpeting
 ### Arrow (formerly known as Feather)
+Sometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the `{Arrow}` package. A quick start to working with Arrow can be found [here](https://arrow.apache.org/docs/r/).
 
 ### Parquet
+Although fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the `{Arrow}` package and a quick start can again be found [here](https://arrow.apache.org/docs/r/).
 
 ## SQL
+Sometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using `{RODBC}`, which allows general database access. You can connect to the database with `odbcConnect()` and then pass SQL queries into data using `sqlQuery()`:
+
+```r
+dat <- sqlQuery(odbcConnect("database"), "select * from DATA.DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1")
+```
 
 ## Exercises
 ### 0. Downloading data
