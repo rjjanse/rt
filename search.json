@@ -186,7 +186,7 @@
     "href": "data.html#foreign",
     "title": "Data",
     "section": "Foreign",
-    "text": "Foreign\nIf we have data that cannot be loaded in with any of the above functions, we can always have a look whether {foreign} has any functions that can read in the data. {foreign} offers reading of files such as .ssd, .dbf, .arff, .epiinfo, and more."
+    "text": "Foreign\nIf we have data that cannot be loaded in with any of the above functions, we can always have a look whether {foreign} has any functions that can read in the data. {foreign} offers functions for the reading of files such as .ssd, .dbf, .arff, .epiinfo, and more."
   },
   {
     "objectID": "data.html#making-your-life-easier",
@@ -203,11 +203,11 @@
     "text": ".Rdata and .Rda\nWhile working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:\n\nload() loads the specified file into R.\nsave() saves an objects onto the device.\n\nWhen we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:\n# Save iris to current working directionary\nsave(iris, file = \"~/iris.Rdata\")\n\n# Load iris\nload(\"iris.Rdata\")"
   },
   {
-    "objectID": "data.html#chickens-bows-and-floors",
-    "href": "data.html#chickens-bows-and-floors",
+    "objectID": "data.html#bows-and-floors",
+    "href": "data.html#bows-and-floors",
     "title": "Data",
-    "section": "Chickens, bows, and floors",
-    "text": "Chickens, bows, and floors\n\nArrow (formerly known as feather)\n\n\nParquet"
+    "section": "Bows and floors",
+    "text": "Bows and floors\n\nArrow (formerly known as feather)\n\n\nParquet"
   },
   {
     "objectID": "data.html#sql",
