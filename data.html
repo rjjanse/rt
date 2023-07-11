@@ -404,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="spss-sas-and-stata-data" class="level2">
 <h2 class="anchored" data-anchor-id="spss-sas-and-stata-data">SPSS, SAS, and Stata data</h2>
-<p>If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (x) or Stata (x), we can use <code>{haven}</code> to read these data:</p>
+<p>If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (.sas7bdat) or Stata (.dta, .xpt), we can use <code>{haven}</code> to read these data:</p>
 <ul>
 <li><p><code>read_spss()</code> can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (<code>read_sav()</code> or <code>read_por()</code>).</p></li>
 <li><p><code>write_sav()</code> creates an SPSS .sav file (or .zsav if <code>compress = TRUE</code>).</p></li>
