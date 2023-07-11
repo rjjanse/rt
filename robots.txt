@@ -1,1 +1,1 @@
-Sitemap: https://github.com/rjjanse/rt/sitemap.xml
+Sitemap: https://rjjanse.github.io/rt/sitemap.xml

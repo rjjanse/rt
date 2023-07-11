@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.306">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,8 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -110,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./creating.html">Getting started with R</a></li><li class="breadcrumb-item"><a href="./packages.html">Packages</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -195,22 +194,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">data.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">tidyverse.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Doing and reporting</span></a>
+ <span class="menu-text">Going further with R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">functions.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">looping.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Doing and reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">regression.qmd</span>
   </li>
@@ -225,23 +247,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
  <span class="menu-text">rmarkdown.qmd</span>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Going further with R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
- <span class="menu-text">functions.qmd</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">looping.qmd</span>
   </li>
       </ul>
   </li>
@@ -315,14 +320,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#pacman" id="toc-pacman" class="nav-link" data-scroll-target="#pacman">Pacman</a></li>
   <li><a href="#annotating-package-loading" id="toc-annotating-package-loading" class="nav-link" data-scroll-target="#annotating-package-loading">Annotating package loading</a></li>
   </ul></li>
-  <li><a href="#updating-packages" id="toc-updating-packages" class="nav-link" data-scroll-target="#updating-packages">Updating packages</a></li>
-  <li><a href="#uninstalling-packages" id="toc-uninstalling-packages" class="nav-link" data-scroll-target="#uninstalling-packages">Uninstalling packages</a></li>
+  <li><a href="#updating-and-unistalling-packages" id="toc-updating-and-unistalling-packages" class="nav-link" data-scroll-target="#updating-and-unistalling-packages">Updating and unistalling packages</a>
+  <ul>
+  <li><a href="#updating" id="toc-updating" class="nav-link" data-scroll-target="#updating">Updating</a></li>
+  <li><a href="#uninstalling" id="toc-uninstalling" class="nav-link" data-scroll-target="#uninstalling">Uninstalling</a></li>
+  </ul></li>
   <li><a href="#a-warning" id="toc-a-warning" class="nav-link" data-scroll-target="#a-warning">A warning</a>
   <ul>
   <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
   <li><a href="#trust" id="toc-trust" class="nav-link" data-scroll-target="#trust">Trust</a></li>
   </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#installing-a-new-package" id="toc-installing-a-new-package" class="nav-link" data-scroll-target="#installing-a-new-package">1. Installing a new package</a></li>
+  <li><a href="#loading-a-new-package" id="toc-loading-a-new-package" class="nav-link" data-scroll-target="#loading-a-new-package">2. Loading a new package</a></li>
+  </ul></li>
   <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
@@ -359,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-packages" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/packages.png" style="height:70.0%" alt="Installed packages" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Installed packages</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Installed packages</figcaption><p></p>
 </figure>
 </div>
 <p>If we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:</p>
@@ -418,34 +430,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="masking" class="level3">
 <h3 class="anchored" data-anchor-id="masking">Masking</h3>
 <p>Sometimes, we may get the warning that certain functions become masked:</p>
-<div class="cell" data-code-echo="false">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Install dplyr</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Here we set the mirror for downloading, but this is only needed for the tutorial to render: in your own R, you do not need to do this.</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(<span class="at">CRAN =</span> <span class="st">"https://mirror.lyrahosting.com/CRAN/"</span>))</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Install dplyr</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="fu">install.packages</span>(<span class="st">"dplyr"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Installing generics [0.1.3] ...
-    OK [linked cache in 0.33 milliseconds]
-Installing fansi [1.0.4] ...
-    OK [linked cache in 0.19 milliseconds]
-Installing utf8 [1.2.3] ...
-    OK [linked cache in 0.17 milliseconds]
-Installing pillar [1.9.0] ...
-    OK [linked cache in 0.17 milliseconds]
-Installing pkgconfig [2.0.3] ...
-    OK [linked cache in 0.18 milliseconds]
-Installing tibble [3.2.1] ...
-    OK [linked cache in 0.17 milliseconds]
-Installing withr [2.5.0] ...
-    OK [linked cache in 0.18 milliseconds]
-Installing tidyselect [1.2.0] ...
-    OK [linked cache in 0.18 milliseconds]
-Installing dplyr [1.1.2] ...
-    OK [linked cache in 0.17 milliseconds]
-* Installed 9 packages in 0.12 seconds.</code></pre>
+<pre><code>package 'dplyr' successfully unpacked and MD5 sums checked</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: cannot remove prior installation of package 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in file.copy(savedcopy, lib, recursive = TRUE): problem copying
+C:\Users\rjjan\AppData\Local\R\win-library\4.3\00LOCK\dplyr\libs\x64\dplyr.dll
+to C:\Users\rjjan\AppData\Local\R\win-library\4.3\dplyr\libs\x64\dplyr.dll:
+Permission denied</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: restored 'dplyr'</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Load dplyr</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Load dplyr</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">library</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'dplyr'</code></pre>
@@ -462,7 +472,7 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 </div>
 <p>Loading the package <code>{dplyr}</code> caused, among others, the function <code>filter()</code> from <code>{stats}</code> to be masked. This means that if we call <code>filter()</code>, we will call the function from <code>{dplyr}</code>, not from <code>{stats}</code>, which might have a different functionality. If we still want to use <code>filter()</code> from <code>{stats}</code>, we can prespecify the package with a double colon <code>::</code>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>stats<span class="sc">::</span><span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>stats<span class="sc">::</span><span class="fu">filter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -477,44 +487,98 @@ Attaching package: 'dplyr'</code></pre>
 <section id="pacman" class="level3">
 <h3 class="anchored" data-anchor-id="pacman">Pacman</h3>
 <p>It can be a hassle to first install packages and then load them with library. By using the package <code>{pacman}</code>, we can simplify this process. We only need to install it once on our device and after that we load any package with:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"survival"</span>, <span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"survival"</span>, <span class="st">"dplyr"</span>, <span class="st">"curl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>{pacman}</code> will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function <code>p_load()</code> immediately from <code>{pacman}</code> with <code>::</code>, we do not need to load <code>{pacman}</code> first.</p>
 <p>Note that <code>{pacman}</code> does not tell you whether a function becomes masked.</p>
 </section>
 <section id="annotating-package-loading" class="level3">
 <h3 class="anchored" data-anchor-id="annotating-package-loading">Annotating package loading</h3>
 <p>Although we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Load packages</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"dplyr"</span>,         <span class="co"># Data manipulation</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>               <span class="st">"tidyr"</span>,         <span class="co"># Pivoting data</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a>               <span class="st">"magrittr"</span>,      <span class="co"># Efficient pipe structures</span></span>
-<span id="cb16-5"><a href="#cb16-5"></a>               <span class="st">"stringr"</span>,       <span class="co"># Better regexing</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>               <span class="st">"mice"</span>,          <span class="co"># Multiple imputation</span></span>
-<span id="cb16-7"><a href="#cb16-7"></a>               <span class="st">"summarytools"</span>,  <span class="co"># Summarizing data frames</span></span>
-<span id="cb16-8"><a href="#cb16-8"></a>               <span class="st">"haven"</span>          <span class="co"># Load SPSS data</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Load packages</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"dplyr"</span>,         <span class="co"># Data manipulation</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>               <span class="st">"tidyr"</span>,         <span class="co"># Pivoting data</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>               <span class="st">"magrittr"</span>,      <span class="co"># Efficient pipe structures</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>               <span class="st">"stringr"</span>,       <span class="co"># Better regexing</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>               <span class="st">"mice"</span>,          <span class="co"># Multiple imputation</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>               <span class="st">"summarytools"</span>,  <span class="co"># Summarizing data frames</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>               <span class="st">"haven"</span>          <span class="co"># Load SPSS data</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="updating-packages" class="level2">
-<h2 class="anchored" data-anchor-id="updating-packages">Updating packages</h2>
+<section id="updating-and-unistalling-packages" class="level2">
+<h2 class="anchored" data-anchor-id="updating-and-unistalling-packages">Updating and unistalling packages</h2>
+<section id="updating" class="level3">
+<h3 class="anchored" data-anchor-id="updating">Updating</h3>
+<p>Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio. Alternatively, we can just rerun the package installation using <code>install.packages()</code> to update it. Note that we cannot use <code>{pacman}</code> here, as <code>{pacman}</code> will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use <code>update.packages()</code>, although this might not update packages to a version suitable for new major R versions.</p>
 </section>
-<section id="uninstalling-packages" class="level2">
-<h2 class="anchored" data-anchor-id="uninstalling-packages">Uninstalling packages</h2>
+<section id="uninstalling" class="level3">
+<h3 class="anchored" data-anchor-id="uninstalling">Uninstalling</h3>
+<p>If we want to get rid of a package, maybe to clean up some space on our device, we can remove it using <code>remove.packages()</code>.</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Sometimes we want to update a package, but that package needs an updated version of a package such as <code>{rlang}</code>. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that <code>{rlang}</code> can be updated too. However, if we agree, the R session will restart and immediately load <code>{rlang}</code> again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of <code>{rlang}</code> (or similar cases), first we need to use <code>remove.packages()</code> to uninstall <code>{rlang}</code>, then reinstall <code>{rlang}</code>, and then update the package we wanted to update originally.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="a-warning" class="level2">
+</section>
+<section id="a-warning" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="a-warning">A warning</h2>
-<section id="dependencies" class="level3">
+<p>Although packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.</p>
+<section id="dependencies" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="dependencies">Dependencies</h3>
-</section>
+<p>Almost all R packages are built using another R package. This is why installing <code>{dplyr}</code> actually installs a lot of other packages, which are all required to allow <code>{dplyr}</code> to function. These are called dependencies. Because packages are dependent on other packages, deprecation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as <code>{dplyr}</code>, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is deprecated). Dependencies can become dangerous quickly, as talked about shortly <a href="https://www.r-bloggers.com/2018/02/17-dependencies/">here</a> and <a href="https://www.tinyverse.org/">here</a>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>Deprecate:</strong> to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. <a href="https://www.merriam-webster.com/dictionary/deprecate">Link</a>.</p>
+</div></div></section>
 <section id="trust" class="level3">
 <h3 class="anchored" data-anchor-id="trust">Trust</h3>
+<p>Anyone can write packages for R, including you and me. On the one hand, this means that everyone can contribute their code to the ease of all other R users. However, this also means that individuals with malicious intent can create R packages. Therefore, you should always be careful when installing R packages. Although CRAN is an archive with many trusted packages, it is not a protection against malicious packages or a guarantee of safety. More on this can be read <a href="https://support.posit.co/hc/en-us/articles/360042593974-R-and-R-Package-Security">here</a>.</p>
 </section>
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="installing-a-new-package" class="level3">
+<h3 class="anchored" data-anchor-id="installing-a-new-package">1. Installing a new package</h3>
+<p>Install the package <code>{tidyverse}</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Answer 1: using {pacman}</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># Answer 2: using install.packages()</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="co"># We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'tidyverse' is in use and will not be installed</code></pre>
+</div>
+</div>
+</section>
+<section id="loading-a-new-package" class="level3">
+<h3 class="anchored" data-anchor-id="loading-a-new-package">2. Loading a new package</h3>
+<p>Now load the package <code>{tidyverse}</code></p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Answer 1: using {pacman}, the package is already loaded after installing</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="co"># Answer 2: using library() after install.packages()</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
 </section>
 <section id="next-topic" class="level2">
 <h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
+<p>Now that we know the basics of R packages, let’s start looking at how we can harness their power to load our own data.</p>
+<p><strong>Next:</strong> <a href="./data.html">Data</a></p>
 
 
 </section>

@@ -1,82 +1,5 @@
 [
   {
-    "objectID": "packages.html",
-    "href": "packages.html",
-    "title": "Packages",
-    "section": "",
-    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves."
-  },
-  {
-    "objectID": "packages.html#packages",
-    "href": "packages.html#packages",
-    "title": "Packages",
-    "section": "",
-    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves."
-  },
-  {
-    "objectID": "packages.html#pre-installed-packages",
-    "href": "packages.html#pre-installed-packages",
-    "title": "Packages",
-    "section": "Pre-installed packages",
-    "text": "Pre-installed packages\nSome packages come pre-installed with R. For example, sum() comes from the base package, while sd() comes from the stats package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in Figure 1. Mind you that in Figure 1, there might be different packages than in your window, depending on what packages are already or not yet installed.\nIn Figure 1, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.\n\n\n\nFigure 1: Installed packages\n\n\nIf we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:\n?stats\nWe could also open an extensive overview of a package’s details using library():\nlibrary(help = \"stats\")\nThis overview shows us not only detailed information on the package, but also the functions the package supplies.\n\n\n\n\n\n\nWhen we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called {base}."
-  },
-  {
-    "objectID": "packages.html#installing-packages",
-    "href": "packages.html#installing-packages",
-    "title": "Packages",
-    "section": "Installing packages",
-    "text": "Installing packages\nAlthough the pre-installed packages give us a lot of functionality, we might still want more. Yes, with {stats} we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the {survival} package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: ‘choose a website identical to the original download website, but with a different server’. This way, you can pick a server in your own country increasing download speeds.\ninstall.packages(\"survival\")\n\n\nWhen packages are installed, they will always give the message MD5 sums checked. MD5 is an algorithm that can help identify unintentional data/file corruption (more).\nWhen we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.\n\nR tools\nSometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from CRAN.\n\n\nPackage versions\nPackages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases:\n\nThe package is built for your current version of R: there will be no problem.\nThe package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.\nThe package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or, less ideally, switch back to an older version of R.\n\n\n\nInstalling from GitHub\nSometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install {devtools}:\ninstall.packages(\"devtools\")\nFrom {devtools}, we can use the install_github() function to install a package. For instance, if we wanted to install {KMunicate} from GitHub, we could run:\ninstall_github(\"ellessenne/KMunicate-package\")\nwhere ellessenne is the GitHub user’s username and KMunicate-package the repository of the package."
-  },
-  {
-    "objectID": "packages.html#loading-packages",
-    "href": "packages.html#loading-packages",
-    "title": "Packages",
-    "section": "Loading packages",
-    "text": "Loading packages\nThe good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using library(). If we wanted to load {survival} after installing it previously, we can do:\nlibrary(\"survival\")\nWe could also load multiple packages at once with library():\nlibrary(\"survival\", \"stats\")\nThe help function for library() shows that there is also a function called require(). In general, this works similar to library() but is used more often within functions. Whereas library() will return an error if the package is not installed, require() will only give a warning.\n\nMasking\nSometimes, we may get the warning that certain functions become masked:\n\n# Install dplyr\ninstall.packages(\"dplyr\")\n\nInstalling generics [0.1.3] ...\n    OK [linked cache in 0.33 milliseconds]\nInstalling fansi [1.0.4] ...\n    OK [linked cache in 0.19 milliseconds]\nInstalling utf8 [1.2.3] ...\n    OK [linked cache in 0.17 milliseconds]\nInstalling pillar [1.9.0] ...\n    OK [linked cache in 0.17 milliseconds]\nInstalling pkgconfig [2.0.3] ...\n    OK [linked cache in 0.18 milliseconds]\nInstalling tibble [3.2.1] ...\n    OK [linked cache in 0.17 milliseconds]\nInstalling withr [2.5.0] ...\n    OK [linked cache in 0.18 milliseconds]\nInstalling tidyselect [1.2.0] ...\n    OK [linked cache in 0.18 milliseconds]\nInstalling dplyr [1.1.2] ...\n    OK [linked cache in 0.17 milliseconds]\n* Installed 9 packages in 0.12 seconds.\n\n\n\n# Load dplyr\nlibrary(\"dplyr\")\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nLoading the package {dplyr} caused, among others, the function filter() from {stats} to be masked. This means that if we call filter(), we will call the function from {dplyr}, not from {stats}, which might have a different functionality. If we still want to use filter() from {stats}, we can prespecify the package with a double colon :::\nstats::filter()\n\n\n\n\n\n\nIn general, we can call functions from installed packages without loading the package, by using ::. Without loading {survival}, we can still call survival::coxph(), so long as {survival} is installed.\n\n\n\n\n\nPacman\nIt can be a hassle to first install packages and then load them with library. By using the package {pacman}, we can simplify this process. We only need to install it once on our device and after that we load any package with:\npacman::p_load(\"survival\", \"dplyr\")\n{pacman} will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function p_load() immediately from {pacman} with ::, we do not need to load {pacman} first.\nNote that {pacman} does not tell you whether a function becomes masked.\n\n\nAnnotating package loading\nAlthough we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:\n# Load packages\npacman::p_load(\"dplyr\",         # Data manipulation\n               \"tidyr\",         # Pivoting data\n               \"magrittr\",      # Efficient pipe structures\n               \"stringr\",       # Better regexing\n               \"mice\",          # Multiple imputation\n               \"summarytools\",  # Summarizing data frames\n               \"haven\"          # Load SPSS data\n)"
-  },
-  {
-    "objectID": "packages.html#updating-packages",
-    "href": "packages.html#updating-packages",
-    "title": "Packages",
-    "section": "Updating packages",
-    "text": "Updating packages"
-  },
-  {
-    "objectID": "packages.html#uninstalling-packages",
-    "href": "packages.html#uninstalling-packages",
-    "title": "Packages",
-    "section": "Uninstalling packages",
-    "text": "Uninstalling packages"
-  },
-  {
-    "objectID": "packages.html#a-warning",
-    "href": "packages.html#a-warning",
-    "title": "Packages",
-    "section": "A warning",
-    "text": "A warning\n\nDependencies\n\n\nTrust"
-  },
-  {
-    "objectID": "packages.html#exercises",
-    "href": "packages.html#exercises",
-    "title": "Packages",
-    "section": "Exercises",
-    "text": "Exercises"
-  },
-  {
-    "objectID": "packages.html#next-topic",
-    "href": "packages.html#next-topic",
-    "title": "Packages",
-    "section": "Next topic",
-    "text": "Next topic"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction",
-    "section": "",
-    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for epidemiologic data analysis (which has many overlaps with data science), such as how to perform regression analyses and plot results.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\n\nExercises\n0: Open the answer\n\n\nCode\n# Well done!\n\n\nNext: R"
-  },
-  {
     "objectID": "accessing.html",
     "href": "accessing.html",
     "title": "Accessing and manipulating data",
@@ -144,7 +67,7 @@
     "href": "accessing.html#exercises",
     "title": "Accessing and manipulating data",
     "section": "Exercises",
-    "text": "Exercises\n\n1. Store new data\nBesides the dataset iris, another available dataset in R is mtcars. Load this data into a new data frame called data using assign().\n\n\nCode\nassign(\"data\", mtcars)\n\n\n\n\n2. Subset column\nNow subset the column disp and store this in a variable called var.\n\n\nCode\n# Use dollar operator (generally unrecommended)\nvar &lt;- data$disp\n\n# Use single brackets\nvar &lt;- data[, \"disp\"]\n\n# Use double brackets\nvar &lt;- data[[\"disp\"]]\n\n\n\n\n3. Keep certain values\nFrom the variable var, keep only values greater than 110.5 and store this in a variable called var_new.\n\n\nCode\n# With which()\nvar_new &lt;- var[which(var &gt; 110.5)]\n\n# Without which()\nvar_new &lt;- var[var &gt; 110.5]\n\n\n\n\n4. Mutate variables\nNow divided all values in var_new by 10 and store this in a variable called var_div.\n\n\nCode\nvar_div &lt;- var_new / 10\n\n\n\n\n5. Change values to character\nNow change the values in the variable var_div to character values and store these in a variable called var_char.\n\n\nCode\nvar_char &lt;- as.character(var_div)\n\n\n\n\n6. Check character type\nMake sure the first value in the variable var_char is not of the type numeric (called \"numeric\").\n\n\nCode\nclass(var_char[1]) != \"numeric\"\n\n\n[1] TRUE"
+    "text": "Exercises\n\n1. Store new data\nBesides the dataset iris, another available dataset in R is mtcars. Load this data into a new data frame called data using assign().\n\n\nAnswer\nassign(\"data\", mtcars)\n\n\n\n\n2. Subset column\nNow subset the column disp and store this in a variable called var.\n\n\nAnswer\n# Use dollar operator (generally unrecommended)\nvar &lt;- data$disp\n\n# Use single brackets\nvar &lt;- data[, \"disp\"]\n\n# Use double brackets\nvar &lt;- data[[\"disp\"]]\n\n\n\n\n3. Keep certain values\nFrom the variable var, keep only values greater than 110.5 and store this in a variable called var_new.\n\n\nAnswer\n# With which()\nvar_new &lt;- var[which(var &gt; 110.5)]\n\n# Without which()\nvar_new &lt;- var[var &gt; 110.5]\n\n\n\n\n4. Mutate variables\nNow divided all values in var_new by 10 and store this in a variable called var_div.\n\n\nAnswer\nvar_div &lt;- var_new / 10\n\n\n\n\n5. Change values to character\nNow change the values in the variable var_div to character values and store these in a variable called var_char.\n\n\nAnswer\nvar_char &lt;- as.character(var_div)\n\n\n\n\n6. Check character type\nMake sure the first value in the variable var_char is not of the type numeric (called \"numeric\").\n\n\nAnswer\nclass(var_char[1]) != \"numeric\"\n\n\n[1] TRUE"
   },
   {
     "objectID": "accessing.html#next-topic",
@@ -207,7 +130,7 @@
     "href": "creating.html#exercises",
     "title": "Creating and storing data",
     "section": "Exercises",
-    "text": "Exercises\n\n1. Create and store numbers\nCreate a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called vec.\n\n\nCode\n# Answer 1: using c()\nvec &lt;- c(5, 6, 7, 8, 9, 10)\n\n# Answer 2: using the `:` operator\nvec &lt;- 5:10\n\n# Answer 3: using seq()\nvev &lt;- seq(5, 10, 1)\n\n\n\n\n2. Calculate quantiles\nCalculate the 2.5th and 97.5th percentile of the object vec.\n\n\nCode\nquantile(vec, probs = c(0.025, 0.975))\n\n\n 2.5% 97.5% \n5.125 9.875 \n\n\n\n\n3. Create a matrix\nUsing the data in vec, create a matrix with two columns and three rows.\n\n\nCode\nmatrix(vec, nrow = 3, ncol = 2)\n\n\n     [,1] [,2]\n[1,]    5    8\n[2,]    6    9\n[3,]    7   10\n\n\n\n\n4. Getting help\nOpen the documentation for rm().\n\n\nCode\n?rm\n\n\n\n\n5. Cleaning up\nNow use rm() to remove vec again.\n\n\nCode\nrm(vec)"
+    "text": "Exercises\n\n1. Create and store numbers\nCreate a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called vec.\n\n\nAnswer\n# Answer 1: using c()\nvec &lt;- c(5, 6, 7, 8, 9, 10)\n\n# Answer 2: using the `:` operator\nvec &lt;- 5:10\n\n# Answer 3: using seq()\nvev &lt;- seq(5, 10, 1)\n\n\n\n\n2. Calculate quantiles\nCalculate the 2.5th and 97.5th percentile of the object vec.\n\n\nAnswer\nquantile(vec, probs = c(0.025, 0.975))\n\n\n 2.5% 97.5% \n5.125 9.875 \n\n\n\n\n3. Create a matrix\nUsing the data in vec, create a matrix with two columns and three rows.\n\n\nAnswer\nmatrix(vec, nrow = 3, ncol = 2)\n\n\n     [,1] [,2]\n[1,]    5    8\n[2,]    6    9\n[3,]    7   10\n\n\n\n\n4. Getting help\nOpen the documentation for rm().\n\n\nAnswer\n?rm\n\n\n\n\n5. Cleaning up\nNow use rm() to remove vec again.\n\n\nAnswer\nrm(vec)"
   },
   {
     "objectID": "creating.html#next-topic",
@@ -215,6 +138,125 @@
     "title": "Creating and storing data",
     "section": "Next topic",
     "text": "Next topic\nNow that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.\nNext: Accessing and manipulating data"
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "Data",
+    "section": "",
+    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment."
+  },
+  {
+    "objectID": "data.html#why-we-need-to-load-data",
+    "href": "data.html#why-we-need-to-load-data",
+    "title": "Data",
+    "section": "",
+    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment."
+  },
+  {
+    "objectID": "data.html#the-basics",
+    "href": "data.html#the-basics",
+    "title": "Data",
+    "section": "The basics",
+    "text": "The basics\n\nWorking directionary\nWhen we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using getwd(). If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use setwd(), specifying the path to the directionary.\n\n\nFile\nAll methods of reading data require an argument file, which ?base::load() defines as a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done). This file is simply a path to the document we want to load in. For example: C:/users/username/documents/rtutorial/data/definitely_real_data.csv. Note that the file argument must always end in the file name (definitely_real_data) including extension (.csv).\n\n\nTilde expansion\nRemembering where all your data is stored and writing it all out (C:/users/username/...) can cost quite some effort. Luckily, we have a concept called tilde expansion. When we set our working directionary with setwd(), we can stop specifying that part in the file argument and instead only specify a tilde (~). Instead of calling C:/users/username/documents/rtutorial, we can set our working directionary to the documents folder:\nsetwd(\"C:/users/username/documents/rtutorial\")\nSubsequently, we can specify any file argument as ~/data/definitely_real_data.csv."
+  },
+  {
+    "objectID": "data.html#delimited-data-with-base-and-readr",
+    "href": "data.html#delimited-data-with-base-and-readr",
+    "title": "Data",
+    "section": "Delimited data with {base} and {readr}",
+    "text": "Delimited data with {base} and {readr}\nData is often shared in a .csv format, which stands for Comma Separated Values. If we were to open this file in a normal text editor, we would see that each column of a row is separated by a comma between the values. This is a form of delimited data, where there is a certain character (comma, semicolon, tab) that allows the computer to discern between columns. To read such data, we can use different functions from {base}:\n\nread.csv() allows the reading in of data separated with commas where decimal markers are dots\nread.csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread.delim() allows the reading in of data separated with tabs where decimal markers are dots\nread.delim2() allows the reading in of data separated with tabs where decimal markers are commas\n\nThese functions only differ in the defaults: if you specify arguments such as sep and dec, they can perform the same actions. When using these functions, the data will be read into R, and we can immediately load it into an object which will create a data frame:\n# Load data\ndat &lt;- read.csv(\"~/data/definitely_real_data.csv\")\nA great alternative to the {base} functions are the functions from {readr}, which are in general faster and treat the data better. The functions have similar names and functionality:\n\nread_csv() allows the reading in of data separated with commas where decimal markers are dots\nread_csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread_tsv() allows the reading in of data separated with tabs\n\nIf you want to write these data back into a delimited file, we can use the write functions with similar names, besides replacing read with write:\n\nwrite.csv() allows the writing of data separated with commas where decimal markers are dots\nwrite_csv() allows the writing of data separated with commas where decimal markers are dots (but faster than write.csv())\netc.\n\nIn the writing functions, we first specify the object we want to write to our device and then the path:\nwrite_csv(iris, \"~/data/iris.csv\")"
+  },
+  {
+    "objectID": "data.html#excel-files",
+    "href": "data.html#excel-files",
+    "title": "Data",
+    "section": "Excel files",
+    "text": "Excel files\nIf the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the {readxl} package to read in the data:\n# Load first sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.csv\")\n\n# Load third sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.csv\", sheet = 3)\nUsing the function read_excel() automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use read_xlsx() or read_xls().\nIf we then want to write data back to Excel, we can use the {writexl} package:\nwrite_xlsx(iris, \"~/data/iris.xlsx\")"
+  },
+  {
+    "objectID": "data.html#spss-sas-and-stata-data",
+    "href": "data.html#spss-sas-and-stata-data",
+    "title": "Data",
+    "section": "SPSS, SAS, and Stata data",
+    "text": "SPSS, SAS, and Stata data"
+  },
+  {
+    "objectID": "data.html#rdata-and-.rda",
+    "href": "data.html#rdata-and-.rda",
+    "title": "Data",
+    "section": ".Rdata and .Rda",
+    "text": ".Rdata and .Rda"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for epidemiologic data analysis (which has many overlaps with data science), such as how to perform regression analyses and plot results.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\n\nExercises\n0: Open the answer\n\n\nAnswer\n# Well done!\n\n\nNext: R"
+  },
+  {
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "Packages",
+    "section": "",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves."
+  },
+  {
+    "objectID": "packages.html#packages",
+    "href": "packages.html#packages",
+    "title": "Packages",
+    "section": "",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves."
+  },
+  {
+    "objectID": "packages.html#pre-installed-packages",
+    "href": "packages.html#pre-installed-packages",
+    "title": "Packages",
+    "section": "Pre-installed packages",
+    "text": "Pre-installed packages\nSome packages come pre-installed with R. For example, sum() comes from the base package, while sd() comes from the stats package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in Figure 1. Mind you that in Figure 1, there might be different packages than in your window, depending on what packages are already or not yet installed.\nIn Figure 1, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.\n\n\n\nFigure 1: Installed packages\n\n\nIf we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:\n?stats\nWe could also open an extensive overview of a package’s details using library():\nlibrary(help = \"stats\")\nThis overview shows us not only detailed information on the package, but also the functions the package supplies.\n\n\n\n\n\n\nWhen we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called {base}."
+  },
+  {
+    "objectID": "packages.html#installing-packages",
+    "href": "packages.html#installing-packages",
+    "title": "Packages",
+    "section": "Installing packages",
+    "text": "Installing packages\nAlthough the pre-installed packages give us a lot of functionality, we might still want more. Yes, with {stats} we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the {survival} package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: ‘choose a website identical to the original download website, but with a different server’. This way, you can pick a server in your own country increasing download speeds.\ninstall.packages(\"survival\")\n\n\nWhen packages are installed, they will always give the message MD5 sums checked. MD5 is an algorithm that can help identify unintentional data/file corruption (more).\nWhen we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.\n\nR tools\nSometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from CRAN.\n\n\nPackage versions\nPackages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases:\n\nThe package is built for your current version of R: there will be no problem.\nThe package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.\nThe package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or, less ideally, switch back to an older version of R.\n\n\n\nInstalling from GitHub\nSometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install {devtools}:\ninstall.packages(\"devtools\")\nFrom {devtools}, we can use the install_github() function to install a package. For instance, if we wanted to install {KMunicate} from GitHub, we could run:\ninstall_github(\"ellessenne/KMunicate-package\")\nwhere ellessenne is the GitHub user’s username and KMunicate-package the repository of the package."
+  },
+  {
+    "objectID": "packages.html#loading-packages",
+    "href": "packages.html#loading-packages",
+    "title": "Packages",
+    "section": "Loading packages",
+    "text": "Loading packages\nThe good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using library(). If we wanted to load {survival} after installing it previously, we can do:\nlibrary(\"survival\")\nWe could also load multiple packages at once with library():\nlibrary(\"survival\", \"stats\")\nThe help function for library() shows that there is also a function called require(). In general, this works similar to library() but is used more often within functions. Whereas library() will return an error if the package is not installed, require() will only give a warning.\n\nMasking\nSometimes, we may get the warning that certain functions become masked:\n\n# Here we set the mirror for downloading, but this is only needed for the tutorial to render: in your own R, you do not need to do this.\noptions(repos = c(CRAN = \"https://mirror.lyrahosting.com/CRAN/\"))\n\n# Install dplyr\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"dplyr\", quiet = TRUE)\n\npackage 'dplyr' successfully unpacked and MD5 sums checked\n\n\nWarning: cannot remove prior installation of package 'dplyr'\n\n\nWarning in file.copy(savedcopy, lib, recursive = TRUE): problem copying\nC:\\Users\\rjjan\\AppData\\Local\\R\\win-library\\4.3\\00LOCK\\dplyr\\libs\\x64\\dplyr.dll\nto C:\\Users\\rjjan\\AppData\\Local\\R\\win-library\\4.3\\dplyr\\libs\\x64\\dplyr.dll:\nPermission denied\n\n\nWarning: restored 'dplyr'\n\n\n\n# Load dplyr\nlibrary(\"dplyr\")\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nLoading the package {dplyr} caused, among others, the function filter() from {stats} to be masked. This means that if we call filter(), we will call the function from {dplyr}, not from {stats}, which might have a different functionality. If we still want to use filter() from {stats}, we can prespecify the package with a double colon :::\nstats::filter()\n\n\n\n\n\n\nIn general, we can call functions from installed packages without loading the package, by using ::. Without loading {survival}, we can still call survival::coxph(), so long as {survival} is installed.\n\n\n\n\n\nPacman\nIt can be a hassle to first install packages and then load them with library. By using the package {pacman}, we can simplify this process. We only need to install it once on our device and after that we load any package with:\npacman::p_load(\"survival\", \"dplyr\", \"curl\")\n{pacman} will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function p_load() immediately from {pacman} with ::, we do not need to load {pacman} first.\nNote that {pacman} does not tell you whether a function becomes masked.\n\n\nAnnotating package loading\nAlthough we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:\n# Load packages\npacman::p_load(\"dplyr\",         # Data manipulation\n               \"tidyr\",         # Pivoting data\n               \"magrittr\",      # Efficient pipe structures\n               \"stringr\",       # Better regexing\n               \"mice\",          # Multiple imputation\n               \"summarytools\",  # Summarizing data frames\n               \"haven\"          # Load SPSS data\n)"
+  },
+  {
+    "objectID": "packages.html#updating-and-unistalling-packages",
+    "href": "packages.html#updating-and-unistalling-packages",
+    "title": "Packages",
+    "section": "Updating and unistalling packages",
+    "text": "Updating and unistalling packages\n\nUpdating\nSometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio. Alternatively, we can just rerun the package installation using install.packages() to update it. Note that we cannot use {pacman} here, as {pacman} will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use update.packages(), although this might not update packages to a version suitable for new major R versions.\n\n\nUninstalling\nIf we want to get rid of a package, maybe to clean up some space on our device, we can remove it using remove.packages().\n\n\n\n\n\n\nSometimes we want to update a package, but that package needs an updated version of a package such as {rlang}. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that {rlang} can be updated too. However, if we agree, the R session will restart and immediately load {rlang} again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of {rlang} (or similar cases), first we need to use remove.packages() to uninstall {rlang}, then reinstall {rlang}, and then update the package we wanted to update originally."
+  },
+  {
+    "objectID": "packages.html#a-warning",
+    "href": "packages.html#a-warning",
+    "title": "Packages",
+    "section": "A warning",
+    "text": "A warning\nAlthough packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.\n\nDependencies\nAlmost all R packages are built using another R package. This is why installing {dplyr} actually installs a lot of other packages, which are all required to allow {dplyr} to function. These are called dependencies. Because packages are dependent on other packages, deprecation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as {dplyr}, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is deprecated). Dependencies can become dangerous quickly, as talked about shortly here and here.\n\n\nDeprecate: to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. Link.\n\n\nTrust\nAnyone can write packages for R, including you and me. On the one hand, this means that everyone can contribute their code to the ease of all other R users. However, this also means that individuals with malicious intent can create R packages. Therefore, you should always be careful when installing R packages. Although CRAN is an archive with many trusted packages, it is not a protection against malicious packages or a guarantee of safety. More on this can be read here."
+  },
+  {
+    "objectID": "packages.html#exercises",
+    "href": "packages.html#exercises",
+    "title": "Packages",
+    "section": "Exercises",
+    "text": "Exercises\n\n1. Installing a new package\nInstall the package {tidyverse}.\n\n\nAnswer\n# Answer 1: using {pacman}\npacman::p_load(\"tidyverse\")\n\n# Answer 2: using install.packages()\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"tidyverse\", quiet = TRUE)\n\n\nWarning: package 'tidyverse' is in use and will not be installed\n\n\n\n\n2. Loading a new package\nNow load the package {tidyverse}\n\n\nAnswer\n# Answer 1: using {pacman}, the package is already loaded after installing\n\n# Answer 2: using library() after install.packages()\nlibrary(\"tidyverse\")"
+  },
+  {
+    "objectID": "packages.html#next-topic",
+    "href": "packages.html#next-topic",
+    "title": "Packages",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we know the basics of R packages, let’s start looking at how we can harness their power to load our own data.\nNext: Data"
   },
   {
     "objectID": "r.html",

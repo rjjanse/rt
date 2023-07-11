@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Roemer J. Janse">
 
-<title>Introduction</title>
+<title>Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -107,7 +106,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./creating.html">Getting started with R</a></li><li class="breadcrumb-item"><a href="./data.html">Data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -138,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -196,7 +195,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link">
+  <a href="./data.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Data</span></a>
   </div>
 </li>
@@ -307,7 +306,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link active" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#why-we-need-to-load-data" id="toc-why-we-need-to-load-data" class="nav-link active" data-scroll-target="#why-we-need-to-load-data">Why we need to load data</a></li>
+  <li><a href="#the-basics" id="toc-the-basics" class="nav-link" data-scroll-target="#the-basics">The basics</a>
+  <ul>
+  <li><a href="#working-directionary" id="toc-working-directionary" class="nav-link" data-scroll-target="#working-directionary">Working directionary</a></li>
+  <li><a href="#file" id="toc-file" class="nav-link" data-scroll-target="#file">File</a></li>
+  <li><a href="#tilde-expansion" id="toc-tilde-expansion" class="nav-link" data-scroll-target="#tilde-expansion">Tilde expansion</a></li>
+  </ul></li>
+  <li><a href="#delimited-data-with-base-and-readr" id="toc-delimited-data-with-base-and-readr" class="nav-link" data-scroll-target="#delimited-data-with-base-and-readr">Delimited data with {base} and {readr}</a></li>
+  <li><a href="#excel-files" id="toc-excel-files" class="nav-link" data-scroll-target="#excel-files">Excel files</a></li>
+  <li><a href="#spss-sas-and-stata-data" id="toc-spss-sas-and-stata-data" class="nav-link" data-scroll-target="#spss-sas-and-stata-data">SPSS, SAS, and Stata data</a></li>
+  <li><a href="#rdata-and-.rda" id="toc-rdata-and-.rda" class="nav-link" data-scroll-target="#rdata-and-.rda">.Rdata and .Rda</a></li>
   </ul>
 </nav>
     </div>
@@ -316,19 +325,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction</h1>
+<h1 class="title">Data</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-          </div>
-  </div>
     
   
     
@@ -337,19 +340,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for epidemiologic data analysis (which has many overlaps with data science), such as how to perform regression analyses and plot results.</p>
-<p>Throughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.</p>
-<p>Additionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.</p>
-<section id="exercises" class="level4">
-<h4 class="anchored" data-anchor-id="exercises">Exercises</h4>
-<p>0: Open the answer</p>
-<div class="cell">
-<details>
-<summary>Answer</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Well done!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<p><strong>Next:</strong> <a href="./r.html">R</a></p>
+<section id="why-we-need-to-load-data" class="level2">
+<h2 class="anchored" data-anchor-id="why-we-need-to-load-data">Why we need to load data</h2>
+<p>We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.</p>
+</section>
+<section id="the-basics" class="level2">
+<h2 class="anchored" data-anchor-id="the-basics">The basics</h2>
+<section id="working-directionary" class="level3">
+<h3 class="anchored" data-anchor-id="working-directionary">Working directionary</h3>
+<p>When we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using <code>getwd()</code>. If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use <code>setwd()</code>, specifying the path to the directionary.</p>
+</section>
+<section id="file" class="level3">
+<h3 class="anchored" data-anchor-id="file">File</h3>
+<p>All methods of reading data require an argument <code>file</code>, which <code>?base::load()</code> defines as <em>a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done)</em>. This file is simply a path to the document we want to load in. For example: <code>C:/users/username/documents/rtutorial/data/definitely_real_data.csv</code>. Note that the <code>file</code> argument must always end in the file name (<em>definitely_real_data</em>) including extension (<em>.csv</em>).</p>
+</section>
+<section id="tilde-expansion" class="level3">
+<h3 class="anchored" data-anchor-id="tilde-expansion">Tilde expansion</h3>
+<p>Remembering where all your data is stored and writing it all out (<code>C:/users/username/...</code>) can cost quite some effort. Luckily, we have a concept called <em>tilde expansion</em>. When we set our working directionary with <code>setwd()</code>, we can stop specifying that part in the <code>file</code> argument and instead only specify a tilde (<em>~</em>). Instead of calling <code>C:/users/username/documents/rtutorial</code>, we can set our working directionary to the documents folder:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">setwd</span>(<span class="st">"C:/users/username/documents/rtutorial"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Subsequently, we can specify any <code>file</code> argument as <code>~/data/definitely_real_data.csv</code>.</p>
+</section>
+</section>
+<section id="delimited-data-with-base-and-readr" class="level2">
+<h2 class="anchored" data-anchor-id="delimited-data-with-base-and-readr">Delimited data with {base} and {readr}</h2>
+<p>Data is often shared in a .csv format, which stands for Comma Separated Values. If we were to open this file in a normal text editor, we would see that each column of a row is separated by a comma between the values. This is a form of delimited data, where there is a certain character (comma, semicolon, tab) that allows the computer to discern between columns. To read such data, we can use different functions from <code>{base}</code>:</p>
+<ul>
+<li><p><code>read.csv()</code> allows the reading in of data separated with commas where decimal markers are dots</p></li>
+<li><p><code>read.csv2()</code> allows the reading in of data separated with semicolons where decimal markers are commas</p></li>
+<li><p><code>read.delim()</code> allows the reading in of data separated with tabs where decimal markers are dots</p></li>
+<li><p><code>read.delim2()</code> allows the reading in of data separated with tabs where decimal markers are commas</p></li>
+</ul>
+<p>These functions only differ in the defaults: if you specify arguments such as sep and dec, they can perform the same actions. When using these functions, the data will be read into R, and we can immediately load it into an object which will create a data frame:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Load data</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"~/data/definitely_real_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A great alternative to the <code>{base}</code> functions are the functions from <code>{readr}</code>, which are in general faster and treat the data better. The functions have similar names and functionality:</p>
+<ul>
+<li><p><code>read_csv()</code> allows the reading in of data separated with commas where decimal markers are dots</p></li>
+<li><p><code>read_csv2()</code> allows the reading in of data separated with semicolons where decimal markers are commas</p></li>
+<li><p><code>read_tsv()</code> allows the reading in of data separated with tabs</p></li>
+</ul>
+<p>If you want to write these data back into a delimited file, we can use the <code>write</code> functions with similar names, besides replacing read with write:</p>
+<ul>
+<li><p><code>write.csv()</code> allows the writing of data separated with commas where decimal markers are dots</p></li>
+<li><p><code>write_csv()</code> allows the writing of data separated with commas where decimal markers are dots (but faster than <code>write.csv()</code>)</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p>In the writing functions, we first specify the object we want to write to our device and then the path:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">write_csv</span>(iris, <span class="st">"~/data/iris.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="excel-files" class="level2">
+<h2 class="anchored" data-anchor-id="excel-files">Excel files</h2>
+<p>If the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the <code>{readxl}</code> package to read in the data:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Load first sheet of Excel file</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.csv"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Load third sheet of Excel file</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.csv"</span>, <span class="at">sheet =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Using the function <code>read_excel()</code> automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use <code>read_xlsx()</code> or <code>read_xls()</code>.</p>
+<p>If we then want to write data back to Excel, we can use the <code>{writexl}</code> package:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">write_xlsx</span>(iris, <span class="st">"~/data/iris.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="spss-sas-and-stata-data" class="level2">
+<h2 class="anchored" data-anchor-id="spss-sas-and-stata-data">SPSS, SAS, and Stata data</h2>
+</section>
+<section id="rdata-and-.rda" class="level2">
+<h2 class="anchored" data-anchor-id="rdata-and-.rda">.Rdata and .Rda</h2>
 
 
 </section>

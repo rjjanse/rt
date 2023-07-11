@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.306">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -89,8 +89,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -110,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./creating.html">Getting started with R</a></li><li class="breadcrumb-item"><a href="./accessing.html">Accessing and manipulating data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -195,22 +194,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">data.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Data</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
- <span class="menu-text">tidyverse.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyverse</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Doing and reporting</span></a>
+ <span class="menu-text">Going further with R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">functions.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">looping.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Doing and reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">regression.qmd</span>
   </li>
@@ -225,23 +247,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item">
  <span class="menu-text">rmarkdown.qmd</span>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Going further with R</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
- <span class="menu-text">functions.qmd</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">looping.qmd</span>
   </li>
       </ul>
   </li>
@@ -543,7 +548,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-view" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="images/view.png" style="height:60.0%" alt="Viewing data" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Viewing data</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Viewing data</figcaption><p></p>
 </figure>
 </div>
 <p>We can now scroll through the data and see all columns. If you wonder how many rows and columns you have, you can see this at the bottom of the window. The viewer will only show 50 columns at a time, but you can click through the columns if you have more than 50. If you want to see only entries that meet a certain condition, you can press the filter button at the top of the viewer to filter certain values. Lastly, you can sort a column as ascending or descending by clicking on the little arrows to the right of the column name. Note that any operation you perform on the data in the viewer (sorting, filtering), does not affect the actual data, only the data you see. In other words, you only manipulate what you see in the data, not the data itself.</p>
@@ -943,7 +948,7 @@ Meow?
 <p>Besides the dataset <code>iris</code>, another available dataset in R is <code>mtcars</code>. Load this data into a new data frame called <code>data</code> using <code>assign()</code>.</p>
 <div class="cell">
 <details>
-<summary>Code</summary>
+<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a><span class="fu">assign</span>(<span class="st">"data"</span>, mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -953,7 +958,7 @@ Meow?
 <p>Now subset the column <code>disp</code> and store this in a variable called <code>var</code>.</p>
 <div class="cell">
 <details>
-<summary>Code</summary>
+<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1"></a><span class="co"># Use dollar operator (generally unrecommended)</span></span>
 <span id="cb78-2"><a href="#cb78-2"></a>var <span class="ot">&lt;-</span> data<span class="sc">$</span>disp</span>
 <span id="cb78-3"><a href="#cb78-3"></a></span>
@@ -970,7 +975,7 @@ Meow?
 <p>From the variable <code>var</code>, keep only values greater than 110.5 and store this in a variable called <code>var_new</code>.</p>
 <div class="cell">
 <details>
-<summary>Code</summary>
+<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="co"># With which()</span></span>
 <span id="cb79-2"><a href="#cb79-2"></a>var_new <span class="ot">&lt;-</span> var[<span class="fu">which</span>(var <span class="sc">&gt;</span> <span class="fl">110.5</span>)]</span>
 <span id="cb79-3"><a href="#cb79-3"></a></span>
@@ -984,7 +989,7 @@ Meow?
 <p>Now divided all values in <code>var_new</code> by 10 and store this in a variable called <code>var_div</code>.</p>
 <div class="cell">
 <details>
-<summary>Code</summary>
+<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1"></a>var_div <span class="ot">&lt;-</span> var_new <span class="sc">/</span> <span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -994,7 +999,7 @@ Meow?
 <p>Now change the values in the variable <code>var_div</code> to character values and store these in a variable called <code>var_char</code>.</p>
 <div class="cell">
 <details>
-<summary>Code</summary>
+<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a>var_char <span class="ot">&lt;-</span> <span class="fu">as.character</span>(var_div)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
@@ -1004,7 +1009,7 @@ Meow?
 <p>Make sure the first value in the variable <code>var_char</code> is not of the type numeric (called <code>"numeric"</code>).</p>
 <div class="cell">
 <details>
-<summary>Code</summary>
+<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1"></a><span class="fu">class</span>(var_char[<span class="dv">1</span>]) <span class="sc">!=</span> <span class="st">"numeric"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
