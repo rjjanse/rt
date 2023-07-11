@@ -192,6 +192,6 @@ library("tidyverse")
 ```
 
 ## Next topic
-Now that we know the basics of R packages, let's start looking at how we can harness their power to load in our own data.
+Now that we know the basics of R packages, let's start looking at how we can harness their power to load our own data.
 
 **Next:** [Data](data.qmd)
