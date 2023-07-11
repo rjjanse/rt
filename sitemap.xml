@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rjjanse.github.io/rt/accessing.html</loc>
-    <lastmod>2023-07-11T20:56:31.174Z</lastmod>
-  </url>
-  <url>
     <loc>https://rjjanse.github.io/rt/creating.html</loc>
-    <lastmod>2023-07-11T20:56:33.282Z</lastmod>
+    <lastmod>2023-07-11T21:04:23.585Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/data.html</loc>
-    <lastmod>2023-07-11T20:56:34.411Z</lastmod>
+    <lastmod>2023-07-11T21:04:24.783Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/index.html</loc>
-    <lastmod>2023-07-11T20:56:35.076Z</lastmod>
+    <lastmod>2023-07-11T21:04:25.420Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/packages.html</loc>
-    <lastmod>2023-07-11T20:56:36.477Z</lastmod>
+    <lastmod>2023-07-11T21:04:26.469Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/r.html</loc>
-    <lastmod>2023-07-11T20:56:37.154Z</lastmod>
+    <lastmod>2023-07-11T21:04:26.941Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/rstudio.html</loc>
-    <lastmod>2023-07-11T20:56:37.782Z</lastmod>
+    <lastmod>2023-07-11T21:04:27.768Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/tibbles.html</loc>
-    <lastmod>2023-07-11T20:56:38.252Z</lastmod>
+    <lastmod>2023-07-11T21:04:28.233Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/tidyverse.html</loc>
-    <lastmod>2023-07-11T20:56:39.008Z</lastmod>
+    <lastmod>2023-07-11T21:04:29.153Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/using.html</loc>
+    <lastmod>2023-07-11T21:04:41.980Z</lastmod>
   </url>
 </urlset>
