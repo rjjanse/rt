@@ -81,7 +81,7 @@ write_xlsx(iris, "~/data/iris.xlsx")
 ```
 
 ## SPSS, SAS, and Stata data
-If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (x) or Stata (x), we can use `{haven}` to read these data:
+If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (.sas7bdat) or Stata (.dta, .xpt), we can use `{haven}` to read these data:
 
 - `read_spss()` can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (`read_sav()` or `read_por()`).
 
