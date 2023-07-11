@@ -316,7 +316,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#delimited-data-with-base-and-readr" id="toc-delimited-data-with-base-and-readr" class="nav-link" data-scroll-target="#delimited-data-with-base-and-readr">Delimited data with {base} and {readr}</a></li>
   <li><a href="#excel-files" id="toc-excel-files" class="nav-link" data-scroll-target="#excel-files">Excel files</a></li>
   <li><a href="#spss-sas-and-stata-data" id="toc-spss-sas-and-stata-data" class="nav-link" data-scroll-target="#spss-sas-and-stata-data">SPSS, SAS, and Stata data</a></li>
+  <li><a href="#making-your-life-easier" id="toc-making-your-life-easier" class="nav-link" data-scroll-target="#making-your-life-easier">Making your life easier</a></li>
   <li><a href="#rdata-and-.rda" id="toc-rdata-and-.rda" class="nav-link" data-scroll-target="#rdata-and-.rda">.Rdata and .Rda</a></li>
+  <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql">SQL</a></li>
   </ul>
 </nav>
     </div>
@@ -352,7 +354,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="file" class="level3">
 <h3 class="anchored" data-anchor-id="file">File</h3>
-<p>All methods of reading data require an argument <code>file</code>, which <code>?base::load()</code> defines as <em>a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done)</em>. This file is simply a path to the document we want to load in. For example: <code>C:/users/username/documents/rtutorial/data/definitely_real_data.csv</code>. Note that the <code>file</code> argument must always end in the file name (<em>definitely_real_data</em>) including extension (<em>.csv</em>).</p>
+<p>All methods of reading data require an argument <code>file</code> (sometimes called <code>path</code> or <code>data_file</code>), which <code>?base::load()</code> defines as <em>a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done)</em>. This file is simply a path to the document we want to load in. For example: <code>C:/users/username/documents/rtutorial/data/definitely_real_data.csv</code>. Note that the <code>file</code> argument must always end in the file name (<em>definitely_real_data</em>) including extension (<em>.csv</em>).</p>
 </section>
 <section id="tilde-expansion" class="level3">
 <h3 class="anchored" data-anchor-id="tilde-expansion">Tilde expansion</h3>
@@ -392,19 +394,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="excel-files">Excel files</h2>
 <p>If the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the <code>{readxl}</code> package to read in the data:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Load first sheet of Excel file</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.xlsx"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Load third sheet of Excel file</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.csv"</span>, <span class="at">sheet =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Using the function <code>read_excel()</code> automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use <code>read_xlsx()</code> or <code>read_xls()</code>.</p>
 <p>If we then want to write data back to Excel, we can use the <code>{writexl}</code> package:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">write_xlsx</span>(iris, <span class="st">"~/data/iris.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="spss-sas-and-stata-data" class="level2">
 <h2 class="anchored" data-anchor-id="spss-sas-and-stata-data">SPSS, SAS, and Stata data</h2>
+<p>If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (x) or Stata (x), we can use <code>{haven}</code> to read these data:</p>
+<ul>
+<li><p><code>read_spss()</code> can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (<code>read_sav()</code> or <code>read_por()</code>).</p></li>
+<li><p><code>write_sav()</code> creates an SPSS .sav file (or .zsav if <code>compress = TRUE</code>).</p></li>
+<li><p><code>read_sas()</code> reads in SAS .sas7bdat files.</p></li>
+<li><p><code>read_xpt()</code>reads in SAS transport .xpt files.</p></li>
+<li><p><code>write_sas()</code> is a deprecated function and does not perform reliabily. An alternative is the <code>write_xpt()</code> function to write an R object to a SAS transport (.xpt) file.</p></li>
+<li><p><code>read_dta()</code> allows reading of Stata .dta files.</p></li>
+<li><p><code>write_dta()</code> writes an R object to a Stata .dta file.</p></li>
+</ul>
+</section>
+<section id="making-your-life-easier" class="level2">
+<h2 class="anchored" data-anchor-id="making-your-life-easier">Making your life easier</h2>
+<p>Of course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (<a href="#fig-import">Figure&nbsp;1</a>):</p>
+<div id="fig-import" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/import.png" class="img-fluid figure-img" alt="import"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Import data</figcaption><p></p>
+</figure>
+</div>
+<p>From there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (<a href="#fig-viewer">Figure&nbsp;2</a>). In the upper right corner of the viewer, we can select our data with ‘Browse’, which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press ‘Import’ and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.</p>
+<div id="fig-viewer" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="images/viewer.png" class="img-fluid figure-img" alt="data-viewer"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Preview of import</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="rdata-and-.rda" class="level2">
 <h2 class="anchored" data-anchor-id="rdata-and-.rda">.Rdata and .Rda</h2>
+</section>
+<section id="sql" class="level2">
+<h2 class="anchored" data-anchor-id="sql">SQL</h2>
 
 
 </section>

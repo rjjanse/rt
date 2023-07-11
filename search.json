@@ -158,7 +158,7 @@
     "href": "data.html#the-basics",
     "title": "Data",
     "section": "The basics",
-    "text": "The basics\n\nWorking directionary\nWhen we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using getwd(). If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use setwd(), specifying the path to the directionary.\n\n\nFile\nAll methods of reading data require an argument file, which ?base::load() defines as a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done). This file is simply a path to the document we want to load in. For example: C:/users/username/documents/rtutorial/data/definitely_real_data.csv. Note that the file argument must always end in the file name (definitely_real_data) including extension (.csv).\n\n\nTilde expansion\nRemembering where all your data is stored and writing it all out (C:/users/username/...) can cost quite some effort. Luckily, we have a concept called tilde expansion. When we set our working directionary with setwd(), we can stop specifying that part in the file argument and instead only specify a tilde (~). Instead of calling C:/users/username/documents/rtutorial, we can set our working directionary to the documents folder:\nsetwd(\"C:/users/username/documents/rtutorial\")\nSubsequently, we can specify any file argument as ~/data/definitely_real_data.csv."
+    "text": "The basics\n\nWorking directionary\nWhen we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using getwd(). If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use setwd(), specifying the path to the directionary.\n\n\nFile\nAll methods of reading data require an argument file (sometimes called path or data_file), which ?base::load() defines as a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done). This file is simply a path to the document we want to load in. For example: C:/users/username/documents/rtutorial/data/definitely_real_data.csv. Note that the file argument must always end in the file name (definitely_real_data) including extension (.csv).\n\n\nTilde expansion\nRemembering where all your data is stored and writing it all out (C:/users/username/...) can cost quite some effort. Luckily, we have a concept called tilde expansion. When we set our working directionary with setwd(), we can stop specifying that part in the file argument and instead only specify a tilde (~). Instead of calling C:/users/username/documents/rtutorial, we can set our working directionary to the documents folder:\nsetwd(\"C:/users/username/documents/rtutorial\")\nSubsequently, we can specify any file argument as ~/data/definitely_real_data.csv."
   },
   {
     "objectID": "data.html#delimited-data-with-base-and-readr",
@@ -172,14 +172,21 @@
     "href": "data.html#excel-files",
     "title": "Data",
     "section": "Excel files",
-    "text": "Excel files\nIf the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the {readxl} package to read in the data:\n# Load first sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.csv\")\n\n# Load third sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.csv\", sheet = 3)\nUsing the function read_excel() automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use read_xlsx() or read_xls().\nIf we then want to write data back to Excel, we can use the {writexl} package:\nwrite_xlsx(iris, \"~/data/iris.xlsx\")"
+    "text": "Excel files\nIf the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the {readxl} package to read in the data:\n# Load first sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\")\n\n# Load third sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = 3)\nUsing the function read_excel() automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use read_xlsx() or read_xls().\nIf we then want to write data back to Excel, we can use the {writexl} package:\nwrite_xlsx(iris, \"~/data/iris.xlsx\")"
   },
   {
     "objectID": "data.html#spss-sas-and-stata-data",
     "href": "data.html#spss-sas-and-stata-data",
     "title": "Data",
     "section": "SPSS, SAS, and Stata data",
-    "text": "SPSS, SAS, and Stata data"
+    "text": "SPSS, SAS, and Stata data\nIf the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (x) or Stata (x), we can use {haven} to read these data:\n\nread_spss() can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (read_sav() or read_por()).\nwrite_sav() creates an SPSS .sav file (or .zsav if compress = TRUE).\nread_sas() reads in SAS .sas7bdat files.\nread_xpt()reads in SAS transport .xpt files.\nwrite_sas() is a deprecated function and does not perform reliabily. An alternative is the write_xpt() function to write an R object to a SAS transport (.xpt) file.\nread_dta() allows reading of Stata .dta files.\nwrite_dta() writes an R object to a Stata .dta file."
+  },
+  {
+    "objectID": "data.html#making-your-life-easier",
+    "href": "data.html#making-your-life-easier",
+    "title": "Data",
+    "section": "Making your life easier",
+    "text": "Making your life easier\nOf course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (Figure 1):\n\n\n\nFigure 1: Import data\n\n\nFrom there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (Figure 2). In the upper right corner of the viewer, we can select our data with ‘Browse’, which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press ‘Import’ and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.\n\n\n\nFigure 2: Preview of import"
   },
   {
     "objectID": "data.html#rdata-and-.rda",
@@ -187,6 +194,13 @@
     "title": "Data",
     "section": ".Rdata and .Rda",
     "text": ".Rdata and .Rda"
+  },
+  {
+    "objectID": "data.html#sql",
+    "href": "data.html#sql",
+    "title": "Data",
+    "section": "SQL",
+    "text": "SQL"
   },
   {
     "objectID": "index.html",
