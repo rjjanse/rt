@@ -316,9 +316,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#delimited-data-with-base-and-readr" id="toc-delimited-data-with-base-and-readr" class="nav-link" data-scroll-target="#delimited-data-with-base-and-readr">Delimited data with {base} and {readr}</a></li>
   <li><a href="#excel-files" id="toc-excel-files" class="nav-link" data-scroll-target="#excel-files">Excel files</a></li>
   <li><a href="#spss-sas-and-stata-data" id="toc-spss-sas-and-stata-data" class="nav-link" data-scroll-target="#spss-sas-and-stata-data">SPSS, SAS, and Stata data</a></li>
-  <li><a href="#making-your-life-easier" id="toc-making-your-life-easier" class="nav-link" data-scroll-target="#making-your-life-easier">Making your life easier</a></li>
+  <li><a href="#foreign" id="toc-foreign" class="nav-link" data-scroll-target="#foreign">Foreign</a></li>
+  <li><a href="#making-your-life-easier" id="toc-making-your-life-easier" class="nav-link" data-scroll-target="#making-your-life-easier">Making your life easier</a>
+  <ul>
+  <li><a href="#point-and-click-import" id="toc-point-and-click-import" class="nav-link" data-scroll-target="#point-and-click-import">Point-and-click import</a></li>
+  <li><a href="#rio" id="toc-rio" class="nav-link" data-scroll-target="#rio">Rio</a></li>
+  </ul></li>
   <li><a href="#rdata-and-.rda" id="toc-rdata-and-.rda" class="nav-link" data-scroll-target="#rdata-and-.rda">.Rdata and .Rda</a></li>
+  <li><a href="#projectiles-and-carpeting" id="toc-projectiles-and-carpeting" class="nav-link" data-scroll-target="#projectiles-and-carpeting">Projectiles and carpeting</a>
+  <ul>
+  <li><a href="#arrow-formerly-known-as-feather" id="toc-arrow-formerly-known-as-feather" class="nav-link" data-scroll-target="#arrow-formerly-known-as-feather">Arrow (formerly known as Feather)</a></li>
+  <li><a href="#parquet" id="toc-parquet" class="nav-link" data-scroll-target="#parquet">Parquet</a></li>
+  </ul></li>
   <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql">SQL</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#downloading-data" id="toc-downloading-data" class="nav-link" data-scroll-target="#downloading-data">0. Downloading data</a></li>
+  <li><a href="#loading-new-data" id="toc-loading-new-data" class="nav-link" data-scroll-target="#loading-new-data">1. Loading new data</a></li>
+  <li><a href="#storing-data" id="toc-storing-data" class="nav-link" data-scroll-target="#storing-data">2. Storing data</a></li>
+  </ul></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
     </div>
@@ -404,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="spss-sas-and-stata-data" class="level2">
 <h2 class="anchored" data-anchor-id="spss-sas-and-stata-data">SPSS, SAS, and Stata data</h2>
-<p>If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (x) or Stata (x), we can use <code>{haven}</code> to read these data:</p>
+<p>If the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (.sas7bdat) or Stata (.dta, .xpt), we can use <code>{haven}</code> to read these data:</p>
 <ul>
 <li><p><code>read_spss()</code> can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (<code>read_sav()</code> or <code>read_por()</code>).</p></li>
 <li><p><code>write_sav()</code> creates an SPSS .sav file (or .zsav if <code>compress = TRUE</code>).</p></li>
@@ -415,12 +432,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>write_dta()</code> writes an R object to a Stata .dta file.</p></li>
 </ul>
 </section>
+<section id="foreign" class="level2">
+<h2 class="anchored" data-anchor-id="foreign">Foreign</h2>
+<p>If we have data that cannot be loaded in with any of the above functions, we can always have a look whether <code>{foreign}</code> has any functions that can read in the data. <code>{foreign}</code> offers functions for the reading of files such as .ssd, .dbf, .arff, .epiinfo, and more.</p>
+</section>
 <section id="making-your-life-easier" class="level2">
 <h2 class="anchored" data-anchor-id="making-your-life-easier">Making your life easier</h2>
+<section id="point-and-click-import" class="level3">
+<h3 class="anchored" data-anchor-id="point-and-click-import">Point-and-click import</h3>
 <p>Of course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (<a href="#fig-import">Figure&nbsp;1</a>):</p>
 <div id="fig-import" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/import.png" class="img-fluid figure-img" alt="import"></p>
+<p><img src="images/import.png" style="height:70.0%" alt="import" class="figure-img"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Import data</figcaption><p></p>
 </figure>
 </div>
@@ -432,11 +455,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </section>
+<section id="rio" class="level3">
+<h3 class="anchored" data-anchor-id="rio">Rio</h3>
+<p>If we do not want to think about what function to use at all, we can use the R Input/Output package <code>{rio}</code>, which provides the functions <code>import()</code> and <code>export()</code>. These functions automatically recognize the format of the file and choose the correct method of reading in the data. Additionally, <code>{rio}</code> allows us to read and write directly from and to .zip files.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Import data</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">import</span>(<span class="st">"iris.xlsx"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># Export data</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="fu">export</span>(iris, <span class="st">"iris.tsv.zip"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
 <section id="rdata-and-.rda" class="level2">
 <h2 class="anchored" data-anchor-id="rdata-and-.rda">.Rdata and .Rda</h2>
+<p>While working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:</p>
+<ul>
+<li><p><code>load()</code> loads the specified file into R.</p></li>
+<li><p><code>save()</code> saves an objects onto the device.</p></li>
+</ul>
+<p>When we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Save iris to current working directionary</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">save</span>(iris, <span class="at">file =</span> <span class="st">"~/iris.Rdata"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Load iris</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">load</span>(<span class="st">"iris.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="projectiles-and-carpeting" class="level2">
+<h2 class="anchored" data-anchor-id="projectiles-and-carpeting">Projectiles and carpeting</h2>
+<section id="arrow-formerly-known-as-feather" class="level3">
+<h3 class="anchored" data-anchor-id="arrow-formerly-known-as-feather">Arrow (formerly known as Feather)</h3>
+</section>
+<section id="parquet" class="level3">
+<h3 class="anchored" data-anchor-id="parquet">Parquet</h3>
+</section>
 </section>
 <section id="sql" class="level2">
 <h2 class="anchored" data-anchor-id="sql">SQL</h2>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="downloading-data" class="level3">
+<h3 class="anchored" data-anchor-id="downloading-data">0. Downloading data</h3>
+<p>For these exercises, we will work with some freely available data that you can download <a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1145026/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv">here</a>. If the link does not work, you can look for the file <em>State funded schools inspections and outcomes as at 31 December 2022</em> <a href="https://www.gov.uk/government/statistics/state-funded-schools-inspections-and-outcomes-as-at-31-december-2022">here</a>.</p>
+</section>
+<section id="loading-new-data" class="level3">
+<h3 class="anchored" data-anchor-id="loading-new-data">1. Loading new data</h3>
+<p>Load the data you just downloaded into a variable called <code>dat</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"rio"</span>, <span class="st">"readr"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Define file so that I only have to type it once for each example</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>file <span class="ot">&lt;-</span> <span class="st">"C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv"</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co"># Answer 1: using import</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(file)</span>
+<span id="cb8-9"><a href="#cb8-9"></a></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co"># Answer 2: using read_csv</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co"># suppressWarnings and show_col_types = FALSE for clean output</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>dat <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">read_csv</span>(file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb8-13"><a href="#cb8-13"></a></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co"># Answer 3: using read.csv</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="storing-data" class="level3">
+<h3 class="anchored" data-anchor-id="storing-data">2. Storing data</h3>
+<p>Now save the data to a file called <em>example_data.Rdata</em>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Answer 1: use save()</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">save</span>(dat, <span class="at">file =</span> <span class="st">"example_data.Rdata"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># Answer 2: use export()</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="fu">export</span>(dat, <span class="st">"example_data.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
+<p>Now that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!</p>
+<p><strong>Next:</strong> <a href="./tidyverse.html">Tidyverse</a></p>
 
 
 </section>
