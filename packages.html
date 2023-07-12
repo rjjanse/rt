@@ -424,7 +424,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In <a href="#fig-packages">Figure&nbsp;1</a>, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.</p>
 <div id="fig-packages" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="images/packages.png" style="height:70.0%" alt="Installed packages" class="figure-img"></p>
+<p><img src="images/packages.png" class="img-fluid figure-img" alt="Installed packages"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Installed packages</figcaption><p></p>
 </figure>
 </div>
@@ -563,7 +563,7 @@ Attaching package: 'dplyr'</code></pre>
 <h2 class="anchored" data-anchor-id="updating-and-unistalling-packages">Updating and unistalling packages</h2>
 <section id="updating" class="level3">
 <h3 class="anchored" data-anchor-id="updating">Updating</h3>
-<p>Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio. Alternatively, we can just rerun the package installation using <code>install.packages()</code> to update it. Note that we cannot use <code>{pacman}</code> here, as <code>{pacman}</code> will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use <code>update.packages()</code>, although this might not update packages to a version suitable for new major R versions.</p>
+<p>Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio (<a href="#fig-packages">Figure&nbsp;1</a>). Alternatively, we can just rerun the package installation using <code>install.packages()</code> to update it. Note that we cannot use <code>{pacman}</code> here, as <code>{pacman}</code> will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use <code>update.packages()</code>, although this might not update packages to a version suitable for new major R versions.</p>
 </section>
 <section id="uninstalling" class="level3">
 <h3 class="anchored" data-anchor-id="uninstalling">Uninstalling</h3>
