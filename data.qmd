@@ -70,6 +70,10 @@ dat <- read_excel("~/data/definitely_real_data.xlsx")
 
 # Load third sheet of Excel file
 dat <- read_excel("~/data/definitely_real_data.xlsx", sheet = 3)
+
+# Load Excel file's sheet by name
+dat <- read_excel("~/data/definitely_real_data.xlsx", sheet = "definitely_real_sheet")
+
 ```
 
 Using the function `read_excel()` automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use `read_xlsx()` or `read_xls()`.
@@ -104,7 +108,7 @@ If we have data that cannot be loaded in with any of the above functions, we can
 ### Point-and-click import
 Of course it's nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (@fig-import):
 
-![Import data](images/import.png){#fig-import fig-alt="import" fig-align="center" height=70%}
+![Import data](images/import.png){#fig-import fig-alt="import" fig-align="center"}
 
 From there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (@fig-viewer). In the upper right corner of the viewer, we can select our data with 'Browse', which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press 'Import' and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.
 
@@ -150,7 +154,7 @@ Although fast data is nice, sometimes we just want our data to take up less spac
 Sometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using `{RODBC}`, which allows general database access. You can connect to the database with `odbcConnect()` and then pass SQL queries into data using `sqlQuery()`:
 
 ```r
-dat <- sqlQuery(odbcConnect("database"), "select * from DATA.DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1")
+dat <- sqlQuery(odbcConnect("database"), "select * from DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1")
 ```
 
 ## Exercises

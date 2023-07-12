@@ -1,29 +1,35 @@
-Data:
-
-- haven: spss, sas & stata
-- RData & RDa: save & load
-sql
-
-
-
-
-
-
-
-
-
-
-
-
-Finding source code of a function
-Methods() of functions
-
-
-
-
-    - sampling
-    -
-
-
 dplyr:
-    -tibble
+- renaming and relocating
+- filtering and selecting
+- grouping and slicing
+- mutating and conditionals
+- dbplyr
+- dtplyr
+- animations
+
+tidyr:
+- fill
+- pivot
+- replace_na
+
+magrittr:
+- pipes
+- other pipes
+- native pipes
+- aliases
+
+regex:
+- stringr
+- glue
+
+random:
+- sampling
+
+functions:
+- getting methods & methods()
+- getting source code
+
+
+
+
+

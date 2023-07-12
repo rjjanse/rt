@@ -1,5 +1,5 @@
 ---
-title: "Creating and storing data"
+title: "Creating data"
 ---
 
 ## Annotation
@@ -478,5 +478,5 @@ rm(vec)
 ## Next topic
 Now that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data. 
 
-**Next:** [Accessing and manipulating data](accessing.qmd)
+**Next:** [Using data](using.qmd)
 

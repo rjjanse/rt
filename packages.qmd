@@ -12,7 +12,7 @@ Some packages come pre-installed with R. For example, `sum()` comes from the `ba
 
 In @fig-packages, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.
 
-![Installed packages](images/packages.png){#fig-packages fig-alt="Installed packages" fig-align="center" height=70%}
+![Installed packages](images/packages.png){#fig-packages fig-alt="Installed packages" fig-align="center"}
 
 If we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:
 ```r
@@ -144,7 +144,7 @@ pacman::p_load("dplyr",         # Data manipulation
 
 ## Updating and unistalling packages
 ### Updating
-Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio. Alternatively, we can just rerun the package installation using `install.packages()` to update it. Note that we cannot use `{pacman}` here, as `{pacman}` will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use `update.packages()`, although this might not update packages to a version suitable for new major R versions.
+Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio (@fig-packages). Alternatively, we can just rerun the package installation using `install.packages()` to update it. Note that we cannot use `{pacman}` here, as `{pacman}` will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use `update.packages()`, although this might not update packages to a version suitable for new major R versions.
 
 ### Uninstalling
 If we want to get rid of a package, maybe to clean up some space on our device, we can remove it using `remove.packages()`. 

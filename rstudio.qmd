@@ -69,4 +69,7 @@ When working in RStudio, I prefer the screen to not be too bright. Additionally,
 
 ![RStudio appearance settings](images/global-options_appearance.png){#fig-appearance fig-alt="appearance settings" fig-align="center" width=70%}
 
+## Next topic
+With both R and RStudio set-up, let's start using R.
+
 **Next:** [Creating and storing data](creating.qmd)

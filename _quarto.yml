@@ -6,37 +6,49 @@ website:
     style: "floating"
     search: true
     contents:
-        - section: "Home"
+        - section: "Start"
           contents:
             - index.qmd
         - section: "Set-up"
           contents:
             - r.qmd
             - rstudio.qmd
-        - section: "Getting started with R"
+        - section: "The basics"
           contents:
             - creating.qmd
-            - accessing.qmd
+            - using.qmd
             - packages.qmd
             - data.qmd
+        - section: "Into the tidyverse"
+          contents:
             - tidyverse.qmd
-        - section: "Going further with R"
+            - dplyr.qmd
+            - tidyr.qmd
+            - magrittr.qmd
+        - section: "Into the multiverse"
+          contents:
+            - datatable.qmd
+        - section: "New skills"
           contents: 
+            - random.qmd
             - functions.qmd
             - looping.qmd
-        - section: "Doing and reporting"
+            - regex.qmd
+        - section: "Workflow"
+          contents:
+            - scripts.qmd
+            - rmarkdown.qmd
+        - section: "General use"
           contents:
             - regression.qmd
-            - imputation.qmd
             - plotting.qmd
             - table1.qmd
-            - rmarkdown.qmd
-        - section: "Practical applications"
+        - section: "Specific use"
           contents:
+            - imputation.qmd
+            - confounding.qmd
             - prediction.qmd
             - competing_risks.qmd
-            - confounding.qmd
-            - agreement.qmd
         - section: "Recap"
           contents: 
             - summary.qmd

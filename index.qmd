@@ -3,10 +3,9 @@ title: "Introduction"
 author:
   - name: Roemer J. Janse
     orcid: 0000-0003-0059-872X
-    email: r.j.janse@lumc.nl
 ---
 
-Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio) and some useful applications in using R for epidemiologic data analysis (which has many overlaps with data science), such as how to perform regression analyses and plot results.
+Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio), but also take you further, showing you different alternatives to reach the same goal and learning some useful tricks to quickly become an efficient R user. The general focus is on using R for epidemiologic data analysis, such as how to perform regression analyses and plot results, although it also contains a comprehensive introduction to R.
 
 Throughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.
 

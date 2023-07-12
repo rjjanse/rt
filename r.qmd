@@ -20,4 +20,7 @@ After R is installed, you can open it and you will see the following screen:
 
 In @fig-r_gui, you can see the R console, which allows you write code to subsequently yield results. However, as you might have noticed, the interface is quite limited in the information it shows you. This is why it is a good idea to install an Integrated Development Environment (also called an IDE).
 
+## Next topic
+Now that we have R, let's install the RStudio IDE.
+
 **Next:** [Installing the RStudio IDE](rstudio.qmd)

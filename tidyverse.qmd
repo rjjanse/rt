@@ -2,4 +2,89 @@
 title: "Tidyverse"
 ---
 
-## 
+## What is the tidyverse
+R is a great language for statistical programming, but can sometimes be strenuous to work with smoothly. The [tidyverse](https://www.tidyverse.org/) is a collection of packages that aims to make it easier to perform these strenuous operations. This ranges from data manipulation and visualization to working specifically with dates. The tidyverse allows these operations to be done in an easy-to-read and easy-to-write style, with all packages integrating with one another fluently (I swear, this is not an advertisement).
+
+There are some packages that form the core of the tidyverse, that are all discussed in this tutorial:
+
+| Package   | Focususes on               | Discussed in               |
+|-----------|----------------------------|----------------------------|
+|`{tibble}` | Better data frames         | [Tidyverse](tidyverse.qmd) | 
+|`{dplyr}`  | Data manipulation          | [Dplyr](dplyr.qmd)         |
+|`{tidyr}`  | Data tidying               | [Tidyr](tidyr.qmd)         |
+|`{readr}`  | Reading in data            | [Data](data.qmd)           |
+|`{purr}`   | Programming with functions | [Functions](functions.qmd) |
+|`{stringr}`| Working with strings       | [Regex](regex.qmd)         |
+|`{ggplot2}`| Data visualization         | [Plotting](plotting.qmd)   |
+|`{forcats}`| Working with factors       | [Plotting](plotting.qmd)   |
+
+Besides these packages, the tidyverse also contains other packages that support these packages or add other functionality.
+
+## Installing tidyverse
+To install all packages of the tidyverse, we can simply run:
+
+```r
+# Install the tidyverse
+install.packages("tidyverse")
+```
+
+or of course:
+
+```{r}
+#| code-fold: false
+# Install tidyverse and load core tidyverse
+pacman::p_load("tidyverse")
+```
+
+```
+── Attaching core tidyverse packages ──── tidyverse 2.0.0 ──
+✔ dplyr     1.1.2     ✔ readr     2.1.4
+✔ forcats   1.0.0     ✔ stringr   1.5.0
+✔ ggplot2   3.4.2     ✔ tibble    3.2.1
+✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+✔ purrr     1.0.1     
+── Conflicts ────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package to force all conflicts to 
+become errors
+``` 
+
+However, note that loading `{tidyverse}` only loads the core packages as we see in the output. If we want to load packages from the tidyverse that are not part of the core set, we need to load those packages separately:
+
+```r
+# Load core tidyverse
+library(tidyverse)
+
+# ALso load the magrittr package
+library(magrittr)
+```
+
+## Shiver my ~~timbers~~ tibbles
+Although R normally works with data frames, the tidyverse works with tibbles. Tibbles are an enhanced type of data frame that try to do accomplish two things:
+
+- They try to do less
+
+- They complain more 
+
+As stated by the [documentation](https://tibble.tidyverse.org/), this is useful because it: "...forces you to confront problems earlier, typically leading to cleaner, more expressive code". 
+
+Tidyverse automatically creates tibbles, but you can also make tibbles yourself. Similar to `data.frame()` which we saw before, a tibble can be created with `tibble()`. Additionally, pre-existing data frames can be transformed to tibbles with `as_tibble()`. 
+
+Besides better functionality, tibbles also print cleaner. Compare printing the first 15 rows of the data frame `iris` to printing all rows of the tibble `iris`:
+
+```{r}
+#| code-fold: false
+# Print first 15 rows of data frame iris
+iris[1:15, ]
+
+# Print all rows of iris when changed to tibble
+as_tibble(iris)
+
+```
+
+## Next topic
+Next, we will take a good look at an important core package of the tidyverse: dplyr.
+
+**Next:** [Dplyr](dplyr.qmd)
+
