@@ -218,13 +218,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tibbles</span></a>
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dplyr</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
- <span class="menu-text">dplyr.qmd</span>
-  </li>
           <li class="sidebar-item">
  <span class="menu-text">tidyr.qmd</span>
   </li>
@@ -457,7 +454,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.xlsx"</span>)</span>
 <span id="cb4-3"><a href="#cb4-3"></a></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Load third sheet of Excel file</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">3</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># Load Excel file's sheet by name</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"~/data/definitely_real_data.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"definitely_real_sheet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Using the function <code>read_excel()</code> automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use <code>read_xlsx()</code> or <code>read_xls()</code>.</p>
 <p>If we then want to write data back to Excel, we can use the <code>{writexl}</code> package:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">write_xlsx</span>(iris, <span class="st">"~/data/iris.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

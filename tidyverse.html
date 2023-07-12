@@ -218,13 +218,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tibbles</span></a>
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dplyr</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
- <span class="menu-text">dplyr.qmd</span>
-  </li>
           <li class="sidebar-item">
  <span class="menu-text">tidyr.qmd</span>
   </li>
@@ -351,6 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#what-is-the-tidyverse" id="toc-what-is-the-tidyverse" class="nav-link active" data-scroll-target="#what-is-the-tidyverse">What is the tidyverse</a></li>
   <li><a href="#installing-tidyverse" id="toc-installing-tidyverse" class="nav-link" data-scroll-target="#installing-tidyverse">Installing tidyverse</a></li>
+  <li><a href="#shiver-my-timbers-tibbles" id="toc-shiver-my-timbers-tibbles" class="nav-link" data-scroll-target="#shiver-my-timbers-tibbles">Shiver my <del>timbers</del> tibbles</a></li>
   <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
@@ -391,12 +389,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td><code>{tibble}</code></td>
 <td>Better data frames</td>
-<td><a href="./tibbles.html">Tibbles</a></td>
+<td><a href="tibbles.qmd">Tibbles</a></td>
 </tr>
 <tr class="even">
 <td><code>{dplyr}</code></td>
 <td>Data manipulation</td>
-<td><a href="dplyr.qmd">Dplyr</a></td>
+<td><a href="./dplyr.html">Dplyr</a></td>
 </tr>
 <tr class="odd">
 <td><code>{tidyr}</code></td>
@@ -438,8 +436,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Install the tidyverse</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or of course:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Install tidyverse and load core tidyverse</span></span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Install tidyverse and load core tidyverse</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <pre><code>── Attaching core tidyverse packages ──── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.2     ✔ readr     2.1.4
 ✔ forcats   1.0.0     ✔ stringr   1.5.0
@@ -458,10 +458,67 @@ become errors</code></pre>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="co"># ALso load the magrittr package</span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="fu">library</span>(magrittr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="shiver-my-timbers-tibbles" class="level2">
+<h2 class="anchored" data-anchor-id="shiver-my-timbers-tibbles">Shiver my <del>timbers</del> tibbles</h2>
+<p>Although R normally works with data frames, the tidyverse works with tibbles. Tibbles are an enhanced type of data frame that try to do accomplish two things:</p>
+<ul>
+<li><p>They try to do less</p></li>
+<li><p>They complain more</p></li>
+</ul>
+<p>As stated by the <a href="https://tibble.tidyverse.org/">documentation</a>, this is useful because it: “…forces you to confront problems earlier, typically leading to cleaner, more expressive code”.</p>
+<p>Tidyverse automatically creates tibbles, but you can also make tibbles yourself. Similar to <code>data.frame()</code> which we saw before, a tibble can be created with <code>tibble()</code>. Additionally, pre-existing data frames can be transformed to tibbles with <code>as_tibble()</code>.</p>
+<p>Besides better functionality, tibbles also print cleaner. Compare printing the first 15 rows of the data frame <code>iris</code> to printing all rows of the tibble <code>iris</code>:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Print first 15 rows of data frame iris</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>, ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1           5.1         3.5          1.4         0.2  setosa
+2           4.9         3.0          1.4         0.2  setosa
+3           4.7         3.2          1.3         0.2  setosa
+4           4.6         3.1          1.5         0.2  setosa
+5           5.0         3.6          1.4         0.2  setosa
+6           5.4         3.9          1.7         0.4  setosa
+7           4.6         3.4          1.4         0.3  setosa
+8           5.0         3.4          1.5         0.2  setosa
+9           4.4         2.9          1.4         0.2  setosa
+10          4.9         3.1          1.5         0.1  setosa
+11          5.4         3.7          1.5         0.2  setosa
+12          4.8         3.4          1.6         0.2  setosa
+13          4.8         3.0          1.4         0.1  setosa
+14          4.3         3.0          1.1         0.1  setosa
+15          5.8         4.0          1.2         0.2  setosa</code></pre>
+</div>
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Print all rows of iris when changed to tibble</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">as_tibble</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# ℹ 140 more rows</code></pre>
+</div>
+</div>
+</section>
 <section id="next-topic" class="level2">
 <h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
-<p>Next, we will take a good look at a central concept in the tidyverse: tibbles.</p>
-<p><strong>Next:</strong> <a href="./tibbles.html">Tibbles</a></p>
+<p>Next, we will take a good look at an important core package of the tidyverse: dplyr.</p>
+<p><strong>Next:</strong> <a href="./dplyr.html">Dplyr</a></p>
 
 
 </section>
