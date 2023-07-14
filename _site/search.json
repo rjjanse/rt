@@ -154,6 +154,62 @@
     "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse"
   },
   {
+    "objectID": "dplyr.html",
+    "href": "dplyr.html",
+    "title": "Dplyr",
+    "section": "",
+    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R)."
+  },
+  {
+    "objectID": "dplyr.html#dplyr",
+    "href": "dplyr.html#dplyr",
+    "title": "Dplyr",
+    "section": "",
+    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R)."
+  },
+  {
+    "objectID": "dplyr.html#renaming-and-relocating",
+    "href": "dplyr.html#renaming-and-relocating",
+    "title": "Dplyr",
+    "section": "Renaming and relocating",
+    "text": "Renaming and relocating"
+  },
+  {
+    "objectID": "dplyr.html#filtering-and-selecting",
+    "href": "dplyr.html#filtering-and-selecting",
+    "title": "Dplyr",
+    "section": "Filtering and selecting",
+    "text": "Filtering and selecting"
+  },
+  {
+    "objectID": "dplyr.html#grouping-and-slicing",
+    "href": "dplyr.html#grouping-and-slicing",
+    "title": "Dplyr",
+    "section": "Grouping and slicing",
+    "text": "Grouping and slicing"
+  },
+  {
+    "objectID": "dplyr.html#mutating-and-conditionals",
+    "href": "dplyr.html#mutating-and-conditionals",
+    "title": "Dplyr",
+    "section": "Mutating and conditionals",
+    "text": "Mutating and conditionals"
+  },
+  {
+    "objectID": "dplyr.html#animations",
+    "href": "dplyr.html#animations",
+    "title": "Dplyr",
+    "section": "Animations",
+    "text": "Animations"
+  },
+  {
+    "objectID": "dplyr.html#extensions",
+    "href": "dplyr.html#extensions",
+    "title": "Dplyr",
+    "section": "Extensions",
+    "text": "Extensions\n\n{dtplyr}\n\n\n{dbplyr}"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Introduction",
@@ -280,6 +336,20 @@
     "text": "Next topic\nWith both R and RStudio set-up, let’s start using R.\nNext: Creating and storing data"
   },
   {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "",
+    "section": "",
+    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
+  },
+  {
+    "objectID": "summary.html#acknowledgements",
+    "href": "summary.html#acknowledgements",
+    "title": "",
+    "section": "",
+    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
+  },
+  {
     "objectID": "tidyverse.html",
     "href": "tidyverse.html",
     "title": "Tidyverse",
@@ -390,19 +460,5 @@
     "title": "Using data",
     "section": "Next topic",
     "text": "Next topic\nWe now know how we can access our data and manipulate it. Next up, we will learn about packages, which allows us to do so much more with our data then we have seen until now.\nNext: Packages"
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "",
-    "section": "",
-    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all online resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
-  },
-  {
-    "objectID": "summary.html#acknowledgements",
-    "href": "summary.html#acknowledgements",
-    "title": "",
-    "section": "",
-    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all online resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
   }
 ]
