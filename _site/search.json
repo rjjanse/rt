@@ -340,7 +340,7 @@
     "href": "using.html#boolean-operators",
     "title": "Using data",
     "section": "Boolean operators",
-    "text": "Boolean operators\nNow that we can compare values and get returned TRUE or FALSE, we can also make multiple comparisons using Boolean operators (also know as logical operators). If the conditions specified match, these will return TRUE, otherwise FALSE.\n\n|: OR; the value before or after the operator should be TRUE.\n&: AND; the values before and after the operator should be TRUE.\n!: NOT; the match should not be TRUE.\n\nUsing them works as follows:\n\n# OR\n3 == 3 | 3 != 3\n\n[1] TRUE\n\n# AND\n3 == 3 & 3 != 3\n\n[1] FALSE\n\n# NOT\n!(3 == 3)\n\n[1] FALSE"
+    "text": "Boolean operators\nNow that we can compare values and get returned TRUE or FALSE, we can also make multiple comparisons using Boolean operators (also know as logical operators). If the conditions specified match, these will return TRUE, otherwise FALSE.\n\n|: OR; the value before or after the operator should be TRUE.\n&: AND; the values before and after the operator should be TRUE.\n!: NOT; the match should not be TRUE.\nxor(x, y): XOR; x or y but not x and y; if x is TRUE, y should be FALSE and vice versa.\n\nFigure 2 shows a visual explanation of the boolean operators, as shown in the book R for Data Science.\n\n\n\nFigure 2: Boolean operators\n\n\nUsing them works as follows:\n\n# OR\n3 == 3 | 3 != 3\n\n[1] TRUE\n\n# AND\n3 == 3 & 3 != 3\n\n[1] FALSE\n\n# NOT\n!(3 == 3)\n\n[1] FALSE\n\n# True XOR\nxor(TRUE, FALSE)\n\n[1] TRUE\n\n# False XOR\nxor(FALSE, FALSE)\n\n[1] FALSE"
   },
   {
     "objectID": "using.html#accessing-the-data",
@@ -390,5 +390,19 @@
     "title": "Using data",
     "section": "Next topic",
     "text": "Next topic\nWe now know how we can access our data and manipulate it. Next up, we will learn about packages, which allows us to do so much more with our data then we have seen until now.\nNext: Packages"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "",
+    "section": "",
+    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all online resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
+  },
+  {
+    "objectID": "summary.html#acknowledgements",
+    "href": "summary.html#acknowledgements",
+    "title": "",
+    "section": "",
+    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all online resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
   }
 ]

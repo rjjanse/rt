@@ -2,3 +2,27 @@
 title: "Dplyr"
 ---
 
+## Dplyr
+`{dplyr}`, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, `{dplyr}` allows you to do this in an intuitive way which requires little code (especially compared to base R).
+
+## Renaming and relocating
+
+
+## Filtering and selecting
+
+
+## Grouping and slicing
+
+
+## Mutating and conditionals
+
+
+## Animations
+
+
+
+## Extensions
+### `{dtplyr}`
+
+
+### `{dbplyr}`

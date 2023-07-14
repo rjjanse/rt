@@ -3,6 +3,7 @@ dplyr:
 - filtering and selecting
 - grouping and slicing
 - mutating and conditionals
+- na_if
 - dbplyr
 - dtplyr
 - animations

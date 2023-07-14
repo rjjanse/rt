@@ -1,0 +1,6 @@
+---
+Title: "Summary"
+---
+
+## Acknowledgements
+Besides thanking all authors of R packages who have so meticuously documented their work and all resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial.
