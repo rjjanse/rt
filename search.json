@@ -154,6 +154,62 @@
     "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse"
   },
   {
+    "objectID": "dplyr.html",
+    "href": "dplyr.html",
+    "title": "Dplyr",
+    "section": "",
+    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R)."
+  },
+  {
+    "objectID": "dplyr.html#dplyr",
+    "href": "dplyr.html#dplyr",
+    "title": "Dplyr",
+    "section": "",
+    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R)."
+  },
+  {
+    "objectID": "dplyr.html#renaming-and-relocating",
+    "href": "dplyr.html#renaming-and-relocating",
+    "title": "Dplyr",
+    "section": "Renaming and relocating",
+    "text": "Renaming and relocating"
+  },
+  {
+    "objectID": "dplyr.html#filtering-and-selecting",
+    "href": "dplyr.html#filtering-and-selecting",
+    "title": "Dplyr",
+    "section": "Filtering and selecting",
+    "text": "Filtering and selecting"
+  },
+  {
+    "objectID": "dplyr.html#grouping-and-slicing",
+    "href": "dplyr.html#grouping-and-slicing",
+    "title": "Dplyr",
+    "section": "Grouping and slicing",
+    "text": "Grouping and slicing"
+  },
+  {
+    "objectID": "dplyr.html#mutating-and-conditionals",
+    "href": "dplyr.html#mutating-and-conditionals",
+    "title": "Dplyr",
+    "section": "Mutating and conditionals",
+    "text": "Mutating and conditionals"
+  },
+  {
+    "objectID": "dplyr.html#animations",
+    "href": "dplyr.html#animations",
+    "title": "Dplyr",
+    "section": "Animations",
+    "text": "Animations"
+  },
+  {
+    "objectID": "dplyr.html#extensions",
+    "href": "dplyr.html#extensions",
+    "title": "Dplyr",
+    "section": "Extensions",
+    "text": "Extensions\n\n{dtplyr}\n\n\n{dbplyr}"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Introduction",
@@ -280,6 +336,20 @@
     "text": "Next topic\nWith both R and RStudio set-up, let’s start using R.\nNext: Creating and storing data"
   },
   {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "",
+    "section": "",
+    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
+  },
+  {
+    "objectID": "summary.html#acknowledgements",
+    "href": "summary.html#acknowledgements",
+    "title": "",
+    "section": "",
+    "text": "Besides thanking all authors of R packages who have so meticuously documented their work and all resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
+  },
+  {
     "objectID": "tidyverse.html",
     "href": "tidyverse.html",
     "title": "Tidyverse",
@@ -340,7 +410,7 @@
     "href": "using.html#boolean-operators",
     "title": "Using data",
     "section": "Boolean operators",
-    "text": "Boolean operators\nNow that we can compare values and get returned TRUE or FALSE, we can also make multiple comparisons using Boolean operators (also know as logical operators). If the conditions specified match, these will return TRUE, otherwise FALSE.\n\n|: OR; the value before or after the operator should be TRUE.\n&: AND; the values before and after the operator should be TRUE.\n!: NOT; the match should not be TRUE.\n\nUsing them works as follows:\n\n# OR\n3 == 3 | 3 != 3\n\n[1] TRUE\n\n# AND\n3 == 3 & 3 != 3\n\n[1] FALSE\n\n# NOT\n!(3 == 3)\n\n[1] FALSE"
+    "text": "Boolean operators\nNow that we can compare values and get returned TRUE or FALSE, we can also make multiple comparisons using Boolean operators (also know as logical operators). If the conditions specified match, these will return TRUE, otherwise FALSE.\n\n|: OR; the value before or after the operator should be TRUE.\n&: AND; the values before and after the operator should be TRUE.\n!: NOT; the match should not be TRUE.\nxor(x, y): XOR; x or y but not x and y; if x is TRUE, y should be FALSE and vice versa.\n\nFigure 2 shows a visual explanation of the boolean operators, as shown in the book R for Data Science.\n\n\n\nFigure 2: Boolean operators\n\n\nUsing them works as follows:\n\n# OR\n3 == 3 | 3 != 3\n\n[1] TRUE\n\n# AND\n3 == 3 & 3 != 3\n\n[1] FALSE\n\n# NOT\n!(3 == 3)\n\n[1] FALSE\n\n# True XOR\nxor(TRUE, FALSE)\n\n[1] TRUE\n\n# False XOR\nxor(FALSE, FALSE)\n\n[1] FALSE"
   },
   {
     "objectID": "using.html#accessing-the-data",
