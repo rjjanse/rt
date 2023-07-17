@@ -3,7 +3,10 @@ dplyr:
 - filtering and selecting
 - grouping and slicing
 - mutating and conditionals
-- na_if
+- other useful functions
+  - pull
+  - na_if
+  - summarize
 - dbplyr
 - dtplyr
 - animations
@@ -30,7 +33,22 @@ functions:
 - getting methods & methods()
 - getting source code
 
+shortcuts:
+- multiline cursor
+- switching between console and script
+- opening help
+- commenting out code
+- enlarging certain windows
 
+iterating:
+- apply
+- aggregate
+- purr
+- map
+- by
 
+base:
+- nrow & ncol
+- colnames & rownames
 
 

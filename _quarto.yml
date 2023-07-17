@@ -28,11 +28,13 @@ website:
         - section: "Into the multiverse"
           contents:
             - datatable.qmd
+            - shiny.qmd
         - section: "New skills"
           contents: 
             - random.qmd
             - functions.qmd
             - looping.qmd
+            - iterating.qmd
             - regex.qmd
         - section: "Workflow"
           contents:

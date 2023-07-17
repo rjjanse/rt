@@ -3,23 +3,144 @@ title: "Dplyr"
 ---
 
 ## Dplyr
-`{dplyr}`, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, `{dplyr}` allows you to do this in an intuitive way which requires little code (especially compared to base R).
+`{dplyr}`, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, `{dplyr}` allows you to do this in an intuitive way which requires little code (especially compared to base R). If you have not already installed and loaded `{dplyr}`, you can do so with:
+
+```{r}
+#| code-fold: false
+# Load dplyr
+pacman::p_load("dplyr")
+```
+
+In this section, we will work with the `starwars` dataset, that is automatically loaded in when you load `{dplyr}`. 
+
+```{r}
+#| code-fold: false
+# Show first 5 rows of starwars
+head(starwars, n = 5)
+```
+
+Let's load the `starwars` data into our Global Environment so that we can easily access it:
+
+```{r}
+#| code-fold: false
+# Load starwars into Global Environment object called sw
+sw <- starwars
+```
+
+All `{dplyr}` functions that take a data frame or tibble start with the `.data` argument. Therefore, in all examples below, we first specify our `.data` as `sw` before supplying arguments of the function.
 
 ## Renaming and relocating
+Before we can do anything to the data itself, we should make sure we like the names of the variables. Three of the variables contain the word 'color' (`hair_color`, `skin_color`, `eye_color`). However, we might think it is intuitive enough that these variables indicate colour, so maybe we want to change those names. For this we can use the function `rename()`. In `rename()`, we specify any number of arguments we want, where the left hand side of the argument indicates the new column name and the righth and side of the argument indicates the column that needs to be changed (and therefore the old column name). The right hand side can also be the position of the column (e.g., 2 for the second column).
 
+```{r}
+#| code-fold: false
+# Rename variables
+sw <- rename(sw, hair = hair_color, skin = skin_color, eye = eye_color)
+
+```
+
+:::{.callout-tip appearance="simple"}
+Many functions, among which functions in `{dplyr}` like `rename()` have an argument called `...`. This ellipsis simply means that you can supply any number of arguments of the type that the function uses. For `rename()`, this means we can supply an endless list of variables to be renamed.
+:::
+
+Now our data has some changed names, but we are not done yet. It might also be preferable that sex and gender are mentioned immediately after the name. To do this, we can simply use `relocate()`. In `relocate()`, we specify a group of columns and specify before (argument `.before`) or after (argument `.after`) which column they should be placed.
+
+```{r}
+#| code-fold: false
+# Relocate variables
+sw <- relocate(sw, sex:gender, .after = name)
+
+# This has the same effect
+sw <- relocate(sw, c(sex, gender), .before = height)
+
+```
 
 ## Filtering and selecting
+Now that our data is a bit more how we (or I?) wanted it, we can also determine whether there are some columns or rows that we do not actually want or need. First of, because I am not interested in any data from outside the starwars universe, we can remove the column `films`. To do this, we use `select()`, which allows us to either specify the columns we want to keep, or specify the columns we want to drop. To keep columns, we simply name them and to drop columns we name them with a dash/minus sign before (-).
 
+```{r}
+#| code-fold: false
+# Drop films column
+sw <- select(sw, -films)
 
-## Grouping and slicing
+# This does the same thing
+sw <- select(sw, name:species, vehicles:starships)
+```
 
+Additionally, I am not interested in any character (i.e., row) of who we do not know the mass or who is from Tatooine. Tatooine is full of sand and I don't like sand. It's coarse and rough. To remove rows, we can use the `filter()` function. In `filter()`, we supply conditions to which rows must adhere to stay. 
+
+```{r}
+#| code-fold: false
+# Remove rows with missing mass or with characters from Tatooine
+sw <- filter(sw, !is.na(mass) & homeworld != "Tatooine")
+
+```
+
+Here, we use `is.na()` to see what rows are missing in the column `mass` and then take the reverse (!). Additionally (&), the homeworld should not equal (!=) Tatooine.
+
+## The pipe: `%>%`
+Before we continue with some of the most important `{dplyr}` functions, we should talk about the pipe operator `%>%`. Although `%>%` is not originally from `{dplyr}` but instead imported from `{magrittr}` that we will discuss after this section.
+
+Normally, if we wanted to apply multiple functions at the same time (for instance, `filter()` and `select()` after one another), we would nest the functions:
+
+```{r}
+#| code-fold: false
+# Keep only the birth year column and then keep only birth years above 100
+filter(select(starwars, birth_year), birth_year > 100)
+```
+
+However, this quickly becomes unreadable. With `%>%`, we can transform this into more readable code. What `%>%` does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called `.data` or `data` (if this argument is available). We will go into more detail in [`{magrittr}`](magrittr.qmd).
+
+So, with `%>%`, we can rewrite the above code as:
+
+```{r}
+#| code-fold: false
+# Take starwars data
+starwars %>%
+    # Keep only birth year column
+    select(birth_year) %>%
+    # Keep only birth years above 100
+    filter(birth_year > 100)
+```
+
+:::{.callout-tip appearance="simple"}
+Some more about annotation: with pipe operators, we can make our code much clearer and with that also our annotations. My personal preference is to annotate each new function after a pipe, so that it becomes even more readable. These annotations might just describe what we are doing, or give more details about why we are doing it. This makes it understandable to people who might not understand R equally well or know the functions we are using and allows better understanding of choices we made.
+:::
 
 ## Mutating and conditionals
+Now that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with `mutate()`. In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.
+
+A great characteristic of `mutate()` is that we can immediately use a variable we just calculted within the same `mutate()` function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.
+
+```{r}
+#| code-fold: false
+# Calculate BMI and overweight indicator
+sw <- mutate(sw, 
+             # Change height to meters
+             height = height / 100,
+             # Calculate BMI
+             bmi = mass / height ^ 2,
+             # Create indicator for overweight
+             overweight = ifelse(bmi >= 25, 1, 0))
+
+# Show summary of BMI
+summary(sw[["bmi"]])
+
+# Show table of overweight
+table(sw[["overweight"]])
+```
+
+What we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, `ifelse()` checks the condition `bmi >= 25`. If that condition is `TRUE`, then the variable `overweight` is assigned a 1, otherwise a 0.
+
+//Something about nesting ifelse() and case_when()
+
+## Grouping and slicing
+Now that we know about pipe operators, we can apply them to some nice `{dplyr}` functions. Sometimes, we might want 
 
 
 ## Animations
 
-
+## Other useful functions
 
 ## Extensions
 ### `{dtplyr}`

@@ -11,6 +11,8 @@ Throughout the tutorial, there will be example code. Feel free to also write and
 
 Additionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the 'Answer' button. An example is shown below.
 
+This tutorial might feel rather dense and time-consuming as compared to other tutorials but you do not have to do everything at once. Although it is a good idea to do the basics and learn about the tidyverse, other sections might be studied on a need-to-know basis. Additionally, this tutorial will (hopefully) leave you with knowledge about using R, but also hand you the tools to learn more yourself and quickly understand new concepts and functions.
+
 #### Exercises
 0: Open the answer
 
