@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -208,6 +242,9 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
  <span class="menu-text">datatable.qmd</span>
   </li>
+          <li class="sidebar-item">
+ <span class="menu-text">shiny.qmd</span>
+  </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -227,6 +264,9 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item">
  <span class="menu-text">looping.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">iterating.qmd</span>
   </li>
           <li class="sidebar-item">
  <span class="menu-text">regex.qmd</span>
@@ -332,9 +372,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#dplyr" id="toc-dplyr" class="nav-link active" data-scroll-target="#dplyr">Dplyr</a></li>
   <li><a href="#renaming-and-relocating" id="toc-renaming-and-relocating" class="nav-link" data-scroll-target="#renaming-and-relocating">Renaming and relocating</a></li>
   <li><a href="#filtering-and-selecting" id="toc-filtering-and-selecting" class="nav-link" data-scroll-target="#filtering-and-selecting">Filtering and selecting</a></li>
-  <li><a href="#grouping-and-slicing" id="toc-grouping-and-slicing" class="nav-link" data-scroll-target="#grouping-and-slicing">Grouping and slicing</a></li>
+  <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe: <code>%&gt;%</code></a></li>
   <li><a href="#mutating-and-conditionals" id="toc-mutating-and-conditionals" class="nav-link" data-scroll-target="#mutating-and-conditionals">Mutating and conditionals</a></li>
+  <li><a href="#grouping-and-slicing" id="toc-grouping-and-slicing" class="nav-link" data-scroll-target="#grouping-and-slicing">Grouping and slicing</a></li>
   <li><a href="#animations" id="toc-animations" class="nav-link" data-scroll-target="#animations">Animations</a></li>
+  <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions">Other useful functions</a></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
   <ul>
   <li><a href="#dtplyr" id="toc-dtplyr" class="nav-link" data-scroll-target="#dtplyr"><code>{dtplyr}</code></a></li>
@@ -365,22 +407,167 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="dplyr" class="level2">
 <h2 class="anchored" data-anchor-id="dplyr">Dplyr</h2>
-<p><code>{dplyr}</code>, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, <code>{dplyr}</code> allows you to do this in an intuitive way which requires little code (especially compared to base R).</p>
+<p><code>{dplyr}</code>, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, <code>{dplyr}</code> allows you to do this in an intuitive way which requires little code (especially compared to base R). If you have not already installed and loaded <code>{dplyr}</code>, you can do so with:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load dplyr</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"dplyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In this section, we will work with the <code>starwars</code> dataset, that is automatically loaded in when you load <code>{dplyr}</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Show first 5 rows of starwars</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">head</span>(starwars, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 14
+  name      height  mass hair_color skin_color eye_color birth_year sex   gender
+  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; 
+1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…
+2 C-3PO        167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…
+3 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…
+4 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
+5 Leia Org…    150    49 brown      light      brown           19   fema… femin…
+# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,
+#   vehicles &lt;list&gt;, starships &lt;list&gt;</code></pre>
+</div>
+</div>
+<p>Let’s load the <code>starwars</code> data into our Global Environment so that we can easily access it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Load starwars into Global Environment object called sw</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>sw <span class="ot">&lt;-</span> starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>All <code>{dplyr}</code> functions that take a data frame or tibble start with the <code>.data</code> argument. Therefore, in all examples below, we first specify our <code>.data</code> as <code>sw</code> before supplying arguments of the function.</p>
 </section>
 <section id="renaming-and-relocating" class="level2">
 <h2 class="anchored" data-anchor-id="renaming-and-relocating">Renaming and relocating</h2>
+<p>Before we can do anything to the data itself, we should make sure we like the names of the variables. Three of the variables contain the word ‘color’ (<code>hair_color</code>, <code>skin_color</code>, <code>eye_color</code>). However, we might think it is intuitive enough that these variables indicate colour, so maybe we want to change those names. For this we can use the function <code>rename()</code>. In <code>rename()</code>, we specify any number of arguments we want, where the left hand side of the argument indicates the new column name and the righth and side of the argument indicates the column that needs to be changed (and therefore the old column name). The right hand side can also be the position of the column (e.g., 2 for the second column).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Rename variables</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">rename</span>(sw, <span class="at">hair =</span> hair_color, <span class="at">skin =</span> skin_color, <span class="at">eye =</span> eye_color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Many functions, among which functions in <code>{dplyr}</code> like <code>rename()</code> have an argument called <code>...</code>. This ellipsis simply means that you can supply any number of arguments of the type that the function uses. For <code>rename()</code>, this means we can supply an endless list of variables to be renamed.</p>
+</div>
+</div>
+</div>
+<p>Now our data has some changed names, but we are not done yet. It might also be preferable that sex and gender are mentioned immediately after the name. To do this, we can simply use <code>relocate()</code>. In <code>relocate()</code>, we specify a group of columns and specify before (argument <code>.before</code>) or after (argument <code>.after</code>) which column they should be placed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Relocate variables</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">relocate</span>(sw, sex<span class="sc">:</span>gender, <span class="at">.after =</span> name)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># This has the same effect</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>sw <span class="ot">&lt;-</span> <span class="fu">relocate</span>(sw, <span class="fu">c</span>(sex, gender), <span class="at">.before =</span> height)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="filtering-and-selecting" class="level2">
 <h2 class="anchored" data-anchor-id="filtering-and-selecting">Filtering and selecting</h2>
+<p>Now that our data is a bit more how we (or I?) wanted it, we can also determine whether there are some columns or rows that we do not actually want or need. First of, because I am not interested in any data from outside the starwars universe, we can remove the column <code>films</code>. To do this, we use <code>select()</code>, which allows us to either specify the columns we want to keep, or specify the columns we want to drop. To keep columns, we simply name them and to drop columns we name them with a dash/minus sign before (-).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Drop films column</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, <span class="sc">-</span>films)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># This does the same thing</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>sw <span class="ot">&lt;-</span> <span class="fu">select</span>(sw, name<span class="sc">:</span>species, vehicles<span class="sc">:</span>starships)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Additionally, I am not interested in any character (i.e., row) of who we do not know the mass or who is from Tatooine. Tatooine is full of sand and I don’t like sand. It’s coarse and rough. To remove rows, we can use the <code>filter()</code> function. In <code>filter()</code>, we supply conditions to which rows must adhere to stay.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Remove rows with missing mass or with characters from Tatooine</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, <span class="sc">!</span><span class="fu">is.na</span>(mass) <span class="sc">&amp;</span> homeworld <span class="sc">!=</span> <span class="st">"Tatooine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here, we use <code>is.na()</code> to see what rows are missing in the column <code>mass</code> and then take the reverse (!). Additionally (&amp;), the homeworld should not equal (!=) Tatooine.</p>
 </section>
-<section id="grouping-and-slicing" class="level2">
-<h2 class="anchored" data-anchor-id="grouping-and-slicing">Grouping and slicing</h2>
+<section id="the-pipe" class="level2">
+<h2 class="anchored" data-anchor-id="the-pipe">The pipe: <code>%&gt;%</code></h2>
+<p>Before we continue with some of the most important <code>{dplyr}</code> functions, we should talk about the pipe operator <code>%&gt;%</code>. Although <code>%&gt;%</code> is not originally from <code>{dplyr}</code> but instead imported from <code>{magrittr}</code> that we will discuss after this section.</p>
+<p>Normally, if we wanted to apply multiple functions at the same time (for instance, <code>filter()</code> and <code>select()</code> after one another), we would nest the functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Keep only the birth year column and then keep only birth years above 100</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">filter</span>(<span class="fu">select</span>(starwars, birth_year), birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+  birth_year
+       &lt;dbl&gt;
+1        112
+2        200
+3        600
+4        896
+5        102</code></pre>
+</div>
+</div>
+<p>However, this quickly becomes unreadable. With <code>%&gt;%</code>, we can transform this into more readable code. What <code>%&gt;%</code> does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called <code>.data</code> or <code>data</code> (if this argument is available). We will go into more detail in <a href="magrittr.qmd"><code>{magrittr}</code></a>.</p>
+<p>So, with <code>%&gt;%</code>, we can rewrite the above code as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Take starwars data</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="co"># Keep only birth year column</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="fu">select</span>(birth_year) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="co"># Keep only birth years above 100</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="fu">filter</span>(birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+  birth_year
+       &lt;dbl&gt;
+1        112
+2        200
+3        600
+4        896
+5        102</code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Some more about annotation: with pipe operators, we can make our code much clearer and with that also our annotations. My personal preference is to annotate each new function after a pipe, so that it becomes even more readable. These annotations might just describe what we are doing, or give more details about why we are doing it. This makes it understandable to people who might not understand R equally well or know the functions we are using and allows better understanding of choices we made.</p>
+</div>
+</div>
+</div>
 </section>
 <section id="mutating-and-conditionals" class="level2">
 <h2 class="anchored" data-anchor-id="mutating-and-conditionals">Mutating and conditionals</h2>
+<p>Now that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with <code>mutate()</code>. In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.</p>
+<p>A great characteristic of <code>mutate()</code> is that we can immediately use a variable we just calculted within the same <code>mutate()</code> function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Calculate BMI and overweight indicator</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>             <span class="co"># Change height to meters</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>             <span class="at">height =</span> height <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>             <span class="co"># Calculate BMI</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>             <span class="at">bmi =</span> mass <span class="sc">/</span> height <span class="sc">^</span> <span class="dv">2</span>,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>             <span class="co"># Create indicator for overweight</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>             <span class="at">overweight =</span> <span class="fu">ifelse</span>(bmi <span class="sc">&gt;=</span> <span class="dv">25</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb13-9"><a href="#cb13-9"></a></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="co"># Show summary of BMI</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="fu">summary</span>(sw[[<span class="st">"bmi"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  12.89   19.48   23.83   32.47   25.86  443.43 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Show table of overweight</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">table</span>(sw[[<span class="st">"overweight"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 0  1 
+32 16 </code></pre>
+</div>
+</div>
+<p>What we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, <code>ifelse()</code> checks the condition <code>bmi &gt;= 25</code>. If that condition is <code>TRUE</code>, then the variable <code>overweight</code> is assigned a 1, otherwise a 0.</p>
+<p>//Something about nesting ifelse() and case_when()</p>
+</section>
+<section id="grouping-and-slicing" class="level2">
+<h2 class="anchored" data-anchor-id="grouping-and-slicing">Grouping and slicing</h2>
+<p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want</p>
 </section>
 <section id="animations" class="level2">
 <h2 class="anchored" data-anchor-id="animations">Animations</h2>
+</section>
+<section id="other-useful-functions" class="level2">
+<h2 class="anchored" data-anchor-id="other-useful-functions">Other useful functions</h2>
 </section>
 <section id="extensions" class="level2">
 <h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
