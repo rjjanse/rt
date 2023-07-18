@@ -72,14 +72,80 @@ Additionally, I am not interested in any character (i.e., row) of who we do not 
 ```{r}
 #| code-fold: false
 # Remove rows with missing mass or with characters from Tatooine
-sw <- filter(sw, !is.na(mass) & homeworld != "Tatooine")
+sw <- filter(sw, !is.na(mass) & !is.na(height) & homeworld != "Tatooine")
 
 ```
 
-Here, we use `is.na()` to see what rows are missing in the column `mass` and then take the reverse (!). Additionally (&), the homeworld should not equal (!=) Tatooine.
+Here, we use `is.na()` to see what rows are missing in the column `mass` and then take the reverse (!). We do the same for `height`. Additionally (&), the homeworld should not equal (!=) Tatooine.
+
+## Mutating and conditionals
+Now that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with `mutate()`. In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.
+
+A great characteristic of `mutate()` is that we can immediately use a variable we just calculted within the same `mutate()` function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.
+
+```{r}
+#| code-fold: false
+# Calculate BMI and overweight indicator
+sw <- mutate(sw, 
+             # Change height to meters
+             height = height / 100,
+             # Calculate BMI
+             bmi = mass / height ^ 2,
+             # Create indicator for overweight
+             overweight = ifelse(bmi >= 25, 1, 0))
+
+# Show summary of BMI
+summary(sw[["bmi"]])
+
+# Show table of overweight
+table(sw[["overweight"]])
+```
+
+What we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, `ifelse()` checks the condition `bmi >= 25`. If that condition is `TRUE`, then the variable `overweight` is assigned a 1, otherwise a 0.
+
+If we want to be able to assign more than two values based on a single conditions, we can use two approaches. First, we can nest multiple `ifelse()` statements. Below, we code a variable `weight_status` which indicates underweight (BMI < 18, 1), normal weight (BMI 18-25, 2), overweight (BMI >25, 3), and obesity (BMI >30, 4).
+
+```{r}
+#| code-fold: false
+# Create new variable weight status
+sw <- mutate(sw, 
+             # Create indicator for weight status
+             weight_status = ifelse(bmi < 18, 1,
+                                    ifelse(bmi >= 18 & bmi <= 25, 2,
+                                           ifelse(bmi > 25 & bmi <= 30, 3, 4))))
+
+```
+
+This can quickly become unreadable if more groups should be made. Luckily, `{dplyr}` offers us `case_when()` and `case_match()`. Using `case_when()`, we only need to call one function and then supply all conditions. In `case_when()` this is written as condition ~ result:
+
+```r
+# Create new variable weight status
+sw <- mutate(sw, 
+             # Create indicator for weight status
+             weight_status = case_when(bmi < 18 ~ 1,
+                                       bmi >= 18 & bmi <= 25 ~ 2,
+                                       bmi > 25 & bmi <= 30 ~ 3,
+                                       .default = 4))
+```
+
+We also specify `.default = 4`, which means that any row without a matched condition should receive the value 4. However, be careful if you have missing data, as `.default` will also fill in those values. If `.default` is not supplied, any row not matching a condition will get an `NA`.
+
+`case_when()` is a great function and especially useful for multiple conditions that can be matched based on multiple columns or when we want to use conditions (>, <=, *etc*).  Nonetheless, if we want to use only a single variable and do not need conditions, we can also use `case_match()`, where first the used variable is specified and then the matches, without having to respecify the variable in every match:
+
+```{r}
+#| code-fold: false
+# Create new variable weight status
+sw <- mutate(sw,
+             # Create indicator for weight status
+             weight_status = case_match(species,
+                                        "Human" ~ "Humanoid",
+                                        "Yoda's species" ~ "Small, green, and wrinkly with pointy ears",
+                                        .default = species))
+
+```
 
 ## The pipe: `%>%`
-Before we continue with some of the most important `{dplyr}` functions, we should talk about the pipe operator `%>%`. Although `%>%` is not originally from `{dplyr}` but instead imported from `{magrittr}` that we will discuss after this section.
+Before we continue with other useful `{dplyr}` functions, we should talk about the pipe operator `%>%`. Although `%>%` is not originally from `{dplyr}` but instead imported from `{magrittr}` that we will discuss after this section.
 
 Normally, if we wanted to apply multiple functions at the same time (for instance, `filter()` and `select()` after one another), we would nest the functions:
 
@@ -107,38 +173,51 @@ starwars %>%
 Some more about annotation: with pipe operators, we can make our code much clearer and with that also our annotations. My personal preference is to annotate each new function after a pipe, so that it becomes even more readable. These annotations might just describe what we are doing, or give more details about why we are doing it. This makes it understandable to people who might not understand R equally well or know the functions we are using and allows better understanding of choices we made.
 :::
 
-## Mutating and conditionals
-Now that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with `mutate()`. In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.
-
-A great characteristic of `mutate()` is that we can immediately use a variable we just calculted within the same `mutate()` function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.
+## Grouping and slicing
+Now that we know about pipe operators, we can apply them to some nice `{dplyr}` functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with `arrange()`, which arranges variables in the order that you supply them to the function. Subsequently, we make the groups with `group_by()`, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with `ungroup()`. For example, if we want to calculate the mean BMI per sex, we can do the following:
 
 ```{r}
 #| code-fold: false
-# Calculate BMI and overweight indicator
-sw <- mutate(sw, 
-             # Change height to meters
-             height = height / 100,
-             # Calculate BMI
-             bmi = mass / height ^ 2,
-             # Create indicator for overweight
-             overweight = ifelse(bmi >= 25, 1, 0))
-
-# Show summary of BMI
-summary(sw[["bmi"]])
-
-# Show table of overweight
-table(sw[["overweight"]])
+# Calculate mean BMI in strata of sex
+sw <- sw %>%
+    # Arrange for grouping
+    arrange(sex) %>%
+    # Group on sex
+    group_by(sex) %>%
+    # Calculate mean BMI
+    mutate(mean_bmi = mean(bmi)) %>%
+    # Ungroup again
+    ungroup()
 ```
 
-What we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, `ifelse()` checks the condition `bmi >= 25`. If that condition is `TRUE`, then the variable `overweight` is assigned a 1, otherwise a 0.
+However, I am actually interested in the mean BMI per groups of sex and gender and only want to keep one row per group. For this, we can use `slice()`, which allows us subset rows based on their position.
 
-//Something about nesting ifelse() and case_when()
+```{r}
+#| code-fold: false
+# Calculate mean BMI in strata of sex
+sw %>%
+    # Arrange for grouping
+    arrange(sex, gender) %>%
+    # Group on sex and then gender
+    group_by(sex, gender) %>%
+    # Calculate mean BMI
+    mutate(mean_bmi = mean(bmi)) %>%
+    # Keep one row per group
+    slice(1L) %>%           # Note that 1L means that 1 is an integer
+    # Ungroup again
+    ungroup() %>%
+    # Keep only sex, gender, and mean BMI
+    select(sex, gender, mean_bmi)
 
-## Grouping and slicing
-Now that we know about pipe operators, we can apply them to some nice `{dplyr}` functions. Sometimes, we might want 
+```
 
+`slice()` is a general function but has some more specifications such as `slice_head()` and `slice_tail()` which you can read about in the `slice()` help function ([`?slice`](https://dplyr.tidyverse.org/reference/slice.html)).
 
 ## Animations
+With the `{dplyr}` functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when multiple arguments are provided.
+
+https://tidydatatutor.com/
+https://github.com/microsoft/datamations
 
 ## Other useful functions
 

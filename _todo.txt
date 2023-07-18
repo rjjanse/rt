@@ -7,6 +7,7 @@ dplyr:
   - pull
   - na_if
   - summarize
+  - distinct
 - dbplyr
 - dtplyr
 - animations

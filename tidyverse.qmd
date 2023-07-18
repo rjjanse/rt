@@ -83,6 +83,8 @@ as_tibble(iris)
 
 ```
 
+In tibbles, when printed, numerical values are not called numeric but double. In practice, there is no difference and the class (`class(as_tibble(iris)[["Sepal.Length"]])` will still be numerical. More information about column types in tibbles can be found [here](https://tibble.tidyverse.org/articles/types.html). 
+
 ## Next topic
 Next, we will take a good look at an important core package of the tidyverse: dplyr.
 
