@@ -345,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Acknowledgements</span></a>
+ <span class="menu-text">Summary</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -375,7 +375,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mutating-and-conditionals" id="toc-mutating-and-conditionals" class="nav-link" data-scroll-target="#mutating-and-conditionals">Mutating and conditionals</a></li>
   <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe: <code>%&gt;%</code></a></li>
   <li><a href="#grouping-and-slicing" id="toc-grouping-and-slicing" class="nav-link" data-scroll-target="#grouping-and-slicing">Grouping and slicing</a></li>
-  <li><a href="#animations" id="toc-animations" class="nav-link" data-scroll-target="#animations">Animations</a></li>
+  <li><a href="#summarising-groups" id="toc-summarising-groups" class="nav-link" data-scroll-target="#summarising-groups">Summarising groups</a></li>
+  <li><a href="#understanding-pipelines" id="toc-understanding-pipelines" class="nav-link" data-scroll-target="#understanding-pipelines">Understanding pipelines</a>
+  <ul>
+  <li><a href="#tidy-data-tutor" id="toc-tidy-data-tutor" class="nav-link" data-scroll-target="#tidy-data-tutor">Tidy data tutor</a></li>
+  <li><a href="#microsoft-datamations" id="toc-microsoft-datamations" class="nav-link" data-scroll-target="#microsoft-datamations">Microsoft datamations</a></li>
+  </ul></li>
   <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions">Other useful functions</a></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
   <ul>
@@ -527,13 +532,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-7"><a href="#cb14-7"></a>                                       <span class="at">.default =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We also specify <code>.default = 4</code>, which means that any row without a matched condition should receive the value 4. However, be careful if you have missing data, as <code>.default</code> will also fill in those values. If <code>.default</code> is not supplied, any row not matching a condition will get an <code>NA</code>.</p>
 <p><code>case_when()</code> is a great function and especially useful for multiple conditions that can be matched based on multiple columns or when we want to use conditions (&gt;, &lt;=, <em>etc</em>). Nonetheless, if we want to use only a single variable and do not need conditions, we can also use <code>case_match()</code>, where first the used variable is specified and then the matches, without having to respecify the variable in every match:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Create new variable weight status</span></span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Create new variable weight status</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw,</span>
 <span id="cb15-3"><a href="#cb15-3"></a>             <span class="co"># Create indicator for weight status</span></span>
 <span id="cb15-4"><a href="#cb15-4"></a>             <span class="at">weight_status =</span> <span class="fu">case_match</span>(species,</span>
 <span id="cb15-5"><a href="#cb15-5"></a>                                        <span class="st">"Human"</span> <span class="sc">~</span> <span class="st">"Humanoid"</span>,</span>
 <span id="cb15-6"><a href="#cb15-6"></a>                                        <span class="st">"Yoda's species"</span> <span class="sc">~</span> <span class="st">"Small, green, and wrinkly with pointy ears"</span>,</span>
 <span id="cb15-7"><a href="#cb15-7"></a>                                        <span class="at">.default =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="the-pipe" class="level2">
 <h2 class="anchored" data-anchor-id="the-pipe">The pipe: <code>%&gt;%</code></h2>
@@ -586,10 +593,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="grouping-and-slicing" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-and-slicing">Grouping and slicing</h2>
-<p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want</p>
+<p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with <code>arrange()</code>, which arranges variables in the order that you supply them to the function. Subsequently, we make the groups with <code>group_by()</code>, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with <code>ungroup()</code>. For example, if we want to calculate the mean BMI per sex, we can do the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>sw <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>    <span class="co"># Group on sex</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="co"># Calculate mean BMI</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>    <span class="co"># Ungroup again</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>    <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, I am actually interested in the mean BMI per groups of sex and gender and only want to keep one row per group. For this, we can use <code>slice()</code>, which allows us subset rows based on their position.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">arrange</span>(sex, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="co"># Group on sex and then gender</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="fu">group_by</span>(sex, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>    <span class="co"># Calculate mean BMI</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>    <span class="co"># Keep one row per group</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>    <span class="fu">slice</span>(1L) <span class="sc">%&gt;%</span>           <span class="co"># Note that 1L means that 1 is an integer</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>    <span class="co"># Ungroup again</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a>    <span class="co"># Keep only sex, gender, and mean BMI</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>    <span class="fu">select</span>(sex, gender, mean_bmi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  sex            gender    mean_bmi
+  &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;
+1 female         feminine      18.2
+2 hermaphroditic masculine    443. 
+3 male           masculine     24.9
+4 none           masculine     34.7
+5 &lt;NA&gt;           &lt;NA&gt;          15.1</code></pre>
+</div>
+</div>
+<p><code>slice()</code> is a general function but has some more specifications such as <code>slice_head()</code> and <code>slice_tail()</code> which you can read about in the <code>slice()</code> help function (<a href="https://dplyr.tidyverse.org/reference/slice.html"><code>?slice</code></a>).</p>
 </section>
-<section id="animations" class="level2">
-<h2 class="anchored" data-anchor-id="animations">Animations</h2>
+<section id="summarising-groups" class="level2">
+<h2 class="anchored" data-anchor-id="summarising-groups">Summarising groups</h2>
+<p>Of course it is great to be able to calculate variables within groups, but there is an easier way to quickly get information on a group level with <code>summarise()</code>.</p>
+<p>…</p>
+</section>
+<section id="understanding-pipelines" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-pipelines">Understanding pipelines</h2>
+<p>With the <code>{dplyr}</code> functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help you.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Extensive pipeline</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>    <span class="co"># Group on sex</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="co"># Create new variable BMI based on mass and height</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>    <span class="fu">mutate</span>(<span class="at">bmi =</span> mass <span class="sc">/</span> (height <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>    <span class="co"># Drop individuals with missing BMI</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bmi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="tidy-data-tutor" class="level3">
+<h3 class="anchored" data-anchor-id="tidy-data-tutor">Tidy data tutor</h3>
+<p>With <a href="https://tidydatatutor.com">tidy data tutor</a>, you can run your pipeline on data that can be loaded into R from packages, such as <code>starwars</code> from <code>{dplyr}</code>, and visualize what happens at each pipe operator. You can simply paste the pipeline and load in available data and run it to get a visualization. An example for the above code can be found <a href="https://tidydatatutor.com/vis.html#code=library%28dplyr%29%0A%0A%23%20Extensive%20pipeline%0Astarwars%20%25%3E%25%0A%20%20%20%20%23%20Arrange%20for%20grouping%0A%20%20%20%20arrange%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Group%20on%20sex%0A%20%20%20%20group_by%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Create%20new%20variable%20BMI%20based%20on%20mass%20and%20height%0A%20%20%20%20mutate%28bmi%20%3D%20mass%20/%20%28height%20/%20100%29%20%5E%202%29%20%25%3E%25%0A%20%20%20%20%23%20Drop%20individuals%20with%20missing%20BMI%0A%20%20%20%20filter%28!is.na%28bmi%29%29&amp;d=2023-07-18&amp;lang=r&amp;v=v1">here</a>.</p>
+</section>
+<section id="microsoft-datamations" class="level3">
+<h3 class="anchored" data-anchor-id="microsoft-datamations">Microsoft datamations</h3>
+<p>Another possibliity is <code>{datamations}</code>, which gives you animations of how the pipeline operates. To use <code>{datamations}</code>, you can first install it with:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Install datamations from github</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"microsoft/datamations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, you can write your pipeline as you normally would. Subsequently, put the whole pipeline between apostrophes to turn it into a string and use <code>datamation_sanddance()</code> to generate the animation:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="st">"# Pipeline</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="st">starwars %&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="st">    # Remove hermaphroditic sex as this gives a large outlier</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="st">    filter(sex != 'hermaphroditic') %&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="st">    # Calculate BMI</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="st">    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a><span class="st">     # Group on sex</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="st">    group_by(sex) %&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="st">    # Get mean BMI per group</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="st">    summarise(mean_bmi = mean(bmi))"</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb25-11"><a href="#cb25-11"></a>    <span class="co"># Get animation</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a>    <span class="fu">datamation_sanddance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note that <code>{datamations}</code> cannot use every <code>{dplyr}</code> function however. More information on <code>{datamations}</code> can be found <a href="https://github.com/microsoft/datamations">here</a>.</p>
+</section>
 </section>
 <section id="other-useful-functions" class="level2">
 <h2 class="anchored" data-anchor-id="other-useful-functions">Other useful functions</h2>

@@ -8,6 +8,9 @@ dplyr:
   - na_if
   - summarize
   - distinct
+  - tally
+  - count
+  - group functions (in summarise)
 - dbplyr
 - dtplyr
 - animations
