@@ -203,11 +203,18 @@
     "text": "Grouping and slicing\nNow that we know about pipe operators, we can apply them to some nice {dplyr} functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with arrange(), which arranges variables in the order that you supply them to the function. Subsequently, we make the groups with group_by(), which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with ungroup(). For example, if we want to calculate the mean BMI per sex, we can do the following:\n\n# Calculate mean BMI in strata of sex\nsw &lt;- sw %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Calculate mean BMI\n    mutate(mean_bmi = mean(bmi)) %&gt;%\n    # Ungroup again\n    ungroup()\n\nHowever, I am actually interested in the mean BMI per groups of sex and gender and only want to keep one row per group. For this, we can use slice(), which allows us subset rows based on their position.\n\n# Calculate mean BMI in strata of sex\nsw %&gt;%\n    # Arrange for grouping\n    arrange(sex, gender) %&gt;%\n    # Group on sex and then gender\n    group_by(sex, gender) %&gt;%\n    # Calculate mean BMI\n    mutate(mean_bmi = mean(bmi)) %&gt;%\n    # Keep one row per group\n    slice(1L) %&gt;%           # Note that 1L means that 1 is an integer\n    # Ungroup again\n    ungroup() %&gt;%\n    # Keep only sex, gender, and mean BMI\n    select(sex, gender, mean_bmi)\n\n# A tibble: 5 × 3\n  sex            gender    mean_bmi\n  &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;\n1 female         feminine      18.2\n2 hermaphroditic masculine    443. \n3 male           masculine     24.9\n4 none           masculine     34.7\n5 &lt;NA&gt;           &lt;NA&gt;          15.1\n\n\nslice() is a general function but has some more specifications such as slice_head() and slice_tail() which you can read about in the slice() help function (?slice)."
   },
   {
-    "objectID": "dplyr.html#animations",
-    "href": "dplyr.html#animations",
+    "objectID": "dplyr.html#summarising-groups",
+    "href": "dplyr.html#summarising-groups",
     "title": "Dplyr",
-    "section": "Animations",
-    "text": "Animations\nWith the {dplyr} functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when multiple arguments are provided.\nhttps://tidydatatutor.com/ https://github.com/microsoft/datamations"
+    "section": "Summarising groups",
+    "text": "Summarising groups\nOf course it is great to be able to calculate variables within groups, but there is an easier way to quickly get information on a group level with summarise().\n…"
+  },
+  {
+    "objectID": "dplyr.html#understanding-pipelines",
+    "href": "dplyr.html#understanding-pipelines",
+    "title": "Dplyr",
+    "section": "Understanding pipelines",
+    "text": "Understanding pipelines\nWith the {dplyr} functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help you.\n# Extensive pipeline\nstarwars %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Create new variable BMI based on mass and height\n    mutate(bmi = mass / (height / 100) ^ 2) %&gt;%\n    # Drop individuals with missing BMI\n    filter(!is.na(bmi))\n\nTidy data tutor\nWith tidy data tutor, you can run your pipeline on data that can be loaded into R from packages, such as starwars from {dplyr}, and visualize what happens at each pipe operator. You can simply paste the pipeline and load in available data and run it to get a visualization. An example for the above code can be found here.\n\n\nMicrosoft datamations\nAnother possibliity is {datamations}, which gives you animations of how the pipeline operates. To use {datamations}, you can first install it with:\n# Install datamations from github\ndevtools::install_github(\"microsoft/datamations\")\nNext, you can write your pipeline as you normally would. Subsequently, put the whole pipeline between apostrophes to turn it into a string and use datamation_sanddance() to generate the animation:\n\"# Pipeline\nstarwars %&gt;%\n    # Remove hermaphroditic sex as this gives a large outlier\n    filter(sex != 'hermaphroditic') %&gt;%\n    # Calculate BMI\n    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%\n     # Group on sex\n    group_by(sex) %&gt;%\n    # Get mean BMI per group\n    summarise(mean_bmi = mean(bmi))\" %&gt;% \n    # Get animation\n    datamation_sanddance()\nNote that {datamations} cannot use every {dplyr} function however. More information on {datamations} can be found here."
   },
   {
     "objectID": "dplyr.html#other-useful-functions",
@@ -352,28 +359,28 @@
   {
     "objectID": "summary.html",
     "href": "summary.html",
-    "title": "",
+    "title": "Summary",
     "section": "",
     "text": "You have made it to the end of the tutorial! I hope you have learned a lot. Although not everything might stick, this tutorial and the search bar in the upper left hopefully provide an easy way to find back information when you need it."
   },
   {
     "objectID": "summary.html#you-did-it",
     "href": "summary.html#you-did-it",
-    "title": "",
+    "title": "Summary",
     "section": "",
     "text": "You have made it to the end of the tutorial! I hope you have learned a lot. Although not everything might stick, this tutorial and the search bar in the upper left hopefully provide an easy way to find back information when you need it."
   },
   {
     "objectID": "summary.html#useful-resources",
     "href": "summary.html#useful-resources",
-    "title": "",
+    "title": "Summary",
     "section": "Useful resources",
-    "text": "Useful resources\nNo resource on R will ever be comprehensive, but there are some resources available online for free that are very useful. Here are some you might want to check out:\n\n\n\n\n\n\n\n\nResource\nDescription\n\n\n\n\n\nR Graph Gallery\nMaking plots with {base} and {ggplot2}\nhttps://r-graph-gallery.com/\n\n\nThe R Inferno\n‘If you are using R and you think you’re in hell, this is a map for you.’ - Patrick Burns\nhttps://www.burns-stat.com/pages/Tutor/R_inferno.pdf"
+    "text": "Useful resources\nNo resource on R will ever be comprehensive, but there are some resources available online for free that are very useful. Here are some you might want to check out:\n\n\n\nResource\nDescription\n\n\n\n\n\nR Graph Gallery\nMaking plots with {base} and {ggplot2}\nLink\n\n\nThe R Inferno\n‘If you are using R and you think you’re in hell, this is a map for you.’ - Patrick Burns\nLink"
   },
   {
     "objectID": "summary.html#acknowledgements",
     "href": "summary.html#acknowledgements",
-    "title": "",
+    "title": "Summary",
     "section": "Acknowledgements",
     "text": "Acknowledgements\nBesides thanking all authors of R packages who have so meticuously documented their work and all resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial."
   },
