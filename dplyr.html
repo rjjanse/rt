@@ -345,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Acknowledgements</span></a>
+ <span class="menu-text">You did it!</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -372,8 +372,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#dplyr" id="toc-dplyr" class="nav-link active" data-scroll-target="#dplyr">Dplyr</a></li>
   <li><a href="#renaming-and-relocating" id="toc-renaming-and-relocating" class="nav-link" data-scroll-target="#renaming-and-relocating">Renaming and relocating</a></li>
   <li><a href="#filtering-and-selecting" id="toc-filtering-and-selecting" class="nav-link" data-scroll-target="#filtering-and-selecting">Filtering and selecting</a></li>
-  <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe: <code>%&gt;%</code></a></li>
   <li><a href="#mutating-and-conditionals" id="toc-mutating-and-conditionals" class="nav-link" data-scroll-target="#mutating-and-conditionals">Mutating and conditionals</a></li>
+  <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe: <code>%&gt;%</code></a></li>
   <li><a href="#grouping-and-slicing" id="toc-grouping-and-slicing" class="nav-link" data-scroll-target="#grouping-and-slicing">Grouping and slicing</a></li>
   <li><a href="#animations" id="toc-animations" class="nav-link" data-scroll-target="#animations">Animations</a></li>
   <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions">Other useful functions</a></li>
@@ -475,17 +475,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Additionally, I am not interested in any character (i.e., row) of who we do not know the mass or who is from Tatooine. Tatooine is full of sand and I don’t like sand. It’s coarse and rough. To remove rows, we can use the <code>filter()</code> function. In <code>filter()</code>, we supply conditions to which rows must adhere to stay.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Remove rows with missing mass or with characters from Tatooine</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, <span class="sc">!</span><span class="fu">is.na</span>(mass) <span class="sc">&amp;</span> homeworld <span class="sc">!=</span> <span class="st">"Tatooine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a href="#cb8-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">filter</span>(sw, <span class="sc">!</span><span class="fu">is.na</span>(mass) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(height) <span class="sc">&amp;</span> homeworld <span class="sc">!=</span> <span class="st">"Tatooine"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here, we use <code>is.na()</code> to see what rows are missing in the column <code>mass</code> and then take the reverse (!). Additionally (&amp;), the homeworld should not equal (!=) Tatooine.</p>
+<p>Here, we use <code>is.na()</code> to see what rows are missing in the column <code>mass</code> and then take the reverse (!). We do the same for <code>height</code>. Additionally (&amp;), the homeworld should not equal (!=) Tatooine.</p>
+</section>
+<section id="mutating-and-conditionals" class="level2">
+<h2 class="anchored" data-anchor-id="mutating-and-conditionals">Mutating and conditionals</h2>
+<p>Now that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with <code>mutate()</code>. In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.</p>
+<p>A great characteristic of <code>mutate()</code> is that we can immediately use a variable we just calculted within the same <code>mutate()</code> function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Calculate BMI and overweight indicator</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, </span>
+<span id="cb9-3"><a href="#cb9-3"></a>             <span class="co"># Change height to meters</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>             <span class="at">height =</span> height <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb9-5"><a href="#cb9-5"></a>             <span class="co"># Calculate BMI</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>             <span class="at">bmi =</span> mass <span class="sc">/</span> height <span class="sc">^</span> <span class="dv">2</span>,</span>
+<span id="cb9-7"><a href="#cb9-7"></a>             <span class="co"># Create indicator for overweight</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>             <span class="at">overweight =</span> <span class="fu">ifelse</span>(bmi <span class="sc">&gt;=</span> <span class="dv">25</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb9-9"><a href="#cb9-9"></a></span>
+<span id="cb9-10"><a href="#cb9-10"></a><span class="co"># Show summary of BMI</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="fu">summary</span>(sw[[<span class="st">"bmi"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  12.89   19.48   23.83   32.47   25.86  443.43 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Show table of overweight</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">table</span>(sw[[<span class="st">"overweight"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 0  1 
+32 16 </code></pre>
+</div>
+</div>
+<p>What we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, <code>ifelse()</code> checks the condition <code>bmi &gt;= 25</code>. If that condition is <code>TRUE</code>, then the variable <code>overweight</code> is assigned a 1, otherwise a 0.</p>
+<p>If we want to be able to assign more than two values based on a single conditions, we can use two approaches. First, we can nest multiple <code>ifelse()</code> statements. Below, we code a variable <code>weight_status</code> which indicates underweight (BMI &lt; 18, 1), normal weight (BMI 18-25, 2), overweight (BMI &gt;25, 3), and obesity (BMI &gt;30, 4).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Create new variable weight status</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, </span>
+<span id="cb13-3"><a href="#cb13-3"></a>             <span class="co"># Create indicator for weight status</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>             <span class="at">weight_status =</span> <span class="fu">ifelse</span>(bmi <span class="sc">&lt;</span> <span class="dv">18</span>, <span class="dv">1</span>,</span>
+<span id="cb13-5"><a href="#cb13-5"></a>                                    <span class="fu">ifelse</span>(bmi <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> bmi <span class="sc">&lt;=</span> <span class="dv">25</span>, <span class="dv">2</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>                                           <span class="fu">ifelse</span>(bmi <span class="sc">&gt;</span> <span class="dv">25</span> <span class="sc">&amp;</span> bmi <span class="sc">&lt;=</span> <span class="dv">30</span>, <span class="dv">3</span>, <span class="dv">4</span>))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This can quickly become unreadable if more groups should be made. Luckily, <code>{dplyr}</code> offers us <code>case_when()</code> and <code>case_match()</code>. Using <code>case_when()</code>, we only need to call one function and then supply all conditions. In <code>case_when()</code> this is written as condition ~ result:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># Create new variable weight status</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, </span>
+<span id="cb14-3"><a href="#cb14-3"></a>             <span class="co"># Create indicator for weight status</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>             <span class="at">weight_status =</span> <span class="fu">case_when</span>(bmi <span class="sc">&lt;</span> <span class="dv">18</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb14-5"><a href="#cb14-5"></a>                                       bmi <span class="sc">&gt;=</span> <span class="dv">18</span> <span class="sc">&amp;</span> bmi <span class="sc">&lt;=</span> <span class="dv">25</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
+<span id="cb14-6"><a href="#cb14-6"></a>                                       bmi <span class="sc">&gt;</span> <span class="dv">25</span> <span class="sc">&amp;</span> bmi <span class="sc">&lt;=</span> <span class="dv">30</span> <span class="sc">~</span> <span class="dv">3</span>,</span>
+<span id="cb14-7"><a href="#cb14-7"></a>                                       <span class="at">.default =</span> <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We also specify <code>.default = 4</code>, which means that any row without a matched condition should receive the value 4. However, be careful if you have missing data, as <code>.default</code> will also fill in those values. If <code>.default</code> is not supplied, any row not matching a condition will get an <code>NA</code>.</p>
+<p><code>case_when()</code> is a great function and especially useful for multiple conditions that can be matched based on multiple columns or when we want to use conditions (&gt;, &lt;=, <em>etc</em>). Nonetheless, if we want to use only a single variable and do not need conditions, we can also use <code>case_match()</code>, where first the used variable is specified and then the matches, without having to respecify the variable in every match:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Create new variable weight status</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw,</span>
+<span id="cb15-3"><a href="#cb15-3"></a>             <span class="co"># Create indicator for weight status</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>             <span class="at">weight_status =</span> <span class="fu">case_match</span>(species,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>                                        <span class="st">"Human"</span> <span class="sc">~</span> <span class="st">"Humanoid"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>                                        <span class="st">"Yoda's species"</span> <span class="sc">~</span> <span class="st">"Small, green, and wrinkly with pointy ears"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7"></a>                                        <span class="at">.default =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="the-pipe" class="level2">
 <h2 class="anchored" data-anchor-id="the-pipe">The pipe: <code>%&gt;%</code></h2>
-<p>Before we continue with some of the most important <code>{dplyr}</code> functions, we should talk about the pipe operator <code>%&gt;%</code>. Although <code>%&gt;%</code> is not originally from <code>{dplyr}</code> but instead imported from <code>{magrittr}</code> that we will discuss after this section.</p>
+<p>Before we continue with other useful <code>{dplyr}</code> functions, we should talk about the pipe operator <code>%&gt;%</code>. Although <code>%&gt;%</code> is not originally from <code>{dplyr}</code> but instead imported from <code>{magrittr}</code> that we will discuss after this section.</p>
 <p>Normally, if we wanted to apply multiple functions at the same time (for instance, <code>filter()</code> and <code>select()</code> after one another), we would nest the functions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Keep only the birth year column and then keep only birth years above 100</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="fu">filter</span>(<span class="fu">select</span>(starwars, birth_year), birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Keep only the birth year column and then keep only birth years above 100</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">filter</span>(<span class="fu">select</span>(starwars, birth_year), birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 1
   birth_year
@@ -500,12 +558,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>However, this quickly becomes unreadable. With <code>%&gt;%</code>, we can transform this into more readable code. What <code>%&gt;%</code> does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called <code>.data</code> or <code>data</code> (if this argument is available). We will go into more detail in <a href="magrittr.qmd"><code>{magrittr}</code></a>.</p>
 <p>So, with <code>%&gt;%</code>, we can rewrite the above code as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Take starwars data</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="co"># Keep only birth year column</span></span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="fu">select</span>(birth_year) <span class="sc">%&gt;%</span></span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="co"># Keep only birth years above 100</span></span>
-<span id="cb11-6"><a href="#cb11-6"></a>    <span class="fu">filter</span>(birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Take starwars data</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="co"># Keep only birth year column</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="fu">select</span>(birth_year) <span class="sc">%&gt;%</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="co"># Keep only birth years above 100</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>    <span class="fu">filter</span>(birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 1
   birth_year
@@ -528,43 +586,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="mutating-and-conditionals" class="level2">
-<h2 class="anchored" data-anchor-id="mutating-and-conditionals">Mutating and conditionals</h2>
-<p>Now that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with <code>mutate()</code>. In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.</p>
-<p>A great characteristic of <code>mutate()</code> is that we can immediately use a variable we just calculted within the same <code>mutate()</code> function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Calculate BMI and overweight indicator</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw, </span>
-<span id="cb13-3"><a href="#cb13-3"></a>             <span class="co"># Change height to meters</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>             <span class="at">height =</span> height <span class="sc">/</span> <span class="dv">100</span>,</span>
-<span id="cb13-5"><a href="#cb13-5"></a>             <span class="co"># Calculate BMI</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>             <span class="at">bmi =</span> mass <span class="sc">/</span> height <span class="sc">^</span> <span class="dv">2</span>,</span>
-<span id="cb13-7"><a href="#cb13-7"></a>             <span class="co"># Create indicator for overweight</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>             <span class="at">overweight =</span> <span class="fu">ifelse</span>(bmi <span class="sc">&gt;=</span> <span class="dv">25</span>, <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb13-9"><a href="#cb13-9"></a></span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="co"># Show summary of BMI</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="fu">summary</span>(sw[[<span class="st">"bmi"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  12.89   19.48   23.83   32.47   25.86  443.43 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Show table of overweight</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">table</span>(sw[[<span class="st">"overweight"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
- 0  1 
-32 16 </code></pre>
-</div>
-</div>
-<p>What we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, <code>ifelse()</code> checks the condition <code>bmi &gt;= 25</code>. If that condition is <code>TRUE</code>, then the variable <code>overweight</code> is assigned a 1, otherwise a 0.</p>
-<p>//Something about nesting ifelse() and case_when()</p>
-</section>
 <section id="grouping-and-slicing" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-and-slicing">Grouping and slicing</h2>
-<p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want</p>
+<p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with <code>arrange()</code>, which arranges variables in the order that you supply them to the function. Subsequently, we make the groups with <code>group_by()</code>, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with <code>ungroup()</code>. For example, if we want to calculate the mean BMI per sex, we can do the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>sw <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>    <span class="co"># Group on sex</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="co"># Calculate mean BMI</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>    <span class="co"># Ungroup again</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>    <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>However, I am actually interested in the mean BMI per groups of sex and gender and only want to keep one row per group. For this, we can use <code>slice()</code>, which allows us subset rows based on their position.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">arrange</span>(sex, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="co"># Group on sex and then gender</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="fu">group_by</span>(sex, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>    <span class="co"># Calculate mean BMI</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>    <span class="co"># Keep one row per group</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>    <span class="fu">slice</span>(1L) <span class="sc">%&gt;%</span>           <span class="co"># Note that 1L means that 1 is an integer</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a>    <span class="co"># Ungroup again</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a>    <span class="co"># Keep only sex, gender, and mean BMI</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>    <span class="fu">select</span>(sex, gender, mean_bmi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  sex            gender    mean_bmi
+  &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;
+1 female         feminine      18.2
+2 hermaphroditic masculine    443. 
+3 male           masculine     24.9
+4 none           masculine     34.7
+5 &lt;NA&gt;           &lt;NA&gt;          15.1</code></pre>
+</div>
+</div>
+<p><code>slice()</code> is a general function but has some more specifications such as <code>slice_head()</code> and <code>slice_tail()</code> which you can read about in the <code>slice()</code> help function (<a href="https://dplyr.tidyverse.org/reference/slice.html"><code>?slice</code></a>).</p>
 </section>
 <section id="animations" class="level2">
 <h2 class="anchored" data-anchor-id="animations">Animations</h2>
+<p>With the <code>{dplyr}</code> functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when multiple arguments are provided.</p>
+<p>https://tidydatatutor.com/ https://github.com/microsoft/datamations</p>
 </section>
 <section id="other-useful-functions" class="level2">
 <h2 class="anchored" data-anchor-id="other-useful-functions">Other useful functions</h2>
