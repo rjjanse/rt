@@ -1,24 +1,29 @@
 dplyr:
-- renaming and relocating
-- filtering and selecting
-- grouping and slicing
-- mutating and conditionals
 - other useful functions
   - pull
+  - pick
   - na_if
-  - summarize
+  - if_else
+  - bind_rows
+  - n_distinct
+  - sample_n
+  - rows
+  - nth
+  - first
+  - last
+  - lag
+  - lead
   - distinct
   - tally
-  - count
-  - group functions (in summarise)
+  - countr
 - dbplyr
 - dtplyr
-- animations
 
 tidyr:
 - fill
 - pivot
 - replace_na
+- where
 
 magrittr:
 - pipes

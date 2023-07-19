@@ -96,7 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 
 <div id="quarto-search-results"></div>
@@ -373,8 +373,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#renaming-and-relocating" id="toc-renaming-and-relocating" class="nav-link" data-scroll-target="#renaming-and-relocating">Renaming and relocating</a></li>
   <li><a href="#filtering-and-selecting" id="toc-filtering-and-selecting" class="nav-link" data-scroll-target="#filtering-and-selecting">Filtering and selecting</a></li>
   <li><a href="#mutating-and-conditionals" id="toc-mutating-and-conditionals" class="nav-link" data-scroll-target="#mutating-and-conditionals">Mutating and conditionals</a></li>
+  <li><a href="#working-across-columns" id="toc-working-across-columns" class="nav-link" data-scroll-target="#working-across-columns">Working across columns</a></li>
   <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The pipe: <code>%&gt;%</code></a></li>
-  <li><a href="#grouping-and-slicing" id="toc-grouping-and-slicing" class="nav-link" data-scroll-target="#grouping-and-slicing">Grouping and slicing</a></li>
+  <li><a href="#grouping-and-slicing" id="toc-grouping-and-slicing" class="nav-link" data-scroll-target="#grouping-and-slicing">Grouping and slicing</a>
+  <ul>
+  <li><a href="#grouping-functions" id="toc-grouping-functions" class="nav-link" data-scroll-target="#grouping-functions">Grouping functions</a></li>
+  </ul></li>
   <li><a href="#summarising-groups" id="toc-summarising-groups" class="nav-link" data-scroll-target="#summarising-groups">Summarising groups</a></li>
   <li><a href="#understanding-pipelines" id="toc-understanding-pipelines" class="nav-link" data-scroll-target="#understanding-pipelines">Understanding pipelines</a>
   <ul>
@@ -386,12 +390,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#dtplyr" id="toc-dtplyr" class="nav-link" data-scroll-target="#dtplyr"><code>{dtplyr}</code></a></li>
   <li><a href="#dbplyr" id="toc-dbplyr" class="nav-link" data-scroll-target="#dbplyr"><code>{dbplyr}</code></a></li>
+  <li><a href="#sparklyr" id="toc-sparklyr" class="nav-link" data-scroll-target="#sparklyr"><code>{sparklyr}</code></a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -542,13 +547,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-7"><a href="#cb15-7"></a>                                        <span class="at">.default =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
+<section id="working-across-columns" class="level2">
+<h2 class="anchored" data-anchor-id="working-across-columns">Working across columns</h2>
+<p>There might be a case where we want to change all numeric variables to character. In such case, we could write an extensive mutate argument as follows:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Change numerics to character</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">mutate</span>(sw,</span>
+<span id="cb16-3"><a href="#cb16-3"></a>             <span class="co"># Change height</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>             <span class="at">height =</span> <span class="fu">as.character</span>(height),</span>
+<span id="cb16-5"><a href="#cb16-5"></a>             <span class="co"># Change mass</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>             <span class="at">mass =</span> <span class="fu">as.character</span>(mass),</span>
+<span id="cb16-7"><a href="#cb16-7"></a>             <span class="co"># Change birth year</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>             <span class="at">birth_year =</span> <span class="fu">as.character</span>(birth_year),</span>
+<span id="cb16-9"><a href="#cb16-9"></a>             <span class="co"># Change BMI</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>             <span class="at">bmi =</span> <span class="fu">as.character</span>(bmi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Even without the way of annotating that I try to circulate, this code would be unefficient to write. <code>{dplyr}</code> offers us <code>across()</code> to make our lives easier in such cases. With <code>across()</code>, we can apply multiple functions immediately to mulitple columns. If we want to change all those columns to character and check how many characters each has, we could simply do:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Change numerics to character and show last 7 columns</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">mutate</span>(sw, <span class="fu">across</span>(<span class="fu">c</span>(height, mass, birth_year, bmi), <span class="fu">list</span>(<span class="at">char =</span> as.character, <span class="at">charn =</span> nchar)))[<span class="dv">18</span><span class="sc">:</span><span class="dv">24</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 48 × 7
+   height_charn mass_char mass_charn birth_year_char birth_year_charn bmi_char  
+          &lt;int&gt; &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                      &lt;int&gt; &lt;chr&gt;     
+ 1            4 32                 2 33                             2 34.722222…
+ 2            3 49                 2 19                             2 21.777777…
+ 3            4 77                 2 57                             2 23.245984…
+ 4            4 112                3 200                            3 21.545090…
+ 5            3 80                 2 29                             2 24.691358…
+ 6            4 74                 2 44                             2 24.725182…
+ 7            4 1358               4 600                            3 443.42857…
+ 8            3 77                 2 21                             2 26.643598…
+ 9            3 110                3 &lt;NA&gt;                          NA 33.950617…
+10            3 75                 2 82                             2 25.951557…
+# ℹ 38 more rows
+# ℹ 1 more variable: bmi_charn &lt;int&gt;</code></pre>
+</div>
+</div>
+</section>
 <section id="the-pipe" class="level2">
 <h2 class="anchored" data-anchor-id="the-pipe">The pipe: <code>%&gt;%</code></h2>
 <p>Before we continue with other useful <code>{dplyr}</code> functions, we should talk about the pipe operator <code>%&gt;%</code>. Although <code>%&gt;%</code> is not originally from <code>{dplyr}</code> but instead imported from <code>{magrittr}</code> that we will discuss after this section.</p>
 <p>Normally, if we wanted to apply multiple functions at the same time (for instance, <code>filter()</code> and <code>select()</code> after one another), we would nest the functions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="co"># Keep only the birth year column and then keep only birth years above 100</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="fu">filter</span>(<span class="fu">select</span>(starwars, birth_year), birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># Keep only the birth year column and then keep only birth years above 100</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="fu">filter</span>(<span class="fu">select</span>(starwars, birth_year), birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 1
   birth_year
@@ -563,12 +604,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>However, this quickly becomes unreadable. With <code>%&gt;%</code>, we can transform this into more readable code. What <code>%&gt;%</code> does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called <code>.data</code> or <code>data</code> (if this argument is available). We will go into more detail in <a href="magrittr.qmd"><code>{magrittr}</code></a>.</p>
 <p>So, with <code>%&gt;%</code>, we can rewrite the above code as:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># Take starwars data</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>    <span class="co"># Keep only birth year column</span></span>
-<span id="cb18-4"><a href="#cb18-4"></a>    <span class="fu">select</span>(birth_year) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="#cb18-5"></a>    <span class="co"># Keep only birth years above 100</span></span>
-<span id="cb18-6"><a href="#cb18-6"></a>    <span class="fu">filter</span>(birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Take starwars data</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>    <span class="co"># Keep only birth year column</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">select</span>(birth_year) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>    <span class="co"># Keep only birth years above 100</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>    <span class="fu">filter</span>(birth_year <span class="sc">&gt;</span> <span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 1
   birth_year
@@ -595,33 +636,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="grouping-and-slicing">Grouping and slicing</h2>
 <p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with <code>arrange()</code>, which arranges variables in the order that you supply them to the function. Subsequently, we make the groups with <code>group_by()</code>, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with <code>ungroup()</code>. For example, if we want to calculate the mean BMI per sex, we can do the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
-<span id="cb20-2"><a href="#cb20-2"></a>sw <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
-<span id="cb20-3"><a href="#cb20-3"></a>    <span class="co"># Arrange for grouping</span></span>
-<span id="cb20-4"><a href="#cb20-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb20-5"><a href="#cb20-5"></a>    <span class="co"># Group on sex</span></span>
-<span id="cb20-6"><a href="#cb20-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb20-7"><a href="#cb20-7"></a>    <span class="co"># Calculate mean BMI</span></span>
-<span id="cb20-8"><a href="#cb20-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
-<span id="cb20-9"><a href="#cb20-9"></a>    <span class="co"># Ungroup again</span></span>
-<span id="cb20-10"><a href="#cb20-10"></a>    <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>sw <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>    <span class="co"># Group on sex</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="co"># Calculate mean BMI</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>    <span class="co"># Ungroup again</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>    <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, I am actually interested in the mean BMI per groups of sex and gender and only want to keep one row per group. For this, we can use <code>slice()</code>, which allows us subset rows based on their position.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>sw <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="co"># Arrange for grouping</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">arrange</span>(sex, gender) <span class="sc">%&gt;%</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>    <span class="co"># Group on sex and then gender</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a>    <span class="fu">group_by</span>(sex, gender) <span class="sc">%&gt;%</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a>    <span class="co"># Calculate mean BMI</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a>    <span class="co"># Keep one row per group</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a>    <span class="fu">slice</span>(1L) <span class="sc">%&gt;%</span>           <span class="co"># Note that 1L means that 1 is an integer</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a>    <span class="co"># Ungroup again</span></span>
-<span id="cb21-12"><a href="#cb21-12"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb21-13"><a href="#cb21-13"></a>    <span class="co"># Keep only sex, gender, and mean BMI</span></span>
-<span id="cb21-14"><a href="#cb21-14"></a>    <span class="fu">select</span>(sex, gender, mean_bmi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="fu">arrange</span>(sex, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>    <span class="co"># Group on sex and then gender</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a>    <span class="fu">group_by</span>(sex, gender) <span class="sc">%&gt;%</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a>    <span class="co"># Calculate mean BMI</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a>    <span class="fu">mutate</span>(<span class="at">mean_bmi =</span> <span class="fu">mean</span>(bmi)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>    <span class="co"># Keep one row per group</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a>    <span class="fu">slice</span>(1L) <span class="sc">%&gt;%</span>           <span class="co"># Note that 1L means that 1 is an integer</span></span>
+<span id="cb24-11"><a href="#cb24-11"></a>    <span class="co"># Ungroup again</span></span>
+<span id="cb24-12"><a href="#cb24-12"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb24-13"><a href="#cb24-13"></a>    <span class="co"># Keep only sex, gender, and mean BMI</span></span>
+<span id="cb24-14"><a href="#cb24-14"></a>    <span class="fu">select</span>(sex, gender, mean_bmi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   sex            gender    mean_bmi
@@ -634,52 +675,102 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><code>slice()</code> is a general function but has some more specifications such as <code>slice_head()</code> and <code>slice_tail()</code> which you can read about in the <code>slice()</code> help function (<a href="https://dplyr.tidyverse.org/reference/slice.html"><code>?slice</code></a>).</p>
+<section id="grouping-functions" class="level3">
+<h3 class="anchored" data-anchor-id="grouping-functions">Grouping functions</h3>
+<p>When we group our data, we can also extract some metadata about the groups we created with the following functions:</p>
+<ul>
+<li><p><code>group_data()</code>: metadata that defines the grouping structure</p></li>
+<li><p><code>group_keys()</code>: metadata that describes the groups</p></li>
+<li><p><code>group_rows()</code>: location of the rows in the original data per group</p></li>
+<li><p><code>group_indices()</code>: a vector with the group to which each row belongs</p></li>
+<li><p><code>group_vars()</code>: names of the grouping variables as a character</p></li>
+<li><p><code>groups()</code>: names of the grouping variables as a list</p></li>
+<li><p><code>group_size()</code>: size of each group</p></li>
+<li><p><code>n_groups()</code>: the number of groups</p></li>
+</ul>
 </section>
-<section id="summarising-groups" class="level2">
+</section>
+<section id="summarising-groups" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="summarising-groups">Summarising groups</h2>
-<p>Of course it is great to be able to calculate variables within groups, but there is an easier way to quickly get information on a group level with <code>summarise()</code>.</p>
-<p>…</p>
+<p>Of course it is great to be able to calculate variables within groups, but there is an easier way to quickly get information on a group level with <code>summarise()</code>. This function creates a new data frame with any summary statistic that we specify per group. For instance, to calculate the mean and standard deviation of the birth year and the proportion of individuals without hair per planet, we can do:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Use starwars</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>sw <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>    <span class="co"># Group on sex</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb26-7"><a href="#cb26-7"></a>    <span class="co"># Calculate summary statistics</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>    <span class="fu">summarise</span>(<span class="co"># Mean</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>              <span class="at">mean =</span> <span class="fu">mean</span>(birth_year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb26-10"><a href="#cb26-10"></a>              <span class="co"># Standard deviation</span></span>
+<span id="cb26-11"><a href="#cb26-11"></a>              <span class="at">sd =</span> <span class="fu">sd</span>(birth_year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb26-12"><a href="#cb26-12"></a>              <span class="co"># Proportion of no hair</span></span>
+<span id="cb26-13"><a href="#cb26-13"></a>              <span class="at">prop_no_hair =</span> <span class="fu">sum</span>(hair <span class="sc">==</span> <span class="st">"none"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  sex             mean    sd prop_no_hair
+  &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
+1 female          42.2  14.5        0.375
+2 hermaphroditic 600    NA          0    
+3 male            57.6  42.5        0.568
+4 none            33    NA          0    
+5 &lt;NA&gt;           NaN    NA          1    </code></pre>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>The code for calculating the proportion of no hair was kindly supplied by Vera Broek.</p>
+</div></div><p>Note that the <code>NA</code>s in the output result from the fact that we cannot take the standard deviation of a single observation. One of the functions we used was <code>n()</code>. This is one of the context functions supplied by <code>{dplyr}</code>, which allows us to quickly compute a group-specific variable. The available context functions are:</p>
+<ul>
+<li><p><code>n()</code>: the number of rows/observations in the group</p></li>
+<li><p><code>cur_group()</code>: the group keys (grouping variables)</p></li>
+<li><p><code>cur_group_id()</code>: gives the group a unique identifier</p></li>
+<li><p><code>cur_group_rows()</code>: gives the row indices in the ungrouped data for the current group</p></li>
+<li><p><code>cur_column()</code>: gives the name of the current column (only works in <code>across()</code>)</p></li>
+</ul>
 </section>
 <section id="understanding-pipelines" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-pipelines">Understanding pipelines</h2>
-<p>With the <code>{dplyr}</code> functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help you.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Extensive pipeline</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a>    <span class="co"># Arrange for grouping</span></span>
-<span id="cb23-4"><a href="#cb23-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb23-5"><a href="#cb23-5"></a>    <span class="co"># Group on sex</span></span>
-<span id="cb23-6"><a href="#cb23-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb23-7"><a href="#cb23-7"></a>    <span class="co"># Create new variable BMI based on mass and height</span></span>
-<span id="cb23-8"><a href="#cb23-8"></a>    <span class="fu">mutate</span>(<span class="at">bmi =</span> mass <span class="sc">/</span> (height <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-9"><a href="#cb23-9"></a>    <span class="co"># Drop individuals with missing BMI</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bmi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With the <code>{dplyr}</code> functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help us.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Extensive pipeline</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>    <span class="co"># Group on sex</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="#cb28-7"></a>    <span class="co"># Create new variable BMI based on mass and height</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>    <span class="fu">mutate</span>(<span class="at">bmi =</span> mass <span class="sc">/</span> (height <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>    <span class="co"># Drop individuals with missing BMI</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bmi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="tidy-data-tutor" class="level3">
 <h3 class="anchored" data-anchor-id="tidy-data-tutor">Tidy data tutor</h3>
-<p>With <a href="https://tidydatatutor.com">tidy data tutor</a>, you can run your pipeline on data that can be loaded into R from packages, such as <code>starwars</code> from <code>{dplyr}</code>, and visualize what happens at each pipe operator. You can simply paste the pipeline and load in available data and run it to get a visualization. An example for the above code can be found <a href="https://tidydatatutor.com/vis.html#code=library%28dplyr%29%0A%0A%23%20Extensive%20pipeline%0Astarwars%20%25%3E%25%0A%20%20%20%20%23%20Arrange%20for%20grouping%0A%20%20%20%20arrange%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Group%20on%20sex%0A%20%20%20%20group_by%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Create%20new%20variable%20BMI%20based%20on%20mass%20and%20height%0A%20%20%20%20mutate%28bmi%20%3D%20mass%20/%20%28height%20/%20100%29%20%5E%202%29%20%25%3E%25%0A%20%20%20%20%23%20Drop%20individuals%20with%20missing%20BMI%0A%20%20%20%20filter%28!is.na%28bmi%29%29&amp;d=2023-07-18&amp;lang=r&amp;v=v1">here</a>.</p>
+<p>With <a href="https://tidydatatutor.com">tidy data tutor</a>, we can run your pipeline on data that can be loaded into R from packages, such as <code>starwars</code> from <code>{dplyr}</code>, and visualize what happens at each pipe operator. We can simply paste the pipeline and load in available data and run it to get a visualization. An example for the above code can be found <a href="https://tidydatatutor.com/vis.html#code=library%28dplyr%29%0A%0A%23%20Extensive%20pipeline%0Astarwars%20%25%3E%25%0A%20%20%20%20%23%20Arrange%20for%20grouping%0A%20%20%20%20arrange%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Group%20on%20sex%0A%20%20%20%20group_by%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Create%20new%20variable%20BMI%20based%20on%20mass%20and%20height%0A%20%20%20%20mutate%28bmi%20%3D%20mass%20/%20%28height%20/%20100%29%20%5E%202%29%20%25%3E%25%0A%20%20%20%20%23%20Drop%20individuals%20with%20missing%20BMI%0A%20%20%20%20filter%28!is.na%28bmi%29%29&amp;d=2023-07-18&amp;lang=r&amp;v=v1">here</a>.</p>
 </section>
 <section id="microsoft-datamations" class="level3">
 <h3 class="anchored" data-anchor-id="microsoft-datamations">Microsoft datamations</h3>
-<p>Another possibliity is <code>{datamations}</code>, which gives you animations of how the pipeline operates. To use <code>{datamations}</code>, you can first install it with:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Install datamations from github</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"microsoft/datamations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Next, you can write your pipeline as you normally would. Subsequently, put the whole pipeline between apostrophes to turn it into a string and use <code>datamation_sanddance()</code> to generate the animation:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="st">"# Pipeline</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="st">starwars %&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a><span class="st">    # Remove hermaphroditic sex as this gives a large outlier</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a><span class="st">    filter(sex != 'hermaphroditic') %&gt;%</span></span>
-<span id="cb25-5"><a href="#cb25-5"></a><span class="st">    # Calculate BMI</span></span>
-<span id="cb25-6"><a href="#cb25-6"></a><span class="st">    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a><span class="st">     # Group on sex</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a><span class="st">    group_by(sex) %&gt;%</span></span>
-<span id="cb25-9"><a href="#cb25-9"></a><span class="st">    # Get mean BMI per group</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a><span class="st">    summarise(mean_bmi = mean(bmi))"</span> <span class="sc">%&gt;%</span> </span>
-<span id="cb25-11"><a href="#cb25-11"></a>    <span class="co"># Get animation</span></span>
-<span id="cb25-12"><a href="#cb25-12"></a>    <span class="fu">datamation_sanddance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Another possibliity is <code>{datamations}</code>, which gives us animations of how the pipeline operates. To use <code>{datamations}</code>, you can first install it with:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Install datamations from github</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"microsoft/datamations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next, we can write your pipeline as you normally would. Subsequently, we put the whole pipeline between apostrophes to turn it into a string and use <code>datamation_sanddance()</code> to generate the animation:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="st">"# Pipeline</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="st">starwars %&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="st">    # Remove hermaphroditic sex as this gives a large outlier</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="st">    filter(sex != 'hermaphroditic') %&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="st">    # Calculate BMI</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="st">    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="st">     # Group on sex</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="st">    group_by(sex) %&gt;%</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="st">    # Get mean BMI per group</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="st">    summarise(mean_bmi = mean(bmi))"</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb30-11"><a href="#cb30-11"></a>    <span class="co"># Get animation</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a>    <span class="fu">datamation_sanddance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that <code>{datamations}</code> cannot use every <code>{dplyr}</code> function however. More information on <code>{datamations}</code> can be found <a href="https://github.com/microsoft/datamations">here</a>.</p>
 </section>
 </section>
 <section id="other-useful-functions" class="level2">
 <h2 class="anchored" data-anchor-id="other-useful-functions">Other useful functions</h2>
+<p>We now discussed some of the most useful functions in <code>{dplyr}</code>, but there are other useful functions available.</p>
 </section>
 <section id="extensions" class="level2">
 <h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
@@ -688,6 +779,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="dbplyr" class="level3">
 <h3 class="anchored" data-anchor-id="dbplyr"><code>{dbplyr}</code></h3>
+</section>
+<section id="sparklyr" class="level3">
+<h3 class="anchored" data-anchor-id="sparklyr"><code>{sparklyr}</code></h3>
 
 
 </section>
