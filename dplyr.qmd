@@ -295,6 +295,34 @@ Note that the `NA`s in the output result from the fact that we cannot take the s
 
 - `cur_column()`: gives the name of the current column (only works in `across()`)
 
+## Joins
+There might be times where we work with data that is stored in different data sets. If we want to combine these data sets, e.g., `x` and `y`, into one bigger data set, we will often want to do this on the basis of one or more variables, such as a unique study participant identifier and/or a visit number. In this case, we can use joins from `{dplyr}`, which offers four joins. These joins all add the data together, but differ in what they do with individuals that are not matched in either dataset.
+
+| Function      | Will keep all observations in | Can drop observations in   |
+|---------------|-------------------------------|----------------------------|
+|`inner_join()` | *neither*                     | `x` and `y`                | 
+|`left_join()`  | `x`                           | `y`                        |
+|`right_join()` | `y`                           | `x`                        |
+|`full_join()`  | `x` and `y`                   | *neither*                  |
+
+To use a join function, we use a pipe operator after the data we want to be joined on (`x`) and then specify on what column we want to join the data.
+
+```r
+# Get some columns from starwars
+starwars_x <- starwars[, 1:3]
+
+# Get some more columns from starwars
+starwars_y <- starwars[, c(1, 4:6)]
+
+# Join data together based on the name
+starwars_z <- starwars_x %>%
+    # Join some more columns from starwars
+    left_join(starwars_y, "name")
+
+```
+
+If we would want to join on more columns than only `name`, we can put the joining columns in a vector with `c()`.
+
 ## Understanding pipelines
 With the `{dplyr}` functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help us. 
 
@@ -343,8 +371,27 @@ starwars %>%
 Note that `{datamations}` cannot use every `{dplyr}` function however. More information on `{datamations}` can be found [here](https://github.com/microsoft/datamations).
 
 ## Other useful functions
-We now discussed some of the most useful functions in `{dplyr}`, but there are other useful functions available.
+We now discussed some of the most useful functions in `{dplyr}`, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might remember that there was a function for a certain operation that you can then look back up.
 
+### Selecting parts of our data
+
+- `pull()`: we can extract a single column with `pull()`, which is similar to subsetting with the `$` operator.
+
+- `pick()`: if we are inside a function such as `mutate()` or `summarise()`, we can use `pick()` to subset multiple columns.
+
+- `slice_sample()`: select random rows. This is especially useful if you have a rather large data set and first want to test your code on a random subset of your data before running it on the complete data, which might take longer.
+
+- `distinct()`: keep only one row per unique combination of columns supplied to the function. This function drops all columns not specified, unless `.keep_all = TRUE`.
+
+### Getting informatin on and in our data
+
+- `lag()`:
+
+- `lead()`:
+
+- `first()`, `last()`, and `nth()`:
+
+-  `n_distinct()`:
 
 ## Extensions
 ### `{dtplyr}`

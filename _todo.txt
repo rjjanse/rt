@@ -1,21 +1,12 @@
 dplyr:
 - other useful functions
-  - pull
-  - pick
   - na_if
   - if_else
   - bind_rows
-  - n_distinct
-  - sample_n
   - rows
-  - nth
-  - first
-  - last
-  - lag
-  - lead
-  - distinct
   - tally
   - countr
+  - rowwise
 - dbplyr
 - dtplyr
 
