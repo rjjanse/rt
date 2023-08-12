@@ -200,7 +200,7 @@ Some more about annotation: with pipe operators, we can make our code much clear
 :::
 
 ## Grouping and slicing
-Now that we know about pipe operators, we can apply them to some nice `{dplyr}` functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with `arrange()`, which arranges variables in the order that you supply them to the function. Subsequently, we make the groups with `group_by()`, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with `ungroup()`. For example, if we want to calculate the mean BMI per sex, we can do the following:
+Now that we know about pipe operators, we can apply them to some nice `{dplyr}` functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with `arrange()`, which arranges variables in the order that you supply them to the function. If you want to arrange a variable in descending order, you can wrap it in `desc()`. Subsequently, we make the groups with `group_by()`, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with `ungroup()`. For example, if we want to calculate the mean BMI per sex, we can do the following:
 
 ```{r}
 #| code-fold: false
@@ -373,6 +373,7 @@ Note that `{datamations}` cannot use every `{dplyr}` function however. More info
 ## Other useful functions
 We now discussed some of the most useful functions in `{dplyr}`, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might remember that there was a function for a certain operation that you can then look back up.
 
+<<<<<<< Updated upstream
 ### Selecting parts of our data
 
 - `pull()`: we can extract a single column with `pull()`, which is similar to subsetting with the `$` operator.
@@ -392,6 +393,22 @@ We now discussed some of the most useful functions in `{dplyr}`, but there are o
 - `first()`, `last()`, and `nth()`:
 
 -  `n_distinct()`:
+=======
+### Getting data
+
+- `pull()`:
+
+- `pick()`:
+
+- `
+
+### Changing data
+-
+
+
+### Counting data
+
+>>>>>>> Stashed changes
 
 ## Extensions
 ### `{dtplyr}`
@@ -401,3 +418,14 @@ We now discussed some of the most useful functions in `{dplyr}`, but there are o
 
 
 ### `{sparklyr}`
+
+## Wrapping up
+We now saw the majority of functions that `{dplyr}` offers us to manipulate our data into taking the shape we want it to take. If you ever want to have a quick look at what functions are available again, without the explanations in this tutorial, you can check out the [`{dplyr}` reference guide](https://dplyr.tidyverse.org/reference/index.html) or the [documentation](https://www.rdocumentation.org/packages/dplyr/versions/1.0.10).
+
+## Exercises
+...
+
+## Next topic
+Now that we know the grammar of `{dplyr}`, we can see how `{tidyr}` assists us if the data we want to manipulate is not quite tidy yet.
+
+**Next:** [Tidyr](tidyr.qmd)

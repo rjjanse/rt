@@ -6,7 +6,11 @@ dplyr:
   - rows
   - tally
   - countr
+<<<<<<< Updated upstream
   - rowwise
+=======
+  - glimpse
+>>>>>>> Stashed changes
 - dbplyr
 - dtplyr
 
