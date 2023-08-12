@@ -373,7 +373,6 @@ Note that `{datamations}` cannot use every `{dplyr}` function however. More info
 ## Other useful functions
 We now discussed some of the most useful functions in `{dplyr}`, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might remember that there was a function for a certain operation that you can then look back up.
 
-<<<<<<< Updated upstream
 ### Selecting parts of our data
 
 - `pull()`: we can extract a single column with `pull()`, which is similar to subsetting with the `$` operator.
@@ -384,31 +383,15 @@ We now discussed some of the most useful functions in `{dplyr}`, but there are o
 
 - `distinct()`: keep only one row per unique combination of columns supplied to the function. This function drops all columns not specified, unless `.keep_all = TRUE`.
 
-### Getting informatin on and in our data
+### Getting information on and in our data
 
-- `lag()`:
+- `lag()`: take a column's value from the previous row (will be `NA` for the first row).
 
-- `lead()`:
+- `lead()`: take a column's value from the next row (will be `NA` for the last row).
 
-- `first()`, `last()`, and `nth()`:
+- `first()`, `last()`, and `nth()`: take the first, last, or nth (can be specified in the function) value in a column.
 
--  `n_distinct()`:
-=======
-### Getting data
-
-- `pull()`:
-
-- `pick()`:
-
-- `
-
-### Changing data
--
-
-
-### Counting data
-
->>>>>>> Stashed changes
+-  `n_distinct()`: count the total number of unique values.
 
 ## Extensions
 ### `{dtplyr}`

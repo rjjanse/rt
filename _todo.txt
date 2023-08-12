@@ -6,13 +6,12 @@ dplyr:
   - rows
   - tally
   - countr
-<<<<<<< Updated upstream
   - rowwise
-=======
   - glimpse
->>>>>>> Stashed changes
 - dbplyr
 - dtplyr
+
+dplyr functinality in base R
 
 tidyr:
 - fill
