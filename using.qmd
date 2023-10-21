@@ -24,6 +24,12 @@ Note that because iris is loaded in by default, it does not appear in your globa
 ```r
 iris <- iris
 ```
+
+or use the `data()` function:
+```r
+data(iris)
+```
+
 :::
 
 This is already much clearer. Nonetheless, we might want to see the whole data, for example to quickly look for inconsistencies. You can do this just by clicking on the name of the data in your global environment, or by using the `view()` function:
@@ -220,6 +226,46 @@ You can also perform functions on subsetted data:
 #| code-fold: false
 summary(iris[["Sepal.Width"]])
 ```
+
+## Adding data together
+Imagine we had two separate data sets: one with all data where the species is setosa and one with all data where the species is versicolor:
+```{r}
+#| code-fold: false
+# Get setosa data
+iris_setosa <- iris[which(iris[["Species"]] == "setosa"), ]
+
+# Get versicolor data
+iris_versicolor <- iris[which(iris[["Species"]] == "versicolor"), ]
+
+```
+
+If we wanted to add these data frames together again, we can use `rbind()`, which binds rows together. For `rbind()`, the data frames have to have the same columns, although they do not have to be in the same order.
+```{r}
+# Bind data together
+iris_setosa_versicolor <- rbind(iris_setosa, iris_versicolor)
+
+# See available values for species
+table(iris_setosa_versicolor[["Species"]])
+
+```
+
+We can do the same if we want to bind multiple columns together. In this case, the two data frames should have an equal amount of rows.
+```{r}
+# Keep only sepal columns of iris_setosa
+iris_setosa_sepal <- iris[, c("Sepal.Length", "Sepal.Width")]
+
+# Keep only petal columns of iris_setosa
+iris_setosa_petal <- iris[, c("Petal.Length", "Petal.Width")]
+
+# Add sepal and petal together again
+iris_setosa <- cbind(iris_setosa_sepal, iris_setosa_petal)
+
+# See first rows of the new data
+head(iris_setosa)
+
+```
+
+Of course, these examples seem futile as we split data and add it back together. However, `rbind()` and `cbind()` are useful functions when you want to join similar data from different sources.
 
 ## Get and assign
 The last important thing we should discuss about acessing the data are the functions `get()` and `assign()`. Although we can easily assign new data while writing our code (`data <- iris`), at a certain point we might want to automate it (and later on we will see how to do that). In that case, the name of the data we want might vary. When a value might vary, such as a column, it is often possible to use strings, such as `"iris"`. However, for assigning data, this does not work:

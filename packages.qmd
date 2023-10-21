@@ -142,6 +142,35 @@ pacman::p_load("dplyr",         # Data manipulation
 )
 ```
 
+## Learning how to work with packages
+### Demos
+Packages can supply demos on how to work with certain functions in the package. To see this for the packages loaded by the `base` package, we can use `demo()`:
+
+```r
+demo()
+```
+
+We could also see the demos for all packages installed:
+```r
+demo(package = .packages(all.available = TRUE))
+```
+
+### Vignettes
+More commonly, packages offer vignettes instead of demos. Vignettes are long guides on how to apply a certain concept using different functions in the package. To see the available vignettes of a package, we can use `browseVignettes()`:
+```r
+browseVignettes("survival")
+```
+
+We can also immediately select a vignette of interest:
+```r
+vignette("splines")
+```
+
+To see the object names to open vignettes from `vignette()`, we can supply only the package:
+```r
+vignette(package = "survival")
+```
+
 ## Updating and unistalling packages
 ### Updating
 Sometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio (@fig-packages). Alternatively, we can just rerun the package installation using `install.packages()` to update it. Note that we cannot use `{pacman}` here, as `{pacman}` will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use `update.packages()`, although this might not update packages to a version suitable for new major R versions.

@@ -54,7 +54,6 @@ website:
         - section: "Recap"
           contents: 
             - summary.qmd
-            - further_resources.qmd
             - rython.qmd
             - slow.qmd
      

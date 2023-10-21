@@ -1,13 +1,5 @@
 dplyr:
-- other useful functions
-  - na_if
-  - if_else
-  - bind_rows
-  - rows
-  - tally
-  - countr
-  - rowwise
-  - glimpse
+- sparklyr
 - dbplyr
 - dtplyr
 

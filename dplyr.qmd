@@ -295,6 +295,13 @@ Note that the `NA`s in the output result from the fact that we cannot take the s
 
 - `cur_column()`: gives the name of the current column (only works in `across()`)
 
+### Count and tally
+`tally()` and `count()` are two wrappers around summarise:
+
+- `tally()` is equal to summarise but automatically calls `n()` (if it's the first tally) or `sum()` (if it's the second tally), and therefore an easy shorthand for `summarise(n = n())`.
+
+- `count()` is equal to `group_by()` followed by `summarise()` and closed with `ungroup()`.
+
 ## Joins
 There might be times where we work with data that is stored in different data sets. If we want to combine these data sets, e.g., `x` and `y`, into one bigger data set, we will often want to do this on the basis of one or more variables, such as a unique study participant identifier and/or a visit number. In this case, we can use joins from `{dplyr}`, which offers four joins. These joins all add the data together, but differ in what they do with individuals that are not matched in either dataset.
 
@@ -371,7 +378,7 @@ starwars %>%
 Note that `{datamations}` cannot use every `{dplyr}` function however. More information on `{datamations}` can be found [here](https://github.com/microsoft/datamations).
 
 ## Other useful functions
-We now discussed some of the most useful functions in `{dplyr}`, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might remember that there was a function for a certain operation that you can then look back up.
+We now discussed some of the most useful functions in `{dplyr}`, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might recognize when you are trying to perform an operation for which `{dplyr}` has an efficient implementation. Moreover, this list is not exhaustive, but just a selection of useful functions; for everything available in `{dplyr}`, see [here](https://www.rdocumentation.org/packages/dplyr/versions/1.0.10).
 
 ### Selecting parts of our data
 
@@ -391,11 +398,31 @@ We now discussed some of the most useful functions in `{dplyr}`, but there are o
 
 - `first()`, `last()`, and `nth()`: take the first, last, or nth (can be specified in the function) value in a column.
 
--  `n_distinct()`: count the total number of unique values.
+- `n_distinct()`: count the total number of unique values.
+
+- `glimpse()`: get a quick glimpse of your data, similar to pressing on the blue button in front of the data in the global environment.
+
+### Manipulating our data
+
+- `rows()`: perform row-based modifications on a data frame using information in another data frame. See `?rows` for a detailed explanation.
+
+- `bind_rows()`: add data frames together based on rows. This is a more efficient implementation of `rbind()` and does not require the different data frames to all have the same columns (the final data frame will have all columns of the individual data frames that are bound).
+
+- `bind_cols()`: similar to `bind_rows()` but for columns, improving on `cbind()`.
+
+- `rowwise()`: perform a function per row in the data. This is useful when a vectorized function (i.e., a function that operates over the entire vector) is not available. For more detailed explanation, see `?rowwise`.
+
+- `na_if()`: replace a certain value `y` in vector `x` with `NA`.
+
+- `if_else()`: an improved version of `ifelse()` that can also take into account missings.
 
 ## Extensions
 ### `{dtplyr}`
+`{data.table}` is a package that works with data frames at a much higher speed than other R packages. Although `{data.table}` is discussed in more detail in [another section](datatable.qmd), here we shortly discuss the `{dplyr}` integration with `{data.table}`.
 
+We can use `lazy_dt()` to create a data table that tracks any operations and then transform it using `as.data.table()`, `as.data.frame()`, or `as_tibble()`.
+
+Although `{dtplyr}` is not as fast as `{data.table}`, it does allow using the readable `{dplyr}` while approaching the speed of `{data.table}`. 
 
 ### `{dbplyr}`
 
@@ -409,6 +436,6 @@ We now saw the majority of functions that `{dplyr}` offers us to manipulate our 
 ...
 
 ## Next topic
-Now that we know the grammar of `{dplyr}`, we can see how `{tidyr}` assists us if the data we want to manipulate is not quite tidy yet.
+Now that we know the grammar of `{dplyr}`, we can see how `{tidyr}` assists us if the data we want to manipulate is not quite tidy enough yet.
 
 **Next:** [Tidyr](tidyr.qmd)

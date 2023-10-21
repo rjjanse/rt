@@ -1,5 +1,5 @@
 ---
-title: "Data"
+title: "External data"
 ---
 
 ## Why we need to load data
@@ -156,6 +156,15 @@ Sometimes, our data is not stored in a local document, but on a server, such as 
 ```r
 dat <- sqlQuery(odbcConnect("database"), "select * from DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1")
 ```
+
+## Readily available data
+R and many available R packages also come with external data that is already available in the packages. To load this data, you can use `data()`:
+
+```r
+data(iris)
+```
+
+Additionally, you can get an overview of all available data in the available packages using `data()`.
 
 ## Exercises
 ### 0. Downloading data

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.306">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,10 +17,9 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -47,13 +46,43 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
+    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -101,16 +130,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tidyverse.html">Into the tidyverse</a></li><li class="breadcrumb-item"><a href="./dplyr.html">Dplyr</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">Dplyr</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
       </button>
     </div>
   </nav>
@@ -118,251 +142,227 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-        </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Start</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Start</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Introduction</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Introduction</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Set-up</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Set-up</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">R</span></a>
+  <a href="./r.html" class="sidebar-item-text sidebar-link">R</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">RStudio</span></a>
+  <a href="./rstudio.html" class="sidebar-item-text sidebar-link">RStudio</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">The basics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">The basics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./creating.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Creating data</span></a>
+  <a href="./creating.html" class="sidebar-item-text sidebar-link">Creating data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./using.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using data</span></a>
+  <a href="./using.html" class="sidebar-item-text sidebar-link">Using data</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./packages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Packages</span></a>
+  <a href="./packages.html" class="sidebar-item-text sidebar-link">Packages</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data</span></a>
+  <a href="./data.html" class="sidebar-item-text sidebar-link">Data</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Into the tidyverse</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Into the tidyverse</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tidyverse</span></a>
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">Tidyverse</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dplyr.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Dplyr</span></a>
+  <a href="./dplyr.html" class="sidebar-item-text sidebar-link active">Dplyr</a>
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">tidyr.qmd</span>
+  tidyr.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">magrittr.qmd</span>
+  magrittr.qmd
   </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Into the multiverse</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Into the multiverse</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">datatable.qmd</span>
+  datatable.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">shiny.qmd</span>
+  shiny.qmd
   </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">New skills</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">New skills</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">random.qmd</span>
+  random.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">functions.qmd</span>
+  functions.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">looping.qmd</span>
+  looping.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">iterating.qmd</span>
+  iterating.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">regex.qmd</span>
+  regex.qmd
   </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Workflow</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Workflow</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">scripts.qmd</span>
+  scripts.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">rmarkdown.qmd</span>
+  rmarkdown.qmd
   </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
- <span class="menu-text">General use</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">General use</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">regression.qmd</span>
+  regression.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">plotting.qmd</span>
+  plotting.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">table1.qmd</span>
+  table1.qmd
   </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
- <span class="menu-text">Specific use</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Specific use</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">imputation.qmd</span>
+  imputation.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">confounding.qmd</span>
+  confounding.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">prediction.qmd</span>
+  prediction.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">competing_risks.qmd</span>
+  competing_risks.qmd
   </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
- <span class="menu-text">Recap</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">Recap</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Summary</span></a>
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">Summary</a>
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">further_resources.qmd</span>
+  rython.qmd
   </li>
           <li class="sidebar-item">
- <span class="menu-text">rython.qmd</span>
-  </li>
-          <li class="sidebar-item">
- <span class="menu-text">slow.qmd</span>
+  slow.qmd
   </li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -379,19 +379,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#grouping-functions" id="toc-grouping-functions" class="nav-link" data-scroll-target="#grouping-functions">Grouping functions</a></li>
   </ul></li>
-  <li><a href="#summarising-groups" id="toc-summarising-groups" class="nav-link" data-scroll-target="#summarising-groups">Summarising groups</a></li>
+  <li><a href="#summarising-groups" id="toc-summarising-groups" class="nav-link" data-scroll-target="#summarising-groups">Summarising groups</a>
+  <ul>
+  <li><a href="#count-and-tally" id="toc-count-and-tally" class="nav-link" data-scroll-target="#count-and-tally">Count and tally</a></li>
+  </ul></li>
+  <li><a href="#joins" id="toc-joins" class="nav-link" data-scroll-target="#joins">Joins</a></li>
   <li><a href="#understanding-pipelines" id="toc-understanding-pipelines" class="nav-link" data-scroll-target="#understanding-pipelines">Understanding pipelines</a>
   <ul>
   <li><a href="#tidy-data-tutor" id="toc-tidy-data-tutor" class="nav-link" data-scroll-target="#tidy-data-tutor">Tidy data tutor</a></li>
   <li><a href="#microsoft-datamations" id="toc-microsoft-datamations" class="nav-link" data-scroll-target="#microsoft-datamations">Microsoft datamations</a></li>
   </ul></li>
-  <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions">Other useful functions</a></li>
+  <li><a href="#other-useful-functions" id="toc-other-useful-functions" class="nav-link" data-scroll-target="#other-useful-functions">Other useful functions</a>
+  <ul>
+  <li><a href="#selecting-parts-of-our-data" id="toc-selecting-parts-of-our-data" class="nav-link" data-scroll-target="#selecting-parts-of-our-data">Selecting parts of our data</a></li>
+  <li><a href="#getting-information-on-and-in-our-data" id="toc-getting-information-on-and-in-our-data" class="nav-link" data-scroll-target="#getting-information-on-and-in-our-data">Getting information on and in our data</a></li>
+  </ul></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
   <ul>
   <li><a href="#dtplyr" id="toc-dtplyr" class="nav-link" data-scroll-target="#dtplyr"><code>{dtplyr}</code></a></li>
   <li><a href="#dbplyr" id="toc-dbplyr" class="nav-link" data-scroll-target="#dbplyr"><code>{dbplyr}</code></a></li>
   <li><a href="#sparklyr" id="toc-sparklyr" class="nav-link" data-scroll-target="#sparklyr"><code>{sparklyr}</code></a></li>
   </ul></li>
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">Wrapping up</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
     </div>
@@ -400,7 +411,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Dplyr</h1>
+<h1 class="title d-none d-lg-block">Dplyr</h1>
 </div>
 
 
@@ -453,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Rename variables</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>sw <span class="ot">&lt;-</span> <span class="fu">rename</span>(sw, <span class="at">hair =</span> hair_color, <span class="at">skin =</span> skin_color, <span class="at">eye =</span> eye_color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-style-simple callout-tip">
+<div class="callout-tip callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -621,7 +632,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5        102</code></pre>
 </div>
 </div>
-<div class="callout callout-style-simple callout-tip">
+<div class="callout-tip callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -634,7 +645,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="grouping-and-slicing" class="level2">
 <h2 class="anchored" data-anchor-id="grouping-and-slicing">Grouping and slicing</h2>
-<p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with <code>arrange()</code>, which arranges variables in the order that you supply them to the function. Subsequently, we make the groups with <code>group_by()</code>, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with <code>ungroup()</code>. For example, if we want to calculate the mean BMI per sex, we can do the following:</p>
+<p>Now that we know about pipe operators, we can apply them to some nice <code>{dplyr}</code> functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with <code>arrange()</code>, which arranges variables in the order that you supply them to the function. If you want to arrange a variable in descending order, you can wrap it in <code>desc()</code>. Subsequently, we make the groups with <code>group_by()</code>, which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with <code>ungroup()</code>. For example, if we want to calculate the mean BMI per sex, we can do the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># Calculate mean BMI in strata of sex</span></span>
 <span id="cb23-2"><a href="#cb23-2"></a>sw <span class="ot">&lt;-</span> sw <span class="sc">%&gt;%</span></span>
@@ -729,20 +740,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>cur_group_rows()</code>: gives the row indices in the ungrouped data for the current group</p></li>
 <li><p><code>cur_column()</code>: gives the name of the current column (only works in <code>across()</code>)</p></li>
 </ul>
+<section id="count-and-tally" class="level3">
+<h3 class="anchored" data-anchor-id="count-and-tally">Count and tally</h3>
+<p><code>tally()</code> and <code>count()</code> are two wrappers around summarise:</p>
+<ul>
+<li><p><code>tally()</code> is equal to summarise but automatically calls <code>n()</code> (if it’s the first tally) or <code>sum()</code> (if it’s the second tally), and therefore an easy shorthand for <code>summarise(n = n())</code>.</p></li>
+<li><p><code>count()</code> is equal to <code>group_by()</code> followed by <code>summarise()</code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="joins" class="level2">
+<h2 class="anchored" data-anchor-id="joins">Joins</h2>
+<p>There might be times where we work with data that is stored in different data sets. If we want to combine these data sets, e.g., <code>x</code> and <code>y</code>, into one bigger data set, we will often want to do this on the basis of one or more variables, such as a unique study participant identifier and/or a visit number. In this case, we can use joins from <code>{dplyr}</code>, which offers four joins. These joins all add the data together, but differ in what they do with individuals that are not matched in either dataset.</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 41%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Will keep all observations in</th>
+<th>Can drop observations in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>inner_join()</code></td>
+<td><em>neither</em></td>
+<td><code>x</code> and <code>y</code></td>
+</tr>
+<tr class="even">
+<td><code>left_join()</code></td>
+<td><code>x</code></td>
+<td><code>y</code></td>
+</tr>
+<tr class="odd">
+<td><code>right_join()</code></td>
+<td><code>y</code></td>
+<td><code>x</code></td>
+</tr>
+<tr class="even">
+<td><code>full_join()</code></td>
+<td><code>x</code> and <code>y</code></td>
+<td><em>neither</em></td>
+</tr>
+</tbody>
+</table>
+<p>To use a join function, we use a pipe operator after the data we want to be joined on (<code>x</code>) and then specify on what column we want to join the data.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Get some columns from starwars</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>starwars_x <span class="ot">&lt;-</span> starwars[, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="co"># Get some more columns from starwars</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a>starwars_y <span class="ot">&lt;-</span> starwars[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)]</span>
+<span id="cb28-6"><a href="#cb28-6"></a></span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="co"># Join data together based on the name</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>starwars_z <span class="ot">&lt;-</span> starwars_x <span class="sc">%&gt;%</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>    <span class="co"># Join some more columns from starwars</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>    <span class="fu">left_join</span>(starwars_y, <span class="st">"name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If we would want to join on more columns than only <code>name</code>, we can put the joining columns in a vector with <code>c()</code>.</p>
 </section>
 <section id="understanding-pipelines" class="level2">
 <h2 class="anchored" data-anchor-id="understanding-pipelines">Understanding pipelines</h2>
 <p>With the <code>{dplyr}</code> functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help us.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># Extensive pipeline</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a>    <span class="co"># Arrange for grouping</span></span>
-<span id="cb28-4"><a href="#cb28-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="#cb28-5"></a>    <span class="co"># Group on sex</span></span>
-<span id="cb28-6"><a href="#cb28-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a>    <span class="co"># Create new variable BMI based on mass and height</span></span>
-<span id="cb28-8"><a href="#cb28-8"></a>    <span class="fu">mutate</span>(<span class="at">bmi =</span> mass <span class="sc">/</span> (height <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-9"><a href="#cb28-9"></a>    <span class="co"># Drop individuals with missing BMI</span></span>
-<span id="cb28-10"><a href="#cb28-10"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bmi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Extensive pipeline</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="fu">arrange</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="co"># Group on sex</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>    <span class="co"># Create new variable BMI based on mass and height</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>    <span class="fu">mutate</span>(<span class="at">bmi =</span> mass <span class="sc">/</span> (height <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-9"><a href="#cb29-9"></a>    <span class="co"># Drop individuals with missing BMI</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(bmi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="tidy-data-tutor" class="level3">
 <h3 class="anchored" data-anchor-id="tidy-data-tutor">Tidy data tutor</h3>
 <p>With <a href="https://tidydatatutor.com">tidy data tutor</a>, we can run your pipeline on data that can be loaded into R from packages, such as <code>starwars</code> from <code>{dplyr}</code>, and visualize what happens at each pipe operator. We can simply paste the pipeline and load in available data and run it to get a visualization. An example for the above code can be found <a href="https://tidydatatutor.com/vis.html#code=library%28dplyr%29%0A%0A%23%20Extensive%20pipeline%0Astarwars%20%25%3E%25%0A%20%20%20%20%23%20Arrange%20for%20grouping%0A%20%20%20%20arrange%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Group%20on%20sex%0A%20%20%20%20group_by%28sex%29%20%25%3E%25%0A%20%20%20%20%23%20Create%20new%20variable%20BMI%20based%20on%20mass%20and%20height%0A%20%20%20%20mutate%28bmi%20%3D%20mass%20/%20%28height%20/%20100%29%20%5E%202%29%20%25%3E%25%0A%20%20%20%20%23%20Drop%20individuals%20with%20missing%20BMI%0A%20%20%20%20filter%28!is.na%28bmi%29%29&amp;d=2023-07-18&amp;lang=r&amp;v=v1">here</a>.</p>
@@ -750,27 +821,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="microsoft-datamations" class="level3">
 <h3 class="anchored" data-anchor-id="microsoft-datamations">Microsoft datamations</h3>
 <p>Another possibliity is <code>{datamations}</code>, which gives us animations of how the pipeline operates. To use <code>{datamations}</code>, you can first install it with:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="co"># Install datamations from github</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"microsoft/datamations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Install datamations from github</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"microsoft/datamations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Next, we can write your pipeline as you normally would. Subsequently, we put the whole pipeline between apostrophes to turn it into a string and use <code>datamation_sanddance()</code> to generate the animation:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="st">"# Pipeline</span></span>
-<span id="cb30-2"><a href="#cb30-2"></a><span class="st">starwars %&gt;%</span></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="st">    # Remove hermaphroditic sex as this gives a large outlier</span></span>
-<span id="cb30-4"><a href="#cb30-4"></a><span class="st">    filter(sex != 'hermaphroditic') %&gt;%</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a><span class="st">    # Calculate BMI</span></span>
-<span id="cb30-6"><a href="#cb30-6"></a><span class="st">    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%</span></span>
-<span id="cb30-7"><a href="#cb30-7"></a><span class="st">     # Group on sex</span></span>
-<span id="cb30-8"><a href="#cb30-8"></a><span class="st">    group_by(sex) %&gt;%</span></span>
-<span id="cb30-9"><a href="#cb30-9"></a><span class="st">    # Get mean BMI per group</span></span>
-<span id="cb30-10"><a href="#cb30-10"></a><span class="st">    summarise(mean_bmi = mean(bmi))"</span> <span class="sc">%&gt;%</span> </span>
-<span id="cb30-11"><a href="#cb30-11"></a>    <span class="co"># Get animation</span></span>
-<span id="cb30-12"><a href="#cb30-12"></a>    <span class="fu">datamation_sanddance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="st">"# Pipeline</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="st">starwars %&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="st">    # Remove hermaphroditic sex as this gives a large outlier</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a><span class="st">    filter(sex != 'hermaphroditic') %&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a><span class="st">    # Calculate BMI</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="st">    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7"></a><span class="st">     # Group on sex</span></span>
+<span id="cb31-8"><a href="#cb31-8"></a><span class="st">    group_by(sex) %&gt;%</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a><span class="st">    # Get mean BMI per group</span></span>
+<span id="cb31-10"><a href="#cb31-10"></a><span class="st">    summarise(mean_bmi = mean(bmi))"</span> <span class="sc">%&gt;%</span> </span>
+<span id="cb31-11"><a href="#cb31-11"></a>    <span class="co"># Get animation</span></span>
+<span id="cb31-12"><a href="#cb31-12"></a>    <span class="fu">datamation_sanddance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note that <code>{datamations}</code> cannot use every <code>{dplyr}</code> function however. More information on <code>{datamations}</code> can be found <a href="https://github.com/microsoft/datamations">here</a>.</p>
 </section>
 </section>
 <section id="other-useful-functions" class="level2">
 <h2 class="anchored" data-anchor-id="other-useful-functions">Other useful functions</h2>
-<p>We now discussed some of the most useful functions in <code>{dplyr}</code>, but there are other useful functions available.</p>
+<p>We now discussed some of the most useful functions in <code>{dplyr}</code>, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might remember that there was a function for a certain operation that you can then look back up.</p>
+<section id="selecting-parts-of-our-data" class="level3">
+<h3 class="anchored" data-anchor-id="selecting-parts-of-our-data">Selecting parts of our data</h3>
+<ul>
+<li><p><code>pull()</code>: we can extract a single column with <code>pull()</code>, which is similar to subsetting with the <code>$</code> operator.</p></li>
+<li><p><code>pick()</code>: if we are inside a function such as <code>mutate()</code> or <code>summarise()</code>, we can use <code>pick()</code> to subset multiple columns.</p></li>
+<li><p><code>slice_sample()</code>: select random rows. This is especially useful if you have a rather large data set and first want to test your code on a random subset of your data before running it on the complete data, which might take longer.</p></li>
+<li><p><code>distinct()</code>: keep only one row per unique combination of columns supplied to the function. This function drops all columns not specified, unless <code>.keep_all = TRUE</code>.</p></li>
+</ul>
+</section>
+<section id="getting-information-on-and-in-our-data" class="level3">
+<h3 class="anchored" data-anchor-id="getting-information-on-and-in-our-data">Getting information on and in our data</h3>
+<ul>
+<li><p><code>lag()</code>: take a column’s value from the previous row (will be <code>NA</code> for the first row).</p></li>
+<li><p><code>lead()</code>: take a column’s value from the next row (will be <code>NA</code> for the last row).</p></li>
+<li><p><code>first()</code>, <code>last()</code>, and <code>nth()</code>: take the first, last, or nth (can be specified in the function) value in a column.</p></li>
+<li><p><code>n_distinct()</code>: count the total number of unique values.</p></li>
+</ul>
+</section>
 </section>
 <section id="extensions" class="level2">
 <h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
@@ -782,9 +871,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="sparklyr" class="level3">
 <h3 class="anchored" data-anchor-id="sparklyr"><code>{sparklyr}</code></h3>
-
-
 </section>
+</section>
+<section id="wrapping-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrapping-up">Wrapping up</h2>
+<p>We now saw the majority of functions that <code>{dplyr}</code> offers us to manipulate our data into taking the shape we want it to take. If you ever want to have a quick look at what functions are available again, without the explanations in this tutorial, you can check out the <a href="https://dplyr.tidyverse.org/reference/index.html"><code>{dplyr}</code> reference guide</a> or the <a href="https://www.rdocumentation.org/packages/dplyr/versions/1.0.10">documentation</a>.</p>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<p>…</p>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
+<p>Now that we know the grammar of <code>{dplyr}</code>, we can see how <code>{tidyr}</code> assists us if the data we want to manipulate is not quite tidy yet.</p>
+<p><strong>Next:</strong> <a href="tidyr.qmd">Tidyr</a></p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -815,23 +917,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
+    target: function(trigger) {
+      return trigger.previousElementSibling;
     }
   });
   clipboard.on('success', function(e) {
@@ -896,92 +984,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
