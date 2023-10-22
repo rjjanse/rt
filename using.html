@@ -948,14 +948,11 @@ Meow?
 </div>
 <p>If we wanted to add these data frames together again, we can use <code>rbind()</code>, which binds rows together. For <code>rbind()</code>, the data frames have to have the same columns, although they do not have to be in the same order.</p>
 <div class="cell">
-<details>
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="co"># Bind data together</span></span>
 <span id="cb63-2"><a href="#cb63-2"></a>iris_setosa_versicolor <span class="ot">&lt;-</span> <span class="fu">rbind</span>(iris_setosa, iris_versicolor)</span>
 <span id="cb63-3"><a href="#cb63-3"></a></span>
 <span id="cb63-4"><a href="#cb63-4"></a><span class="co"># See available values for species</span></span>
 <span id="cb63-5"><a href="#cb63-5"></a><span class="fu">table</span>(iris_setosa_versicolor[[<span class="st">"Species"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     setosa versicolor  virginica 
@@ -964,8 +961,6 @@ Meow?
 </div>
 <p>We can do the same if we want to bind multiple columns together. In this case, the two data frames should have an equal amount of rows.</p>
 <div class="cell">
-<details>
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="co"># Keep only sepal columns of iris_setosa</span></span>
 <span id="cb65-2"><a href="#cb65-2"></a>iris_setosa_sepal <span class="ot">&lt;-</span> iris[, <span class="fu">c</span>(<span class="st">"Sepal.Length"</span>, <span class="st">"Sepal.Width"</span>)]</span>
 <span id="cb65-3"><a href="#cb65-3"></a></span>
@@ -977,7 +972,6 @@ Meow?
 <span id="cb65-9"><a href="#cb65-9"></a></span>
 <span id="cb65-10"><a href="#cb65-10"></a><span class="co"># See first rows of the new data</span></span>
 <span id="cb65-11"><a href="#cb65-11"></a><span class="fu">head</span>(iris_setosa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width
 1          5.1         3.5          1.4         0.2
