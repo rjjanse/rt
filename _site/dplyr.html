@@ -210,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link">Data</a>
+  <a href="./data.html" class="sidebar-item-text sidebar-link">External data</a>
   </div>
 </li>
       </ul>
@@ -393,6 +393,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#selecting-parts-of-our-data" id="toc-selecting-parts-of-our-data" class="nav-link" data-scroll-target="#selecting-parts-of-our-data">Selecting parts of our data</a></li>
   <li><a href="#getting-information-on-and-in-our-data" id="toc-getting-information-on-and-in-our-data" class="nav-link" data-scroll-target="#getting-information-on-and-in-our-data">Getting information on and in our data</a></li>
+  <li><a href="#manipulating-our-data" id="toc-manipulating-our-data" class="nav-link" data-scroll-target="#manipulating-our-data">Manipulating our data</a></li>
   </ul></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a>
   <ul>
@@ -401,7 +402,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#sparklyr" id="toc-sparklyr" class="nav-link" data-scroll-target="#sparklyr"><code>{sparklyr}</code></a></li>
   </ul></li>
   <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up">Wrapping up</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#subset-data" id="toc-subset-data" class="nav-link" data-scroll-target="#subset-data">1. Subset data</a></li>
+  <li><a href="#create-weight-category" id="toc-create-weight-category" class="nav-link" data-scroll-target="#create-weight-category">2. Create weight category</a></li>
+  <li><a href="#drop-columns" id="toc-drop-columns" class="nav-link" data-scroll-target="#drop-columns">3. Drop columns</a></li>
+  <li><a href="#get-group-statistics" id="toc-get-group-statistics" class="nav-link" data-scroll-target="#get-group-statistics">4. Get group statistics</a></li>
+  <li><a href="#put-it-all-in-a-pipeline" id="toc-put-it-all-in-a-pipeline" class="nav-link" data-scroll-target="#put-it-all-in-a-pipeline">5. Put it all in a pipeline</a></li>
+  </ul></li>
   <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
   </ul>
 </nav>
@@ -745,7 +753,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>tally()</code> and <code>count()</code> are two wrappers around summarise:</p>
 <ul>
 <li><p><code>tally()</code> is equal to summarise but automatically calls <code>n()</code> (if it’s the first tally) or <code>sum()</code> (if it’s the second tally), and therefore an easy shorthand for <code>summarise(n = n())</code>.</p></li>
-<li><p><code>count()</code> is equal to <code>group_by()</code> followed by <code>summarise()</code>.</p></li>
+<li><p><code>count()</code> is equal to <code>group_by()</code> followed by <code>summarise(n = n())</code> and closed with <code>ungroup()</code>.</p></li>
 </ul>
 </section>
 </section>
@@ -841,7 +849,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="other-useful-functions" class="level2">
 <h2 class="anchored" data-anchor-id="other-useful-functions">Other useful functions</h2>
-<p>We now discussed some of the most useful functions in <code>{dplyr}</code>, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might remember that there was a function for a certain operation that you can then look back up.</p>
+<p>We now discussed some of the most useful functions in <code>{dplyr}</code>, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might recognize when you are trying to perform an operation for which <code>{dplyr}</code> has an efficient implementation. Moreover, this list is not exhaustive, but just a selection of useful functions; for everything available in <code>{dplyr}</code>, see <a href="https://www.rdocumentation.org/packages/dplyr/versions/1.0.10">here</a>.</p>
 <section id="selecting-parts-of-our-data" class="level3">
 <h3 class="anchored" data-anchor-id="selecting-parts-of-our-data">Selecting parts of our data</h3>
 <ul>
@@ -858,6 +866,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>lead()</code>: take a column’s value from the next row (will be <code>NA</code> for the last row).</p></li>
 <li><p><code>first()</code>, <code>last()</code>, and <code>nth()</code>: take the first, last, or nth (can be specified in the function) value in a column.</p></li>
 <li><p><code>n_distinct()</code>: count the total number of unique values.</p></li>
+<li><p><code>glimpse()</code>: get a quick glimpse of your data, similar to pressing on the blue button in front of the data in the global environment.</p></li>
+</ul>
+</section>
+<section id="manipulating-our-data" class="level3">
+<h3 class="anchored" data-anchor-id="manipulating-our-data">Manipulating our data</h3>
+<ul>
+<li><p><code>rows()</code>: perform row-based modifications on a data frame using information in another data frame. See <code>?rows</code> for a detailed explanation.</p></li>
+<li><p><code>bind_rows()</code>: add data frames together based on rows. This is a more efficient implementation of <code>rbind()</code> and does not require the different data frames to all have the same columns (the final data frame will have all columns of the individual data frames that are bound).</p></li>
+<li><p><code>bind_cols()</code>: similar to <code>bind_rows()</code> but for columns, improving on <code>cbind()</code>.</p></li>
+<li><p><code>rowwise()</code>: perform a function per row in the data. This is useful when a vectorized function (i.e., a function that operates over the entire vector) is not available. For more detailed explanation, see <code>?rowwise</code>.</p></li>
+<li><p><code>na_if()</code>: replace a certain value <code>y</code> in vector <code>x</code> with <code>NA</code>.</p></li>
+<li><p><code>if_else()</code>: an improved version of <code>ifelse()</code> that can also take into account missings.</p></li>
 </ul>
 </section>
 </section>
@@ -865,12 +885,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="extensions">Extensions</h2>
 <section id="dtplyr" class="level3">
 <h3 class="anchored" data-anchor-id="dtplyr"><code>{dtplyr}</code></h3>
+<p><code>{data.table}</code> is a package that works with data frames at a much higher speed than other R packages. Although <code>{data.table}</code> is discussed in more detail in <a href="datatable.qmd">another section</a>, here we shortly discuss the <code>{dplyr}</code> integration with <code>{data.table}</code>.</p>
+<p>We can use <code>lazy_dt()</code> to create a data table that tracks any operations and then transform it using <code>as.data.table()</code>, <code>as.data.frame()</code>, or <code>as_tibble()</code>.</p>
+<p>Although <code>{dtplyr}</code> is not as fast as <code>{data.table}</code>, it does allow using the readable <code>{dplyr}</code> while approaching the speed of <code>{data.table}</code>.</p>
 </section>
 <section id="dbplyr" class="level3">
 <h3 class="anchored" data-anchor-id="dbplyr"><code>{dbplyr}</code></h3>
+<p>Sometimes, our data is not stored locally but in a remote database, such as SQL. In that case, you can use <code>{dbplyr}</code> to manipulate the data as if it were in-memory using <code>{dplyr}</code> functionality.</p>
+<p>Using the <code>dbConnect()</code> from <code>{DBI}</code>, we can connect a data base from SQL to an object in R and then manipulate it. Behind the scenes, your R code is translated into SQL code. To get started, you can look up the vignette (<code>vignette(sql)</code>) or see <a href="https://dbplyr.tidyverse.org/">here</a> and <a href="https://dbplyr.tidyverse.org/articles/sql.html">here</a>.</p>
 </section>
 <section id="sparklyr" class="level3">
 <h3 class="anchored" data-anchor-id="sparklyr"><code>{sparklyr}</code></h3>
+<p>Apache Spark is a powerful framework for processing data quickly and efficiently. It is popular due to it’s speed with big data. Although not officially a <code>{dplyr}</code> extension, <code>{dplyr}</code> and other R code can be used to access Apache Spark through <code>{sparklyr}</code>. You can find more information <a href="https://spark.rstudio.com/">here</a>.</p>
 </section>
 </section>
 <section id="wrapping-up" class="level2">
@@ -879,11 +905,152 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<p>…</p>
+<section id="subset-data" class="level3">
+<h3 class="anchored" data-anchor-id="subset-data">1. Subset data</h3>
+<p>From the data <code>mtcars</code>, keep only cars with a weight (<code>wt</code>) of 3 or higher and store this into an object <code>dat</code></p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">filter</span>(mtcars, wt <span class="sc">&gt;=</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="create-weight-category" class="level3">
+<h3 class="anchored" data-anchor-id="create-weight-category">2. Create weight category</h3>
+<p>Create a column <code>wt_cat</code> categorizing <code>wt</code> into smaller than 4 (0) and 4 or greater (1) in <code>dat</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Solution 1: using ifelse</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a>dat <span class="ot">&lt;-</span> <span class="fu">mutate</span>(dat, <span class="at">wt_cat =</span> <span class="fu">ifelse</span>(wt <span class="sc">&lt;</span> <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb33-3"><a href="#cb33-3"></a></span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="co"># Solution 2: using if_else</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>dat <span class="ot">&lt;-</span> <span class="fu">mutate</span>(dat, <span class="at">wt_cat =</span> <span class="fu">if_else</span>(wt <span class="sc">&lt;</span> <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb33-6"><a href="#cb33-6"></a></span>
+<span id="cb33-7"><a href="#cb33-7"></a><span class="co"># Solution 3: using case_when</span></span>
+<span id="cb33-8"><a href="#cb33-8"></a>dat <span class="ot">&lt;-</span> <span class="fu">mutate</span>(dat, <span class="at">wt_cat =</span> <span class="fu">case_when</span>(wt <span class="sc">&lt;</span> <span class="dv">4</span> <span class="sc">~</span> <span class="dv">0</span>, <span class="at">.default =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="drop-columns" class="level3">
+<h3 class="anchored" data-anchor-id="drop-columns">3. Drop columns</h3>
+<p>Remove the <code>hp</code> and <code>vs</code> columns from <code>dat</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">select</span>(dat, <span class="sc">-</span><span class="fu">c</span>(hp, vs))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="get-group-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="get-group-statistics">4. Get group statistics</h3>
+<p>Determine the number of cars for each level of <code>cyl</code></p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Solution 1: using group_by and summarise</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="co"># Arrange data for grouping</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="fu">arrange</span>(cyl) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="co"># Group per level of cylinders</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-7"><a href="#cb35-7"></a>    <span class="co"># Get count per level of cylinders</span></span>
+<span id="cb35-8"><a href="#cb35-8"></a>    <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+    cyl     n
+  &lt;dbl&gt; &lt;int&gt;
+1     4     2
+2     6     4
+3     8    14</code></pre>
+</div>
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># Solution 2: using group_by and tally</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a>    <span class="fu">arrange</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>    <span class="co"># Group per level of cylinders</span></span>
+<span id="cb37-6"><a href="#cb37-6"></a>    <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="#cb37-7"></a>    <span class="co"># Tally per group of cylinders</span></span>
+<span id="cb37-8"><a href="#cb37-8"></a>    <span class="fu">tally</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+    cyl     n
+  &lt;dbl&gt; &lt;int&gt;
+1     4     2
+2     6     4
+3     8    14</code></pre>
+</div>
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="co"># Solution 3: using count</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a>    <span class="fu">arrange</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a>    <span class="co"># Count per group of cylinders</span></span>
+<span id="cb39-6"><a href="#cb39-6"></a>    <span class="fu">count</span>(cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>  cyl  n
+1   4  2
+2   6  4
+3   8 14</code></pre>
+</div>
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="co"># Solution 4: using gropu_by and mutate</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>    <span class="fu">arrange</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>    <span class="co"># Group per level of cylinders</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a>    <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb41-7"><a href="#cb41-7"></a>    <span class="co"># Per group, calculate number of cylinders</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a>    <span class="fu">mutate</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>    <span class="co"># Per group, keep one row</span></span>
+<span id="cb41-10"><a href="#cb41-10"></a>    <span class="fu">slice</span>(1L) <span class="sc">%&gt;%</span></span>
+<span id="cb41-11"><a href="#cb41-11"></a>    <span class="co"># Ungroup again</span></span>
+<span id="cb41-12"><a href="#cb41-12"></a>    <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb41-13"><a href="#cb41-13"></a>    <span class="co"># Keep only relevant columns</span></span>
+<span id="cb41-14"><a href="#cb41-14"></a>    <span class="fu">select</span>(cyl, n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+    cyl     n
+  &lt;dbl&gt; &lt;int&gt;
+1     4     2
+2     6     4
+3     8    14</code></pre>
+</div>
+</div>
+</section>
+<section id="put-it-all-in-a-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="put-it-all-in-a-pipeline">5. Put it all in a pipeline</h3>
+<p>Now perform exercises 1 through 4 but use one continuous pipeline</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a><span class="co"># You can combine any of the solutions of exercise 1 through 4, here I show just one:</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>dat <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>    <span class="co"># Keep only cars with weight &gt;= 3</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>    <span class="fu">filter</span>(wt <span class="sc">&gt;=</span> <span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a>    <span class="co"># Create category for weight</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>    <span class="fu">mutate</span>(<span class="at">wt_cat =</span> <span class="fu">ifelse</span>(wt <span class="sc">&lt;</span> <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>    <span class="co"># Remove columns hp and vs</span></span>
+<span id="cb43-8"><a href="#cb43-8"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(hp, vs)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-9"><a href="#cb43-9"></a>    <span class="co"># Arrange for grouping</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a>    <span class="fu">arrange</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb43-11"><a href="#cb43-11"></a>    <span class="co"># Count per group of cylinders</span></span>
+<span id="cb43-12"><a href="#cb43-12"></a>    <span class="fu">count</span>(cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
 </section>
 <section id="next-topic" class="level2">
 <h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
-<p>Now that we know the grammar of <code>{dplyr}</code>, we can see how <code>{tidyr}</code> assists us if the data we want to manipulate is not quite tidy yet.</p>
+<p>Now that we know the grammar of <code>{dplyr}</code>, we can see how <code>{tidyr}</code> assists us if the data we want to manipulate is not quite tidy enough yet.</p>
 <p><strong>Next:</strong> <a href="tidyr.qmd">Tidyr</a></p>
 
 

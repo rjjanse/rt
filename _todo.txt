@@ -1,7 +1,4 @@
-dplyr:
-- sparklyr
-- dbplyr
-- dtplyr
+
 
 dplyr functinality in base R
 

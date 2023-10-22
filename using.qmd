@@ -241,6 +241,7 @@ iris_versicolor <- iris[which(iris[["Species"]] == "versicolor"), ]
 
 If we wanted to add these data frames together again, we can use `rbind()`, which binds rows together. For `rbind()`, the data frames have to have the same columns, although they do not have to be in the same order.
 ```{r}
+#| code-fold: false
 # Bind data together
 iris_setosa_versicolor <- rbind(iris_setosa, iris_versicolor)
 
@@ -251,6 +252,7 @@ table(iris_setosa_versicolor[["Species"]])
 
 We can do the same if we want to bind multiple columns together. In this case, the two data frames should have an equal amount of rows.
 ```{r}
+#| code-fold: false
 # Keep only sepal columns of iris_setosa
 iris_setosa_sepal <- iris[, c("Sepal.Length", "Sepal.Width")]
 

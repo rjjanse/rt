@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data</title>
+<title>External data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -132,7 +132,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Data</h1>
+      <h1 class="quarto-secondary-nav-title">External data</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -210,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link active">Data</a>
+  <a href="./data.html" class="sidebar-item-text sidebar-link active">External data</a>
   </div>
 </li>
       </ul>
@@ -392,6 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#parquet" id="toc-parquet" class="nav-link" data-scroll-target="#parquet">Parquet</a></li>
   </ul></li>
   <li><a href="#sql" id="toc-sql" class="nav-link" data-scroll-target="#sql">SQL</a></li>
+  <li><a href="#readily-available-data" id="toc-readily-available-data" class="nav-link" data-scroll-target="#readily-available-data">Readily available data</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
   <ul>
   <li><a href="#downloading-data" id="toc-downloading-data" class="nav-link" data-scroll-target="#downloading-data">0. Downloading data</a></li>
@@ -407,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Data</h1>
+<h1 class="title d-none d-lg-block">External data</h1>
 </div>
 
 
@@ -561,6 +562,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using <code>{RODBC}</code>, which allows general database access. You can connect to the database with <code>odbcConnect()</code> and then pass SQL queries into data using <code>sqlQuery()</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">sqlQuery</span>(<span class="fu">odbcConnect</span>(<span class="st">"database"</span>), <span class="st">"select * from DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section id="readily-available-data" class="level2">
+<h2 class="anchored" data-anchor-id="readily-available-data">Readily available data</h2>
+<p>R and many available R packages also come with external data that is already available in the packages. To load this data, you can use <code>data()</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">data</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Additionally, you can get an overview of all available data in the available packages using <code>data()</code>.</p>
+</section>
 <section id="exercises" class="level2">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
 <section id="downloading-data" class="level3">
@@ -573,21 +580,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Answer</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"rio"</span>, <span class="st">"readr"</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># Define file so that I only have to type it once for each example</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>file <span class="ot">&lt;-</span> <span class="st">"C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv"</span></span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a><span class="co"># Answer 1: using import</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(file)</span>
-<span id="cb9-9"><a href="#cb9-9"></a></span>
-<span id="cb9-10"><a href="#cb9-10"></a><span class="co"># Answer 2: using read_csv</span></span>
-<span id="cb9-11"><a href="#cb9-11"></a><span class="co"># suppressWarnings and show_col_types = FALSE for clean output</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>dat <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">read_csv</span>(file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb9-13"><a href="#cb9-13"></a></span>
-<span id="cb9-14"><a href="#cb9-14"></a><span class="co"># Answer 3: using read.csv</span></span>
-<span id="cb9-15"><a href="#cb9-15"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"rio"</span>, <span class="st">"readr"</span>)</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># Define file so that I only have to type it once for each example</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>file <span class="ot">&lt;-</span> <span class="st">"C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv"</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="co"># Answer 1: using import</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>dat <span class="ot">&lt;-</span> <span class="fu">import</span>(file)</span>
+<span id="cb10-9"><a href="#cb10-9"></a></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="co"># Answer 2: using read_csv</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a><span class="co"># suppressWarnings and show_col_types = FALSE for clean output</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>dat <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">read_csv</span>(file, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb10-13"><a href="#cb10-13"></a></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="co"># Answer 3: using read.csv</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>dat <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -597,11 +604,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell">
 <details>
 <summary>Answer</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Answer 1: use save()</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">save</span>(dat, <span class="at">file =</span> <span class="st">"example_data.Rdata"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3"></a></span>
-<span id="cb10-4"><a href="#cb10-4"></a><span class="co"># Answer 2: use export()</span></span>
-<span id="cb10-5"><a href="#cb10-5"></a><span class="fu">export</span>(dat, <span class="st">"example_data.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Answer 1: use save()</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">save</span>(dat, <span class="at">file =</span> <span class="st">"example_data.Rdata"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># Answer 2: use export()</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="fu">export</span>(dat, <span class="st">"example_data.Rdata"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
