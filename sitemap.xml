@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rjjanse.github.io/rt/creating.html</loc>
-    <lastmod>2023-10-21T22:50:14.741Z</lastmod>
+    <loc>https://rjjanse.github.io/rt/using.html</loc>
+    <lastmod>2024-09-17T13:32:38.002Z</lastmod>
   </url>
   <url>
-    <loc>https://rjjanse.github.io/rt/data.html</loc>
-    <lastmod>2023-10-21T22:50:15.315Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/dplyr.html</loc>
-    <lastmod>2023-10-21T22:50:16.070Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/index.html</loc>
-    <lastmod>2023-10-21T22:50:16.455Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/packages.html</loc>
-    <lastmod>2023-10-21T22:50:17.035Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/r.html</loc>
-    <lastmod>2023-10-21T22:50:17.315Z</lastmod>
+    <loc>https://rjjanse.github.io/rt/tidyr.html</loc>
+    <lastmod>2024-09-17T14:39:41.219Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/rstudio.html</loc>
-    <lastmod>2023-10-21T22:50:17.649Z</lastmod>
+    <lastmod>2024-09-17T13:32:37.998Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/r.html</loc>
+    <lastmod>2024-09-17T13:32:37.996Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/index.html</loc>
+    <lastmod>2024-09-17T13:32:37.992Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/data.html</loc>
+    <lastmod>2024-09-17T13:46:34.629Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/creating.html</loc>
+    <lastmod>2024-09-17T13:43:05.081Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/dplyr.html</loc>
+    <lastmod>2024-09-17T13:32:37.953Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/packages.html</loc>
+    <lastmod>2024-09-17T13:32:37.995Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/regex.html</loc>
+    <lastmod>2024-09-17T14:25:00.926Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/summary.html</loc>
-    <lastmod>2023-10-21T22:50:17.905Z</lastmod>
+    <lastmod>2024-09-17T13:39:03.765Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/tidyverse.html</loc>
-    <lastmod>2023-10-21T22:50:18.385Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/using.html</loc>
-    <lastmod>2023-10-21T22:50:33.215Z</lastmod>
+    <lastmod>2024-09-17T14:01:06.558Z</lastmod>
   </url>
 </urlset>

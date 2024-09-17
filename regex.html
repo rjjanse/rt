@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R</title>
+<title>Regex</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r.html">Set-up</a></li><li class="breadcrumb-item"><a href="./r.html">R</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">New skills</li><li class="breadcrumb-item"><a href="./regex.html">Regex</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./r.html" class="sidebar-item-text sidebar-link active">
+  <a href="./r.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">R</span></a>
   </div>
 </li>
@@ -246,7 +246,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./regex.html" class="sidebar-item-text sidebar-link">
+  <a href="./regex.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Regex</span></a>
   </div>
 </li>
@@ -345,18 +345,16 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#r-an-introduction" id="toc-r-an-introduction" class="nav-link active" data-scroll-target="#r-an-introduction">R: an introduction</a></li>
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r">Installing R</a></li>
-  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
+  <li><a href="#regex" id="toc-regex" class="nav-link active" data-scroll-target="#regex">Regex</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./r.html">Set-up</a></li><li class="breadcrumb-item"><a href="./r.html">R</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">New skills</li><li class="breadcrumb-item"><a href="./regex.html">Regex</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">R</h1>
+<h1 class="title">Regex</h1>
 </div>
 
 
@@ -373,40 +371,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="r-an-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="r-an-introduction">R: an introduction</h2>
-<p>R is a programming language with a specific focus on statistical programming. A large part of the original R programming language took inspiration from the S programming language. This is also where it also got its name (R being next to S in the alphabet), together with R being the first name of the developers (Ross Ihaka and Robet Gentleman). R first appeared in August 1993 and the first official R version 1.0 was released on the 29<sup>th</sup> of February, 2000 (<a href="https://en.wikipedia.org/wiki/R_(programming_language)">Source</a>).</p>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Strictly speaking, when we are programming in R, we are not <em>actually</em> programming in R. R is only a <a href="https://cran.r-project.org/doc/manuals/r-release/R-lang.html">language definition</a>, a long set of rules and definitions explaining how R should work. When we code, we actually code in an <a href="https://en.wikipedia.org/wiki/R_(programming_language)#Implementations">R implementation</a>: an implementation of the R language definition written in more abstract (read: more computer-friendly, less human-friendly) languages. The R implementation we will be using (and most people use) is written in C, Fortran, and R.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="installing-r" class="level2">
-<h2 class="anchored" data-anchor-id="installing-r">Installing R</h2>
-<p>Let’s start by installing R. R can be used on Windows, Apple, and Linux operating systems. To download R, you can go to <a href="https://cran.rstudio.com" class="uri">https://cran.rstudio.com</a>, where you can choose the download link applicable to your platform.</p>
-<p>After R is installed, you can open it and you will see the following screen:</p>
-<div id="fig-r_gui" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="R graphical user interface">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-r_gui-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/rgui.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="R graphical user interface">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-r_gui-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: R graphical user interface
-</figcaption>
-</figure>
-</div>
-<p>In <a href="#fig-r_gui" class="quarto-xref">Figure&nbsp;1</a>, you can see the R console, which allows you write code to subsequently yield results. However, as you might have noticed, the interface is quite limited in the information it shows you. This is why it is a good idea to install an Integrated Development Environment (also called an IDE).</p>
-</section>
-<section id="next-topic" class="level2">
-<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
-<p>Now that we have R, let’s install the RStudio IDE.</p>
-<p><strong>Next:</strong> <a href="./rstudio.html">Installing the RStudio IDE</a></p>
+<section id="regex" class="level2">
+<h2 class="anchored" data-anchor-id="regex">Regex</h2>
 
 
 </section>
