@@ -178,7 +178,7 @@ Load the data you just downloaded into a variable called `dat`.
 pacman::p_load("rio", "readr")
 
 # Define file so that I only have to type it once for each example
-file <- "C:/users/rjjan/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv"
+file <- "C:/users/rjjanse.LUMCNET/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv"
 
 # Answer 1: using import
 dat <- import(file)

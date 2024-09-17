@@ -2,7 +2,7 @@
 title: "Tidyverse"
 ---
 
-## What is the tidyverse
+## What is the tidyverse?
 R is a great language for statistical programming, but can sometimes be strenuous to work with smoothly. The [tidyverse](https://www.tidyverse.org/) is a collection of packages that aims to make it easier to perform these strenuous operations. This ranges from data manipulation and visualization to working specifically with dates. The tidyverse allows these operations to be done in an easy-to-read and easy-to-write style, with all packages integrating with one another fluently (I swear, this is not an advertisement).
 
 There are some packages that form the core of the tidyverse, that are all discussed in this tutorial:
@@ -61,7 +61,7 @@ library(magrittr)
 ```
 
 ## Shiver my ~~timbers~~ tibbles
-Although R normally works with data frames, the tidyverse works with tibbles. Tibbles are an enhanced type of data frame that try to do accomplish two things:
+Although R normally works with data frames, the tidyverse works with tibbles. Tibbles are an enhanced type of data frame that try to accomplish two things:
 
 - They try to do less
 

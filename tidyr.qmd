@@ -1,0 +1,93 @@
+---
+title: "Tidyr"
+---
+
+## Tidyr
+`{tidyr}` is a package from the tidyverse that is meant to help you tidy up your data. What is considered 'tidy' data can be read in `vignette("tidy-data")`. In short, tidy data helps you use `{dplyr}` and other tidyverse tools in a way that lets you spend less time on structuring your data and more on performing your analyses.
+
+## Reshaping data
+Most commonly, I use `{tidyr}` to reshape my data. Some analyses require data in long format (i.e. one study participant can have multiple observations which are represented by multiple rows) while data might be retrieved in wide format (i.e. one study participant can have multiple observations which are represented by multiple columns). In such a case, `{tidyr}` offers us `pivot_longer()`.
+
+We can use `pivot_longer()` in a number of ways, but we must always supply the data in the argument `data`, and the columns to be pivoted in `cols`. In the simplest cases, this will suffice.
+
+As an example, let's look at `billboard`, a dataset available through `{tidyr}`. `billboard` contains songs ranking the top 100 in the year 2000 with their position in each week after entering the top 100 (wk).
+
+```{r}
+#| code-fold: false
+# Load tidyr
+pacman::p_load("tidyr")
+
+# What does billboard look like?
+head(billboard)
+
+# Pivot billboard to long format
+billboard_long <- pivot_longer(billboard, wk1:wk76)
+
+# Reprint billboard
+head(billboard_long)
+
+```
+
+We can see that the  data now has much less columns (5 as opposed to 79 previously). Instead, the number of rows has been increased: each row now corresponds to a week for each song. The weeks were put into a column called 'name' by default, and the values that were in the original week columns went into a column called 'value' by default.
+
+We can of course change the names of those columns:
+
+```{r}
+#| code-fold: false
+# Pivot billboard to long format
+billboard_long <- pivot_longer(billboard, wk1:wk76, names_to = "week", values_to = "position")
+
+# Reprint billboard
+head(billboard_long)
+
+```
+
+Currently, the week numbers are in the column called 'week', but are represented as a character string because the characters 'wk' are present in all columns. Although we will learn how to manipulate this in [Regex](regex.qmd), we can prevent this while calling the function:
+
+```{r}
+#| code-fold: false
+# Pivot billboard to long format
+billboard_long <- pivot_longer(billboard, wk1:wk76, names_to = "week", values_to = "position", names_prefix = "wk")
+
+# Reprint billboard
+head(billboard_long)
+
+```
+
+Although we have numbers now, they are still of class 'character'. However, we can specify the type they should be using `names_transform`:
+
+```{r}
+#| code-fold: false
+# Pivot billboard to long format
+billboard_long <- pivot_longer(billboard, wk1:wk76, names_to = "week", values_to = "position", names_prefix = "wk", names_transform = as.numeric)
+
+# Reprint billboard
+head(billboard_long)
+
+```
+
+This kind of control gives us much less head-ache when, for instance, we want to use the data for plotting (which we will see in [Plotting](plotting.qmd)):
+
+```{r}
+# Load packages
+pacman::p_load("dplyr",   # Data wrangling
+               "ggplot2"  # Data visualization
+)
+
+# Get only Britney Spears songs
+dat_plot <- filter(billboard_long, artist == "Spears, Britney" & !is.na(position))
+
+# Create plot
+ggplot(dat_plot, aes(x = week, y = position, colour = track)) +
+    # Geometries
+    geom_line() +
+    # Scaling
+    scale_x_continuous(limits = c(0, 20)) +
+    scale_y_continuous(limits = c(0, 100)) +
+    # Aesthetics
+    theme_minimal() +
+    theme(panel.grid = element_blank(),
+          panel.background = element_rect(colour = "black", fill = "white"),
+          plot.background = element_rect(colour = "transparent", fill = "transparent"),
+          legend.position = "bottom")
+```
