@@ -196,8 +196,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">tidyr.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyr</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
  <span class="menu-text">magrittr.qmd</span>
   </li>
@@ -242,8 +245,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">iterating.qmd</span>
   </li>
           <li class="sidebar-item">
- <span class="menu-text">regex.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./regex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Regex</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -385,7 +391,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="installing-r">Installing R</h2>
 <p>Let’s start by installing R. R can be used on Windows, Apple, and Linux operating systems. To download R, you can go to <a href="https://cran.rstudio.com" class="uri">https://cran.rstudio.com</a>, where you can choose the download link applicable to your platform.</p>
 <p>After R is installed, you can open it and you will see the following screen:</p>
-<div id="fig-r_gui" class="quarto-figure quarto-figure-center quarto-float anchored" alt="R graphical user interface" data-fig-align="center">
+<div id="fig-r_gui" class="quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center" alt="R graphical user interface">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-r_gui-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/rgui.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="R graphical user interface">
@@ -487,7 +493,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/rjjanse\.github\.io\/rt\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
