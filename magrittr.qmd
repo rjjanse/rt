@@ -1,3 +1,40 @@
 ---
 title: "Magrittr"
 ---
+
+## Magrittr
+`{magrittr}` is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (`%>%`) which we already discussed in [Dplyr](dplyr.qmd). However, it also offers as a number of aliases to make operators available in our pipelines.
+
+## . and `
+Before we get into the aliases offered by `{magrittr}`, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. \grave+\grave).
+
+For instance, take the below data frame:
+
+```{r}
+#| code-fold: false
+# Create example data
+dat_fib <- tibble(id = 1:10,
+                  value = c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55))
+
+```
+
+If we want to substract 3 from all numbers and then multiply by 1.5, we could do the following:
+
+```{r}
+#| code-fold: false
+# First, load magrittr
+pacman::p_load("magrittr")
+
+# Start pipeline with vector
+dat_fib %>%
+    # Substract 3
+    .`-` 3 %>%
+    # Multiply by 1.5
+    .`*` 1.5
+
+```
+
+
+## Aliases
+
+## |>

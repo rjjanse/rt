@@ -236,8 +236,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
           <li class="sidebar-item">
- <span class="menu-text">magrittr.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./magrittr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Magrittr</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -632,7 +635,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5        102</code></pre>
 </div>
 </div>
-<p>However, this quickly becomes unreadable. With <code>%&gt;%</code>, we can transform this into more readable code. What <code>%&gt;%</code> does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called <code>.data</code> or <code>data</code> (if this argument is available). We will go into more detail in <a href="magrittr.qmd"><code>{magrittr}</code></a>.</p>
+<p>However, this quickly becomes unreadable. With <code>%&gt;%</code>, we can transform this into more readable code. What <code>%&gt;%</code> does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called <code>.data</code> or <code>data</code> (if this argument is available). We will go into more detail in <a href="./magrittr.html"><code>{magrittr}</code></a>.</p>
 <p>So, with <code>%&gt;%</code>, we can rewrite the above code as:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="co"># Take starwars data</span></span>
@@ -1161,7 +1164,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/rjjanse\.github\.io\/rt\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

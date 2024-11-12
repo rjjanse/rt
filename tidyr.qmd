@@ -236,7 +236,7 @@ storms %>%
 
 ```
 
-## 2. Indicate non-hurricanes
+### 2. Indicate non-hurricanes
 As an alternative, set category to -1 if the storm was not a hurricane (and therefore the category is `NA`).
 
 ```{r}

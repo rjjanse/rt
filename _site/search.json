@@ -165,6 +165,50 @@
     ]
   },
   {
+    "objectID": "tidyr.html#filling-in-nas",
+    "href": "tidyr.html#filling-in-nas",
+    "title": "Tidyr",
+    "section": "Filling in NA’s",
+    "text": "Filling in NA’s\n\nSingle value for a whole column\nSometimes, we have missing values in columns (i.e. NA’s), that we want to change. This can be due to some assumptions we have made (e.g. absence of a diagnostic code in a health record means absence of the corresponding disease), because we want to name our missings something different than NA, or because we otherwise know what these values should be (e.g. an artificial indicator).\nTo do this, we can use the function replace_na(), which allows us to specify what missing values should be for each individual column specified. As an example, we will change missing values in the billboard data to -1 for the weeks 20 and 21, to indicate the song was no longer in the top 100 in the week specified by that column.\n\n# Change NAs in weeks 66 and 67\nbillboard_replaced &lt;- replace_na(billboard, list(wk20 = -1, wk21 = -1))\n\n# Show that these values now exist where missing data first existed for week 20\ntable(billboard[[\"wk20\"]], useNA = \"always\"); table(billboard_replaced[[\"wk20\"]], useNA = \"always\")\n\n\n   2    3    4    5    6    7    9   10   11   12   14   15   16   18   19   20 \n   2    2    3    2    1    2    1    4    1    2    4    4    1    1    1    3 \n  21   22   23   25   26   28   30   33   34   35   39   40   42   43   45   46 \n   1    2    3    4    3    1    3    1    2    1    1    1    2    1    1    1 \n  48   49   50   51   53   54   56   58   59   61   62   66   67   68   69   70 \n   1    1    2    1    1    2    1    2    3    1    3    2    1    2    1    3 \n  71   72   74   77   78   79   82   83   84   85   86   87   88   89   90   91 \n   1    1    1    2    2    2    1    1    1    1    4    5    2    6    4    3 \n  92   93   94   95   96   97   98   99  100 &lt;NA&gt; \n   2    1    2    3    1    2    1    3    5  171 \n\n\n\n  -1    2    3    4    5    6    7    9   10   11   12   14   15   16   18   19 \n 171    2    2    3    2    1    2    1    4    1    2    4    4    1    1    1 \n  20   21   22   23   25   26   28   30   33   34   35   39   40   42   43   45 \n   3    1    2    3    4    3    1    3    1    2    1    1    1    2    1    1 \n  46   48   49   50   51   53   54   56   58   59   61   62   66   67   68   69 \n   1    1    1    2    1    1    2    1    2    3    1    3    2    1    2    1 \n  70   71   72   74   77   78   79   82   83   84   85   86   87   88   89   90 \n   3    1    1    1    2    2    2    1    1    1    1    4    5    2    6    4 \n  91   92   93   94   95   96   97   98   99  100 &lt;NA&gt; \n   3    2    1    2    3    1    2    1    3    5    0 \n\n\n\n\nBased on other values in column\nIn some cases, we want to copy the value of a certain column to other, missing rows in that column. As an example, this could be the case of biological sex at birth is recorded only in a first study visit, even though biological sex at birth remains constant over time (because birth only occurs once). For this, we can use the fill() function.\nThe fill() function allows us to fill the value in a column. We can specify one of four directions for how the filling occurrs. Note this example data:\n\n# Create example data for fill()\ndat_fill &lt;- tibble(id = c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4),\n                   visit = rep(1:3, 4),\n                   bio_sex_birth = c(\"male\", NA, NA, NA, \"female\", NA, \n                                     NA, NA, NA, \"male\", NA, NA))\n\n# Show data\ndat_fill\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 &lt;NA&gt;         \n 3     1     3 &lt;NA&gt;         \n 4     2     1 &lt;NA&gt;         \n 5     2     2 female       \n 6     2     3 &lt;NA&gt;         \n 7     3     1 &lt;NA&gt;         \n 8     3     2 &lt;NA&gt;         \n 9     3     3 &lt;NA&gt;         \n10     4     1 male         \n11     4     2 &lt;NA&gt;         \n12     4     3 &lt;NA&gt;         \n\n\nWe can see that for three individuals, we know their biological sex at birth, for one individual, this information was recored at visit 2 (ID 2), and for one individual (ID 3), this information is missing. To fill in these missing values, we can use fill():\n\n# Fill missing values downwards\nfill(dat_fill, bio_sex_birth, .direction = \"down\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 male         \n 3     1     3 male         \n 4     2     1 male         \n 5     2     2 female       \n 6     2     3 female       \n 7     3     1 female       \n 8     3     2 female       \n 9     3     3 female       \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nWhen the fill direction is down, we can see that each value is only filled in downwards. The downwards direction poses a problem for individual 2 that now switches biological sex at birth, which should not be possible.\n\n# Fill missing values upwards\nfill(dat_fill, bio_sex_birth, .direction = \"up\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 female       \n 3     1     3 female       \n 4     2     1 female       \n 5     2     2 female       \n 6     2     3 male         \n 7     3     1 male         \n 8     3     2 male         \n 9     3     3 male         \n10     4     1 male         \n11     4     2 &lt;NA&gt;         \n12     4     3 &lt;NA&gt;         \n\n\nWhen the fill direction is up, we just fill upwards, which means that individual 4 does not get their missing values filled in.\n\n# Fill missing values downwards then upwards\nfill(dat_fill, bio_sex_birth, .direction = \"downup\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 male         \n 3     1     3 male         \n 4     2     1 male         \n 5     2     2 female       \n 6     2     3 female       \n 7     3     1 female       \n 8     3     2 female       \n 9     3     3 female       \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nThe direction downup simply means that first we fill downwards and then upwards, meaning that when the filling upwards occurs, there are already some NA’s filled in by the downward filling.\n\n# Fill missing values upwards then downwards\nfill(dat_fill, bio_sex_birth, .direction = \"updown\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 female       \n 3     1     3 female       \n 4     2     1 female       \n 5     2     2 female       \n 6     2     3 male         \n 7     3     1 male         \n 8     3     2 male         \n 9     3     3 male         \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nThe updown direction is alike the downup direction, but just the other way around.\nImportantly however, all these directions fill also the missing values for individual 3, even though we do not know their actual value. This is why it is always important to evaluate whether you need to fill within a grouping structure. If we apply this here, we can see that both updown and downup give us the correct results:\n\n# Fill missing values\ndat_fill %&gt;%\n    # Arrange for grouping\n    arrange(id) %&gt;%\n    # Create groups out of individuals\n    group_by(id) %&gt;%\n    # Fill values downwards then upwards\n    fill(bio_sex_birth, .direction = \"downup\") %&gt;%\n    # Remove grouping structure\n    ungroup()\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 male         \n 3     1     3 male         \n 4     2     1 female       \n 5     2     2 female       \n 6     2     3 female       \n 7     3     1 &lt;NA&gt;         \n 8     3     2 &lt;NA&gt;         \n 9     3     3 &lt;NA&gt;         \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nThere are also cases where we are only interested in filling values in a single direction only, such as when a measurement should only be available from a certain point onwards.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Tidyr"
+    ]
+  },
+  {
+    "objectID": "tidyr.html#exercises",
+    "href": "tidyr.html#exercises",
+    "title": "Tidyr",
+    "section": "Exercises",
+    "text": "Exercises\nFor these exercises, we will use the storms dataset available in {dplyr}.\n\n1. Continue storm category\nImagine that we want to say that a storm keeps their hurricane category, even after it ceases to be a hurricane. Tidy the data to portray this.\n\n\nAnswer\n# Fill the category downwards in grouped data\nstorms %&gt;%\n    # Arrange for grouping\n    arrange(name) %&gt;%\n    # Group per storm\n    group_by(name) %&gt;%\n    # Fill category downwards only\n    fill(category, .direction = \"down\") %&gt;%\n    # Remove grouping structure\n    ungroup() %&gt;%\n    ## Only to show what answer should look like\n    # Show storm Gladys as an example\n    filter(name == \"Gladys\") %&gt;%\n    # Print all rows\n    print(n = 46)\n\n\n# A tibble: 46 × 13\n   name    year month   day  hour   lat  long status     category  wind pressure\n   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;\n 1 Gladys  1975     9    22    18  10.3 -34.8 tropical …       NA    25     1012\n 2 Gladys  1975     9    23     0  10.6 -35.8 tropical …       NA    25     1012\n 3 Gladys  1975     9    23     6  11   -36.7 tropical …       NA    25     1012\n 4 Gladys  1975     9    23    12  11.4 -37.4 tropical …       NA    25     1012\n 5 Gladys  1975     9    23    18  11.7 -38.2 tropical …       NA    30     1010\n 6 Gladys  1975     9    24     0  12.1 -38.8 tropical …       NA    30     1010\n 7 Gladys  1975     9    24     6  12.4 -39.6 tropical …       NA    30     1010\n 8 Gladys  1975     9    24    12  12.9 -40   tropical …       NA    30     1010\n 9 Gladys  1975     9    24    18  13.5 -40.4 tropical …       NA    35     1005\n10 Gladys  1975     9    25     0  14.2 -41   tropical …       NA    40     1005\n11 Gladys  1975     9    25     6  14.8 -42   tropical …       NA    50     1000\n12 Gladys  1975     9    25    12  15.4 -43   tropical …       NA    60     1000\n13 Gladys  1975     9    25    18  15.8 -44   hurricane         1    65      990\n14 Gladys  1975     9    26     0  16.2 -45   hurricane         1    65      990\n15 Gladys  1975     9    26     6  16.4 -46.1 hurricane         1    65      990\n16 Gladys  1975     9    26    12  16.6 -47.7 hurricane         1    65      990\n17 Gladys  1975     9    26    18  16.8 -49.3 hurricane         1    65      990\n18 Gladys  1975     9    27     0  17.1 -50.7 hurricane         1    65      990\n19 Gladys  1975     9    27     6  17.6 -52.2 hurricane         1    65      990\n20 Gladys  1975     9    27    12  18.2 -53.7 hurricane         1    65      990\n21 Gladys  1975     9    27    18  18.8 -55.1 hurricane         1    65      990\n22 Gladys  1975     9    28     0  19.4 -56.4 hurricane         1    65      992\n23 Gladys  1975     9    28     6  19.6 -57.4 hurricane         1    65      992\n24 Gladys  1975     9    28    12  19.8 -58.2 hurricane         1    65     1000\n25 Gladys  1975     9    28    18  20.3 -59.3 hurricane         1    65      998\n26 Gladys  1975     9    29     0  21.2 -60.3 hurricane         1    65      995\n27 Gladys  1975     9    29     6  22.1 -61.4 hurricane         1    70      990\n28 Gladys  1975     9    29    12  23   -62.6 hurricane         1    70      990\n29 Gladys  1975     9    29    18  23.6 -63.9 hurricane         1    75      985\n30 Gladys  1975     9    30     0  24.1 -65.2 hurricane         1    80      975\n31 Gladys  1975     9    30     6  24.6 -66.5 hurricane         1    80      975\n32 Gladys  1975     9    30    12  25.1 -67.9 hurricane         1    80      975\n33 Gladys  1975     9    30    18  25.6 -69.3 hurricane         1    80      975\n34 Gladys  1975    10     1     0  26.1 -70.6 hurricane         1    80      975\n35 Gladys  1975    10     1     6  26.8 -71.7 hurricane         1    80      975\n36 Gladys  1975    10     1    12  27.9 -72.4 hurricane         1    80      975\n37 Gladys  1975    10     1    18  29.4 -73   hurricane         2    90      969\n38 Gladys  1975    10     2     0  31   -73   hurricane         3   100      954\n39 Gladys  1975    10     2     6  32.9 -72.1 hurricane         3   110      942\n40 Gladys  1975    10     2    12  35.3 -69.8 hurricane         4   120      939\n41 Gladys  1975    10     2    18  37.8 -67   hurricane         4   120      939\n42 Gladys  1975    10     3     0  40.8 -62.6 hurricane         3   110      950\n43 Gladys  1975    10     3     6  43.7 -57   hurricane         2    85      960\n44 Gladys  1975    10     3    12  46.6 -50.6 hurricane         2    85      960\n45 Gladys  1975    10     3    18  50.5 -45.5 extratrop…        2    75      975\n46 Gladys  1975    10     4     0  55   -40   extratrop…        2    65      980\n# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,\n#   hurricane_force_diameter &lt;int&gt;",
+    "crumbs": [
+      "Into the tidyverse",
+      "Tidyr"
+    ]
+  },
+  {
+    "objectID": "tidyr.html#indicate-non-hurricanes",
+    "href": "tidyr.html#indicate-non-hurricanes",
+    "title": "Tidyr",
+    "section": "2. Indicate non-hurricanes",
+    "text": "2. Indicate non-hurricanes\nAs an alternative, set category to -1 if the storm was not a hurricane (and therefore the category is NA).\n\n\nAnswer\n# Set NA's to -1\nstorms_replaced &lt;- replace_na(storms, list(category = -1))\n\n# See categories in storms_replaced\ntable(storms_replaced[[\"category\"]], useNA = \"always\")\n\n\n\n   -1     1     2     3     4     5  &lt;NA&gt; \n14734  2548   993   593   553   116     0",
+    "crumbs": [
+      "Into the tidyverse",
+      "Tidyr"
+    ]
+  },
+  {
+    "objectID": "tidyr.html#next-topic",
+    "href": "tidyr.html#next-topic",
+    "title": "Tidyr",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we have seen how we tidy our data, the last thing left for us to discuss in the tidyverse is how to combine all these functions into efficient pipelines using {magrittr} and the pipe (%&gt;%).\nNext: Magrittr",
+    "crumbs": [
+      "Into the tidyverse",
+      "Tidyr"
+    ]
+  },
+  {
     "objectID": "rstudio.html",
     "href": "rstudio.html",
     "title": "RStudio",
@@ -253,267 +297,25 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction",
+    "objectID": "magrittr.html",
+    "href": "magrittr.html",
+    "title": "Magrittr",
     "section": "",
-    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio), but also take you further, showing you different alternatives to reach the same goal and learning some useful tricks to quickly become an efficient R user. The general focus is on using R for epidemiologic data analysis, such as how to perform regression analyses and plot results, although it also contains a comprehensive introduction to R.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\nThis tutorial might feel rather dense and time-consuming as compared to other tutorials but you do not have to do everything at once. Although it is a good idea to do the basics and learn about the tidyverse, other sections might be studied on a need-to-know basis. Additionally, this tutorial will (hopefully) leave you with knowledge about using R, but also hand you the tools to learn more yourself and quickly understand new concepts and functions.\n\nExercises\n0: Open the answer\n\n\nAnswer\n# Well done!\n\n\nNext: R",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. It’s main implementation is the pipe (%&gt;%) which we already discussed in Dplyr.",
     "crumbs": [
-      "Start",
-      "Introduction"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "External data",
+    "objectID": "magrittr.html#magrittr",
+    "href": "magrittr.html#magrittr",
+    "title": "Magrittr",
     "section": "",
-    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. It’s main implementation is the pipe (%&gt;%) which we already discussed in Dplyr.",
     "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#why-we-need-to-load-data",
-    "href": "data.html#why-we-need-to-load-data",
-    "title": "External data",
-    "section": "",
-    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#the-basics",
-    "href": "data.html#the-basics",
-    "title": "External data",
-    "section": "The basics",
-    "text": "The basics\n\nWorking directionary\nWhen we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using getwd(). If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use setwd(), specifying the path to the directionary.\n\n\nFile\nAll methods of reading data require an argument file (sometimes called path or data_file), which ?base::load() defines as a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done). This file is simply a path to the document we want to load in. For example: C:/users/username/documents/rtutorial/data/definitely_real_data.csv. Note that the file argument must always end in the file name (definitely_real_data) including extension (.csv).\n\n\nTilde expansion\nRemembering where all your data is stored and writing it all out (C:/users/username/...) can cost quite some effort. Luckily, we have a concept called tilde expansion. When we set our working directionary with setwd(), we can stop specifying that part in the file argument and instead only specify a tilde (~). Instead of calling C:/users/username/documents/rtutorial, we can set our working directionary to the documents folder:\nsetwd(\"C:/users/username/documents/rtutorial\")\nSubsequently, we can specify any file argument as ~/data/definitely_real_data.csv.",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#delimited-data-with-base-and-readr",
-    "href": "data.html#delimited-data-with-base-and-readr",
-    "title": "External data",
-    "section": "Delimited data with {base} and {readr}",
-    "text": "Delimited data with {base} and {readr}\nData is often shared in a .csv format, which stands for Comma Separated Values. If we were to open this file in a normal text editor, we would see that each column of a row is separated by a comma between the values. This is a form of delimited data, where there is a certain character (comma, semicolon, tab) that allows the computer to discern between columns. To read such data, we can use different functions from {base}:\n\nread.csv() allows the reading in of data separated with commas where decimal markers are dots\nread.csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread.delim() allows the reading in of data separated with tabs where decimal markers are dots\nread.delim2() allows the reading in of data separated with tabs where decimal markers are commas\n\nThese functions only differ in the defaults: if you specify arguments such as sep and dec, they can perform the same actions. When using these functions, the data will be read into R, and we can immediately load it into an object which will create a data frame:\n# Load data\ndat &lt;- read.csv(\"~/data/definitely_real_data.csv\")\nA great alternative to the {base} functions are the functions from {readr}, which are in general faster and treat the data better. The functions have similar names and functionality:\n\nread_csv() allows the reading in of data separated with commas where decimal markers are dots\nread_csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread_tsv() allows the reading in of data separated with tabs\n\nIf you want to write these data back into a delimited file, we can use the write functions with similar names, besides replacing read with write:\n\nwrite.csv() allows the writing of data separated with commas where decimal markers are dots\nwrite_csv() allows the writing of data separated with commas where decimal markers are dots (but faster than write.csv())\netc.\n\nIn the writing functions, we first specify the object we want to write to our device and then the path:\nwrite_csv(iris, \"~/data/iris.csv\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#excel-files",
-    "href": "data.html#excel-files",
-    "title": "External data",
-    "section": "Excel files",
-    "text": "Excel files\nIf the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the {readxl} package to read in the data:\n# Load first sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\")\n\n# Load third sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = 3)\n\n# Load Excel file's sheet by name\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = \"definitely_real_sheet\")\nUsing the function read_excel() automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use read_xlsx() or read_xls().\nIf we then want to write data back to Excel, we can use the {writexl} package:\nwrite_xlsx(iris, \"~/data/iris.xlsx\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#spss-sas-and-stata-data",
-    "href": "data.html#spss-sas-and-stata-data",
-    "title": "External data",
-    "section": "SPSS, SAS, and Stata data",
-    "text": "SPSS, SAS, and Stata data\nIf the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (.sas7bdat) or Stata (.dta, .xpt), we can use {haven} to read these data:\n\nread_spss() can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (read_sav() or read_por()).\nwrite_sav() creates an SPSS .sav file (or .zsav if compress = TRUE).\nread_sas() reads in SAS .sas7bdat files.\nread_xpt()reads in SAS transport .xpt files.\nwrite_sas() is a deprecated function and does not perform reliabily. An alternative is the write_xpt() function to write an R object to a SAS transport (.xpt) file.\nread_dta() allows reading of Stata .dta files.\nwrite_dta() writes an R object to a Stata .dta file.",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#foreign",
-    "href": "data.html#foreign",
-    "title": "External data",
-    "section": "Foreign",
-    "text": "Foreign\nIf we have data that cannot be loaded in with any of the above functions, we can always have a look whether {foreign} has any functions that can read in the data. {foreign} offers functions for the reading of files such as .ssd, .dbf, .arff, .epiinfo, and more.",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#making-your-life-easier",
-    "href": "data.html#making-your-life-easier",
-    "title": "External data",
-    "section": "Making your life easier",
-    "text": "Making your life easier\n\nPoint-and-click import\nOf course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (Figure 1):\n\n\n\n\n\n\nFigure 1: Import data\n\n\n\nFrom there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (Figure 2). In the upper right corner of the viewer, we can select our data with ‘Browse’, which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press ‘Import’ and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.\n\n\n\n\n\n\nFigure 2: Preview of import\n\n\n\n\n\nRio\nIf we do not want to think about what function to use at all, we can use the R Input/Output package {rio}, which provides the functions import() and export(). These functions automatically recognize the format of the file and choose the correct method of reading in the data. Additionally, {rio} allows us to read and write directly from and to .zip files.\n# Import data\nimport(\"iris.xlsx\")\n\n# Export data\nexport(iris, \"iris.tsv.zip\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#rdata-and-.rda",
-    "href": "data.html#rdata-and-.rda",
-    "title": "External data",
-    "section": ".Rdata and .Rda",
-    "text": ".Rdata and .Rda\nWhile working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:\n\nload() loads the specified file into R.\nsave() saves an objects onto the device.\n\nWhen we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:\n# Save iris to current working directionary\nsave(iris, file = \"~/iris.Rdata\")\n\n# Load iris\nload(\"iris.Rdata\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#projectiles-and-carpeting",
-    "href": "data.html#projectiles-and-carpeting",
-    "title": "External data",
-    "section": "Projectiles and carpeting",
-    "text": "Projectiles and carpeting\n\nArrow (formerly known as Feather)\nSometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the {Arrow} package. A quick start to working with Arrow can be found here.\n\n\nParquet\nAlthough fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the {Arrow} package and a quick start can again be found here.",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#sql",
-    "href": "data.html#sql",
-    "title": "External data",
-    "section": "SQL",
-    "text": "SQL\nSometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using {RODBC}, which allows general database access. You can connect to the database with odbcConnect() and then pass SQL queries into data using sqlQuery():\ndat &lt;- sqlQuery(odbcConnect(\"database\"), \"select * from DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#readily-available-data",
-    "href": "data.html#readily-available-data",
-    "title": "External data",
-    "section": "Readily available data",
-    "text": "Readily available data\nR and many available R packages also come with external data that is already available in the packages. To load this data, you can use data():\ndata(iris)\nAdditionally, you can get an overview of all available data in the available packages using data().",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#exercises",
-    "href": "data.html#exercises",
-    "title": "External data",
-    "section": "Exercises",
-    "text": "Exercises\n\n0. Downloading data\nFor these exercises, we will work with some freely available data that you can download here. If the link does not work, you can look for the file State funded schools inspections and outcomes as at 31 December 2022 here.\n\n\n1. Loading new data\nLoad the data you just downloaded into a variable called dat.\n\n\nAnswer\n# Load necessary packages\npacman::p_load(\"rio\", \"readr\")\n\n# Define file so that I only have to type it once for each example\nfile &lt;- \"C:/users/rjjanse.LUMCNET/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv\"\n\n# Answer 1: using import\ndat &lt;- import(file)\n\n# Answer 2: using read_csv\n# suppressWarnings and show_col_types = FALSE for clean output\ndat &lt;- suppressWarnings(read_csv(file, show_col_types = FALSE))\n\n# Answer 3: using read.csv\ndat &lt;- read.csv(file)\n\n\n\n\n2. Storing data\nNow save the data to a file called example_data.Rdata.\n\n\nAnswer\n# Answer 1: use save()\nsave(dat, file = \"example_data.Rdata\")\n\n# Answer 2: use export()\nexport(dat, \"example_data.Rdata\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#next-topic",
-    "href": "data.html#next-topic",
-    "title": "External data",
-    "section": "Next topic",
-    "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "creating.html",
-    "href": "creating.html",
-    "title": "Creating data",
-    "section": "",
-    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#annotation",
-    "href": "creating.html#annotation",
-    "title": "Creating data",
-    "section": "",
-    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#basic-mathematic-operators-and-running-code",
-    "href": "creating.html#basic-mathematic-operators-and-running-code",
-    "title": "Creating data",
-    "section": "Basic mathematic operators and running code",
-    "text": "Basic mathematic operators and running code\nNow let’s (finally) see some real code! Let’s start with some basic operators:\n1 + 1   # Addition\n3 - 1   # Substraction\n2 * 3   # Multiplication\n8 / 2   # Division\n8 %% 2  # Modulo\nR follows the conventional order of mathematic operation.\nHowever, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.\nThe results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with &gt; (Figure 1 (a)).\n\n\n\n\n\n\nIf you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with + (Figure 1 (b)). To cancel a waiting command, you can press esc.\n\n\n\nIf we run the example code for the basic mathematic operators, we will get the following results:\n\n1 + 1   # Addition\n\n[1] 2\n\n3 - 1   # Substraction\n\n[1] 2\n\n2 * 3   # Multiplication\n\n[1] 6\n\n8 / 2   # Division\n\n[1] 4\n\n8 %% 2  # Modulo\n\n[1] 0\n\n\nBefore each result, you can see [1]. This indicates that that specific line of code starts with the nth result. When a single code starts printing multiple results, this can help identify what n a certain result is.\n\n\n\n\n\n\n\n\n\n\n\n(a) Ready\n\n\n\n\n\n\n\n\n\n\n\n(b) Waiting for input to finish\n\n\n\n\n\n\n\nFigure 1: Console states",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#functions",
-    "href": "creating.html#functions",
-    "title": "Creating data",
-    "section": "Functions",
-    "text": "Functions\nNow that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:\n\n# Calculate the mean\n(3 + 8 + 3 + 7 + 1) / 5\n\n[1] 4.4\n\n\n\n# Use the calculated mean to calculate the standard deviation\n(((3 - 4.4) ^ 2 + (8 - 4.4) ^ 2 + (3 - 4.4) ^ 2 + (7 - 4.4) ^ 2 + (1 - 4.4) ^ 2) / (5 - 1)) ^ 0.5\n\n[1] 2.966479\n\n\n\n\nA sample’s standard deviation \\(s\\) is obtained by calculating:\n\\[\\sqrt\\frac{\\sum{(x-\\overline{x})^2}}{n-1}\\]\nHowever, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:\n\n# Calculate standard deviation\nsd(c(3, 8, 3, 7, 1))\n\n[1] 2.966479\n\n\n\n\n\n\n\n\nIn the standard deviation function, we use the c() function. Later we will elaborate on this, but for now it is enough to remember that c() creates a collection of data, which is more often called an object.\nBe aware that R is case-sensitive: c() as a function differs from C().\n\n\n\nLet’s see some standard functions that will be of great help to you.\n\nSum\nsum(), as it name suggests, sums the supplied values. It has the following arguments:\n\n...: the ellipsis indicates that any number of values can be supplied here. The sum function can take numeric values, integers, and booleans/logicals (i.e., it can sum the amount of TRUEs).\nna.rm = FALSE: na.rm indicates whether any missing values should be dropped. By default, this is FALSE, meaning that the function will return NA if there is any NAs present in the data you are trying to sum. If you want to sum all valid values (thus drop all NAs), you can specify na.rm = TRUE.\n\nSee the below examples:\n\nsum(3, 4, 5, 6)\n\n[1] 18\n\nsum(3, NA, 5, 6)\n\n[1] NA\n\nsum(3, NA, 5, 6, na.rm = TRUE)\n\n[1] 14\n\n\n\n\n\n\n\n\nIn the sum() function, na.rm has the default value FALSE. This means that this argument does not have to be defined. If we would not define it, it would just use FALSE.\n\n\n\n\n\nMean and median\nTo get the mean or median from some data, you can use the mean() and median() functions. mean() has the following arguments:\n\nx: a collection (or object) of data containing the data for which a mean should be calculated.\ntrim = 0: what proportion of the outskirts of the data should be trimmed (e.g., 0.05 trims 5% of data on each side). It defaults to 0.\nna.rm = FALSE: whether NAs should be dropped (as in sum())\n\nmedian() has the same arguments, except that it doesn’t have trim.\nHere are some examples:\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 98.63636\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), trim = 0.1)\n\n[1] 4.555556\n\nmedian(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 4\n\n\n\n\n\n\n\n\nNotice how with the mean, we specified that 0.1 was the value for trim, but we did not specify that c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044) was the value for x. This is because R inputs values for arguments in order: the first supplied value will be used for the first argument, the second supplied value will be used for the second argument, etc. However, sometimes I do not want to specify the second value, but I do want to specify the third value. In this case I can name the argument as in trim = 0.1, so that R knows the 0.1 is meant for trim.\n\n\n\n\n\nMin and max\nNow that we know how to calculate the mean and median from some data, we might also be interest in finding the lowest and highest value (for example, to detect the 1044 outlier). We can do this with min() and max(), which both take only one argument: ... as in the sum() function.\nTo get the minimum and maximum value from the data we just calculated the mean and median of, we could do the following:\n\nmin(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 0\n\nmax(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 1044\n\n\n\n\nSummary and quintile\nNow we know how to calculate the mean, median, minimum, and maximum values from some data, but what if we also want to know the 1st and 3rd quartile? Additionally, we do not want to use a function for each separate value. In this case, you can use summary(), which calculates the minimum, 1st quartile, mean, median, 3rd quartile, and maximum all at once. The summary function has multiple arguments, but only one is relevant for now:\n\nobject: the data of which you want to get a summary.\n\nFor example:\n\nsummary(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.00    3.00    4.00   98.64    7.50 1044.00 \n\n\nHowever, maybe we are more interested in the 1st and 99th quantiles. In that case we could use quantile(). You can supply the following arguments to quantile():\n\nx: a collection of data (or object) of which you want to calculate quantiles.\nprobs = seq(0, 1, 0.25): the probabilities (or quantiles) you want to calculate. It defaults to seq(0, 1, 0.25), which just means a sequence from 0 to 1 with increments of 0.25.\nna.rm = FALSE: whether NAs should be dropped.\nnames = TRUE: whether the output should show the name (or specified quantile).\n\nSo we could do:\n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99))\n\n   1%   99% \n  0.1 940.4 \n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99), names = FALSE)\n\n[1]   0.1 940.4\n\n\n\n\nTable\nWe have now seen some functions that we can use to get some descriptives about continuous data. However, sometimes we just want to count the amount of different observations. For this we can use table(). Some of the relevant arguments for the table function are the following:\n\n...: the variables to be supplied to table, as we saw in earlier functions.\nuseNA = c(\"no\", \"ifany\", \"always\"): should NAs be tabulated (conditional on if any are present) or not. The c(\"no\", \"ifany\", \"always\"), means that useNA takes any of the three following values: \"no\", \"ifany\", or \"always\".\n\nFor example:\n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA))\n\n\nFALSE  TRUE \n    3     5 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA), \n      useNA = \"ifany\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     1 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      useNA = \"always\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     0 \n\n\nYou can also use table() to create a cross-table:\n\ntable(c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE))\n\n       \n        FALSE TRUE\n  FALSE     3    1\n  TRUE      3    2\n\n\nFor the cross-tabulation, values are compered based on their order in the data you supply (e.g., the first value, FALSE in the first set is compared to the first value, TRUE, in the second set.)\n\n\n\n\n\n\nWe now went through some arguments for commonly used functions together, but it is good that you know what arguments a function takes and where you can find this. If you want to know more about any function, for example for sum(), you can open the documentation by running ?sum. In the help panel on the lower right in RStudio, you will find the documentation with the function, its default values, elaboration on the arguments it takes, details, and examples. You can also click on a function and press F1 to open the help panel.",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#storing-values",
-    "href": "creating.html#storing-values",
-    "title": "Creating data",
-    "section": "Storing values",
-    "text": "Storing values\nWe have now seen how we can calculate some values using basic mathematic operators and functions. However, just typing out our data can become quite tiresome, so preferably I would store them in a variable. In R, things that store data are often called subjects. Let’s look at some different ways we can store data.\n\nSingle value\nWe can assign a single value by using the &lt;- operator (which has the easy keyboard shortcut alt + - in RStudio). To then see the object, we can simply run it. For example:\n\nx &lt;- sum(4, 9)\nx\n\n[1] 13\n\nx &lt;- 4 + 5\nx\n\n[1] 9\n\n\n\n\n\n\n\n\nNote that we defined the object x twice. When defining an object that already exists, the old object is overridden.\n\n\n\n\n\n\n\n\n\nTo assign a value to an object, you can also use = instead of &lt;-. However, this is often unclear and may be confused with defining arguments in functions. It is therefore strongly recommended to only assign objects using &lt;-.\n\n\n\n\n\nVectors\nWhen we want to assign multiple values to a single variable, we can create a vector. There are two simple ways to create a vector. First, we can use the c function (c()), that we saw before when discussing functions. c() creates a simple collection of any type of value. We call this collection a vector.\n\nx &lt;- c(4, 6, 9, 3, 2)\nx\n\n[1] 4 6 9 3 2\n\n# Using a vector in the sum function\nsum(x)\n\n[1] 24\n\n\nYou can also create a vector of sequential integers by using ::\n\nx &lt;- 5:17\nx\n\n [1]  5  6  7  8  9 10 11 12 13 14 15 16 17\n\n\nAdditionally, you can create any sequence using the seq() function which takes the arguments from, to, and by, meaning respectively the start, finish, and increments of the sequence.\n\nx &lt;- seq(5, 7, 0.5)\nx\n\n[1] 5.0 5.5 6.0 6.5 7.0\n\n\nWe could also multiply two vectors with each other (given they have the same length) or a vector with a single value:\n\nx &lt;- 1:5\ny &lt;- 5:1\n\nx * y\n\n[1] 5 8 9 8 5\n\nx * 2\n\n[1]  2  4  6  8 10\n\n\nLastly, you could create a named vector (i.e., each value has a name):\n\nx &lt;- c(\"Obs1\" = 42, \"Obs2\" = 28, \"Obs3\" = 91)\nx\n\nObs1 Obs2 Obs3 \n  42   28   91 \n\n\n\n\nLists\nA list is also a collection of data, but it can store much more than just values, such as vectors, and whole data sets:\n\nx &lt;- list(head(iris, 3), head(mtcars, 3))\nx\n\n[[1]]\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n\n[[2]]\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\nHowever, you cannot immediately apply mathematic operators on a list or use a list in data. If we have a list with data (for example different objects), we first have to unlist:\n\nx &lt;- list(4, 2)\nunlist(x) * 2\n\n[1] 8 4\n\n\nWhen you create a model, they are always stored in lists too, with many information alongside the results. We will come across this later in the tutorial.\n\n\nMatrices\nIf we want data with more than one dimension (i.e., columns and rows), we could create a matrix with the matrix function:\n\nx &lt;- matrix(c(31, 3, 18, 7, 84, 20), nrow = 3, ncol = 2)\nx\n\n     [,1] [,2]\n[1,]   31    7\n[2,]    3   84\n[3,]   18   20\n\n\nWe can also supply a single value that fills the entire matrix:\n\nx &lt;- matrix(\"Hello, World!\", nrow = 5, ncol = 3)\nx\n\n     [,1]            [,2]            [,3]           \n[1,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[2,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[3,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[4,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[5,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n\n\nMatrices are useful because they have multiple dimensions, which allows us to store different variables of the same person in multiple columns along the same row.\n\n\nData frames\nMatrices give us a flexible way to store data with rows and columns, but miss some flexibility when it comes to manipulating the data and performing calculations, loading it into functions, etc. In this case, data frames offer a good solution. Data frames look exactly matrices, but are much easier to manipulate and use for analyses. Data frames are likely what will compose most of the data you use in R.\nWe can create a data frame with the data.frame() function:\n\nx &lt;- data.frame(id = 1:5,\n                value1 = c(5, 2, 0, 2, 4),\n                value2 = c(9.4, 8.3, 2.8, 5.6, 2.7))\nx\n\n  id value1 value2\n1  1      5    9.4\n2  2      2    8.3\n3  3      0    2.8\n4  4      2    5.6\n5  5      4    2.7\n\n\nWhen working with data frames, there are some useful functions you can use:\n\nTo determine how many rows and columns a data frame (or matrix) has, you can use nrow() and ncol().\nTo change the row and column names, you can use rownames() and colnames(). To see how these functions work, you can access the examples in their documentation with ?rownames and ?colnames.\nTo change a data frame to a matrix or a matrix to a data frame, you can use as.matrix() and as.data.frame().",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#the-global-environment",
-    "href": "creating.html#the-global-environment",
-    "title": "Creating data",
-    "section": "The global environment",
-    "text": "The global environment\nWe have seen some ways to create and store data now. However, where can we find back what we have created? This is where the global environment comes in. Whenever you create an object in your code, that object will be stored in the global environment, which is just a general storage space. A great benefit that RStudio gives us is being able to see the global environment and whatever is stored in there, and to get a quick indication of what kind of data is stored.\nBefore we see the global environment, let’s first clean it with the following code:\nrm(list = ls())\nWith the rm() function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (list =), is the whole global environment (ls()). It is useful to remove objects you do not need to keep your global environment clean. Not only does it help in available working memory, it is also good to work in an organized (global) environment.\nNow let’s create some new data to showcase the global environment in RStudio:\n# Load pre-existing data frame\ndata &lt;- iris\n\n# Create vector\nvector &lt;- 1:13\n\n# Create single value\nval &lt;- 42\n\n# Create vector of strings\nstrings &lt;- c(\"Hello\", \"I\", \"am\", \"a\", \"vector\")\nNow let’s look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like Figure 2 (a) (the colours might differ depending on your theme).\nFrom the global environment, we can learn a few things:\n\nThe current memory usage is 121 MiB, in the upper middle of the image.\nWe have one structured data object, data. This data object has 150 observations (rows) of 5 variables (columns).\nstrings is a character (chr) with 5 values ([1:5). We then see the first values.\nval is a single value, 42.\nvector is an integener (int) with 13 values ([1:13]`) and we can see the first values.\n\nThis already gives us quite some information, but we can also get some more information on the structured data. If you press the small blue button with an arrow, next to data, you will see that it opens, as in Figure 2 (b). This let’s us learn the following information about data:\n\nWe can see each of the columns of data. The first four are numerical (num).\nThe fifth column, Species, is a factor (i.e., categorical) with three levels (of which the first one is “setosa”).\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Global environment\n\n\n\n\n\n\n\n\n\n\n\n(b) Global environment with opened data\n\n\n\n\n\n\n\nFigure 2: The global environment",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#dealing-with-warnings-and-errors",
-    "href": "creating.html#dealing-with-warnings-and-errors",
-    "title": "Creating data",
-    "section": "Dealing with warnings and errors",
-    "text": "Dealing with warnings and errors\nWe have now gone through the basics of creating and storing data. However, sometimes, we supply a wrong value to a function or mess up a parenthesis somewhere. This can give either warnings or errors. In both cases, it is important to realize what is happening. Warnings are messages printed in the console that try to tell us that something might be wrong in the data or not suited, or that the data was manipulated in the function to make sure the function could work. For example, if I try to change a character string to numeric with as.numeric(), I will get the warning: Warning message: NAs introduced by coercion, but the function still completed.\nSometimes, warnings are expected or not a problem. In that case, you can put the whole code inside the function supressWarnings(), to silence the warning. It is however always of paramount importance that you annotate what the warning was and why it can be suppressed.\nSometimes, you might get an error instead of a warning. This means that the function could not continue to run and you have to fix the error before being able to run the function.\nNot all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add ‘R’ at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as stackoverflow. When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#exercises",
-    "href": "creating.html#exercises",
-    "title": "Creating data",
-    "section": "Exercises",
-    "text": "Exercises\n\n1. Create and store numbers\nCreate a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called vec.\n\n\nAnswer\n# Answer 1: using c()\nvec &lt;- c(5, 6, 7, 8, 9, 10)\n\n# Answer 2: using the `:` operator\nvec &lt;- 5:10\n\n# Answer 3: using seq()\nvev &lt;- seq(5, 10, 1)\n\n\n\n\n2. Calculate quantiles\nCalculate the 2.5th and 97.5th percentile of the object vec.\n\n\nAnswer\nquantile(vec, probs = c(0.025, 0.975))\n\n\n 2.5% 97.5% \n5.125 9.875 \n\n\n\n\n3. Create a matrix\nUsing the data in vec, create a matrix with two columns and three rows.\n\n\nAnswer\nmatrix(vec, nrow = 3, ncol = 2)\n\n\n     [,1] [,2]\n[1,]    5    8\n[2,]    6    9\n[3,]    7   10\n\n\n\n\n4. Getting help\nOpen the documentation for rm().\n\n\nAnswer\n?rm\n\n\n\n\n5. Cleaning up\nNow use rm() to remove vec again.\n\n\nAnswer\nrm(vec)",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#next-topic",
-    "href": "creating.html#next-topic",
-    "title": "Creating data",
-    "section": "Next topic",
-    "text": "Next topic\nNow that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.\nNext: Using data",
-    "crumbs": [
-      "The basics",
-      "Creating data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
@@ -690,6 +492,270 @@
     "crumbs": [
       "Into the tidyverse",
       "Dplyr"
+    ]
+  },
+  {
+    "objectID": "creating.html",
+    "href": "creating.html",
+    "title": "Creating data",
+    "section": "",
+    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#annotation",
+    "href": "creating.html#annotation",
+    "title": "Creating data",
+    "section": "",
+    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#basic-mathematic-operators-and-running-code",
+    "href": "creating.html#basic-mathematic-operators-and-running-code",
+    "title": "Creating data",
+    "section": "Basic mathematic operators and running code",
+    "text": "Basic mathematic operators and running code\nNow let’s (finally) see some real code! Let’s start with some basic operators:\n1 + 1   # Addition\n3 - 1   # Substraction\n2 * 3   # Multiplication\n8 / 2   # Division\n8 %% 2  # Modulo\nR follows the conventional order of mathematic operation.\nHowever, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.\nThe results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with &gt; (Figure 1 (a)).\n\n\n\n\n\n\nIf you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with + (Figure 1 (b)). To cancel a waiting command, you can press esc.\n\n\n\nIf we run the example code for the basic mathematic operators, we will get the following results:\n\n1 + 1   # Addition\n\n[1] 2\n\n3 - 1   # Substraction\n\n[1] 2\n\n2 * 3   # Multiplication\n\n[1] 6\n\n8 / 2   # Division\n\n[1] 4\n\n8 %% 2  # Modulo\n\n[1] 0\n\n\nBefore each result, you can see [1]. This indicates that that specific line of code starts with the nth result. When a single code starts printing multiple results, this can help identify what n a certain result is.\n\n\n\n\n\n\n\n\n\n\n\n(a) Ready\n\n\n\n\n\n\n\n\n\n\n\n(b) Waiting for input to finish\n\n\n\n\n\n\n\nFigure 1: Console states",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#functions",
+    "href": "creating.html#functions",
+    "title": "Creating data",
+    "section": "Functions",
+    "text": "Functions\nNow that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:\n\n# Calculate the mean\n(3 + 8 + 3 + 7 + 1) / 5\n\n[1] 4.4\n\n\n\n# Use the calculated mean to calculate the standard deviation\n(((3 - 4.4) ^ 2 + (8 - 4.4) ^ 2 + (3 - 4.4) ^ 2 + (7 - 4.4) ^ 2 + (1 - 4.4) ^ 2) / (5 - 1)) ^ 0.5\n\n[1] 2.966479\n\n\n\n\nA sample’s standard deviation \\(s\\) is obtained by calculating:\n\\[\\sqrt\\frac{\\sum{(x-\\overline{x})^2}}{n-1}\\]\nHowever, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:\n\n# Calculate standard deviation\nsd(c(3, 8, 3, 7, 1))\n\n[1] 2.966479\n\n\n\n\n\n\n\n\nIn the standard deviation function, we use the c() function. Later we will elaborate on this, but for now it is enough to remember that c() creates a collection of data, which is more often called an object.\nBe aware that R is case-sensitive: c() as a function differs from C().\n\n\n\nLet’s see some standard functions that will be of great help to you.\n\nSum\nsum(), as it name suggests, sums the supplied values. It has the following arguments:\n\n...: the ellipsis indicates that any number of values can be supplied here. The sum function can take numeric values, integers, and booleans/logicals (i.e., it can sum the amount of TRUEs).\nna.rm = FALSE: na.rm indicates whether any missing values should be dropped. By default, this is FALSE, meaning that the function will return NA if there is any NAs present in the data you are trying to sum. If you want to sum all valid values (thus drop all NAs), you can specify na.rm = TRUE.\n\nSee the below examples:\n\nsum(3, 4, 5, 6)\n\n[1] 18\n\nsum(3, NA, 5, 6)\n\n[1] NA\n\nsum(3, NA, 5, 6, na.rm = TRUE)\n\n[1] 14\n\n\n\n\n\n\n\n\nIn the sum() function, na.rm has the default value FALSE. This means that this argument does not have to be defined. If we would not define it, it would just use FALSE.\n\n\n\n\n\nMean and median\nTo get the mean or median from some data, you can use the mean() and median() functions. mean() has the following arguments:\n\nx: a collection (or object) of data containing the data for which a mean should be calculated.\ntrim = 0: what proportion of the outskirts of the data should be trimmed (e.g., 0.05 trims 5% of data on each side). It defaults to 0.\nna.rm = FALSE: whether NAs should be dropped (as in sum())\n\nmedian() has the same arguments, except that it doesn’t have trim.\nHere are some examples:\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 98.63636\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), trim = 0.1)\n\n[1] 4.555556\n\nmedian(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 4\n\n\n\n\n\n\n\n\nNotice how with the mean, we specified that 0.1 was the value for trim, but we did not specify that c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044) was the value for x. This is because R inputs values for arguments in order: the first supplied value will be used for the first argument, the second supplied value will be used for the second argument, etc. However, sometimes I do not want to specify the second value, but I do want to specify the third value. In this case I can name the argument as in trim = 0.1, so that R knows the 0.1 is meant for trim.\n\n\n\n\n\nMin and max\nNow that we know how to calculate the mean and median from some data, we might also be interest in finding the lowest and highest value (for example, to detect the 1044 outlier). We can do this with min() and max(), which both take only one argument: ... as in the sum() function.\nTo get the minimum and maximum value from the data we just calculated the mean and median of, we could do the following:\n\nmin(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 0\n\nmax(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 1044\n\n\n\n\nSummary and quintile\nNow we know how to calculate the mean, median, minimum, and maximum values from some data, but what if we also want to know the 1st and 3rd quartile? Additionally, we do not want to use a function for each separate value. In this case, you can use summary(), which calculates the minimum, 1st quartile, mean, median, 3rd quartile, and maximum all at once. The summary function has multiple arguments, but only one is relevant for now:\n\nobject: the data of which you want to get a summary.\n\nFor example:\n\nsummary(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.00    3.00    4.00   98.64    7.50 1044.00 \n\n\nHowever, maybe we are more interested in the 1st and 99th quantiles. In that case we could use quantile(). You can supply the following arguments to quantile():\n\nx: a collection of data (or object) of which you want to calculate quantiles.\nprobs = seq(0, 1, 0.25): the probabilities (or quantiles) you want to calculate. It defaults to seq(0, 1, 0.25), which just means a sequence from 0 to 1 with increments of 0.25.\nna.rm = FALSE: whether NAs should be dropped.\nnames = TRUE: whether the output should show the name (or specified quantile).\n\nSo we could do:\n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99))\n\n   1%   99% \n  0.1 940.4 \n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99), names = FALSE)\n\n[1]   0.1 940.4\n\n\n\n\nTable\nWe have now seen some functions that we can use to get some descriptives about continuous data. However, sometimes we just want to count the amount of different observations. For this we can use table(). Some of the relevant arguments for the table function are the following:\n\n...: the variables to be supplied to table, as we saw in earlier functions.\nuseNA = c(\"no\", \"ifany\", \"always\"): should NAs be tabulated (conditional on if any are present) or not. The c(\"no\", \"ifany\", \"always\"), means that useNA takes any of the three following values: \"no\", \"ifany\", or \"always\".\n\nFor example:\n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA))\n\n\nFALSE  TRUE \n    3     5 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA), \n      useNA = \"ifany\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     1 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      useNA = \"always\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     0 \n\n\nYou can also use table() to create a cross-table:\n\ntable(c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE))\n\n       \n        FALSE TRUE\n  FALSE     3    1\n  TRUE      3    2\n\n\nFor the cross-tabulation, values are compered based on their order in the data you supply (e.g., the first value, FALSE in the first set is compared to the first value, TRUE, in the second set.)\n\n\n\n\n\n\nWe now went through some arguments for commonly used functions together, but it is good that you know what arguments a function takes and where you can find this. If you want to know more about any function, for example for sum(), you can open the documentation by running ?sum. In the help panel on the lower right in RStudio, you will find the documentation with the function, its default values, elaboration on the arguments it takes, details, and examples. You can also click on a function and press F1 to open the help panel.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#storing-values",
+    "href": "creating.html#storing-values",
+    "title": "Creating data",
+    "section": "Storing values",
+    "text": "Storing values\nWe have now seen how we can calculate some values using basic mathematic operators and functions. However, just typing out our data can become quite tiresome, so preferably I would store them in a variable. In R, things that store data are often called subjects. Let’s look at some different ways we can store data.\n\nSingle value\nWe can assign a single value by using the &lt;- operator (which has the easy keyboard shortcut alt + - in RStudio). To then see the object, we can simply run it. For example:\n\nx &lt;- sum(4, 9)\nx\n\n[1] 13\n\nx &lt;- 4 + 5\nx\n\n[1] 9\n\n\n\n\n\n\n\n\nNote that we defined the object x twice. When defining an object that already exists, the old object is overridden.\n\n\n\n\n\n\n\n\n\nTo assign a value to an object, you can also use = instead of &lt;-. However, this is often unclear and may be confused with defining arguments in functions. It is therefore strongly recommended to only assign objects using &lt;-.\n\n\n\n\n\nVectors\nWhen we want to assign multiple values to a single variable, we can create a vector. There are two simple ways to create a vector. First, we can use the c function (c()), that we saw before when discussing functions. c() creates a simple collection of any type of value. We call this collection a vector.\n\nx &lt;- c(4, 6, 9, 3, 2)\nx\n\n[1] 4 6 9 3 2\n\n# Using a vector in the sum function\nsum(x)\n\n[1] 24\n\n\nYou can also create a vector of sequential integers by using ::\n\nx &lt;- 5:17\nx\n\n [1]  5  6  7  8  9 10 11 12 13 14 15 16 17\n\n\nAdditionally, you can create any sequence using the seq() function which takes the arguments from, to, and by, meaning respectively the start, finish, and increments of the sequence.\n\nx &lt;- seq(5, 7, 0.5)\nx\n\n[1] 5.0 5.5 6.0 6.5 7.0\n\n\nWe could also multiply two vectors with each other (given they have the same length) or a vector with a single value:\n\nx &lt;- 1:5\ny &lt;- 5:1\n\nx * y\n\n[1] 5 8 9 8 5\n\nx * 2\n\n[1]  2  4  6  8 10\n\n\nLastly, you could create a named vector (i.e., each value has a name):\n\nx &lt;- c(\"Obs1\" = 42, \"Obs2\" = 28, \"Obs3\" = 91)\nx\n\nObs1 Obs2 Obs3 \n  42   28   91 \n\n\n\n\nLists\nA list is also a collection of data, but it can store much more than just values, such as vectors, and whole data sets:\n\nx &lt;- list(head(iris, 3), head(mtcars, 3))\nx\n\n[[1]]\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n\n[[2]]\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\nHowever, you cannot immediately apply mathematic operators on a list or use a list in data. If we have a list with data (for example different objects), we first have to unlist:\n\nx &lt;- list(4, 2)\nunlist(x) * 2\n\n[1] 8 4\n\n\nWhen you create a model, they are always stored in lists too, with many information alongside the results. We will come across this later in the tutorial.\n\n\nMatrices\nIf we want data with more than one dimension (i.e., columns and rows), we could create a matrix with the matrix function:\n\nx &lt;- matrix(c(31, 3, 18, 7, 84, 20), nrow = 3, ncol = 2)\nx\n\n     [,1] [,2]\n[1,]   31    7\n[2,]    3   84\n[3,]   18   20\n\n\nWe can also supply a single value that fills the entire matrix:\n\nx &lt;- matrix(\"Hello, World!\", nrow = 5, ncol = 3)\nx\n\n     [,1]            [,2]            [,3]           \n[1,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[2,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[3,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[4,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[5,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n\n\nMatrices are useful because they have multiple dimensions, which allows us to store different variables of the same person in multiple columns along the same row.\n\n\nData frames\nMatrices give us a flexible way to store data with rows and columns, but miss some flexibility when it comes to manipulating the data and performing calculations, loading it into functions, etc. In this case, data frames offer a good solution. Data frames look exactly matrices, but are much easier to manipulate and use for analyses. Data frames are likely what will compose most of the data you use in R.\nWe can create a data frame with the data.frame() function:\n\nx &lt;- data.frame(id = 1:5,\n                value1 = c(5, 2, 0, 2, 4),\n                value2 = c(9.4, 8.3, 2.8, 5.6, 2.7))\nx\n\n  id value1 value2\n1  1      5    9.4\n2  2      2    8.3\n3  3      0    2.8\n4  4      2    5.6\n5  5      4    2.7\n\n\nWhen working with data frames, there are some useful functions you can use:\n\nTo determine how many rows and columns a data frame (or matrix) has, you can use nrow() and ncol().\nTo change the row and column names, you can use rownames() and colnames(). To see how these functions work, you can access the examples in their documentation with ?rownames and ?colnames.\nTo change a data frame to a matrix or a matrix to a data frame, you can use as.matrix() and as.data.frame().",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#the-global-environment",
+    "href": "creating.html#the-global-environment",
+    "title": "Creating data",
+    "section": "The global environment",
+    "text": "The global environment\nWe have seen some ways to create and store data now. However, where can we find back what we have created? This is where the global environment comes in. Whenever you create an object in your code, that object will be stored in the global environment, which is just a general storage space. A great benefit that RStudio gives us is being able to see the global environment and whatever is stored in there, and to get a quick indication of what kind of data is stored.\nBefore we see the global environment, let’s first clean it with the following code:\nrm(list = ls())\nWith the rm() function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (list =), is the whole global environment (ls()). It is useful to remove objects you do not need to keep your global environment clean. Not only does it help in available working memory, it is also good to work in an organized (global) environment.\nNow let’s create some new data to showcase the global environment in RStudio:\n# Load pre-existing data frame\ndata &lt;- iris\n\n# Create vector\nvector &lt;- 1:13\n\n# Create single value\nval &lt;- 42\n\n# Create vector of strings\nstrings &lt;- c(\"Hello\", \"I\", \"am\", \"a\", \"vector\")\nNow let’s look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like Figure 2 (a) (the colours might differ depending on your theme).\nFrom the global environment, we can learn a few things:\n\nThe current memory usage is 121 MiB, in the upper middle of the image.\nWe have one structured data object, data. This data object has 150 observations (rows) of 5 variables (columns).\nstrings is a character (chr) with 5 values ([1:5). We then see the first values.\nval is a single value, 42.\nvector is an integener (int) with 13 values ([1:13]`) and we can see the first values.\n\nThis already gives us quite some information, but we can also get some more information on the structured data. If you press the small blue button with an arrow, next to data, you will see that it opens, as in Figure 2 (b). This let’s us learn the following information about data:\n\nWe can see each of the columns of data. The first four are numerical (num).\nThe fifth column, Species, is a factor (i.e., categorical) with three levels (of which the first one is “setosa”).\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Global environment\n\n\n\n\n\n\n\n\n\n\n\n(b) Global environment with opened data\n\n\n\n\n\n\n\nFigure 2: The global environment",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#dealing-with-warnings-and-errors",
+    "href": "creating.html#dealing-with-warnings-and-errors",
+    "title": "Creating data",
+    "section": "Dealing with warnings and errors",
+    "text": "Dealing with warnings and errors\nWe have now gone through the basics of creating and storing data. However, sometimes, we supply a wrong value to a function or mess up a parenthesis somewhere. This can give either warnings or errors. In both cases, it is important to realize what is happening. Warnings are messages printed in the console that try to tell us that something might be wrong in the data or not suited, or that the data was manipulated in the function to make sure the function could work. For example, if I try to change a character string to numeric with as.numeric(), I will get the warning: Warning message: NAs introduced by coercion, but the function still completed.\nSometimes, warnings are expected or not a problem. In that case, you can put the whole code inside the function supressWarnings(), to silence the warning. It is however always of paramount importance that you annotate what the warning was and why it can be suppressed.\nSometimes, you might get an error instead of a warning. This means that the function could not continue to run and you have to fix the error before being able to run the function.\nNot all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add ‘R’ at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as stackoverflow. When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#exercises",
+    "href": "creating.html#exercises",
+    "title": "Creating data",
+    "section": "Exercises",
+    "text": "Exercises\n\n1. Create and store numbers\nCreate a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called vec.\n\n\nAnswer\n# Answer 1: using c()\nvec &lt;- c(5, 6, 7, 8, 9, 10)\n\n# Answer 2: using the `:` operator\nvec &lt;- 5:10\n\n# Answer 3: using seq()\nvev &lt;- seq(5, 10, 1)\n\n\n\n\n2. Calculate quantiles\nCalculate the 2.5th and 97.5th percentile of the object vec.\n\n\nAnswer\nquantile(vec, probs = c(0.025, 0.975))\n\n\n 2.5% 97.5% \n5.125 9.875 \n\n\n\n\n3. Create a matrix\nUsing the data in vec, create a matrix with two columns and three rows.\n\n\nAnswer\nmatrix(vec, nrow = 3, ncol = 2)\n\n\n     [,1] [,2]\n[1,]    5    8\n[2,]    6    9\n[3,]    7   10\n\n\n\n\n4. Getting help\nOpen the documentation for rm().\n\n\nAnswer\n?rm\n\n\n\n\n5. Cleaning up\nNow use rm() to remove vec again.\n\n\nAnswer\nrm(vec)",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#next-topic",
+    "href": "creating.html#next-topic",
+    "title": "Creating data",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.\nNext: Using data",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "External data",
+    "section": "",
+    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#why-we-need-to-load-data",
+    "href": "data.html#why-we-need-to-load-data",
+    "title": "External data",
+    "section": "",
+    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#the-basics",
+    "href": "data.html#the-basics",
+    "title": "External data",
+    "section": "The basics",
+    "text": "The basics\n\nWorking directionary\nWhen we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using getwd(). If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use setwd(), specifying the path to the directionary.\n\n\nFile\nAll methods of reading data require an argument file (sometimes called path or data_file), which ?base::load() defines as a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done). This file is simply a path to the document we want to load in. For example: C:/users/username/documents/rtutorial/data/definitely_real_data.csv. Note that the file argument must always end in the file name (definitely_real_data) including extension (.csv).\n\n\nTilde expansion\nRemembering where all your data is stored and writing it all out (C:/users/username/...) can cost quite some effort. Luckily, we have a concept called tilde expansion. When we set our working directionary with setwd(), we can stop specifying that part in the file argument and instead only specify a tilde (~). Instead of calling C:/users/username/documents/rtutorial, we can set our working directionary to the documents folder:\nsetwd(\"C:/users/username/documents/rtutorial\")\nSubsequently, we can specify any file argument as ~/data/definitely_real_data.csv.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#delimited-data-with-base-and-readr",
+    "href": "data.html#delimited-data-with-base-and-readr",
+    "title": "External data",
+    "section": "Delimited data with {base} and {readr}",
+    "text": "Delimited data with {base} and {readr}\nData is often shared in a .csv format, which stands for Comma Separated Values. If we were to open this file in a normal text editor, we would see that each column of a row is separated by a comma between the values. This is a form of delimited data, where there is a certain character (comma, semicolon, tab) that allows the computer to discern between columns. To read such data, we can use different functions from {base}:\n\nread.csv() allows the reading in of data separated with commas where decimal markers are dots\nread.csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread.delim() allows the reading in of data separated with tabs where decimal markers are dots\nread.delim2() allows the reading in of data separated with tabs where decimal markers are commas\n\nThese functions only differ in the defaults: if you specify arguments such as sep and dec, they can perform the same actions. When using these functions, the data will be read into R, and we can immediately load it into an object which will create a data frame:\n# Load data\ndat &lt;- read.csv(\"~/data/definitely_real_data.csv\")\nA great alternative to the {base} functions are the functions from {readr}, which are in general faster and treat the data better. The functions have similar names and functionality:\n\nread_csv() allows the reading in of data separated with commas where decimal markers are dots\nread_csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread_tsv() allows the reading in of data separated with tabs\n\nIf you want to write these data back into a delimited file, we can use the write functions with similar names, besides replacing read with write:\n\nwrite.csv() allows the writing of data separated with commas where decimal markers are dots\nwrite_csv() allows the writing of data separated with commas where decimal markers are dots (but faster than write.csv())\netc.\n\nIn the writing functions, we first specify the object we want to write to our device and then the path:\nwrite_csv(iris, \"~/data/iris.csv\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#excel-files",
+    "href": "data.html#excel-files",
+    "title": "External data",
+    "section": "Excel files",
+    "text": "Excel files\nIf the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the {readxl} package to read in the data:\n# Load first sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\")\n\n# Load third sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = 3)\n\n# Load Excel file's sheet by name\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = \"definitely_real_sheet\")\nUsing the function read_excel() automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use read_xlsx() or read_xls().\nIf we then want to write data back to Excel, we can use the {writexl} package:\nwrite_xlsx(iris, \"~/data/iris.xlsx\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#spss-sas-and-stata-data",
+    "href": "data.html#spss-sas-and-stata-data",
+    "title": "External data",
+    "section": "SPSS, SAS, and Stata data",
+    "text": "SPSS, SAS, and Stata data\nIf the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (.sas7bdat) or Stata (.dta, .xpt), we can use {haven} to read these data:\n\nread_spss() can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (read_sav() or read_por()).\nwrite_sav() creates an SPSS .sav file (or .zsav if compress = TRUE).\nread_sas() reads in SAS .sas7bdat files.\nread_xpt()reads in SAS transport .xpt files.\nwrite_sas() is a deprecated function and does not perform reliabily. An alternative is the write_xpt() function to write an R object to a SAS transport (.xpt) file.\nread_dta() allows reading of Stata .dta files.\nwrite_dta() writes an R object to a Stata .dta file.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#foreign",
+    "href": "data.html#foreign",
+    "title": "External data",
+    "section": "Foreign",
+    "text": "Foreign\nIf we have data that cannot be loaded in with any of the above functions, we can always have a look whether {foreign} has any functions that can read in the data. {foreign} offers functions for the reading of files such as .ssd, .dbf, .arff, .epiinfo, and more.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#making-your-life-easier",
+    "href": "data.html#making-your-life-easier",
+    "title": "External data",
+    "section": "Making your life easier",
+    "text": "Making your life easier\n\nPoint-and-click import\nOf course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (Figure 1):\n\n\n\n\n\n\nFigure 1: Import data\n\n\n\nFrom there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (Figure 2). In the upper right corner of the viewer, we can select our data with ‘Browse’, which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press ‘Import’ and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.\n\n\n\n\n\n\nFigure 2: Preview of import\n\n\n\n\n\nRio\nIf we do not want to think about what function to use at all, we can use the R Input/Output package {rio}, which provides the functions import() and export(). These functions automatically recognize the format of the file and choose the correct method of reading in the data. Additionally, {rio} allows us to read and write directly from and to .zip files.\n# Import data\nimport(\"iris.xlsx\")\n\n# Export data\nexport(iris, \"iris.tsv.zip\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#rdata-and-.rda",
+    "href": "data.html#rdata-and-.rda",
+    "title": "External data",
+    "section": ".Rdata and .Rda",
+    "text": ".Rdata and .Rda\nWhile working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:\n\nload() loads the specified file into R.\nsave() saves an objects onto the device.\n\nWhen we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:\n# Save iris to current working directionary\nsave(iris, file = \"~/iris.Rdata\")\n\n# Load iris\nload(\"iris.Rdata\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#projectiles-and-carpeting",
+    "href": "data.html#projectiles-and-carpeting",
+    "title": "External data",
+    "section": "Projectiles and carpeting",
+    "text": "Projectiles and carpeting\n\nArrow (formerly known as Feather)\nSometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the {Arrow} package. A quick start to working with Arrow can be found here.\n\n\nParquet\nAlthough fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the {Arrow} package and a quick start can again be found here.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#sql",
+    "href": "data.html#sql",
+    "title": "External data",
+    "section": "SQL",
+    "text": "SQL\nSometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using {RODBC}, which allows general database access. You can connect to the database with odbcConnect() and then pass SQL queries into data using sqlQuery():\ndat &lt;- sqlQuery(odbcConnect(\"database\"), \"select * from DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#readily-available-data",
+    "href": "data.html#readily-available-data",
+    "title": "External data",
+    "section": "Readily available data",
+    "text": "Readily available data\nR and many available R packages also come with external data that is already available in the packages. To load this data, you can use data():\ndata(iris)\nAdditionally, you can get an overview of all available data in the available packages using data().",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#exercises",
+    "href": "data.html#exercises",
+    "title": "External data",
+    "section": "Exercises",
+    "text": "Exercises\n\n0. Downloading data\nFor these exercises, we will work with some freely available data that you can download here. If the link does not work, you can look for the file State funded schools inspections and outcomes as at 31 December 2022 here.\n\n\n1. Loading new data\nLoad the data you just downloaded into a variable called dat.\n\n\nAnswer\n# Load necessary packages\npacman::p_load(\"rio\", \"readr\")\n\n# Define file so that I only have to type it once for each example\nfile &lt;- \"C:/users/rjjanse.LUMCNET/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv\"\n\n# Answer 1: using import\ndat &lt;- import(file)\n\n# Answer 2: using read_csv\n# suppressWarnings and show_col_types = FALSE for clean output\ndat &lt;- suppressWarnings(read_csv(file, show_col_types = FALSE))\n\n# Answer 3: using read.csv\ndat &lt;- read.csv(file)\n\n\n\n\n2. Storing data\nNow save the data to a file called example_data.Rdata.\n\n\nAnswer\n# Answer 1: use save()\nsave(dat, file = \"example_data.Rdata\")\n\n# Answer 2: use export()\nexport(dat, \"example_data.Rdata\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#next-topic",
+    "href": "data.html#next-topic",
+    "title": "External data",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio), but also take you further, showing you different alternatives to reach the same goal and learning some useful tricks to quickly become an efficient R user. The general focus is on using R for epidemiologic data analysis, such as how to perform regression analyses and plot results, although it also contains a comprehensive introduction to R.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\nThis tutorial might feel rather dense and time-consuming as compared to other tutorials but you do not have to do everything at once. Although it is a good idea to do the basics and learn about the tidyverse, other sections might be studied on a need-to-know basis. Additionally, this tutorial will (hopefully) leave you with knowledge about using R, but also hand you the tools to learn more yourself and quickly understand new concepts and functions.\n\nExercises\n0: Open the answer\n\n\nAnswer\n# Well done!\n\n\nNext: R",
+    "crumbs": [
+      "Start",
+      "Introduction"
     ]
   },
   {
@@ -899,50 +965,6 @@
     "crumbs": [
       "Into the tidyverse",
       "Tidyverse"
-    ]
-  },
-  {
-    "objectID": "tidyr.html#filling-in-nas",
-    "href": "tidyr.html#filling-in-nas",
-    "title": "Tidyr",
-    "section": "Filling in NA’s",
-    "text": "Filling in NA’s\n\nSingle value for a whole column\nSometimes, we have missing values in columns (i.e. NA’s), that we want to change. This can be due to some assumptions we have made (e.g. absence of a diagnostic code in a health record means absence of the corresponding disease), because we want to name our missings something different than NA, or because we otherwise know what these values should be (e.g. an artificial indicator).\nTo do this, we can use the function replace_na(), which allows us to specify what missing values should be for each individual column specified. As an example, we will change missing values in the billboard data to -1 for the weeks 20 and 21, to indicate the song was no longer in the top 100 in the week specified by that column.\n\n# Change NAs in weeks 66 and 67\nbillboard_replaced &lt;- replace_na(billboard, list(wk20 = -1, wk21 = -1))\n\n# Show that these values now exist where missing data first existed for week 20\ntable(billboard[[\"wk20\"]], useNA = \"always\"); table(billboard_replaced[[\"wk20\"]], useNA = \"always\")\n\n\n   2    3    4    5    6    7    9   10   11   12   14   15   16   18   19   20 \n   2    2    3    2    1    2    1    4    1    2    4    4    1    1    1    3 \n  21   22   23   25   26   28   30   33   34   35   39   40   42   43   45   46 \n   1    2    3    4    3    1    3    1    2    1    1    1    2    1    1    1 \n  48   49   50   51   53   54   56   58   59   61   62   66   67   68   69   70 \n   1    1    2    1    1    2    1    2    3    1    3    2    1    2    1    3 \n  71   72   74   77   78   79   82   83   84   85   86   87   88   89   90   91 \n   1    1    1    2    2    2    1    1    1    1    4    5    2    6    4    3 \n  92   93   94   95   96   97   98   99  100 &lt;NA&gt; \n   2    1    2    3    1    2    1    3    5  171 \n\n\n\n  -1    2    3    4    5    6    7    9   10   11   12   14   15   16   18   19 \n 171    2    2    3    2    1    2    1    4    1    2    4    4    1    1    1 \n  20   21   22   23   25   26   28   30   33   34   35   39   40   42   43   45 \n   3    1    2    3    4    3    1    3    1    2    1    1    1    2    1    1 \n  46   48   49   50   51   53   54   56   58   59   61   62   66   67   68   69 \n   1    1    1    2    1    1    2    1    2    3    1    3    2    1    2    1 \n  70   71   72   74   77   78   79   82   83   84   85   86   87   88   89   90 \n   3    1    1    1    2    2    2    1    1    1    1    4    5    2    6    4 \n  91   92   93   94   95   96   97   98   99  100 &lt;NA&gt; \n   3    2    1    2    3    1    2    1    3    5    0 \n\n\n\n\nBased on other values in column\nIn some cases, we want to copy the value of a certain column to other, missing rows in that column. As an example, this could be the case of biological sex at birth is recorded only in a first study visit, even though biological sex at birth remains constant over time (because birth only occurs once). For this, we can use the fill() function.\nThe fill() function allows us to fill the value in a column. We can specify one of four directions for how the filling occurrs. Note this example data:\n\n# Create example data for fill()\ndat_fill &lt;- tibble(id = c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4),\n                   visit = rep(1:3, 4),\n                   bio_sex_birth = c(\"male\", NA, NA, NA, \"female\", NA, \n                                     NA, NA, NA, \"male\", NA, NA))\n\n# Show data\ndat_fill\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 &lt;NA&gt;         \n 3     1     3 &lt;NA&gt;         \n 4     2     1 &lt;NA&gt;         \n 5     2     2 female       \n 6     2     3 &lt;NA&gt;         \n 7     3     1 &lt;NA&gt;         \n 8     3     2 &lt;NA&gt;         \n 9     3     3 &lt;NA&gt;         \n10     4     1 male         \n11     4     2 &lt;NA&gt;         \n12     4     3 &lt;NA&gt;         \n\n\nWe can see that for three individuals, we know their biological sex at birth, for one individual, this information was recored at visit 2 (ID 2), and for one individual (ID 3), this information is missing. To fill in these missing values, we can use fill():\n\n# Fill missing values downwards\nfill(dat_fill, bio_sex_birth, .direction = \"down\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 male         \n 3     1     3 male         \n 4     2     1 male         \n 5     2     2 female       \n 6     2     3 female       \n 7     3     1 female       \n 8     3     2 female       \n 9     3     3 female       \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nWhen the fill direction is down, we can see that each value is only filled in downwards. The downwards direction poses a problem for individual 2 that now switches biological sex at birth, which should not be possible.\n\n# Fill missing values upwards\nfill(dat_fill, bio_sex_birth, .direction = \"up\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 female       \n 3     1     3 female       \n 4     2     1 female       \n 5     2     2 female       \n 6     2     3 male         \n 7     3     1 male         \n 8     3     2 male         \n 9     3     3 male         \n10     4     1 male         \n11     4     2 &lt;NA&gt;         \n12     4     3 &lt;NA&gt;         \n\n\nWhen the fill direction is up, we just fill upwards, which means that individual 4 does not get their missing values filled in.\n\n# Fill missing values downwards then upwards\nfill(dat_fill, bio_sex_birth, .direction = \"downup\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 male         \n 3     1     3 male         \n 4     2     1 male         \n 5     2     2 female       \n 6     2     3 female       \n 7     3     1 female       \n 8     3     2 female       \n 9     3     3 female       \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nThe direction downup simply means that first we fill downwards and then upwards, meaning that when the filling upwards occurs, there are already some NA’s filled in by the downward filling.\n\n# Fill missing values upwards then downwards\nfill(dat_fill, bio_sex_birth, .direction = \"updown\")\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 female       \n 3     1     3 female       \n 4     2     1 female       \n 5     2     2 female       \n 6     2     3 male         \n 7     3     1 male         \n 8     3     2 male         \n 9     3     3 male         \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nThe updown direction is alike the downup direction, but just the other way around.\nImportantly however, all these directions fill also the missing values for individual 3, even though we do not know their actual value. This is why it is always important to evaluate whether you need to fill within a grouping structure. If we apply this here, we can see that both updown and downup give us the correct results:\n\n# Fill missing values\ndat_fill %&gt;%\n    # Arrange for grouping\n    arrange(id) %&gt;%\n    # Create groups out of individuals\n    group_by(id) %&gt;%\n    # Fill values downwards then upwards\n    fill(bio_sex_birth, .direction = \"downup\") %&gt;%\n    # Remove grouping structure\n    ungroup()\n\n# A tibble: 12 × 3\n      id visit bio_sex_birth\n   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;        \n 1     1     1 male         \n 2     1     2 male         \n 3     1     3 male         \n 4     2     1 female       \n 5     2     2 female       \n 6     2     3 female       \n 7     3     1 &lt;NA&gt;         \n 8     3     2 &lt;NA&gt;         \n 9     3     3 &lt;NA&gt;         \n10     4     1 male         \n11     4     2 male         \n12     4     3 male         \n\n\nThere are also cases where we are only interested in filling values in a single direction only, such as when a measurement should only be available from a certain point onwards.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Tidyr"
-    ]
-  },
-  {
-    "objectID": "tidyr.html#exercises",
-    "href": "tidyr.html#exercises",
-    "title": "Tidyr",
-    "section": "Exercises",
-    "text": "Exercises\nFor these exercises, we will use the storms dataset available in {dplyr}.\n\n1. Continue storm category\nImagine that we want to say that a storm keeps their hurricane category, even after it ceases to be a hurricane. Tidy the data to portray this.\n\n\nAnswer\n# Fill the category downwards in grouped data\nstorms %&gt;%\n    # Arrange for grouping\n    arrange(name) %&gt;%\n    # Group per storm\n    group_by(name) %&gt;%\n    # Fill category downwards only\n    fill(category, .direction = \"down\") %&gt;%\n    # Remove grouping structure\n    ungroup() %&gt;%\n    ## Only to show what answer should look like\n    # Show storm Gladys as an example\n    filter(name == \"Gladys\") %&gt;%\n    # Print all rows\n    print(n = 46)\n\n\n# A tibble: 46 × 13\n   name    year month   day  hour   lat  long status     category  wind pressure\n   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;\n 1 Gladys  1975     9    22    18  10.3 -34.8 tropical …       NA    25     1012\n 2 Gladys  1975     9    23     0  10.6 -35.8 tropical …       NA    25     1012\n 3 Gladys  1975     9    23     6  11   -36.7 tropical …       NA    25     1012\n 4 Gladys  1975     9    23    12  11.4 -37.4 tropical …       NA    25     1012\n 5 Gladys  1975     9    23    18  11.7 -38.2 tropical …       NA    30     1010\n 6 Gladys  1975     9    24     0  12.1 -38.8 tropical …       NA    30     1010\n 7 Gladys  1975     9    24     6  12.4 -39.6 tropical …       NA    30     1010\n 8 Gladys  1975     9    24    12  12.9 -40   tropical …       NA    30     1010\n 9 Gladys  1975     9    24    18  13.5 -40.4 tropical …       NA    35     1005\n10 Gladys  1975     9    25     0  14.2 -41   tropical …       NA    40     1005\n11 Gladys  1975     9    25     6  14.8 -42   tropical …       NA    50     1000\n12 Gladys  1975     9    25    12  15.4 -43   tropical …       NA    60     1000\n13 Gladys  1975     9    25    18  15.8 -44   hurricane         1    65      990\n14 Gladys  1975     9    26     0  16.2 -45   hurricane         1    65      990\n15 Gladys  1975     9    26     6  16.4 -46.1 hurricane         1    65      990\n16 Gladys  1975     9    26    12  16.6 -47.7 hurricane         1    65      990\n17 Gladys  1975     9    26    18  16.8 -49.3 hurricane         1    65      990\n18 Gladys  1975     9    27     0  17.1 -50.7 hurricane         1    65      990\n19 Gladys  1975     9    27     6  17.6 -52.2 hurricane         1    65      990\n20 Gladys  1975     9    27    12  18.2 -53.7 hurricane         1    65      990\n21 Gladys  1975     9    27    18  18.8 -55.1 hurricane         1    65      990\n22 Gladys  1975     9    28     0  19.4 -56.4 hurricane         1    65      992\n23 Gladys  1975     9    28     6  19.6 -57.4 hurricane         1    65      992\n24 Gladys  1975     9    28    12  19.8 -58.2 hurricane         1    65     1000\n25 Gladys  1975     9    28    18  20.3 -59.3 hurricane         1    65      998\n26 Gladys  1975     9    29     0  21.2 -60.3 hurricane         1    65      995\n27 Gladys  1975     9    29     6  22.1 -61.4 hurricane         1    70      990\n28 Gladys  1975     9    29    12  23   -62.6 hurricane         1    70      990\n29 Gladys  1975     9    29    18  23.6 -63.9 hurricane         1    75      985\n30 Gladys  1975     9    30     0  24.1 -65.2 hurricane         1    80      975\n31 Gladys  1975     9    30     6  24.6 -66.5 hurricane         1    80      975\n32 Gladys  1975     9    30    12  25.1 -67.9 hurricane         1    80      975\n33 Gladys  1975     9    30    18  25.6 -69.3 hurricane         1    80      975\n34 Gladys  1975    10     1     0  26.1 -70.6 hurricane         1    80      975\n35 Gladys  1975    10     1     6  26.8 -71.7 hurricane         1    80      975\n36 Gladys  1975    10     1    12  27.9 -72.4 hurricane         1    80      975\n37 Gladys  1975    10     1    18  29.4 -73   hurricane         2    90      969\n38 Gladys  1975    10     2     0  31   -73   hurricane         3   100      954\n39 Gladys  1975    10     2     6  32.9 -72.1 hurricane         3   110      942\n40 Gladys  1975    10     2    12  35.3 -69.8 hurricane         4   120      939\n41 Gladys  1975    10     2    18  37.8 -67   hurricane         4   120      939\n42 Gladys  1975    10     3     0  40.8 -62.6 hurricane         3   110      950\n43 Gladys  1975    10     3     6  43.7 -57   hurricane         2    85      960\n44 Gladys  1975    10     3    12  46.6 -50.6 hurricane         2    85      960\n45 Gladys  1975    10     3    18  50.5 -45.5 extratrop…        2    75      975\n46 Gladys  1975    10     4     0  55   -40   extratrop…        2    65      980\n# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,\n#   hurricane_force_diameter &lt;int&gt;",
-    "crumbs": [
-      "Into the tidyverse",
-      "Tidyr"
-    ]
-  },
-  {
-    "objectID": "tidyr.html#indicate-non-hurricanes",
-    "href": "tidyr.html#indicate-non-hurricanes",
-    "title": "Tidyr",
-    "section": "2. Indicate non-hurricanes",
-    "text": "2. Indicate non-hurricanes\nAs an alternative, set category to -1 if the storm was not a hurricane (and therefore the category is NA).\n\n\nAnswer\n# Set NA's to -1\nstorms_replaced &lt;- replace_na(storms, list(category = -1))\n\n# See categories in storms_replaced\ntable(storms_replaced[[\"category\"]], useNA = \"always\")\n\n\n\n   -1     1     2     3     4     5  &lt;NA&gt; \n14734  2548   993   593   553   116     0",
-    "crumbs": [
-      "Into the tidyverse",
-      "Tidyr"
-    ]
-  },
-  {
-    "objectID": "tidyr.html#next-topic",
-    "href": "tidyr.html#next-topic",
-    "title": "Tidyr",
-    "section": "Next topic",
-    "text": "Next topic\nNow that we have seen how we tidy our data, the last thing left for us to discuss in the tidyverse is how to combine all these functions into efficient pipelines using {magrittr} and the pipe (%&gt;%).\nNext: Magrittr",
-    "crumbs": [
-      "Into the tidyverse",
-      "Tidyr"
     ]
   }
 ]
