@@ -6,7 +6,8 @@ title: "Tidyr"
 `{tidyr}` is a package from the tidyverse that is meant to help you tidy up your data. What is considered 'tidy' data can be read in `vignette("tidy-data")`. In short, tidy data helps you use `{dplyr}` and other tidyverse tools in a way that lets you spend less time on structuring your data and more on performing your analyses.
 
 ## Reshaping data
-Most commonly, I use `{tidyr}` to reshape my data. Some analyses require data in long format (i.e. one study participant can have multiple observations which are represented by multiple rows) while data might be retrieved in wide format (i.e. one study participant can have multiple observations which are represented by multiple columns). In such a case, `{tidyr}` offers us `pivot_longer()`.
+### Wide to long
+Some analyses require data in long format (i.e. one study participant can have multiple observations which are represented by multiple rows) while data might be retrieved in wide format (i.e. one study participant can have multiple observations which are represented by multiple columns). In such a case, `{tidyr}` offers us `pivot_longer()`.
 
 We can use `pivot_longer()` in a number of ways, but we must always supply the data in the argument `data`, and the columns to be pivoted in `cols`. In the simplest cases, this will suffice.
 
@@ -66,9 +67,10 @@ head(billboard_long)
 
 ```
 
-This kind of control gives us much less head-ache when, for instance, we want to use the data for plotting (which we will see in [Plotting](plotting.qmd)):
+This kind of control gives us much less head-ache when, for instance, we want to use the data for plotting (for which we will discuss the code in [Plotting](plotting.qmd)):
 
 ```{r}
+#| code-fold: false
 # Load packages
 pacman::p_load("dplyr",   # Data wrangling
                "ggplot2"  # Data visualization
@@ -84,10 +86,169 @@ ggplot(dat_plot, aes(x = week, y = position, colour = track)) +
     # Scaling
     scale_x_continuous(limits = c(0, 20)) +
     scale_y_continuous(limits = c(0, 100)) +
+    scale_colour_manual(values = c("#d3b866", "#e09373", "#e586b4")) + 
     # Aesthetics
-    theme_minimal() +
     theme(panel.grid = element_blank(),
-          panel.background = element_rect(colour = "black", fill = "white"),
-          plot.background = element_rect(colour = "transparent", fill = "transparent"),
+          panel.background = element_rect(colour = "#002b36", fill = "#002b36"),
+          plot.background = element_rect(colour = "#002b36", fill = "#002b36"),
+          axis.text = element_text(colour = "#dee2e6"),
+          axis.title = element_text(colour = "#dee2e6"),
+          axis.line = element_line(colour = "#dee2e6"),
+          axis.ticks = element_line(colour = "#dee2e6"),
+          legend.text = element_text(colour = "#dee2e6"),
+          legend.title = element_blank(),
+          legend.background = element_rect(colour = "#002b36", fill = "#002b36"),
           legend.position = "bottom")
 ```
+
+### Long to wide
+We can also reshape data from longer to wider format using `pivot_wider()`. We can simply do this by defining which column contains the name and which column contains the values. We can append the final name of the columns using the `names_prefix` argument.
+
+```{r}
+#| code-fold: false
+# Pivot data to wider formar
+billboard_wide <- pivot_wider(billboard_long, names_from = week, values_from = position, names_prefix = "wk")
+
+# Preview data
+head(billboard_wide)
+
+```
+
+This returns the data to its original state (note that missings cannot be compared):
+```{r}
+#| code-fold: false
+# Compare all individual values in the data frames
+table(billboard == billboard_wide, useNA = "always")
+
+```
+
+## Filling in `NA`'s
+### Single value for a whole column
+Sometimes, we have missing values in columns (i.e. `NA`'s), that we want to change. This can be due to some assumptions we have made (e.g. absence of a diagnostic code in a health record means absence of the corresponding disease), because we want to name our missings something different than `NA`, or because we otherwise know what these values should be (e.g. an artificial indicator).
+
+To do this, we can use the function `replace_na()`, which allows us to specify what missing values should be for each individual column specified. As an example, we will change missing values in the `billboard` data to -1 for the weeks 20 and 21, to indicate the song was no longer in the top 100 in the week specified by that column.
+```{r}
+#| code-fold: false
+# Change NAs in weeks 66 and 67
+billboard_replaced <- replace_na(billboard, list(wk20 = -1, wk21 = -1))
+
+# Show that these values now exist where missing data first existed for week 20
+table(billboard[["wk20"]], useNA = "always"); table(billboard_replaced[["wk20"]], useNA = "always")
+```
+
+### Based on other values in column
+In some cases, we want to copy the value of a certain column to other, missing rows in that column. As an example, this could be the case of biological sex at birth is recorded only in a first study visit, even though biological sex at birth remains constant over time (because birth only occurs once). For this, we can use the `fill()` function.
+
+The `fill()` function allows us to fill the value in a column. We can specify one of four directions for how the filling occurrs. Note this example data:
+
+```{r}
+#| code-fold: false
+# Create example data for fill()
+dat_fill <- tibble(id = c(1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4),
+                   visit = rep(1:3, 4),
+                   bio_sex_birth = c("male", NA, NA, NA, "female", NA, 
+                                     NA, NA, NA, "male", NA, NA))
+
+# Show data
+dat_fill
+
+```
+
+We can see that for three individuals, we know their biological sex at birth, for one individual, this information was recored at visit 2 (ID 2), and for one individual (ID 3), this information is missing. To fill in these missing values, we can use `fill()`:
+
+```{r}
+#| code-fold: false
+# Fill missing values downwards
+fill(dat_fill, bio_sex_birth, .direction = "down")
+
+```
+
+When the fill direction is down, we can see that each value is only filled in downwards. The downwards direction poses a problem for individual 2 that now switches biological sex at birth, which should not be possible.
+
+```{r}
+#| code-fold: false
+# Fill missing values upwards
+fill(dat_fill, bio_sex_birth, .direction = "up")
+
+```
+
+When the fill direction is up, we just fill upwards, which means that individual 4 does not get their missing values filled in.
+
+```{r}
+#| code-fold: false
+# Fill missing values downwards then upwards
+fill(dat_fill, bio_sex_birth, .direction = "downup")
+
+```
+
+The direction downup simply means that first we fill downwards and then upwards, meaning that when the filling upwards occurs, there are already some `NA`'s filled in by the downward filling.
+
+```{r}
+#| code-fold: false
+# Fill missing values upwards then downwards
+fill(dat_fill, bio_sex_birth, .direction = "updown")
+
+```
+
+The updown direction is alike the downup direction, but just the other way around.
+
+Importantly however, all these directions fill also the missing values for individual 3, even though we do not know their actual value. This is why it is always important to evaluate whether you need to fill within a grouping structure. If we apply this here, we can see that both updown and downup give us the correct results:
+
+```{r}
+#| code-fold: false
+# Fill missing values
+dat_fill %>%
+    # Arrange for grouping
+    arrange(id) %>%
+    # Create groups out of individuals
+    group_by(id) %>%
+    # Fill values downwards then upwards
+    fill(bio_sex_birth, .direction = "downup") %>%
+    # Remove grouping structure
+    ungroup()
+
+```
+
+There are also cases where we are only interested in filling values in a single direction only, such as when a measurement should only be available from a certain point onwards.
+
+## Exercises
+For these exercises, we will use the `storms` dataset available in `{dplyr}`.
+
+### 1. Continue storm category
+Imagine that we want to say that a storm keeps their hurricane category, even after it ceases to be a hurricane. Tidy the data to portray this.
+
+```{r}
+# Fill the category downwards in grouped data
+storms %>%
+    # Arrange for grouping
+    arrange(name) %>%
+    # Group per storm
+    group_by(name) %>%
+    # Fill category downwards only
+    fill(category, .direction = "down") %>%
+    # Remove grouping structure
+    ungroup() %>%
+    ## Only to show what answer should look like
+    # Show storm Gladys as an example
+    filter(name == "Gladys") %>%
+    # Print all rows
+    print(n = 46)
+
+```
+
+## 2. Indicate non-hurricanes
+As an alternative, set category to -1 if the storm was not a hurricane (and therefore the category is `NA`).
+
+```{r}
+# Set NA's to -1
+storms_replaced <- replace_na(storms, list(category = -1))
+
+# See categories in storms_replaced
+table(storms_replaced[["category"]], useNA = "always")
+
+```
+
+## Next topic
+Now that we have seen how we tidy our data, the last thing left for us to discuss in the tidyverse is how to combine all these functions into efficient pipelines using `{magrittr}` and the pipe (`%>%`).
+
+**Next:** [Magrittr](magrittr.qmd)

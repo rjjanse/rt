@@ -2,11 +2,6 @@
 
 dplyr functinality in base R
 
-tidyr:
-- fill
-- pivot
-- replace_na
-- where
 
 magrittr:
 - pipes
@@ -20,6 +15,7 @@ regex:
 
 random:
 - sampling
+- creating random data
 
 functions:
 - getting methods & methods()
@@ -31,6 +27,7 @@ shortcuts:
 - opening help
 - commenting out code
 - enlarging certain windows
+- tidying code
 
 iterating:
 - apply
