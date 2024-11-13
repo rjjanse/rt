@@ -180,7 +180,7 @@
     "href": "tidyr.html#exercises",
     "title": "Tidyr",
     "section": "Exercises",
-    "text": "Exercises\nFor these exercises, we will use the storms dataset available in {dplyr}.\n\n1. Continue storm category\nImagine that we want to say that a storm keeps their hurricane category, even after it ceases to be a hurricane. Tidy the data to portray this.\n\n\nAnswer\n# Fill the category downwards in grouped data\nstorms %&gt;%\n    # Arrange for grouping\n    arrange(name) %&gt;%\n    # Group per storm\n    group_by(name) %&gt;%\n    # Fill category downwards only\n    fill(category, .direction = \"down\") %&gt;%\n    # Remove grouping structure\n    ungroup() %&gt;%\n    ## Only to show what answer should look like\n    # Show storm Gladys as an example\n    filter(name == \"Gladys\") %&gt;%\n    # Print all rows\n    print(n = 46)\n\n\n# A tibble: 46 × 13\n   name    year month   day  hour   lat  long status     category  wind pressure\n   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;\n 1 Gladys  1975     9    22    18  10.3 -34.8 tropical …       NA    25     1012\n 2 Gladys  1975     9    23     0  10.6 -35.8 tropical …       NA    25     1012\n 3 Gladys  1975     9    23     6  11   -36.7 tropical …       NA    25     1012\n 4 Gladys  1975     9    23    12  11.4 -37.4 tropical …       NA    25     1012\n 5 Gladys  1975     9    23    18  11.7 -38.2 tropical …       NA    30     1010\n 6 Gladys  1975     9    24     0  12.1 -38.8 tropical …       NA    30     1010\n 7 Gladys  1975     9    24     6  12.4 -39.6 tropical …       NA    30     1010\n 8 Gladys  1975     9    24    12  12.9 -40   tropical …       NA    30     1010\n 9 Gladys  1975     9    24    18  13.5 -40.4 tropical …       NA    35     1005\n10 Gladys  1975     9    25     0  14.2 -41   tropical …       NA    40     1005\n11 Gladys  1975     9    25     6  14.8 -42   tropical …       NA    50     1000\n12 Gladys  1975     9    25    12  15.4 -43   tropical …       NA    60     1000\n13 Gladys  1975     9    25    18  15.8 -44   hurricane         1    65      990\n14 Gladys  1975     9    26     0  16.2 -45   hurricane         1    65      990\n15 Gladys  1975     9    26     6  16.4 -46.1 hurricane         1    65      990\n16 Gladys  1975     9    26    12  16.6 -47.7 hurricane         1    65      990\n17 Gladys  1975     9    26    18  16.8 -49.3 hurricane         1    65      990\n18 Gladys  1975     9    27     0  17.1 -50.7 hurricane         1    65      990\n19 Gladys  1975     9    27     6  17.6 -52.2 hurricane         1    65      990\n20 Gladys  1975     9    27    12  18.2 -53.7 hurricane         1    65      990\n21 Gladys  1975     9    27    18  18.8 -55.1 hurricane         1    65      990\n22 Gladys  1975     9    28     0  19.4 -56.4 hurricane         1    65      992\n23 Gladys  1975     9    28     6  19.6 -57.4 hurricane         1    65      992\n24 Gladys  1975     9    28    12  19.8 -58.2 hurricane         1    65     1000\n25 Gladys  1975     9    28    18  20.3 -59.3 hurricane         1    65      998\n26 Gladys  1975     9    29     0  21.2 -60.3 hurricane         1    65      995\n27 Gladys  1975     9    29     6  22.1 -61.4 hurricane         1    70      990\n28 Gladys  1975     9    29    12  23   -62.6 hurricane         1    70      990\n29 Gladys  1975     9    29    18  23.6 -63.9 hurricane         1    75      985\n30 Gladys  1975     9    30     0  24.1 -65.2 hurricane         1    80      975\n31 Gladys  1975     9    30     6  24.6 -66.5 hurricane         1    80      975\n32 Gladys  1975     9    30    12  25.1 -67.9 hurricane         1    80      975\n33 Gladys  1975     9    30    18  25.6 -69.3 hurricane         1    80      975\n34 Gladys  1975    10     1     0  26.1 -70.6 hurricane         1    80      975\n35 Gladys  1975    10     1     6  26.8 -71.7 hurricane         1    80      975\n36 Gladys  1975    10     1    12  27.9 -72.4 hurricane         1    80      975\n37 Gladys  1975    10     1    18  29.4 -73   hurricane         2    90      969\n38 Gladys  1975    10     2     0  31   -73   hurricane         3   100      954\n39 Gladys  1975    10     2     6  32.9 -72.1 hurricane         3   110      942\n40 Gladys  1975    10     2    12  35.3 -69.8 hurricane         4   120      939\n41 Gladys  1975    10     2    18  37.8 -67   hurricane         4   120      939\n42 Gladys  1975    10     3     0  40.8 -62.6 hurricane         3   110      950\n43 Gladys  1975    10     3     6  43.7 -57   hurricane         2    85      960\n44 Gladys  1975    10     3    12  46.6 -50.6 hurricane         2    85      960\n45 Gladys  1975    10     3    18  50.5 -45.5 extratrop…        2    75      975\n46 Gladys  1975    10     4     0  55   -40   extratrop…        2    65      980\n# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,\n#   hurricane_force_diameter &lt;int&gt;",
+    "text": "Exercises\nFor these exercises, we will use the storms dataset available in {dplyr}.\n\n1. Continue storm category\nImagine that we want to say that a storm keeps their hurricane category, even after it ceases to be a hurricane. Tidy the data to portray this.\n\n\nAnswer\n# Fill the category downwards in grouped data\nstorms %&gt;%\n    # Arrange for grouping\n    arrange(name) %&gt;%\n    # Group per storm\n    group_by(name) %&gt;%\n    # Fill category downwards only\n    fill(category, .direction = \"down\") %&gt;%\n    # Remove grouping structure\n    ungroup() %&gt;%\n    ## Only to show what answer should look like\n    # Show storm Gladys as an example\n    filter(name == \"Gladys\") %&gt;%\n    # Print all rows\n    print(n = 46)\n\n\n# A tibble: 46 × 13\n   name    year month   day  hour   lat  long status     category  wind pressure\n   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;\n 1 Gladys  1975     9    22    18  10.3 -34.8 tropical …       NA    25     1012\n 2 Gladys  1975     9    23     0  10.6 -35.8 tropical …       NA    25     1012\n 3 Gladys  1975     9    23     6  11   -36.7 tropical …       NA    25     1012\n 4 Gladys  1975     9    23    12  11.4 -37.4 tropical …       NA    25     1012\n 5 Gladys  1975     9    23    18  11.7 -38.2 tropical …       NA    30     1010\n 6 Gladys  1975     9    24     0  12.1 -38.8 tropical …       NA    30     1010\n 7 Gladys  1975     9    24     6  12.4 -39.6 tropical …       NA    30     1010\n 8 Gladys  1975     9    24    12  12.9 -40   tropical …       NA    30     1010\n 9 Gladys  1975     9    24    18  13.5 -40.4 tropical …       NA    35     1005\n10 Gladys  1975     9    25     0  14.2 -41   tropical …       NA    40     1005\n11 Gladys  1975     9    25     6  14.8 -42   tropical …       NA    50     1000\n12 Gladys  1975     9    25    12  15.4 -43   tropical …       NA    60     1000\n13 Gladys  1975     9    25    18  15.8 -44   hurricane         1    65      990\n14 Gladys  1975     9    26     0  16.2 -45   hurricane         1    65      990\n15 Gladys  1975     9    26     6  16.4 -46.1 hurricane         1    65      990\n16 Gladys  1975     9    26    12  16.6 -47.7 hurricane         1    65      990\n17 Gladys  1975     9    26    18  16.8 -49.3 hurricane         1    65      990\n18 Gladys  1975     9    27     0  17.1 -50.7 hurricane         1    65      990\n19 Gladys  1975     9    27     6  17.6 -52.2 hurricane         1    65      990\n20 Gladys  1975     9    27    12  18.2 -53.7 hurricane         1    65      990\n21 Gladys  1975     9    27    18  18.8 -55.1 hurricane         1    65      990\n22 Gladys  1975     9    28     0  19.4 -56.4 hurricane         1    65      992\n23 Gladys  1975     9    28     6  19.6 -57.4 hurricane         1    65      992\n24 Gladys  1975     9    28    12  19.8 -58.2 hurricane         1    65     1000\n25 Gladys  1975     9    28    18  20.3 -59.3 hurricane         1    65      998\n26 Gladys  1975     9    29     0  21.2 -60.3 hurricane         1    65      995\n27 Gladys  1975     9    29     6  22.1 -61.4 hurricane         1    70      990\n28 Gladys  1975     9    29    12  23   -62.6 hurricane         1    70      990\n29 Gladys  1975     9    29    18  23.6 -63.9 hurricane         1    75      985\n30 Gladys  1975     9    30     0  24.1 -65.2 hurricane         1    80      975\n31 Gladys  1975     9    30     6  24.6 -66.5 hurricane         1    80      975\n32 Gladys  1975     9    30    12  25.1 -67.9 hurricane         1    80      975\n33 Gladys  1975     9    30    18  25.6 -69.3 hurricane         1    80      975\n34 Gladys  1975    10     1     0  26.1 -70.6 hurricane         1    80      975\n35 Gladys  1975    10     1     6  26.8 -71.7 hurricane         1    80      975\n36 Gladys  1975    10     1    12  27.9 -72.4 hurricane         1    80      975\n37 Gladys  1975    10     1    18  29.4 -73   hurricane         2    90      969\n38 Gladys  1975    10     2     0  31   -73   hurricane         3   100      954\n39 Gladys  1975    10     2     6  32.9 -72.1 hurricane         3   110      942\n40 Gladys  1975    10     2    12  35.3 -69.8 hurricane         4   120      939\n41 Gladys  1975    10     2    18  37.8 -67   hurricane         4   120      939\n42 Gladys  1975    10     3     0  40.8 -62.6 hurricane         3   110      950\n43 Gladys  1975    10     3     6  43.7 -57   hurricane         2    85      960\n44 Gladys  1975    10     3    12  46.6 -50.6 hurricane         2    85      960\n45 Gladys  1975    10     3    18  50.5 -45.5 extratrop…        2    75      975\n46 Gladys  1975    10     4     0  55   -40   extratrop…        2    65      980\n# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,\n#   hurricane_force_diameter &lt;int&gt;\n\n\n\n\n2. Indicate non-hurricanes\nAs an alternative, set category to -1 if the storm was not a hurricane (and therefore the category is NA).\n\n\nAnswer\n# Set NA's to -1\nstorms_replaced &lt;- replace_na(storms, list(category = -1))\n\n# See categories in storms_replaced\ntable(storms_replaced[[\"category\"]], useNA = \"always\")\n\n\n\n   -1     1     2     3     4     5  &lt;NA&gt; \n14734  2548   993   593   553   116     0",
     "crumbs": [
       "Into the tidyverse",
       "Tidyr"
@@ -301,7 +301,7 @@
     "href": "magrittr.html",
     "title": "Magrittr",
     "section": "",
-    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. It’s main implementation is the pipe (%&gt;%) which we already discussed in Dplyr.",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
     "crumbs": [
       "Into the tidyverse",
       "Magrittr"
@@ -312,7 +312,7 @@
     "href": "magrittr.html#magrittr",
     "title": "Magrittr",
     "section": "",
-    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. It’s main implementation is the pipe (%&gt;%) which we already discussed in Dplyr.",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
     "crumbs": [
       "Into the tidyverse",
       "Magrittr"
@@ -965,6 +965,83 @@
     "crumbs": [
       "Into the tidyverse",
       "Tidyverse"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#and-before-we-get-into-the-aliases-offered-bymagrittr-we-should-realize-that-we-can-do-without-these-aliases-by-using-dots-.-and-backticks-.-here-the-dot-indicates-the-data-in-its-current-form-i.e.-after-all-previous-operations-have-been-applied-and-the-backticks-are-put-around-the-operator-e.g.-.-the-operator-is-then-treated-as-a-function-i.e.-parentheses-are-required.",
+    "href": "magrittr.html#and-before-we-get-into-the-aliases-offered-bymagrittr-we-should-realize-that-we-can-do-without-these-aliases-by-using-dots-.-and-backticks-.-here-the-dot-indicates-the-data-in-its-current-form-i.e.-after-all-previous-operations-have-been-applied-and-the-backticks-are-put-around-the-operator-e.g.-.-the-operator-is-then-treated-as-a-function-i.e.-parentheses-are-required.",
+    "title": "Magrittr",
+    "section": ". and Before we get into the aliases offered by{magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).",
+    "text": ". and Before we get into the aliases offered by{magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).\nFor instance, take the below data frame:\n\n# Create example data\nvec_fib &lt;- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)\n\nIf we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to NA, we could do the following:\n\n# First, load magrittr\npacman::p_load(\"magrittr\")\n\n# Start pipeline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    `-`(3) %&gt;%\n    # Multiply by 1.5\n    `*`(1.5) %&gt;%\n    # Set all negative values to NA\n    ifelse(. &lt; 0, NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#aliases",
+    "href": "magrittr.html#aliases",
+    "title": "Magrittr",
+    "section": "Aliases",
+    "text": "Aliases\nHowever, by using {magrittr} allows us functions instead of these operators that improve readability of the code and are easier to use, which are called the aliases. Using those aliase, we would write the above code as:\n\n# Start piepline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    subtract(3) %&gt;%\n    # Multiply by 1.5\n    multiply_by(1.5) %&gt;%\n    # Set all negative values to NA\n    # Here, the alias is perhaps not as useful, as we use . &lt; 0 in a function. The aliases are mostly useful as first function in each piece of the pipeline\n    ifelse(is_less_than(., 0), NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0\n\n\nThe available aliases (also available here or in the help function of each alias in R) are:\n\n\n\nDescription\nSymbol\n\n\n\n\nextract2\n[[\n\n\ninset\n[&lt;-\n\n\ninset2\n[[&lt;-\n\n\nuse_series\n$\n\n\nadd\n+\n\n\nsubtract\n-\n\n\nmultiply_by\n*\n\n\nraise_to_power\n^\n\n\nmultiply_by_matrix\n%*%\n\n\ndivide_by\n/\n\n\ndivide_by_int\n%/%\n\n\nmod\n%%\n\n\nis_in\n%in%\n\n\nand\n&\n\n\nor\n|\n\n\nequals\n==\n\n\nis_greater_than\n&gt;\n\n\nis_weakly_greater_than\n&gt;=\n\n\nis_less_than\n&lt;\n\n\nis_weakly_less_than\n&lt;=\n\n\nnot (n’est pas)\n!\n\n\nset_colnames\ncolnames&lt;-\n\n\nset_rownames\nrownames&lt;-\n\n\nset_names\nnames&lt;-\n\n\nset_class\nclass&lt;-\n\n\nset_attributes\nattributes&lt;-\n\n\nset_attr\nattr&lt;-",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#section",
+    "href": "magrittr.html#section",
+    "title": "Magrittr",
+    "section": "|>",
+    "text": "|&gt;\nBesides the pipe implemented by {magrittr}, R also offers a native pipe: |&gt;. Instead of existing data being called by the dot (.), you can use a low dash (_). Although in general the pipes function the same, there are some differences in what they can do and how they are used. The tidyverse has a more elaborate explanation on this topic here and more details are also available here and here.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#other-pipes",
+    "href": "magrittr.html#other-pipes",
+    "title": "Magrittr",
+    "section": "Other pipes",
+    "text": "Other pipes\nThe %&gt;% pipe is not the only pipe {magrittr} offers us.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#exercises",
+    "href": "magrittr.html#exercises",
+    "title": "Magrittr",
+    "section": "Exercises",
+    "text": "Exercises\n\n1. Use aliases to rewrite a function\nFrom the starwars dataset (available in {dplyr}, ), extract the column height and divide by 100.\n\n\nAnswer\n# Load dplyr for data\npacman::p_load(\"dplyr\")\n\n# Start pipe with starwars data\nstarwars %&gt;%\n    # Extract column height (unnamed)\n    extract2(\"height\") %&gt;%\n    # Divide by 100\n    divide_by(100)\n\n\n [1] 1.72 1.67 0.96 2.02 1.50 1.78 1.65 0.97 1.83 1.82 1.88 1.80 2.28 1.80 1.73\n[16] 1.75 1.70 1.80 0.66 1.70 1.83 2.00 1.90 1.77 1.75 1.80 1.50   NA 0.88 1.60\n[31] 1.93 1.91 1.70 1.85 1.96 2.24 2.06 1.83 1.37 1.12 1.83 1.63 1.75 1.80 1.78\n[46] 0.79 0.94 1.22 1.63 1.88 1.98 1.96 1.71 1.84 1.88 2.64 1.88 1.96 1.85 1.57\n[61] 1.83 1.83 1.70 1.66 1.65 1.93 1.91 1.83 1.68 1.98 2.29 2.13 1.67 0.96 1.93\n[76] 1.91 1.78 2.16 2.34 1.88 1.78 2.06   NA   NA   NA   NA   NA",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#next-topic",
+    "href": "magrittr.html#next-topic",
+    "title": "Magrittr",
+    "section": "Next topic",
+    "text": "Next topic\nWith that, we discussed a large part of the tidyverse. Although some other packages exist, we discuss these in other sections. Now that we know part of the basic grammar of the tidyverse, we can learn a new set of skills useful for any data analysis.\nNext: Plotting",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#and",
+    "href": "magrittr.html#and",
+    "title": "Magrittr",
+    "section": ". and `",
+    "text": ". and `\nBefore we get into the aliases offered by {magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).\nFor instance, take the below data frame:\n\n# Create example data\nvec_fib &lt;- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)\n\nIf we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to NA, we could do the following:\n\n# First, load magrittr\npacman::p_load(\"magrittr\")\n\n# Start pipeline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    `-`(3) %&gt;%\n    # Multiply by 1.5\n    `*`(1.5) %&gt;%\n    # Set all negative values to NA\n    ifelse(. &lt; 0, NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
     ]
   }
 ]

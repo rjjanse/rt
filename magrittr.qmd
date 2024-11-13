@@ -5,20 +5,19 @@ title: "Magrittr"
 ## Magrittr
 `{magrittr}` is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (`%>%`) which we already discussed in [Dplyr](dplyr.qmd). However, it also offers as a number of aliases to make operators available in our pipelines.
 
-## . and `
-Before we get into the aliases offered by `{magrittr}`, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. \grave+\grave).
+## `.` and `` ` ``
+Before we get into the aliases offered by `{magrittr}`, we should realize that we can do without these aliases by using dots (`.`) and backticks (`` ` ``). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. \grave+\grave). The operator is then treated as a function (i.e. parentheses are required).
 
 For instance, take the below data frame:
 
 ```{r}
 #| code-fold: false
 # Create example data
-dat_fib <- tibble(id = 1:10,
-                  value = c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55))
+vec_fib <- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)
 
 ```
 
-If we want to substract 3 from all numbers and then multiply by 1.5, we could do the following:
+If we want to subtract 3 from all numbers,  multiply by 1.5, and then set all negative values to `NA`, we could do the following:
 
 ```{r}
 #| code-fold: false
@@ -26,15 +25,161 @@ If we want to substract 3 from all numbers and then multiply by 1.5, we could do
 pacman::p_load("magrittr")
 
 # Start pipeline with vector
-dat_fib %>%
-    # Substract 3
-    .`-` 3 %>%
+vec_fib %>%
+    # Subtract 3
+    `-`(3) %>%
     # Multiply by 1.5
-    .`*` 1.5
+    `*`(1.5) %>%
+    # Set all negative values to NA
+    ifelse(. < 0, NA, .)
 
 ```
 
-
 ## Aliases
+However, by using `{magrittr}` allows us functions instead of these operators that improve readability of the code and are easier to use, which are called the aliases. Using those
+aliase, we would write the above code as:
 
-## |>
+```{r}
+#| code-fold: false
+# Start piepline with vector
+vec_fib %>%
+    # Subtract 3
+    subtract(3) %>%
+    # Multiply by 1.5
+    multiply_by(1.5) %>%
+    # Set all negative values to NA
+    # Here, the alias is perhaps not as useful, as we use . < 0 in a function. The aliases are mostly useful as first function in each piece of the pipeline
+    ifelse(is_less_than(., 0), NA, .)
+
+```
+
+The available aliases (also available [here](https://magrittr.tidyverse.org/reference/aliases.html) or in the help function of each alias in R) are:
+
+| **Description**             | **Symbol**      |
+|----------------------------|-------------|
+| extract2                  | `` `[[` ``        |
+| inset                     | `` `[<-` ``      |
+| inset2                    | `` `[[<-` ``     |
+| use_series                | `` `$` ``         |
+| add                       | `` `+` ``        |
+| subtract                  | `` `-` ``        |
+| multiply_by               | `` `*` ``        |
+| raise_to_power            | `` `^` ``        |
+| multiply_by_matrix        | `` `%*%` ``      |
+| divide_by                 | `` `/` ``        |
+| divide_by_int             | `` `%/%` ``      |
+| mod                       | `` `%%` ``       |
+| is_in                     | `` `%in%` ``     |
+| and                       | `` `&` ``        |
+| or                        | `` `|` ``        |
+| equals                    | `` `==` ``       |
+| is_greater_than           | `` `>` ``        |
+| is_weakly_greater_than    | `` `>=` ``       |
+| is_less_than              | `` `<` ``        |
+| is_weakly_less_than       | `` `<=` ``       |
+| not (n'est pas)           | `` `!` ``        |
+| set_colnames              | `` `colnames<-` ``|
+| set_rownames              | `` `rownames<-` ``|
+| set_names                 | `` `names<-` ``  |
+| set_class                 | `` `class<-` ``  |
+| set_attributes            | `` `attributes<-` ``|
+| set_attr                  | `` `attr<-` ``   |
+
+## `|>` 
+Besides the pipe implemented by `{magrittr}`, R also offers a native pipe: `|>`. Instead of existing data being called by the dot (`.`), you can use a low dash (`_`). 
+Although in general the pipes function the same, there are some differences in what they can do and how they are used. The tidyverse has a more elaborate explanation on this topic [here](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/) and 
+more details are also available [here](https://stackoverflow.com/questions/67633022/what-are-the-differences-between-rs-native-pipe-and-the-magrittr-pipe) and [here](https://www.r-bloggers.com/2022/01/understanding-the-native-r-pipe-2/).
+
+## Other pipes
+The `%>%` pipe is not the only pipe `{magrittr}` offers us.
+
+### `%T>%`
+The Tee pipe returns the left-hand side of the value instead of the right-hand side. In other words, it returns the input into the function instead of the output of the function. This is helpful when we are only interested in the side-effects of a function, instead of its main output (e.g. printing in console).
+
+Imagine we are interested in only the description of a .csv file, but not actually loading it into our global environment. In that case, I could use the `read_csv()` function from `{readr}` with the Tee pipe:
+
+```{r}
+#| code-fold: false
+# Load readr
+pacman::p_load("readr")
+
+# Get information on .csv file available online
+"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download" %T>% 
+    # Print only data information
+    read_csv()
+
+```
+
+### `%$%`
+The exposition pipe gives the names of the data to the next function, which is especially useful if the function does not have a data argument, such as `table()`:
+
+```{r}
+#| code-fold: false
+# Just piping iris into table will not work (commented out to prevent error)
+# iris %>% table(Species)
+
+# Using an exposition pipe, it will work
+iris %$% table(Species)
+
+```
+
+### `$<>$`
+The assignment pipe is a shorthand pipe for a pipeline that assigns the final value back into the object that was used as the start of the pipeline (i.e. it is short for `x <- x %>% ...`). For example:
+
+```{r}
+#| code-fold: false
+# Starting value
+x <- 5; y <- 5
+
+# With the assignment operator
+x <- x %>%
+    # Divide by 2
+    divide_by(2)
+
+# With the assignment pipe
+y %<>%
+    # Divide by 2
+    divide_by(2)
+
+# Check whether results are equal
+x == y
+
+```
+
+## Exercises
+### 1. Use aliases to change values
+From the starwars dataset (available in `{dplyr}`, ), extract the column height and divide by 100.
+
+```{r}
+# Load dplyr for data
+pacman::p_load("dplyr")
+
+# Start pipe with starwars data
+starwars %>%
+    # Extract column height (unnamed)
+    extract2("height") %>%
+    # Divide by 100
+    divide_by(100)
+
+```
+
+### 2. Use different pipes to meddle with starwars
+Now, reassign a frequency table of species to the object name starwars of individuals of at least 2 meters tall using the pipe operators from `{magrittr}`.
+
+```{r}
+# Start pipe with starwars data and immediately reassign
+starwars %<>%
+    # Keep only individuals above 2 meters tall
+    filter(height >= 200) %$%
+    # Get table of species
+    table(species)
+
+# Check result
+starwars
+
+```
+
+## Next topic
+With that, we discussed a large part of the tidyverse. Although some other packages exist, we discuss these in other sections. Now that we know part of the basic grammar of the tidyverse, we can learn a new set of skills useful for any data analysis.
+
+**Next:** [Plotting](plotting.qmd)

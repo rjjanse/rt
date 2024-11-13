@@ -25,12 +25,9 @@ website:
             - dplyr.qmd
             - tidyr.qmd
             - magrittr.qmd
-        - section: "Into the multiverse"
-          contents:
-            - datatable.qmd
-            - shiny.qmd
         - section: "New skills"
           contents: 
+            - plotting.qmd
             - random.qmd
             - functions.qmd
             - looping.qmd
@@ -40,17 +37,18 @@ website:
           contents:
             - scripts.qmd
             - rmarkdown.qmd
-        - section: "General use"
+        - section: "Parts of a paper"
           contents:
             - regression.qmd
-            - plotting.qmd
             - table1.qmd
-        - section: "Specific use"
-          contents:
             - imputation.qmd
             - confounding.qmd
             - prediction.qmd
             - competing_risks.qmd
+        - section: "Into the multiverse"
+          contents:
+            - datatable.qmd
+            - shiny.qmd
         - section: "Recap"
           contents: 
             - summary.qmd

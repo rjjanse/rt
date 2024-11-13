@@ -1,15 +1,9 @@
 
 
-dplyr functinality in base R
 
-
-magrittr:
-- pipes
-- other pipes
-- native pipes
-- aliases
 
 regex:
+- base r
 - stringr
 - glue
 
@@ -38,6 +32,5 @@ iterating:
 
 base:
 - nrow & ncol
-- colnames & rownames
 
 

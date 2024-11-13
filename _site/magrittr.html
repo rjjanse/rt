@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -212,29 +246,15 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Into the multiverse</span></a>
+ <span class="menu-text">New skills</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
- <span class="menu-text">datatable.qmd</span>
+ <span class="menu-text">plotting.qmd</span>
   </li>
-          <li class="sidebar-item">
- <span class="menu-text">shiny.qmd</span>
-  </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">New skills</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">random.qmd</span>
   </li>
@@ -257,13 +277,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Workflow</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">scripts.qmd</span>
   </li>
@@ -274,33 +294,19 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">General use</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parts of a paper</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">regression.qmd</span>
   </li>
           <li class="sidebar-item">
- <span class="menu-text">plotting.qmd</span>
-  </li>
-          <li class="sidebar-item">
  <span class="menu-text">table1.qmd</span>
   </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
- <span class="menu-text">Specific use</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
  <span class="menu-text">imputation.qmd</span>
   </li>
@@ -317,13 +323,33 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
- <span class="menu-text">Recap</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Into the multiverse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./datatable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">data.table</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">shiny.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Recap</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
@@ -343,8 +369,29 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#magrittr" id="toc-magrittr" class="nav-link active" data-scroll-target="#magrittr">Magrittr</a></li>
+  <li><a href="#and" id="toc-and" class="nav-link" data-scroll-target="#and"><code>.</code> and <code>`</code></a></li>
+  <li><a href="#aliases" id="toc-aliases" class="nav-link" data-scroll-target="#aliases">Aliases</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><code>|&gt;</code></a></li>
+  <li><a href="#other-pipes" id="toc-other-pipes" class="nav-link" data-scroll-target="#other-pipes">Other pipes</a>
+  <ul>
+  <li><a href="#t" id="toc-t" class="nav-link" data-scroll-target="#t"><code>%T&gt;%</code></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><code>%$%</code></a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><code>$&lt;&gt;$</code></a></li>
+  </ul></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
+  <ul>
+  <li><a href="#use-aliases-to-change-values" id="toc-use-aliases-to-change-values" class="nav-link" data-scroll-target="#use-aliases-to-change-values">1. Use aliases to change values</a></li>
+  <li><a href="#use-different-pipes-to-meddle-with-starwars" id="toc-use-different-pipes-to-meddle-with-starwars" class="nav-link" data-scroll-target="#use-different-pipes-to-meddle-with-starwars">2. Use different pipes to meddle with starwars</a></li>
+  </ul></li>
+  <li><a href="#next-topic" id="toc-next-topic" class="nav-link" data-scroll-target="#next-topic">Next topic</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -368,8 +415,308 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="magrittr" class="level2">
+<h2 class="anchored" data-anchor-id="magrittr">Magrittr</h2>
+<p><code>{magrittr}</code> is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (<code>%&gt;%</code>) which we already discussed in <a href="./dplyr.html">Dplyr</a>. However, it also offers as a number of aliases to make operators available in our pipelines.</p>
+</section>
+<section id="and" class="level2">
+<h2 class="anchored" data-anchor-id="and"><code>.</code> and <code>`</code></h2>
+<p>Before we get into the aliases offered by <code>{magrittr}</code>, we should realize that we can do without these aliases by using dots (<code>.</code>) and backticks (<code>`</code>). Here, the dot indicates the data in its current form (i.e.&nbsp;after all previous operations have been applied) and the backticks are put around the operator (e.g.&nbsp;+). The operator is then treated as a function (i.e.&nbsp;parentheses are required).</p>
+<p>For instance, take the below data frame:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Create example data</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>vec_fib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">13</span>, <span class="dv">21</span>, <span class="dv">34</span>, <span class="dv">55</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to <code>NA</code>, we could do the following:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># First, load magrittr</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"magrittr"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># Start pipeline with vector</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>vec_fib <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="co"># Subtract 3</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>    <span class="st">`</span><span class="at">-</span><span class="st">`</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    <span class="co"># Multiply by 1.5</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="fl">1.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="co"># Set all negative values to NA</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>    <span class="fu">ifelse</span>(. <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="cn">NA</span>, .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0</code></pre>
+</div>
+</div>
+</section>
+<section id="aliases" class="level2">
+<h2 class="anchored" data-anchor-id="aliases">Aliases</h2>
+<p>However, by using <code>{magrittr}</code> allows us functions instead of these operators that improve readability of the code and are easier to use, which are called the aliases. Using those aliase, we would write the above code as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Start piepline with vector</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>vec_fib <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>    <span class="co"># Subtract 3</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="fu">subtract</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>    <span class="co"># Multiply by 1.5</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>    <span class="fu">multiply_by</span>(<span class="fl">1.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="co"># Set all negative values to NA</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    <span class="co"># Here, the alias is perhaps not as useful, as we use . &lt; 0 in a function. The aliases are mostly useful as first function in each piece of the pipeline</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a>    <span class="fu">ifelse</span>(<span class="fu">is_less_than</span>(., <span class="dv">0</span>), <span class="cn">NA</span>, .)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0</code></pre>
+</div>
+</div>
+<p>The available aliases (also available <a href="https://magrittr.tidyverse.org/reference/aliases.html">here</a> or in the help function of each alias in R) are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><strong>Description</strong></th>
+<th><strong>Symbol</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>extract2</td>
+<td><code>`[[`</code></td>
+</tr>
+<tr class="even">
+<td>inset</td>
+<td><code>`[&lt;-`</code></td>
+</tr>
+<tr class="odd">
+<td>inset2</td>
+<td><code>`[[&lt;-`</code></td>
+</tr>
+<tr class="even">
+<td>use_series</td>
+<td><code>`$`</code></td>
+</tr>
+<tr class="odd">
+<td>add</td>
+<td><code>`+`</code></td>
+</tr>
+<tr class="even">
+<td>subtract</td>
+<td><code>`-`</code></td>
+</tr>
+<tr class="odd">
+<td>multiply_by</td>
+<td><code>`*`</code></td>
+</tr>
+<tr class="even">
+<td>raise_to_power</td>
+<td><code>`^`</code></td>
+</tr>
+<tr class="odd">
+<td>multiply_by_matrix</td>
+<td><code>`%*%`</code></td>
+</tr>
+<tr class="even">
+<td>divide_by</td>
+<td><code>`/`</code></td>
+</tr>
+<tr class="odd">
+<td>divide_by_int</td>
+<td><code>`%/%`</code></td>
+</tr>
+<tr class="even">
+<td>mod</td>
+<td><code>`%%`</code></td>
+</tr>
+<tr class="odd">
+<td>is_in</td>
+<td><code>`%in%`</code></td>
+</tr>
+<tr class="even">
+<td>and</td>
+<td><code>`&amp;`</code></td>
+</tr>
+<tr class="odd">
+<td>or</td>
+<td><code>`|`</code></td>
+</tr>
+<tr class="even">
+<td>equals</td>
+<td><code>`==`</code></td>
+</tr>
+<tr class="odd">
+<td>is_greater_than</td>
+<td><code>`&gt;`</code></td>
+</tr>
+<tr class="even">
+<td>is_weakly_greater_than</td>
+<td><code>`&gt;=`</code></td>
+</tr>
+<tr class="odd">
+<td>is_less_than</td>
+<td><code>`&lt;`</code></td>
+</tr>
+<tr class="even">
+<td>is_weakly_less_than</td>
+<td><code>`&lt;=`</code></td>
+</tr>
+<tr class="odd">
+<td>not (n’est pas)</td>
+<td><code>`!`</code></td>
+</tr>
+<tr class="even">
+<td>set_colnames</td>
+<td><code>`colnames&lt;-`</code></td>
+</tr>
+<tr class="odd">
+<td>set_rownames</td>
+<td><code>`rownames&lt;-`</code></td>
+</tr>
+<tr class="even">
+<td>set_names</td>
+<td><code>`names&lt;-`</code></td>
+</tr>
+<tr class="odd">
+<td>set_class</td>
+<td><code>`class&lt;-`</code></td>
+</tr>
+<tr class="even">
+<td>set_attributes</td>
+<td><code>`attributes&lt;-`</code></td>
+</tr>
+<tr class="odd">
+<td>set_attr</td>
+<td><code>`attr&lt;-`</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"><code>|&gt;</code></h2>
+<p>Besides the pipe implemented by <code>{magrittr}</code>, R also offers a native pipe: <code>|&gt;</code>. Instead of existing data being called by the dot (<code>.</code>), you can use a low dash (<code>_</code>). Although in general the pipes function the same, there are some differences in what they can do and how they are used. The tidyverse has a more elaborate explanation on this topic <a href="https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">here</a> and more details are also available <a href="https://stackoverflow.com/questions/67633022/what-are-the-differences-between-rs-native-pipe-and-the-magrittr-pipe">here</a> and <a href="https://www.r-bloggers.com/2022/01/understanding-the-native-r-pipe-2/">here</a>.</p>
+</section>
+<section id="other-pipes" class="level2">
+<h2 class="anchored" data-anchor-id="other-pipes">Other pipes</h2>
+<p>The <code>%&gt;%</code> pipe is not the only pipe <code>{magrittr}</code> offers us.</p>
+<section id="t" class="level3">
+<h3 class="anchored" data-anchor-id="t"><code>%T&gt;%</code></h3>
+<p>The Tee pipe returns the left-hand side of the value instead of the right-hand side. In other words, it returns the input into the function instead of the output of the function. This is helpful when we are only interested in the side-effects of a function, instead of its main output (e.g.&nbsp;printing in console).</p>
+<p>Imagine we are interested in only the description of a .csv file, but not actually loading it into our global environment. In that case, I could use the <code>read_csv()</code> function from <code>{readr}</code> with the Tee pipe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># Load readr</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"readr"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="co"># Get information on .csv file available online</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="st">"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&amp;export=download"</span> <span class="sc">%T&gt;%</span> </span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="co"># Print only data information</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 100 Columns: 12
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (10): Customer Id, First Name, Last Name, Company, City, Country, Phone...
+dbl   (1): Index
+date  (1): Subscription Date
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&amp;export=download"</code></pre>
+</div>
+</div>
+</section>
+<section id="section-1" class="level3">
+<h3 class="anchored" data-anchor-id="section-1"><code>%$%</code></h3>
+<p>The exposition pipe gives the names of the data to the next function, which is especially useful if the function does not have a data argument, such as <code>table()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Just piping iris into table will not work (commented out to prevent error)</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="co"># iris %&gt;% table(Species)</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co"># Using an exposition pipe, it will work</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>iris <span class="sc">%$%</span> <span class="fu">table</span>(Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Species
+    setosa versicolor  virginica 
+        50         50         50 </code></pre>
+</div>
+</div>
+</section>
+<section id="section-2" class="level3">
+<h3 class="anchored" data-anchor-id="section-2"><code>$&lt;&gt;$</code></h3>
+<p>The assignment pipe is a shorthand pipe for a pipeline that assigns the final value back into the object that was used as the start of the pipeline (i.e.&nbsp;it is short for <code>x &lt;- x %&gt;% ...</code>). For example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># Starting value</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span>; y <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="co"># With the assignment operator</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>x <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="co"># Divide by 2</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>    <span class="fu">divide_by</span>(<span class="dv">2</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="co"># With the assignment pipe</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>y <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="co"># Divide by 2</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>    <span class="fu">divide_by</span>(<span class="dv">2</span>)</span>
+<span id="cb11-13"><a href="#cb11-13"></a></span>
+<span id="cb11-14"><a href="#cb11-14"></a><span class="co"># Check whether results are equal</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a>x <span class="sc">==</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
+<section id="use-aliases-to-change-values" class="level3">
+<h3 class="anchored" data-anchor-id="use-aliases-to-change-values">1. Use aliases to change values</h3>
+<p>From the starwars dataset (available in <code>{dplyr}</code>, ), extract the column height and divide by 100.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># Load dplyr for data</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"dplyr"</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co"># Start pipe with starwars data</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="co"># Extract column height (unnamed)</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="fu">extract2</span>(<span class="st">"height"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="co"># Divide by 100</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="fu">divide_by</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1.72 1.67 0.96 2.02 1.50 1.78 1.65 0.97 1.83 1.82 1.88 1.80 2.28 1.80 1.73
+[16] 1.75 1.70 1.80 0.66 1.70 1.83 2.00 1.90 1.77 1.75 1.80 1.50   NA 0.88 1.60
+[31] 1.93 1.91 1.70 1.85 1.96 2.24 2.06 1.83 1.37 1.12 1.83 1.63 1.75 1.80 1.78
+[46] 0.79 0.94 1.22 1.63 1.88 1.98 1.96 1.71 1.84 1.88 2.64 1.88 1.96 1.85 1.57
+[61] 1.83 1.83 1.70 1.66 1.65 1.93 1.91 1.83 1.68 1.98 2.29 2.13 1.67 0.96 1.93
+[76] 1.91 1.78 2.16 2.34 1.88 1.78 2.06   NA   NA   NA   NA   NA</code></pre>
+</div>
+</div>
+</section>
+<section id="use-different-pipes-to-meddle-with-starwars" class="level3">
+<h3 class="anchored" data-anchor-id="use-different-pipes-to-meddle-with-starwars">2. Use different pipes to meddle with starwars</h3>
+<p>Now, reassign a frequency table of species to the object name starwars of individuals of at least 2 meters tall using the pipe operators from <code>{magrittr}</code>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># Start pipe with starwars data and immediately reassign</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>starwars <span class="sc">%&lt;&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="co"># Keep only individuals above 2 meters tall</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">filter</span>(height <span class="sc">&gt;=</span> <span class="dv">200</span>) <span class="sc">%$%</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="co"># Get table of species</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="fu">table</span>(species)</span>
+<span id="cb15-7"><a href="#cb15-7"></a></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co"># Check result</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>species
+   Droid   Gungan    Human  Kaleesh Kaminoan   Pau'an Quermian  Wookiee 
+       1        2        1        1        2        1        1        2 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="next-topic" class="level2">
+<h2 class="anchored" data-anchor-id="next-topic">Next topic</h2>
+<p>With that, we discussed a large part of the tidyverse. Although some other packages exist, we discuss these in other sections. Now that we know part of the basic grammar of the tidyverse, we can learn a new set of skills useful for any data analysis.</p>
+<p><strong>Next:</strong> <a href="plotting.qmd">Plotting</a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -464,7 +811,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/rjjanse\.github\.io\/rt\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
