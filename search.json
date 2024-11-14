@@ -286,91 +286,377 @@
     ]
   },
   {
-    "objectID": "magrittr.html",
-    "href": "magrittr.html",
-    "title": "Magrittr",
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "Packages",
     "section": "",
-    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#magrittr",
-    "href": "magrittr.html#magrittr",
-    "title": "Magrittr",
+    "objectID": "packages.html#packages",
+    "href": "packages.html#packages",
+    "title": "Packages",
     "section": "",
-    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#and",
-    "href": "magrittr.html#and",
-    "title": "Magrittr",
-    "section": ". and `",
-    "text": ". and `\nBefore we get into the aliases offered by {magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).\nFor instance, take the below data frame:\n\n# Create example data\nvec_fib &lt;- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)\n\nIf we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to NA, we could do the following:\n\n# First, load magrittr\npacman::p_load(\"magrittr\")\n\n# Start pipeline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    `-`(3) %&gt;%\n    # Multiply by 1.5\n    `*`(1.5) %&gt;%\n    # Set all negative values to NA\n    ifelse(. &lt; 0, NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0",
+    "objectID": "packages.html#pre-installed-packages",
+    "href": "packages.html#pre-installed-packages",
+    "title": "Packages",
+    "section": "Pre-installed packages",
+    "text": "Pre-installed packages\nSome packages come pre-installed with R. For example, sum() comes from the base package, while sd() comes from the stats package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in Figure 1. Mind you that in Figure 1, there might be different packages than in your window, depending on what packages are already or not yet installed.\nIn Figure 1, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.\n\n\n\n\n\n\nFigure 1: Installed packages\n\n\n\nIf we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:\n?stats\nWe could also open an extensive overview of a package’s details using library():\nlibrary(help = \"stats\")\nThis overview shows us not only detailed information on the package, but also the functions the package supplies.\n\n\n\n\n\n\nWhen we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called {base}.",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#aliases",
-    "href": "magrittr.html#aliases",
-    "title": "Magrittr",
-    "section": "Aliases",
-    "text": "Aliases\nHowever, by using {magrittr} allows us functions instead of these operators that improve readability of the code and are easier to use, which are called the aliases. Using those aliase, we would write the above code as:\n\n# Start piepline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    subtract(3) %&gt;%\n    # Multiply by 1.5\n    multiply_by(1.5) %&gt;%\n    # Set all negative values to NA\n    # Here, the alias is perhaps not as useful, as we use . &lt; 0 in a function. The aliases are mostly useful as first function in each piece of the pipeline\n    ifelse(is_less_than(., 0), NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0\n\n\nThe available aliases (also available here or in the help function of each alias in R) are:\n\n\n\nDescription\nSymbol\n\n\n\n\nextract2\n`[[`\n\n\ninset\n`[&lt;-`\n\n\ninset2\n`[[&lt;-`\n\n\nuse_series\n`$`\n\n\nadd\n`+`\n\n\nsubtract\n`-`\n\n\nmultiply_by\n`*`\n\n\nraise_to_power\n`^`\n\n\nmultiply_by_matrix\n`%*%`\n\n\ndivide_by\n`/`\n\n\ndivide_by_int\n`%/%`\n\n\nmod\n`%%`\n\n\nis_in\n`%in%`\n\n\nand\n`&`\n\n\nor\n`|`\n\n\nequals\n`==`\n\n\nis_greater_than\n`&gt;`\n\n\nis_weakly_greater_than\n`&gt;=`\n\n\nis_less_than\n`&lt;`\n\n\nis_weakly_less_than\n`&lt;=`\n\n\nnot (n’est pas)\n`!`\n\n\nset_colnames\n`colnames&lt;-`\n\n\nset_rownames\n`rownames&lt;-`\n\n\nset_names\n`names&lt;-`\n\n\nset_class\n`class&lt;-`\n\n\nset_attributes\n`attributes&lt;-`\n\n\nset_attr\n`attr&lt;-`",
+    "objectID": "packages.html#installing-packages",
+    "href": "packages.html#installing-packages",
+    "title": "Packages",
+    "section": "Installing packages",
+    "text": "Installing packages\nAlthough the pre-installed packages give us a lot of functionality, we might still want more. Yes, with {stats} we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the {survival} package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: ‘choose a website identical to the original download website, but with a different server’. This way, you can pick a server in your own country increasing download speeds.\ninstall.packages(\"survival\")\n\n\nWhen packages are installed, they will always give the message MD5 sums checked. MD5 is an algorithm that can help identify unintentional data/file corruption (more).\nWhen we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.\n\nR tools\nSometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from CRAN.\n\n\nPackage versions\nPackages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases:\n\nThe package is built for your current version of R: there will be no problem.\nThe package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.\nThe package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or, less ideally, switch back to an older version of R.\n\n\n\nInstalling from GitHub\nSometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install {devtools}:\ninstall.packages(\"devtools\")\nFrom {devtools}, we can use the install_github() function to install a package. For instance, if we wanted to install {KMunicate} from GitHub, we could run:\ninstall_github(\"ellessenne/KMunicate-package\")\nwhere ellessenne is the GitHub user’s username and KMunicate-package the repository of the package.",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#section",
-    "href": "magrittr.html#section",
-    "title": "Magrittr",
-    "section": "|>",
-    "text": "|&gt;\nBesides the pipe implemented by {magrittr}, R also offers a native pipe: |&gt;. Instead of existing data being called by the dot (.), you can use a low dash (_). Although in general the pipes function the same, there are some differences in what they can do and how they are used. The tidyverse has a more elaborate explanation on this topic here and more details are also available here and here.",
+    "objectID": "packages.html#loading-packages",
+    "href": "packages.html#loading-packages",
+    "title": "Packages",
+    "section": "Loading packages",
+    "text": "Loading packages\nThe good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using library(). If we wanted to load {survival} after installing it previously, we can do:\nlibrary(\"survival\")\nWe could also load multiple packages at once with library():\nlibrary(\"survival\", \"stats\")\nThe help function for library() shows that there is also a function called require(). In general, this works similar to library() but is used more often within functions. Whereas library() will return an error if the package is not installed, require() will only give a warning.\n\nMasking\nSometimes, we may get the warning that certain functions become masked:\n\n# Here we set the mirror for downloading, but this is only needed for the tutorial to render: in your own R, you do not need to do this.\noptions(repos = c(CRAN = \"https://mirror.lyrahosting.com/CRAN/\"))\n\n# Install dplyr\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"dplyr\", quiet = TRUE)\n\npackage 'dplyr' successfully unpacked and MD5 sums checked\n\n\nWarning: cannot remove prior installation of package 'dplyr'\n\n\nWarning in file.copy(savedcopy, lib, recursive = TRUE): problem copying\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\00LOCK\\dplyr\\libs\\x64\\dplyr.dll\nto\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\dplyr\\libs\\x64\\dplyr.dll:\nPermission denied\n\n\nWarning: restored 'dplyr'\n\n\n\n# Load dplyr\nlibrary(\"dplyr\")\n\nWarning: package 'dplyr' was built under R version 4.4.1\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nLoading the package {dplyr} caused, among others, the function filter() from {stats} to be masked. This means that if we call filter(), we will call the function from {dplyr}, not from {stats}, which might have a different functionality. If we still want to use filter() from {stats}, we can prespecify the package with a double colon :::\nstats::filter()\n\n\n\n\n\n\nIn general, we can call functions from installed packages without loading the package, by using ::. Without loading {survival}, we can still call survival::coxph(), so long as {survival} is installed.\n\n\n\n\n\nPacman\nIt can be a hassle to first install packages and then load them with library. By using the package {pacman}, we can simplify this process. We only need to install it once on our device and after that we load any package with:\npacman::p_load(\"survival\", \"dplyr\")\n{pacman} will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function p_load() immediately from {pacman} with ::, we do not need to load {pacman} first.\nNote that {pacman} does not tell you whether a function becomes masked.\n\n\nAnnotating package loading\nAlthough we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:\n# Load packages\npacman::p_load(\"dplyr\",         # Data manipulation\n               \"tidyr\",         # Pivoting data\n               \"magrittr\",      # Efficient pipe structures\n               \"stringr\",       # Better regexing\n               \"mice\",          # Multiple imputation\n               \"summarytools\",  # Summarizing data frames\n               \"haven\"          # Load SPSS data\n)",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#other-pipes",
-    "href": "magrittr.html#other-pipes",
-    "title": "Magrittr",
-    "section": "Other pipes",
-    "text": "Other pipes\nThe %&gt;% pipe is not the only pipe {magrittr} offers us.\n\n%T&gt;%\nThe Tee pipe returns the left-hand side of the value instead of the right-hand side. In other words, it returns the input into the function instead of the output of the function. This is helpful when we are only interested in the side-effects of a function, instead of its main output (e.g. printing in console).\nImagine we are interested in only the description of a .csv file, but not actually loading it into our global environment. In that case, I could use the read_csv() function from {readr} with the Tee pipe:\n\n# Load readr\npacman::p_load(\"readr\")\n\n# Get information on .csv file available online\n\"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download\" %T&gt;% \n    # Print only data information\n    read_csv()\n\nRows: 100 Columns: 12\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (10): Customer Id, First Name, Last Name, Company, City, Country, Phone...\ndbl   (1): Index\ndate  (1): Subscription Date\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n[1] \"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download\"\n\n\n\n\n%$%\nThe exposition pipe gives the names of the data to the next function, which is especially useful if the function does not have a data argument, such as table():\n\n# Just piping iris into table will not work (commented out to prevent error)\n# iris %&gt;% table(Species)\n\n# Using an exposition pipe, it will work\niris %$% table(Species)\n\nSpecies\n    setosa versicolor  virginica \n        50         50         50 \n\n\n\n\n$&lt;&gt;$\nThe assignment pipe is a shorthand pipe for a pipeline that assigns the final value back into the object that was used as the start of the pipeline (i.e. it is short for x &lt;- x %&gt;% ...). For example:\n\n# Starting value\nx &lt;- 5; y &lt;- 5\n\n# With the assignment operator\nx &lt;- x %&gt;%\n    # Divide by 2\n    divide_by(2)\n\n# With the assignment pipe\ny %&lt;&gt;%\n    # Divide by 2\n    divide_by(2)\n\n# Check whether results are equal\nx == y\n\n[1] TRUE",
+    "objectID": "packages.html#learning-how-to-work-with-packages",
+    "href": "packages.html#learning-how-to-work-with-packages",
+    "title": "Packages",
+    "section": "Learning how to work with packages",
+    "text": "Learning how to work with packages\n\nDemos\nPackages can supply demos on how to work with certain functions in the package. To see this for the packages loaded by the base package, we can use demo():\ndemo()\nWe could also see the demos for all packages installed:\ndemo(package = .packages(all.available = TRUE))\n\n\nVignettes\nMore commonly, packages offer vignettes instead of demos. Vignettes are long guides on how to apply a certain concept using different functions in the package. To see the available vignettes of a package, we can use browseVignettes():\nbrowseVignettes(\"survival\")\nWe can also immediately select a vignette of interest:\nvignette(\"splines\")\nTo see the object names to open vignettes from vignette(), we can supply only the package:\nvignette(package = \"survival\")",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#exercises",
-    "href": "magrittr.html#exercises",
-    "title": "Magrittr",
+    "objectID": "packages.html#updating-and-unistalling-packages",
+    "href": "packages.html#updating-and-unistalling-packages",
+    "title": "Packages",
+    "section": "Updating and unistalling packages",
+    "text": "Updating and unistalling packages\n\nUpdating\nSometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio (Figure 1). Alternatively, we can just rerun the package installation using install.packages() to update it. Note that we cannot use {pacman} here, as {pacman} will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use update.packages(), although this might not update packages to a version suitable for new major R versions.\n\n\nUninstalling\nIf we want to get rid of a package, maybe to clean up some space on our device, we can remove it using remove.packages().\n\n\n\n\n\n\nSometimes we want to update a package, but that package needs an updated version of a package such as {rlang}. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that {rlang} can be updated too. However, if we agree, the R session will restart and immediately load {rlang} again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of {rlang} (or similar cases), first we need to use remove.packages() to uninstall {rlang}, then reinstall {rlang}, and then update the package we wanted to update originally.",
+    "crumbs": [
+      "The basics",
+      "Packages"
+    ]
+  },
+  {
+    "objectID": "packages.html#a-warning",
+    "href": "packages.html#a-warning",
+    "title": "Packages",
+    "section": "A warning",
+    "text": "A warning\nAlthough packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.\n\nDependencies\nAlmost all R packages are built using another R package. This is why installing {dplyr} actually installs a lot of other packages, which are all required to allow {dplyr} to function. These are called dependencies. Because packages are dependent on other packages, deprecation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as {dplyr}, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is deprecated). Dependencies can become dangerous quickly, as talked about shortly here and here.\n\n\nDeprecate: to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. Link.\n\n\nTrust\nAnyone can write packages for R, including you and me. On the one hand, this means that everyone can contribute their code to the ease of all other R users. However, this also means that individuals with malicious intent can create R packages. Therefore, you should always be careful when installing R packages. Although CRAN is an archive with many trusted packages, it is not a protection against malicious packages or a guarantee of safety. More on this can be read here.",
+    "crumbs": [
+      "The basics",
+      "Packages"
+    ]
+  },
+  {
+    "objectID": "packages.html#exercises",
+    "href": "packages.html#exercises",
+    "title": "Packages",
     "section": "Exercises",
-    "text": "Exercises\n\n1. Use aliases to change values\nFrom the starwars dataset (available in {dplyr}, ), extract the column height and divide by 100.\n\n\nAnswer\n# Load dplyr for data\npacman::p_load(\"dplyr\")\n\n# Start pipe with starwars data\nstarwars %&gt;%\n    # Extract column height (unnamed)\n    extract2(\"height\") %&gt;%\n    # Divide by 100\n    divide_by(100)\n\n\n [1] 1.72 1.67 0.96 2.02 1.50 1.78 1.65 0.97 1.83 1.82 1.88 1.80 2.28 1.80 1.73\n[16] 1.75 1.70 1.80 0.66 1.70 1.83 2.00 1.90 1.77 1.75 1.80 1.50   NA 0.88 1.60\n[31] 1.93 1.91 1.70 1.85 1.96 2.24 2.06 1.83 1.37 1.12 1.83 1.63 1.75 1.80 1.78\n[46] 0.79 0.94 1.22 1.63 1.88 1.98 1.96 1.71 1.84 1.88 2.64 1.88 1.96 1.85 1.57\n[61] 1.83 1.83 1.70 1.66 1.65 1.93 1.91 1.83 1.68 1.98 2.29 2.13 1.67 0.96 1.93\n[76] 1.91 1.78 2.16 2.34 1.88 1.78 2.06   NA   NA   NA   NA   NA\n\n\n\n\n2. Use different pipes to meddle with starwars\nNow, reassign a frequency table of species to the object name starwars of individuals of at least 2 meters tall using the pipe operators from {magrittr}.\n\n\nAnswer\n# Start pipe with starwars data and immediately reassign\nstarwars %&lt;&gt;%\n    # Keep only individuals above 2 meters tall\n    filter(height &gt;= 200) %$%\n    # Get table of species\n    table(species)\n\n# Check result\nstarwars\n\n\nspecies\n   Droid   Gungan    Human  Kaleesh Kaminoan   Pau'an Quermian  Wookiee \n       1        2        1        1        2        1        1        2",
+    "text": "Exercises\n\n1. Installing a new package\nInstall the package {tidyverse}.\n\n\nAnswer\n# Answer 1: using {pacman}\npacman::p_load(\"tidyverse\")\n\n\nalso installing the dependencies 'ps', 'processx', 'blob', 'gargle', 'uuid', 'ids', 'rematch2', 'timechange', 'systemfonts', 'textshaping', 'callr', 'selectr', 'conflicted', 'dbplyr', 'dtplyr', 'googledrive', 'googlesheets4', 'lubridate', 'modelr', 'ragg', 'reprex', 'rvest', 'xml2'\n\n\nWarning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:\n  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'\n\n\n\n  There are binary versions available but the source versions are later:\n     binary source needs_compilation\nps    1.7.7  1.8.0              TRUE\nragg  1.3.2  1.3.3              TRUE\n\npackage 'processx' successfully unpacked and MD5 sums checked\npackage 'blob' successfully unpacked and MD5 sums checked\npackage 'gargle' successfully unpacked and MD5 sums checked\npackage 'uuid' successfully unpacked and MD5 sums checked\npackage 'ids' successfully unpacked and MD5 sums checked\npackage 'rematch2' successfully unpacked and MD5 sums checked\npackage 'timechange' successfully unpacked and MD5 sums checked\npackage 'systemfonts' successfully unpacked and MD5 sums checked\npackage 'textshaping' successfully unpacked and MD5 sums checked\npackage 'callr' successfully unpacked and MD5 sums checked\npackage 'selectr' successfully unpacked and MD5 sums checked\npackage 'conflicted' successfully unpacked and MD5 sums checked\npackage 'dbplyr' successfully unpacked and MD5 sums checked\npackage 'dtplyr' successfully unpacked and MD5 sums checked\npackage 'googledrive' successfully unpacked and MD5 sums checked\npackage 'googlesheets4' successfully unpacked and MD5 sums checked\npackage 'lubridate' successfully unpacked and MD5 sums checked\npackage 'modelr' successfully unpacked and MD5 sums checked\npackage 'reprex' successfully unpacked and MD5 sums checked\npackage 'rvest' successfully unpacked and MD5 sums checked\npackage 'xml2' successfully unpacked and MD5 sums checked\npackage 'tidyverse' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Temp\\RtmpsvjtpR\\downloaded_packages\n\n\ninstalling the source packages 'ps', 'ragg'\n\n\n\ntidyverse installed\n\n\nWarning: package 'tidyverse' was built under R version 4.4.1\n\n\nWarning: package 'ggplot2' was built under R version 4.4.1\n\n\nWarning: package 'tibble' was built under R version 4.4.1\n\n\nWarning: package 'tidyr' was built under R version 4.4.1\n\n\nWarning: package 'readr' was built under R version 4.4.1\n\n\nWarning: package 'purrr' was built under R version 4.4.1\n\n\nWarning: package 'stringr' was built under R version 4.4.1\n\n\nWarning: package 'forcats' was built under R version 4.4.1\n\n\nWarning: package 'lubridate' was built under R version 4.4.1\n\n\nAnswer\n# Answer 2: using install.packages()\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"tidyverse\", quiet = TRUE)\n\n\nWarning: package 'tidyverse' is in use and will not be installed\n\n\n\n\n2. Loading a new package\nNow load the package {tidyverse}\n\n\nAnswer\n# Answer 1: using {pacman}, the package is already loaded after installing\n\n# Answer 2: using library() after install.packages()\nlibrary(\"tidyverse\")",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#next-topic",
-    "href": "magrittr.html#next-topic",
-    "title": "Magrittr",
+    "objectID": "packages.html#next-topic",
+    "href": "packages.html#next-topic",
+    "title": "Packages",
     "section": "Next topic",
-    "text": "Next topic\nWith that, we discussed a large part of the tidyverse. Although some other packages exist, we discuss these in other sections. Now that we know part of the basic grammar of the tidyverse, we can learn a new set of skills useful for any data analysis.\nNext: Plotting",
+    "text": "Next topic\nNow that we know the basics of R packages, let’s start looking at how we can harness their power to load our own data.\nNext: Data",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio), but also take you further, showing you different alternatives to reach the same goal and learning some useful tricks to quickly become an efficient R user. The general focus is on using R for epidemiologic data analysis, such as how to perform regression analyses and plot results, although it also contains a comprehensive introduction to R.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\nThis tutorial might feel rather dense and time-consuming as compared to other tutorials but you do not have to do everything at once. Although it is a good idea to do the basics and learn about the tidyverse, other sections might be studied on a need-to-know basis. Additionally, this tutorial will (hopefully) leave you with knowledge about using R, but also hand you the tools to learn more yourself and quickly understand new concepts and functions.\n\nExercises\n0: Open the answer\n\n\nAnswer\n# Well done!\n\n\nNext: R",
+    "crumbs": [
+      "Start",
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "creating.html",
+    "href": "creating.html",
+    "title": "Creating data",
+    "section": "",
+    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#annotation",
+    "href": "creating.html#annotation",
+    "title": "Creating data",
+    "section": "",
+    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#basic-mathematic-operators-and-running-code",
+    "href": "creating.html#basic-mathematic-operators-and-running-code",
+    "title": "Creating data",
+    "section": "Basic mathematic operators and running code",
+    "text": "Basic mathematic operators and running code\nNow let’s (finally) see some real code! Let’s start with some basic operators:\n1 + 1   # Addition\n3 - 1   # Substraction\n2 * 3   # Multiplication\n8 / 2   # Division\n8 %% 2  # Modulo\nR follows the conventional order of mathematic operation.\nHowever, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.\nThe results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with &gt; (Figure 1 (a)).\n\n\n\n\n\n\nIf you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with + (Figure 1 (b)). To cancel a waiting command, you can press esc.\n\n\n\nIf we run the example code for the basic mathematic operators, we will get the following results:\n\n1 + 1   # Addition\n\n[1] 2\n\n3 - 1   # Substraction\n\n[1] 2\n\n2 * 3   # Multiplication\n\n[1] 6\n\n8 / 2   # Division\n\n[1] 4\n\n8 %% 2  # Modulo\n\n[1] 0\n\n\nBefore each result, you can see [1]. This indicates that that specific line of code starts with the nth result. When a single code starts printing multiple results, this can help identify what n a certain result is.\n\n\n\n\n\n\n\n\n\n\n\n(a) Ready\n\n\n\n\n\n\n\n\n\n\n\n(b) Waiting for input to finish\n\n\n\n\n\n\n\nFigure 1: Console states",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#functions",
+    "href": "creating.html#functions",
+    "title": "Creating data",
+    "section": "Functions",
+    "text": "Functions\nNow that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:\n\n# Calculate the mean\n(3 + 8 + 3 + 7 + 1) / 5\n\n[1] 4.4\n\n\n\n# Use the calculated mean to calculate the standard deviation\n(((3 - 4.4) ^ 2 + (8 - 4.4) ^ 2 + (3 - 4.4) ^ 2 + (7 - 4.4) ^ 2 + (1 - 4.4) ^ 2) / (5 - 1)) ^ 0.5\n\n[1] 2.966479\n\n\n\n\nA sample’s standard deviation \\(s\\) is obtained by calculating:\n\\[\\sqrt\\frac{\\sum{(x-\\overline{x})^2}}{n-1}\\]\nHowever, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:\n\n# Calculate standard deviation\nsd(c(3, 8, 3, 7, 1))\n\n[1] 2.966479\n\n\n\n\n\n\n\n\nIn the standard deviation function, we use the c() function. Later we will elaborate on this, but for now it is enough to remember that c() creates a collection of data, which is more often called an object.\nBe aware that R is case-sensitive: c() as a function differs from C().\n\n\n\nLet’s see some standard functions that will be of great help to you.\n\nSum\nsum(), as it name suggests, sums the supplied values. It has the following arguments:\n\n...: the ellipsis indicates that any number of values can be supplied here. The sum function can take numeric values, integers, and booleans/logicals (i.e., it can sum the amount of TRUEs).\nna.rm = FALSE: na.rm indicates whether any missing values should be dropped. By default, this is FALSE, meaning that the function will return NA if there is any NAs present in the data you are trying to sum. If you want to sum all valid values (thus drop all NAs), you can specify na.rm = TRUE.\n\nSee the below examples:\n\nsum(3, 4, 5, 6)\n\n[1] 18\n\nsum(3, NA, 5, 6)\n\n[1] NA\n\nsum(3, NA, 5, 6, na.rm = TRUE)\n\n[1] 14\n\n\n\n\n\n\n\n\nIn the sum() function, na.rm has the default value FALSE. This means that this argument does not have to be defined. If we would not define it, it would just use FALSE.\n\n\n\n\n\nMean and median\nTo get the mean or median from some data, you can use the mean() and median() functions. mean() has the following arguments:\n\nx: a collection (or object) of data containing the data for which a mean should be calculated.\ntrim = 0: what proportion of the outskirts of the data should be trimmed (e.g., 0.05 trims 5% of data on each side). It defaults to 0.\nna.rm = FALSE: whether NAs should be dropped (as in sum())\n\nmedian() has the same arguments, except that it doesn’t have trim.\nHere are some examples:\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 98.63636\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), trim = 0.1)\n\n[1] 4.555556\n\nmedian(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 4\n\n\n\n\n\n\n\n\nNotice how with the mean, we specified that 0.1 was the value for trim, but we did not specify that c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044) was the value for x. This is because R inputs values for arguments in order: the first supplied value will be used for the first argument, the second supplied value will be used for the second argument, etc. However, sometimes I do not want to specify the second value, but I do want to specify the third value. In this case I can name the argument as in trim = 0.1, so that R knows the 0.1 is meant for trim.\n\n\n\n\n\nMin and max\nNow that we know how to calculate the mean and median from some data, we might also be interest in finding the lowest and highest value (for example, to detect the 1044 outlier). We can do this with min() and max(), which both take only one argument: ... as in the sum() function.\nTo get the minimum and maximum value from the data we just calculated the mean and median of, we could do the following:\n\nmin(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 0\n\nmax(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 1044\n\n\n\n\nSummary and quintile\nNow we know how to calculate the mean, median, minimum, and maximum values from some data, but what if we also want to know the 1st and 3rd quartile? Additionally, we do not want to use a function for each separate value. In this case, you can use summary(), which calculates the minimum, 1st quartile, mean, median, 3rd quartile, and maximum all at once. The summary function has multiple arguments, but only one is relevant for now:\n\nobject: the data of which you want to get a summary.\n\nFor example:\n\nsummary(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.00    3.00    4.00   98.64    7.50 1044.00 \n\n\nHowever, maybe we are more interested in the 1st and 99th quantiles. In that case we could use quantile(). You can supply the following arguments to quantile():\n\nx: a collection of data (or object) of which you want to calculate quantiles.\nprobs = seq(0, 1, 0.25): the probabilities (or quantiles) you want to calculate. It defaults to seq(0, 1, 0.25), which just means a sequence from 0 to 1 with increments of 0.25.\nna.rm = FALSE: whether NAs should be dropped.\nnames = TRUE: whether the output should show the name (or specified quantile).\n\nSo we could do:\n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99))\n\n   1%   99% \n  0.1 940.4 \n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99), names = FALSE)\n\n[1]   0.1 940.4\n\n\n\n\nTable\nWe have now seen some functions that we can use to get some descriptives about continuous data. However, sometimes we just want to count the amount of different observations. For this we can use table(). Some of the relevant arguments for the table function are the following:\n\n...: the variables to be supplied to table, as we saw in earlier functions.\nuseNA = c(\"no\", \"ifany\", \"always\"): should NAs be tabulated (conditional on if any are present) or not. The c(\"no\", \"ifany\", \"always\"), means that useNA takes any of the three following values: \"no\", \"ifany\", or \"always\".\n\nFor example:\n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA))\n\n\nFALSE  TRUE \n    3     5 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA), \n      useNA = \"ifany\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     1 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      useNA = \"always\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     0 \n\n\nYou can also use table() to create a cross-table:\n\ntable(c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE))\n\n       \n        FALSE TRUE\n  FALSE     3    1\n  TRUE      3    2\n\n\nFor the cross-tabulation, values are compered based on their order in the data you supply (e.g., the first value, FALSE in the first set is compared to the first value, TRUE, in the second set.)\n\n\n\n\n\n\nWe now went through some arguments for commonly used functions together, but it is good that you know what arguments a function takes and where you can find this. If you want to know more about any function, for example for sum(), you can open the documentation by running ?sum. In the help panel on the lower right in RStudio, you will find the documentation with the function, its default values, elaboration on the arguments it takes, details, and examples. You can also click on a function and press F1 to open the help panel.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#storing-values",
+    "href": "creating.html#storing-values",
+    "title": "Creating data",
+    "section": "Storing values",
+    "text": "Storing values\nWe have now seen how we can calculate some values using basic mathematic operators and functions. However, just typing out our data can become quite tiresome, so preferably I would store them in a variable. In R, things that store data are often called subjects. Let’s look at some different ways we can store data.\n\nSingle value\nWe can assign a single value by using the &lt;- operator (which has the easy keyboard shortcut alt + - in RStudio). To then see the object, we can simply run it. For example:\n\nx &lt;- sum(4, 9)\nx\n\n[1] 13\n\nx &lt;- 4 + 5\nx\n\n[1] 9\n\n\n\n\n\n\n\n\nNote that we defined the object x twice. When defining an object that already exists, the old object is overridden.\n\n\n\n\n\n\n\n\n\nTo assign a value to an object, you can also use = instead of &lt;-. However, this is often unclear and may be confused with defining arguments in functions. It is therefore strongly recommended to only assign objects using &lt;-.\n\n\n\n\n\nVectors\nWhen we want to assign multiple values to a single variable, we can create a vector. There are two simple ways to create a vector. First, we can use the c function (c()), that we saw before when discussing functions. c() creates a simple collection of any type of value. We call this collection a vector.\n\nx &lt;- c(4, 6, 9, 3, 2)\nx\n\n[1] 4 6 9 3 2\n\n# Using a vector in the sum function\nsum(x)\n\n[1] 24\n\n\nYou can also create a vector of sequential integers by using ::\n\nx &lt;- 5:17\nx\n\n [1]  5  6  7  8  9 10 11 12 13 14 15 16 17\n\n\nAdditionally, you can create any sequence using the seq() function which takes the arguments from, to, and by, meaning respectively the start, finish, and increments of the sequence.\n\nx &lt;- seq(5, 7, 0.5)\nx\n\n[1] 5.0 5.5 6.0 6.5 7.0\n\n\nWe could also multiply two vectors with each other (given they have the same length) or a vector with a single value:\n\nx &lt;- 1:5\ny &lt;- 5:1\n\nx * y\n\n[1] 5 8 9 8 5\n\nx * 2\n\n[1]  2  4  6  8 10\n\n\nLastly, you could create a named vector (i.e., each value has a name):\n\nx &lt;- c(\"Obs1\" = 42, \"Obs2\" = 28, \"Obs3\" = 91)\nx\n\nObs1 Obs2 Obs3 \n  42   28   91 \n\n\n\n\nLists\nA list is also a collection of data, but it can store much more than just values, such as vectors, and whole data sets:\n\nx &lt;- list(head(iris, 3), head(mtcars, 3))\nx\n\n[[1]]\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n\n[[2]]\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\nHowever, you cannot immediately apply mathematic operators on a list or use a list in data. If we have a list with data (for example different objects), we first have to unlist:\n\nx &lt;- list(4, 2)\nunlist(x) * 2\n\n[1] 8 4\n\n\nWhen you create a model, they are always stored in lists too, with many information alongside the results. We will come across this later in the tutorial.\n\n\nMatrices\nIf we want data with more than one dimension (i.e., columns and rows), we could create a matrix with the matrix function:\n\nx &lt;- matrix(c(31, 3, 18, 7, 84, 20), nrow = 3, ncol = 2)\nx\n\n     [,1] [,2]\n[1,]   31    7\n[2,]    3   84\n[3,]   18   20\n\n\nWe can also supply a single value that fills the entire matrix:\n\nx &lt;- matrix(\"Hello, World!\", nrow = 5, ncol = 3)\nx\n\n     [,1]            [,2]            [,3]           \n[1,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[2,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[3,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[4,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[5,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n\n\nMatrices are useful because they have multiple dimensions, which allows us to store different variables of the same person in multiple columns along the same row.\n\n\nData frames\nMatrices give us a flexible way to store data with rows and columns, but miss some flexibility when it comes to manipulating the data and performing calculations, loading it into functions, etc. In this case, data frames offer a good solution. Data frames look exactly matrices, but are much easier to manipulate and use for analyses. Data frames are likely what will compose most of the data you use in R.\nWe can create a data frame with the data.frame() function:\n\nx &lt;- data.frame(id = 1:5,\n                value1 = c(5, 2, 0, 2, 4),\n                value2 = c(9.4, 8.3, 2.8, 5.6, 2.7))\nx\n\n  id value1 value2\n1  1      5    9.4\n2  2      2    8.3\n3  3      0    2.8\n4  4      2    5.6\n5  5      4    2.7\n\n\nWhen working with data frames, there are some useful functions you can use:\n\nTo determine how many rows and columns a data frame (or matrix) has, you can use nrow() and ncol().\nTo change the row and column names, you can use rownames() and colnames(). To see how these functions work, you can access the examples in their documentation with ?rownames and ?colnames.\nTo change a data frame to a matrix or a matrix to a data frame, you can use as.matrix() and as.data.frame().",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#the-global-environment",
+    "href": "creating.html#the-global-environment",
+    "title": "Creating data",
+    "section": "The global environment",
+    "text": "The global environment\nWe have seen some ways to create and store data now. However, where can we find back what we have created? This is where the global environment comes in. Whenever you create an object in your code, that object will be stored in the global environment, which is just a general storage space. A great benefit that RStudio gives us is being able to see the global environment and whatever is stored in there, and to get a quick indication of what kind of data is stored.\nBefore we see the global environment, let’s first clean it with the following code:\nrm(list = ls())\nWith the rm() function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (list =), is the whole global environment (ls()). It is useful to remove objects you do not need to keep your global environment clean. Not only does it help in available working memory, it is also good to work in an organized (global) environment.\nNow let’s create some new data to showcase the global environment in RStudio:\n# Load pre-existing data frame\ndata &lt;- iris\n\n# Create vector\nvector &lt;- 1:13\n\n# Create single value\nval &lt;- 42\n\n# Create vector of strings\nstrings &lt;- c(\"Hello\", \"I\", \"am\", \"a\", \"vector\")\nNow let’s look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like Figure 2 (a) (the colours might differ depending on your theme).\nFrom the global environment, we can learn a few things:\n\nThe current memory usage is 121 MiB, in the upper middle of the image.\nWe have one structured data object, data. This data object has 150 observations (rows) of 5 variables (columns).\nstrings is a character (chr) with 5 values ([1:5). We then see the first values.\nval is a single value, 42.\nvector is an integener (int) with 13 values ([1:13]`) and we can see the first values.\n\nThis already gives us quite some information, but we can also get some more information on the structured data. If you press the small blue button with an arrow, next to data, you will see that it opens, as in Figure 2 (b). This let’s us learn the following information about data:\n\nWe can see each of the columns of data. The first four are numerical (num).\nThe fifth column, Species, is a factor (i.e., categorical) with three levels (of which the first one is “setosa”).\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Global environment\n\n\n\n\n\n\n\n\n\n\n\n(b) Global environment with opened data\n\n\n\n\n\n\n\nFigure 2: The global environment",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#dealing-with-warnings-and-errors",
+    "href": "creating.html#dealing-with-warnings-and-errors",
+    "title": "Creating data",
+    "section": "Dealing with warnings and errors",
+    "text": "Dealing with warnings and errors\nWe have now gone through the basics of creating and storing data. However, sometimes, we supply a wrong value to a function or mess up a parenthesis somewhere. This can give either warnings or errors. In both cases, it is important to realize what is happening. Warnings are messages printed in the console that try to tell us that something might be wrong in the data or not suited, or that the data was manipulated in the function to make sure the function could work. For example, if I try to change a character string to numeric with as.numeric(), I will get the warning: Warning message: NAs introduced by coercion, but the function still completed.\nSometimes, warnings are expected or not a problem. In that case, you can put the whole code inside the function supressWarnings(), to silence the warning. It is however always of paramount importance that you annotate what the warning was and why it can be suppressed.\nSometimes, you might get an error instead of a warning. This means that the function could not continue to run and you have to fix the error before being able to run the function.\nNot all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add ‘R’ at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as stackoverflow. When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#exercises",
+    "href": "creating.html#exercises",
+    "title": "Creating data",
+    "section": "Exercises",
+    "text": "Exercises\n\n1. Create and store numbers\nCreate a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called vec.\n\n\nAnswer\n# Answer 1: using c()\nvec &lt;- c(5, 6, 7, 8, 9, 10)\n\n# Answer 2: using the `:` operator\nvec &lt;- 5:10\n\n# Answer 3: using seq()\nvev &lt;- seq(5, 10, 1)\n\n\n\n\n2. Calculate quantiles\nCalculate the 2.5th and 97.5th percentile of the object vec.\n\n\nAnswer\nquantile(vec, probs = c(0.025, 0.975))\n\n\n 2.5% 97.5% \n5.125 9.875 \n\n\n\n\n3. Create a matrix\nUsing the data in vec, create a matrix with two columns and three rows.\n\n\nAnswer\nmatrix(vec, nrow = 3, ncol = 2)\n\n\n     [,1] [,2]\n[1,]    5    8\n[2,]    6    9\n[3,]    7   10\n\n\n\n\n4. Getting help\nOpen the documentation for rm().\n\n\nAnswer\n?rm\n\n\n\n\n5. Cleaning up\nNow use rm() to remove vec again.\n\n\nAnswer\nrm(vec)",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "creating.html#next-topic",
+    "href": "creating.html#next-topic",
+    "title": "Creating data",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.\nNext: Using data",
+    "crumbs": [
+      "The basics",
+      "Creating data"
+    ]
+  },
+  {
+    "objectID": "data.html",
+    "href": "data.html",
+    "title": "External data",
+    "section": "",
+    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#why-we-need-to-load-data",
+    "href": "data.html#why-we-need-to-load-data",
+    "title": "External data",
+    "section": "",
+    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#the-basics",
+    "href": "data.html#the-basics",
+    "title": "External data",
+    "section": "The basics",
+    "text": "The basics\n\nWorking directionary\nWhen we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using getwd(). If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use setwd(), specifying the path to the directionary.\n\n\nFile\nAll methods of reading data require an argument file (sometimes called path or data_file), which ?base::load() defines as a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done). This file is simply a path to the document we want to load in. For example: C:/users/username/documents/rtutorial/data/definitely_real_data.csv. Note that the file argument must always end in the file name (definitely_real_data) including extension (.csv).\n\n\nTilde expansion\nRemembering where all your data is stored and writing it all out (C:/users/username/...) can cost quite some effort. Luckily, we have a concept called tilde expansion. When we set our working directionary with setwd(), we can stop specifying that part in the file argument and instead only specify a tilde (~). Instead of calling C:/users/username/documents/rtutorial, we can set our working directionary to the documents folder:\nsetwd(\"C:/users/username/documents/rtutorial\")\nSubsequently, we can specify any file argument as ~/data/definitely_real_data.csv.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#delimited-data-with-base-and-readr",
+    "href": "data.html#delimited-data-with-base-and-readr",
+    "title": "External data",
+    "section": "Delimited data with {base} and {readr}",
+    "text": "Delimited data with {base} and {readr}\nData is often shared in a .csv format, which stands for Comma Separated Values. If we were to open this file in a normal text editor, we would see that each column of a row is separated by a comma between the values. This is a form of delimited data, where there is a certain character (comma, semicolon, tab) that allows the computer to discern between columns. To read such data, we can use different functions from {base}:\n\nread.csv() allows the reading in of data separated with commas where decimal markers are dots\nread.csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread.delim() allows the reading in of data separated with tabs where decimal markers are dots\nread.delim2() allows the reading in of data separated with tabs where decimal markers are commas\n\nThese functions only differ in the defaults: if you specify arguments such as sep and dec, they can perform the same actions. When using these functions, the data will be read into R, and we can immediately load it into an object which will create a data frame:\n# Load data\ndat &lt;- read.csv(\"~/data/definitely_real_data.csv\")\nA great alternative to the {base} functions are the functions from {readr}, which are in general faster and treat the data better. The functions have similar names and functionality:\n\nread_csv() allows the reading in of data separated with commas where decimal markers are dots\nread_csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread_tsv() allows the reading in of data separated with tabs\n\nIf you want to write these data back into a delimited file, we can use the write functions with similar names, besides replacing read with write:\n\nwrite.csv() allows the writing of data separated with commas where decimal markers are dots\nwrite_csv() allows the writing of data separated with commas where decimal markers are dots (but faster than write.csv())\netc.\n\nIn the writing functions, we first specify the object we want to write to our device and then the path:\nwrite_csv(iris, \"~/data/iris.csv\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#excel-files",
+    "href": "data.html#excel-files",
+    "title": "External data",
+    "section": "Excel files",
+    "text": "Excel files\nIf the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the {readxl} package to read in the data:\n# Load first sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\")\n\n# Load third sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = 3)\n\n# Load Excel file's sheet by name\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = \"definitely_real_sheet\")\nUsing the function read_excel() automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use read_xlsx() or read_xls().\nIf we then want to write data back to Excel, we can use the {writexl} package:\nwrite_xlsx(iris, \"~/data/iris.xlsx\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#spss-sas-and-stata-data",
+    "href": "data.html#spss-sas-and-stata-data",
+    "title": "External data",
+    "section": "SPSS, SAS, and Stata data",
+    "text": "SPSS, SAS, and Stata data\nIf the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (.sas7bdat) or Stata (.dta, .xpt), we can use {haven} to read these data:\n\nread_spss() can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (read_sav() or read_por()).\nwrite_sav() creates an SPSS .sav file (or .zsav if compress = TRUE).\nread_sas() reads in SAS .sas7bdat files.\nread_xpt()reads in SAS transport .xpt files.\nwrite_sas() is a deprecated function and does not perform reliabily. An alternative is the write_xpt() function to write an R object to a SAS transport (.xpt) file.\nread_dta() allows reading of Stata .dta files.\nwrite_dta() writes an R object to a Stata .dta file.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#foreign",
+    "href": "data.html#foreign",
+    "title": "External data",
+    "section": "Foreign",
+    "text": "Foreign\nIf we have data that cannot be loaded in with any of the above functions, we can always have a look whether {foreign} has any functions that can read in the data. {foreign} offers functions for the reading of files such as .ssd, .dbf, .arff, .epiinfo, and more.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#making-your-life-easier",
+    "href": "data.html#making-your-life-easier",
+    "title": "External data",
+    "section": "Making your life easier",
+    "text": "Making your life easier\n\nPoint-and-click import\nOf course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (Figure 1):\n\n\n\n\n\n\nFigure 1: Import data\n\n\n\nFrom there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (Figure 2). In the upper right corner of the viewer, we can select our data with ‘Browse’, which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press ‘Import’ and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.\n\n\n\n\n\n\nFigure 2: Preview of import\n\n\n\n\n\nRio\nIf we do not want to think about what function to use at all, we can use the R Input/Output package {rio}, which provides the functions import() and export(). These functions automatically recognize the format of the file and choose the correct method of reading in the data. Additionally, {rio} allows us to read and write directly from and to .zip files.\n# Import data\nimport(\"iris.xlsx\")\n\n# Export data\nexport(iris, \"iris.tsv.zip\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#rdata-and-.rda",
+    "href": "data.html#rdata-and-.rda",
+    "title": "External data",
+    "section": ".Rdata and .Rda",
+    "text": ".Rdata and .Rda\nWhile working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:\n\nload() loads the specified file into R.\nsave() saves an objects onto the device.\n\nWhen we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:\n# Save iris to current working directionary\nsave(iris, file = \"~/iris.Rdata\")\n\n# Load iris\nload(\"iris.Rdata\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#projectiles-and-carpeting",
+    "href": "data.html#projectiles-and-carpeting",
+    "title": "External data",
+    "section": "Projectiles and carpeting",
+    "text": "Projectiles and carpeting\n\nArrow (formerly known as Feather)\nSometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the {Arrow} package. A quick start to working with Arrow can be found here.\n\n\nParquet\nAlthough fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the {Arrow} package and a quick start can again be found here.",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#sql",
+    "href": "data.html#sql",
+    "title": "External data",
+    "section": "SQL",
+    "text": "SQL\nSometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using {RODBC}, which allows general database access. You can connect to the database with odbcConnect() and then pass SQL queries into data using sqlQuery():\ndat &lt;- sqlQuery(odbcConnect(\"database\"), \"select * from DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#readily-available-data",
+    "href": "data.html#readily-available-data",
+    "title": "External data",
+    "section": "Readily available data",
+    "text": "Readily available data\nR and many available R packages also come with external data that is already available in the packages. To load this data, you can use data():\ndata(iris)\nAdditionally, you can get an overview of all available data in the available packages using data().",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#exercises",
+    "href": "data.html#exercises",
+    "title": "External data",
+    "section": "Exercises",
+    "text": "Exercises\n\n0. Downloading data\nFor these exercises, we will work with some freely available data that you can download here. If the link does not work, you can look for the file State funded schools inspections and outcomes as at 31 December 2022 here.\n\n\n1. Loading new data\nLoad the data you just downloaded into a variable called dat.\n\n\nAnswer\n# Load necessary packages\npacman::p_load(\"rio\", \"readr\")\n\n# Define file so that I only have to type it once for each example\nfile &lt;- \"C:/users/rjjanse.LUMCNET/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv\"\n\n# Answer 1: using import\ndat &lt;- import(file)\n\n# Answer 2: using read_csv\n# suppressWarnings and show_col_types = FALSE for clean output\ndat &lt;- suppressWarnings(read_csv(file, show_col_types = FALSE))\n\n# Answer 3: using read.csv\ndat &lt;- read.csv(file)\n\n\n\n\n2. Storing data\nNow save the data to a file called example_data.Rdata.\n\n\nAnswer\n# Answer 1: use save()\nsave(dat, file = \"example_data.Rdata\")\n\n# Answer 2: use export()\nexport(dat, \"example_data.Rdata\")",
+    "crumbs": [
+      "The basics",
+      "External data"
+    ]
+  },
+  {
+    "objectID": "data.html#next-topic",
+    "href": "data.html#next-topic",
+    "title": "External data",
+    "section": "Next topic",
+    "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse",
+    "crumbs": [
+      "The basics",
+      "External data"
     ]
   },
   {
@@ -550,377 +836,124 @@
     ]
   },
   {
-    "objectID": "data.html",
-    "href": "data.html",
-    "title": "External data",
+    "objectID": "magrittr.html",
+    "href": "magrittr.html",
+    "title": "Magrittr",
     "section": "",
-    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html#why-we-need-to-load-data",
-    "href": "data.html#why-we-need-to-load-data",
-    "title": "External data",
+    "objectID": "magrittr.html#magrittr",
+    "href": "magrittr.html#magrittr",
+    "title": "Magrittr",
     "section": "",
-    "text": "We have already seen how to create data from scratch, but it is more likely that your data is not created that way. Instead, most data is stored in electronic data capture systems. These systems can then return files which allow the data to be read into statistical programs. This data may come in multiple formats and here we will discuss how to read these different formats into your R Global Environment.",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html#the-basics",
-    "href": "data.html#the-basics",
-    "title": "External data",
-    "section": "The basics",
-    "text": "The basics\n\nWorking directionary\nWhen we want to load into our Global Environment, by default R will look in a certain spot in our device: the working directionary. By default, the working directionary is the same spot where our R script is saved. The path to the working directionary can be found by using getwd(). If we want to specify a different workign directionary, for instance because our data is in a folder separate from our codes, we can use setwd(), specifying the path to the directionary.\n\n\nFile\nAll methods of reading data require an argument file (sometimes called path or data_file), which ?base::load() defines as a (readable binary-mode) connection or a character string giving the name of the file to load (when tilde expansion is done). This file is simply a path to the document we want to load in. For example: C:/users/username/documents/rtutorial/data/definitely_real_data.csv. Note that the file argument must always end in the file name (definitely_real_data) including extension (.csv).\n\n\nTilde expansion\nRemembering where all your data is stored and writing it all out (C:/users/username/...) can cost quite some effort. Luckily, we have a concept called tilde expansion. When we set our working directionary with setwd(), we can stop specifying that part in the file argument and instead only specify a tilde (~). Instead of calling C:/users/username/documents/rtutorial, we can set our working directionary to the documents folder:\nsetwd(\"C:/users/username/documents/rtutorial\")\nSubsequently, we can specify any file argument as ~/data/definitely_real_data.csv.",
+    "objectID": "magrittr.html#and",
+    "href": "magrittr.html#and",
+    "title": "Magrittr",
+    "section": ". and `",
+    "text": ". and `\nBefore we get into the aliases offered by {magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).\nFor instance, take the below data frame:\n\n# Create example data\nvec_fib &lt;- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)\n\nIf we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to NA, we could do the following:\n\n# First, load magrittr\npacman::p_load(\"magrittr\")\n\n# Start pipeline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    `-`(3) %&gt;%\n    # Multiply by 1.5\n    `*`(1.5) %&gt;%\n    # Set all negative values to NA\n    ifelse(. &lt; 0, NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html#delimited-data-with-base-and-readr",
-    "href": "data.html#delimited-data-with-base-and-readr",
-    "title": "External data",
-    "section": "Delimited data with {base} and {readr}",
-    "text": "Delimited data with {base} and {readr}\nData is often shared in a .csv format, which stands for Comma Separated Values. If we were to open this file in a normal text editor, we would see that each column of a row is separated by a comma between the values. This is a form of delimited data, where there is a certain character (comma, semicolon, tab) that allows the computer to discern between columns. To read such data, we can use different functions from {base}:\n\nread.csv() allows the reading in of data separated with commas where decimal markers are dots\nread.csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread.delim() allows the reading in of data separated with tabs where decimal markers are dots\nread.delim2() allows the reading in of data separated with tabs where decimal markers are commas\n\nThese functions only differ in the defaults: if you specify arguments such as sep and dec, they can perform the same actions. When using these functions, the data will be read into R, and we can immediately load it into an object which will create a data frame:\n# Load data\ndat &lt;- read.csv(\"~/data/definitely_real_data.csv\")\nA great alternative to the {base} functions are the functions from {readr}, which are in general faster and treat the data better. The functions have similar names and functionality:\n\nread_csv() allows the reading in of data separated with commas where decimal markers are dots\nread_csv2() allows the reading in of data separated with semicolons where decimal markers are commas\nread_tsv() allows the reading in of data separated with tabs\n\nIf you want to write these data back into a delimited file, we can use the write functions with similar names, besides replacing read with write:\n\nwrite.csv() allows the writing of data separated with commas where decimal markers are dots\nwrite_csv() allows the writing of data separated with commas where decimal markers are dots (but faster than write.csv())\netc.\n\nIn the writing functions, we first specify the object we want to write to our device and then the path:\nwrite_csv(iris, \"~/data/iris.csv\")",
+    "objectID": "magrittr.html#aliases",
+    "href": "magrittr.html#aliases",
+    "title": "Magrittr",
+    "section": "Aliases",
+    "text": "Aliases\nHowever, by using {magrittr} allows us functions instead of these operators that improve readability of the code and are easier to use, which are called the aliases. Using those aliase, we would write the above code as:\n\n# Start piepline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    subtract(3) %&gt;%\n    # Multiply by 1.5\n    multiply_by(1.5) %&gt;%\n    # Set all negative values to NA\n    # Here, the alias is perhaps not as useful, as we use . &lt; 0 in a function. The aliases are mostly useful as first function in each piece of the pipeline\n    ifelse(is_less_than(., 0), NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0\n\n\nThe available aliases (also available here or in the help function of each alias in R) are:\n\n\n\nDescription\nSymbol\n\n\n\n\nextract2\n`[[`\n\n\ninset\n`[&lt;-`\n\n\ninset2\n`[[&lt;-`\n\n\nuse_series\n`$`\n\n\nadd\n`+`\n\n\nsubtract\n`-`\n\n\nmultiply_by\n`*`\n\n\nraise_to_power\n`^`\n\n\nmultiply_by_matrix\n`%*%`\n\n\ndivide_by\n`/`\n\n\ndivide_by_int\n`%/%`\n\n\nmod\n`%%`\n\n\nis_in\n`%in%`\n\n\nand\n`&`\n\n\nor\n`|`\n\n\nequals\n`==`\n\n\nis_greater_than\n`&gt;`\n\n\nis_weakly_greater_than\n`&gt;=`\n\n\nis_less_than\n`&lt;`\n\n\nis_weakly_less_than\n`&lt;=`\n\n\nnot (n’est pas)\n`!`\n\n\nset_colnames\n`colnames&lt;-`\n\n\nset_rownames\n`rownames&lt;-`\n\n\nset_names\n`names&lt;-`\n\n\nset_class\n`class&lt;-`\n\n\nset_attributes\n`attributes&lt;-`\n\n\nset_attr\n`attr&lt;-`",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html#excel-files",
-    "href": "data.html#excel-files",
-    "title": "External data",
-    "section": "Excel files",
-    "text": "Excel files\nIf the data is not supplied in a delimited format, but Excel (.xlsx/.xls), we can use the {readxl} package to read in the data:\n# Load first sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\")\n\n# Load third sheet of Excel file\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = 3)\n\n# Load Excel file's sheet by name\ndat &lt;- read_excel(\"~/data/definitely_real_data.xlsx\", sheet = \"definitely_real_sheet\")\nUsing the function read_excel() automatically determines whether the data is stored in .xlsx or .xls and therefore whether it should use read_xlsx() or read_xls().\nIf we then want to write data back to Excel, we can use the {writexl} package:\nwrite_xlsx(iris, \"~/data/iris.xlsx\")",
+    "objectID": "magrittr.html#section",
+    "href": "magrittr.html#section",
+    "title": "Magrittr",
+    "section": "|>",
+    "text": "|&gt;\nBesides the pipe implemented by {magrittr}, R also offers a native pipe: |&gt;. Instead of existing data being called by the dot (.), you can use a low dash (_). Although in general the pipes function the same, there are some differences in what they can do and how they are used. The tidyverse has a more elaborate explanation on this topic here and more details are also available here and here.",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html#spss-sas-and-stata-data",
-    "href": "data.html#spss-sas-and-stata-data",
-    "title": "External data",
-    "section": "SPSS, SAS, and Stata data",
-    "text": "SPSS, SAS, and Stata data\nIf the data are already formatted for other statistical software, specifically SPSS (.sav, .zsav, and .por), SAS (.sas7bdat) or Stata (.dta, .xpt), we can use {haven} to read these data:\n\nread_spss() can read SPSS files and automatically detects whether a file is .sav/.zsav or .por to use the correct alternative (read_sav() or read_por()).\nwrite_sav() creates an SPSS .sav file (or .zsav if compress = TRUE).\nread_sas() reads in SAS .sas7bdat files.\nread_xpt()reads in SAS transport .xpt files.\nwrite_sas() is a deprecated function and does not perform reliabily. An alternative is the write_xpt() function to write an R object to a SAS transport (.xpt) file.\nread_dta() allows reading of Stata .dta files.\nwrite_dta() writes an R object to a Stata .dta file.",
+    "objectID": "magrittr.html#other-pipes",
+    "href": "magrittr.html#other-pipes",
+    "title": "Magrittr",
+    "section": "Other pipes",
+    "text": "Other pipes\nThe %&gt;% pipe is not the only pipe {magrittr} offers us.\n\n%T&gt;%\nThe Tee pipe returns the left-hand side of the value instead of the right-hand side. In other words, it returns the input into the function instead of the output of the function. This is helpful when we are only interested in the side-effects of a function, instead of its main output (e.g. printing in console).\nImagine we are interested in only the description of a .csv file, but not actually loading it into our global environment. In that case, I could use the read_csv() function from {readr} with the Tee pipe:\n\n# Load readr\npacman::p_load(\"readr\")\n\n# Get information on .csv file available online\n\"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download\" %T&gt;% \n    # Print only data information\n    read_csv()\n\nRows: 100 Columns: 12\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (10): Customer Id, First Name, Last Name, Company, City, Country, Phone...\ndbl   (1): Index\ndate  (1): Subscription Date\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n[1] \"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download\"\n\n\n\n\n%$%\nThe exposition pipe gives the names of the data to the next function, which is especially useful if the function does not have a data argument, such as table():\n\n# Just piping iris into table will not work (commented out to prevent error)\n# iris %&gt;% table(Species)\n\n# Using an exposition pipe, it will work\niris %$% table(Species)\n\nSpecies\n    setosa versicolor  virginica \n        50         50         50 \n\n\n\n\n$&lt;&gt;$\nThe assignment pipe is a shorthand pipe for a pipeline that assigns the final value back into the object that was used as the start of the pipeline (i.e. it is short for x &lt;- x %&gt;% ...). For example:\n\n# Starting value\nx &lt;- 5; y &lt;- 5\n\n# With the assignment operator\nx &lt;- x %&gt;%\n    # Divide by 2\n    divide_by(2)\n\n# With the assignment pipe\ny %&lt;&gt;%\n    # Divide by 2\n    divide_by(2)\n\n# Check whether results are equal\nx == y\n\n[1] TRUE",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html#foreign",
-    "href": "data.html#foreign",
-    "title": "External data",
-    "section": "Foreign",
-    "text": "Foreign\nIf we have data that cannot be loaded in with any of the above functions, we can always have a look whether {foreign} has any functions that can read in the data. {foreign} offers functions for the reading of files such as .ssd, .dbf, .arff, .epiinfo, and more.",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#making-your-life-easier",
-    "href": "data.html#making-your-life-easier",
-    "title": "External data",
-    "section": "Making your life easier",
-    "text": "Making your life easier\n\nPoint-and-click import\nOf course it’s nice that all these functions exist to read in your data, but they do not let us preview what the data is going to look like. If we want to preview the data before reading it, in RStudio, we can go to the menu bar, click File and then Import Dataset (Figure 1):\n\n\n\n\n\n\nFigure 1: Import data\n\n\n\nFrom there, we can choose the type of data to import (e.g., Excel) and we will be presented with a viewer (Figure 2). In the upper right corner of the viewer, we can select our data with ‘Browse’, which then shows how the data will look like after import. In the lower left corner, we can adjust some options. Lastly, in the lower right corner, we see the code that will be run to read this data into our Global Enviroment. Once happy with how the data will look upon import, we can press ‘Import’ and the data will be imported. You can then copy the code from the console to add it to your script so that you do not need to repeat this step again.\n\n\n\n\n\n\nFigure 2: Preview of import\n\n\n\n\n\nRio\nIf we do not want to think about what function to use at all, we can use the R Input/Output package {rio}, which provides the functions import() and export(). These functions automatically recognize the format of the file and choose the correct method of reading in the data. Additionally, {rio} allows us to read and write directly from and to .zip files.\n# Import data\nimport(\"iris.xlsx\")\n\n# Export data\nexport(iris, \"iris.tsv.zip\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#rdata-and-.rda",
-    "href": "data.html#rdata-and-.rda",
-    "title": "External data",
-    "section": ".Rdata and .Rda",
-    "text": ".Rdata and .Rda\nWhile working on our analyses, we might come across moments where we want to save some object because it took a long time to create. Or a colleague sent us their data straight from R. In this case, we are working with Rdata files (.Rdata, .Rda). These files are easiest to load into R and export out of R with two specific functions:\n\nload() loads the specified file into R.\nsave() saves an objects onto the device.\n\nWhen we load R data files, we do not need to assign them to an object: the object is stored in the file and automatically restored into the Global Environment. For instance:\n# Save iris to current working directionary\nsave(iris, file = \"~/iris.Rdata\")\n\n# Load iris\nload(\"iris.Rdata\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#projectiles-and-carpeting",
-    "href": "data.html#projectiles-and-carpeting",
-    "title": "External data",
-    "section": "Projectiles and carpeting",
-    "text": "Projectiles and carpeting\n\nArrow (formerly known as Feather)\nSometimes we might work with files that take a considerable time to process. In such cases, we might prefer alternatives to .csv files and .Rdata files to work with our data faster. In this case, .arrow files come in handily. These files, formerly known as Feather files, are a special memory format that works across any programming language, organized for efficient operations. Working with .arrow files is supported by the {Arrow} package. A quick start to working with Arrow can be found here.\n\n\nParquet\nAlthough fast data is nice, sometimes we just want our data to take up less space. Whereas .arrow files focus on speed, .parquet files focus on efficient data storage and retrieval. Working with .parquet files is also supported by the {Arrow} package and a quick start can again be found here.",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#sql",
-    "href": "data.html#sql",
-    "title": "External data",
-    "section": "SQL",
-    "text": "SQL\nSometimes, our data is not stored in a local document, but on a server, such as a SQL (Structured Query Language) server. We can call directly to SQL from R and load data into our Global Environment using {RODBC}, which allows general database access. You can connect to the database with odbcConnect() and then pass SQL queries into data using sqlQuery():\ndat &lt;- sqlQuery(odbcConnect(\"database\"), \"select * from DATA_THAT_IS_DEFINITELY_REAL where SEX LIKE 1\")",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#readily-available-data",
-    "href": "data.html#readily-available-data",
-    "title": "External data",
-    "section": "Readily available data",
-    "text": "Readily available data\nR and many available R packages also come with external data that is already available in the packages. To load this data, you can use data():\ndata(iris)\nAdditionally, you can get an overview of all available data in the available packages using data().",
-    "crumbs": [
-      "The basics",
-      "External data"
-    ]
-  },
-  {
-    "objectID": "data.html#exercises",
-    "href": "data.html#exercises",
-    "title": "External data",
+    "objectID": "magrittr.html#exercises",
+    "href": "magrittr.html#exercises",
+    "title": "Magrittr",
     "section": "Exercises",
-    "text": "Exercises\n\n0. Downloading data\nFor these exercises, we will work with some freely available data that you can download here. If the link does not work, you can look for the file State funded schools inspections and outcomes as at 31 December 2022 here.\n\n\n1. Loading new data\nLoad the data you just downloaded into a variable called dat.\n\n\nAnswer\n# Load necessary packages\npacman::p_load(\"rio\", \"readr\")\n\n# Define file so that I only have to type it once for each example\nfile &lt;- \"C:/users/rjjanse.LUMCNET/downloads/State_funded_schools_inspections_and_outcomes_as_at_31_December_2022.csv\"\n\n# Answer 1: using import\ndat &lt;- import(file)\n\n# Answer 2: using read_csv\n# suppressWarnings and show_col_types = FALSE for clean output\ndat &lt;- suppressWarnings(read_csv(file, show_col_types = FALSE))\n\n# Answer 3: using read.csv\ndat &lt;- read.csv(file)\n\n\n\n\n2. Storing data\nNow save the data to a file called example_data.Rdata.\n\n\nAnswer\n# Answer 1: use save()\nsave(dat, file = \"example_data.Rdata\")\n\n# Answer 2: use export()\nexport(dat, \"example_data.Rdata\")",
+    "text": "Exercises\n\n1. Use aliases to change values\nFrom the starwars dataset (available in {dplyr}, ), extract the column height and divide by 100.\n\n\nAnswer\n# Load dplyr for data\npacman::p_load(\"dplyr\")\n\n# Start pipe with starwars data\nstarwars %&gt;%\n    # Extract column height (unnamed)\n    extract2(\"height\") %&gt;%\n    # Divide by 100\n    divide_by(100)\n\n\n [1] 1.72 1.67 0.96 2.02 1.50 1.78 1.65 0.97 1.83 1.82 1.88 1.80 2.28 1.80 1.73\n[16] 1.75 1.70 1.80 0.66 1.70 1.83 2.00 1.90 1.77 1.75 1.80 1.50   NA 0.88 1.60\n[31] 1.93 1.91 1.70 1.85 1.96 2.24 2.06 1.83 1.37 1.12 1.83 1.63 1.75 1.80 1.78\n[46] 0.79 0.94 1.22 1.63 1.88 1.98 1.96 1.71 1.84 1.88 2.64 1.88 1.96 1.85 1.57\n[61] 1.83 1.83 1.70 1.66 1.65 1.93 1.91 1.83 1.68 1.98 2.29 2.13 1.67 0.96 1.93\n[76] 1.91 1.78 2.16 2.34 1.88 1.78 2.06   NA   NA   NA   NA   NA\n\n\n\n\n2. Use different pipes to meddle with starwars\nNow, reassign a frequency table of species to the object name starwars of individuals of at least 2 meters tall using the pipe operators from {magrittr}.\n\n\nAnswer\n# Start pipe with starwars data and immediately reassign\nstarwars %&lt;&gt;%\n    # Keep only individuals above 2 meters tall\n    filter(height &gt;= 200) %$%\n    # Get table of species\n    table(species)\n\n# Check result\nstarwars\n\n\nspecies\n   Droid   Gungan    Human  Kaleesh Kaminoan   Pau'an Quermian  Wookiee \n       1        2        1        1        2        1        1        2",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "data.html#next-topic",
-    "href": "data.html#next-topic",
-    "title": "External data",
+    "objectID": "magrittr.html#next-topic",
+    "href": "magrittr.html#next-topic",
+    "title": "Magrittr",
     "section": "Next topic",
-    "text": "Next topic\nNow that we know are armed with the power of packages and the ability to load data, let’s explore one of the most famous packages for R: the Tidyverse!\nNext: Tidyverse",
+    "text": "Next topic\nWith that, we discussed a large part of the tidyverse. Although some other packages exist, we discuss these in other sections. Now that we know part of the basic grammar of the tidyverse, we can learn a new set of skills useful for any data analysis.\nNext: Plotting",
     "crumbs": [
-      "The basics",
-      "External data"
+      "Into the tidyverse",
+      "Magrittr"
     ]
   },
   {
-    "objectID": "creating.html",
-    "href": "creating.html",
-    "title": "Creating data",
+    "objectID": "plotting.html",
+    "href": "plotting.html",
+    "title": "Plotting",
     "section": "",
-    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
+    "text": "A lot of analyses are represented by figures in the final papers. Additionally, visualization of data may allow better scrutiny of data patterns. As such, creating figures in R, or ‘plotting’ (because we are making plots).\nThe way plots are created varies, but two large methods stand out. The first we will discuss is implemented by the {ggplot2} package. This package is based on the grammar of graphics, a landmark work on statistical graphics (ergo ‘gg’ for ‘grammr of graphics’). The second method we will discuss is the base R plotting, which is part of the R {graphics} package.\nAs example data, we will use the package {palmerpenguins}, which contains data on 344 penguins from three islands in the Palmer Archipelago, Antarctica (more here).\nWe will also load the {ggplot2} package. The {graphics} package is installed and loaded by default.\n\n\nAnswer\n# Load packages\npacman::p_load(\"ggplot2\",          # Data visualization\n               \"palmerpenguins\"    # Example data\n               )",
     "crumbs": [
-      "The basics",
-      "Creating data"
+      "New skills",
+      "Plotting"
     ]
   },
   {
-    "objectID": "creating.html#annotation",
-    "href": "creating.html#annotation",
-    "title": "Creating data",
+    "objectID": "plotting.html#plotting-in-r",
+    "href": "plotting.html#plotting-in-r",
+    "title": "Plotting",
     "section": "",
-    "text": "Let’s get started in R. Before we write any code, we should discuss the importance of annotation. When you are writing code it might seem clear to you what each line does, but if someone else reads your code or you look back at your code after a while, it might not seem so clear anymore. To allow others and your future-self to efficiently check, read, and re-use your code, it is important to extensively annotate your code. Let’s see some unannotated code (you don’t have to understand now what the code means):\niris %&gt;%\n    filter(Species == \"setosa\") %&gt;%\n    extract2(\"Sepal.Length\") %&gt;%\n    is_greater_than(5) %&gt;%\n    table() %&gt;%\n    prop.table() %&gt;%\n    extract2(TRUE) %&gt;%\n    `*`(100) %&gt;%\n    paste0(., \"%\")\nIn this section of code, there is a lot that happens (although some R users might still get the gist of the code). Moreover, a single section of code might quickly get much longer and more complicated than the above example. Luckily, the code can added to with annotation. In R, you can annotate with ‘#’. Any text written after the ‘#’ on the same line will not be run by R and can therefore be used to annotate code. So let’s see how we can increase this code’s clarity with annotation:\n# Calculate proportion of setosa observations with sepal length above 5\niris %&gt;%\n    # Keep only setosa species\n    filter(Species == \"setosa\") %&gt;%\n    # Keep only the sepal length values\n    extract2(\"Sepal.Length\") %&gt;%\n    # Determine whether each value is greater than 5 or not\n    is_greater_than(5) %&gt;%\n    # Count lengths above and below 5\n    table() %&gt;%\n    # Turn counts into proportions\n    prop.table() %&gt;%\n    # Keep only proportion for lengths above 5\n    extract2(TRUE) %&gt;%\n    # Multiply by 100\n    `*`(100) %&gt;%\n    # Add percentage sign\n    paste0(., \"%\")\nIt is true that annotation increases the length of a script, but it is important to note that the quality of a script is not affected by its length, but it is by its clarity.\n\n\n\n\n\n\nYou can use annotation for more than just explaining what your code does. You can add information on the general purpose of a script, its author, its creation date. You can add information on why you made a certain decision or add a URL to where you found the solution to a coding problem. It is easy to annotate too little, but difficult to annotate too much.",
+    "text": "A lot of analyses are represented by figures in the final papers. Additionally, visualization of data may allow better scrutiny of data patterns. As such, creating figures in R, or ‘plotting’ (because we are making plots).\nThe way plots are created varies, but two large methods stand out. The first we will discuss is implemented by the {ggplot2} package. This package is based on the grammar of graphics, a landmark work on statistical graphics (ergo ‘gg’ for ‘grammr of graphics’). The second method we will discuss is the base R plotting, which is part of the R {graphics} package.\nAs example data, we will use the package {palmerpenguins}, which contains data on 344 penguins from three islands in the Palmer Archipelago, Antarctica (more here).\nWe will also load the {ggplot2} package. The {graphics} package is installed and loaded by default.\n\n\nAnswer\n# Load packages\npacman::p_load(\"ggplot2\",          # Data visualization\n               \"palmerpenguins\"    # Example data\n               )",
     "crumbs": [
-      "The basics",
-      "Creating data"
+      "New skills",
+      "Plotting"
     ]
   },
   {
-    "objectID": "creating.html#basic-mathematic-operators-and-running-code",
-    "href": "creating.html#basic-mathematic-operators-and-running-code",
-    "title": "Creating data",
-    "section": "Basic mathematic operators and running code",
-    "text": "Basic mathematic operators and running code\nNow let’s (finally) see some real code! Let’s start with some basic operators:\n1 + 1   # Addition\n3 - 1   # Substraction\n2 * 3   # Multiplication\n8 / 2   # Division\n8 %% 2  # Modulo\nR follows the conventional order of mathematic operation.\nHowever, these operators are useless if we do not actually run the code. To run a section of code, put your cursor in the code section (can be anywhere) and press ctrl + enter to run the code. If you want to run a specific part of the code, instead of a whole section, you can select the part you want to run and then use ctrl + enter again, to run only the selected part.\nThe results of the selected code can be found in the console. If the code takes some time to run, you can see it is done when a new line of the console starts with &gt; (Figure 1 (a)).\n\n\n\n\n\n\nIf you select a specific part of code to run, make sure to be inclusive! For instance, if you forget to select an enclosing paranthesis, the selected code will be put in the console, but it will not be run. You can see that this happened if a new line in the console starts with + (Figure 1 (b)). To cancel a waiting command, you can press esc.\n\n\n\nIf we run the example code for the basic mathematic operators, we will get the following results:\n\n1 + 1   # Addition\n\n[1] 2\n\n3 - 1   # Substraction\n\n[1] 2\n\n2 * 3   # Multiplication\n\n[1] 6\n\n8 / 2   # Division\n\n[1] 4\n\n8 %% 2  # Modulo\n\n[1] 0\n\n\nBefore each result, you can see [1]. This indicates that that specific line of code starts with the nth result. When a single code starts printing multiple results, this can help identify what n a certain result is.\n\n\n\n\n\n\n\n\n\n\n\n(a) Ready\n\n\n\n\n\n\n\n\n\n\n\n(b) Waiting for input to finish\n\n\n\n\n\n\n\nFigure 1: Console states",
+    "objectID": "plotting.html#ggplot2",
+    "href": "plotting.html#ggplot2",
+    "title": "Plotting",
+    "section": "{ggplot2}",
+    "text": "{ggplot2}\nBasically, the grammar of graphics provides a foundation that describes how any statistical graphic can be build up, which is based on layers. This layered system gives rise to how the package {ggplot2} allows us to create figures (i.e. plots).\n\nLayer 1: the data\nThe first layer we specify is the data layer. In this layer, we specify our data and the mapping of the aesthetics, meaning we define what our x-axis will portray, the y-axis, what colours, etc. will portray. This first layer is called using ggplot():\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm))\n\n\n\n\n\n\n\n\n\nHere, we specified the first argument (data = penguins) to be our dataset. For the second argument (mapping = aes()), we supply a function: aes(). This function allows us to specify what will make up the aesthetics of the graph: the x-axis will be ‘body_mass_g’ and the y-axis will be ‘flipper_length_mm’. Because we did not supply any other layer, we can see that the figure remains largely empty, only having some automatically set limits and titles for the axes.\n\n\nLayer 2: the geometries\nNow we can add the geometries. We are offered a large number of geometries by {ggplot2}, with some basics including points, lines, bars, histograms, rectangles, segments, steps, and ribbons. Each geometry is called by a geom_...() function, such as geom_point() and geom_line().\nFor our figure, we will add points.\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n    # Geometries\n    geom_point()\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nYou may notice that layers in these plots are added together by using a plus (+) sign. Additionally, the warning you is just {ggplot2} telling you there were some NA’s that could not be drawn in the plot. Note that this error is also given if you have some values that are outside of the boundaries of your plot.\nWithin each geometry, we can edit many things, such as the colour, fill (i.e. the colour of shapes that contain an inside), size, alpha (i.e. transparency), and shape (or linetype for lines). Much more is possible, but can be learned from the help functions for each geometry.\nNote that any geometry is applied in subsequent order. If we add a trendline (geom_smooth(method = \"lm\", formula = \"y ~ x\")), this will be drawn on top of the points if we specify it after geom_point() or before if we specify it before geom_point().\nLet’s do this now:\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n    # Geometries\n    geom_smooth(method = \"lm\", formula = \"y ~ x\", colour = \"#B58900\", fill = \"#B58900\", alpha = 0.3) +\n    geom_point(shape = 10)\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nWe specified shape as a number, for which you can find online what different numbers mean. We specified the colour as a hex code, but you can also use the rgb() function for RGB specification, or English language for a number of colours that can be found here. Lastly, we specify the British English colour instead of the American English color. {ggplot2} will accept both, for arguments and for functions (e.g. scale_color_manual() and scale_colour_manual() both exist and do the same thing).\n\n\nLayer 3: the scaling\nFor the third layer, we will apply scaling, which means we will edit anything that can be a scale (e.g. axes, colours, fill).\n\n\n\n\n\n\nNote\n\n\n\nNote that we deviate from the grammar of graphics in building our plot. The order in which we specify our layers does not adhere to the grammar of graphics. Luckily, in the background, {ggplot2} ignores this, only keeping the order in which we called geometries for geometries, but for instance not drawing theming prior to geometries, even if we specify so.\n\n\nIn our current plot, we have two scales: the x-axis and y-axis. We can edit these using scale functions that concur with the scale type (i.e. continuous, discrete, etc.). In our case, both scales are continuous, so we will use scale_x_continuous() and scale_y_continuous(). For other types of scales, we might also use scale_x_discrete(), scale_x_date(), etc.\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n    # Geometries\n    geom_smooth(method = \"lm\", formula = \"y ~ x\", colour = \"#B58900\", fill = \"#B58900\", alpha = 0.3) +\n    geom_point(shape = 10) +\n    # Scaling\n    scale_x_continuous(name = \"Body mass (grams)\",\n                       limits = c(2500, 6500),\n                       breaks = seq(2500, 6500, 500),\n                       labels = prettyNum(seq(2500, 6500, 500), big.mark = \",\")) +\n    scale_y_continuous(name = \"Flipper length (millimeters)\",\n                       limits = c(150, 250),\n                       breaks = seq(170, 240, 10))                     \n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nIn the scale functions, we can give the name of the axis, the limits of the axis, at which points there should be ticks (breaks), and the labels given to each tick.",
     "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#functions",
-    "href": "creating.html#functions",
-    "title": "Creating data",
-    "section": "Functions",
-    "text": "Functions\nNow that we know the basic mathematic operators, we could calculate the standard deviation. For example, for the numbers 3, 8, 3, 7 and 1, we could do the following:\n\n# Calculate the mean\n(3 + 8 + 3 + 7 + 1) / 5\n\n[1] 4.4\n\n\n\n# Use the calculated mean to calculate the standard deviation\n(((3 - 4.4) ^ 2 + (8 - 4.4) ^ 2 + (3 - 4.4) ^ 2 + (7 - 4.4) ^ 2 + (1 - 4.4) ^ 2) / (5 - 1)) ^ 0.5\n\n[1] 2.966479\n\n\n\n\nA sample’s standard deviation \\(s\\) is obtained by calculating:\n\\[\\sqrt\\frac{\\sum{(x-\\overline{x})^2}}{n-1}\\]\nHowever, with only 5 numbers, this is already a lot of effort. This is where functions come in: R has many built-in keywords that allow you to quickly perform operations and/or calculations on the data, which we call functions. A function has a generic name and is followed by opening and closing brackets. Between the brackets, we can supply so-called arguments (i.e., data and/or specifications). For example, if we wanted to calculate the standard deviation, instead of typing out all the numbers, we could just type the following:\n\n# Calculate standard deviation\nsd(c(3, 8, 3, 7, 1))\n\n[1] 2.966479\n\n\n\n\n\n\n\n\nIn the standard deviation function, we use the c() function. Later we will elaborate on this, but for now it is enough to remember that c() creates a collection of data, which is more often called an object.\nBe aware that R is case-sensitive: c() as a function differs from C().\n\n\n\nLet’s see some standard functions that will be of great help to you.\n\nSum\nsum(), as it name suggests, sums the supplied values. It has the following arguments:\n\n...: the ellipsis indicates that any number of values can be supplied here. The sum function can take numeric values, integers, and booleans/logicals (i.e., it can sum the amount of TRUEs).\nna.rm = FALSE: na.rm indicates whether any missing values should be dropped. By default, this is FALSE, meaning that the function will return NA if there is any NAs present in the data you are trying to sum. If you want to sum all valid values (thus drop all NAs), you can specify na.rm = TRUE.\n\nSee the below examples:\n\nsum(3, 4, 5, 6)\n\n[1] 18\n\nsum(3, NA, 5, 6)\n\n[1] NA\n\nsum(3, NA, 5, 6, na.rm = TRUE)\n\n[1] 14\n\n\n\n\n\n\n\n\nIn the sum() function, na.rm has the default value FALSE. This means that this argument does not have to be defined. If we would not define it, it would just use FALSE.\n\n\n\n\n\nMean and median\nTo get the mean or median from some data, you can use the mean() and median() functions. mean() has the following arguments:\n\nx: a collection (or object) of data containing the data for which a mean should be calculated.\ntrim = 0: what proportion of the outskirts of the data should be trimmed (e.g., 0.05 trims 5% of data on each side). It defaults to 0.\nna.rm = FALSE: whether NAs should be dropped (as in sum())\n\nmedian() has the same arguments, except that it doesn’t have trim.\nHere are some examples:\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 98.63636\n\nmean(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), trim = 0.1)\n\n[1] 4.555556\n\nmedian(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n[1] 4\n\n\n\n\n\n\n\n\nNotice how with the mean, we specified that 0.1 was the value for trim, but we did not specify that c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044) was the value for x. This is because R inputs values for arguments in order: the first supplied value will be used for the first argument, the second supplied value will be used for the second argument, etc. However, sometimes I do not want to specify the second value, but I do want to specify the third value. In this case I can name the argument as in trim = 0.1, so that R knows the 0.1 is meant for trim.\n\n\n\n\n\nMin and max\nNow that we know how to calculate the mean and median from some data, we might also be interest in finding the lowest and highest value (for example, to detect the 1044 outlier). We can do this with min() and max(), which both take only one argument: ... as in the sum() function.\nTo get the minimum and maximum value from the data we just calculated the mean and median of, we could do the following:\n\nmin(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 0\n\nmax(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044)\n\n[1] 1044\n\n\n\n\nSummary and quintile\nNow we know how to calculate the mean, median, minimum, and maximum values from some data, but what if we also want to know the 1st and 3rd quartile? Additionally, we do not want to use a function for each separate value. In this case, you can use summary(), which calculates the minimum, 1st quartile, mean, median, 3rd quartile, and maximum all at once. The summary function has multiple arguments, but only one is relevant for now:\n\nobject: the data of which you want to get a summary.\n\nFor example:\n\nsummary(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044))\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n   0.00    3.00    4.00   98.64    7.50 1044.00 \n\n\nHowever, maybe we are more interested in the 1st and 99th quantiles. In that case we could use quantile(). You can supply the following arguments to quantile():\n\nx: a collection of data (or object) of which you want to calculate quantiles.\nprobs = seq(0, 1, 0.25): the probabilities (or quantiles) you want to calculate. It defaults to seq(0, 1, 0.25), which just means a sequence from 0 to 1 with increments of 0.25.\nna.rm = FALSE: whether NAs should be dropped.\nnames = TRUE: whether the output should show the name (or specified quantile).\n\nSo we could do:\n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99))\n\n   1%   99% \n  0.1 940.4 \n\nquantile(c(3, 4, 8, 3, 0, 4, 7, 8, 3, 1, 1044), \n         probs = c(0.01, 0.99), names = FALSE)\n\n[1]   0.1 940.4\n\n\n\n\nTable\nWe have now seen some functions that we can use to get some descriptives about continuous data. However, sometimes we just want to count the amount of different observations. For this we can use table(). Some of the relevant arguments for the table function are the following:\n\n...: the variables to be supplied to table, as we saw in earlier functions.\nuseNA = c(\"no\", \"ifany\", \"always\"): should NAs be tabulated (conditional on if any are present) or not. The c(\"no\", \"ifany\", \"always\"), means that useNA takes any of the three following values: \"no\", \"ifany\", or \"always\".\n\nFor example:\n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA))\n\n\nFALSE  TRUE \n    3     5 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, NA), \n      useNA = \"ifany\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     1 \n\ntable(c(TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      useNA = \"always\")\n\n\nFALSE  TRUE  &lt;NA&gt; \n    3     5     0 \n\n\nYou can also use table() to create a cross-table:\n\ntable(c(FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE), \n      c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE))\n\n       \n        FALSE TRUE\n  FALSE     3    1\n  TRUE      3    2\n\n\nFor the cross-tabulation, values are compered based on their order in the data you supply (e.g., the first value, FALSE in the first set is compared to the first value, TRUE, in the second set.)\n\n\n\n\n\n\nWe now went through some arguments for commonly used functions together, but it is good that you know what arguments a function takes and where you can find this. If you want to know more about any function, for example for sum(), you can open the documentation by running ?sum. In the help panel on the lower right in RStudio, you will find the documentation with the function, its default values, elaboration on the arguments it takes, details, and examples. You can also click on a function and press F1 to open the help panel.",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#storing-values",
-    "href": "creating.html#storing-values",
-    "title": "Creating data",
-    "section": "Storing values",
-    "text": "Storing values\nWe have now seen how we can calculate some values using basic mathematic operators and functions. However, just typing out our data can become quite tiresome, so preferably I would store them in a variable. In R, things that store data are often called subjects. Let’s look at some different ways we can store data.\n\nSingle value\nWe can assign a single value by using the &lt;- operator (which has the easy keyboard shortcut alt + - in RStudio). To then see the object, we can simply run it. For example:\n\nx &lt;- sum(4, 9)\nx\n\n[1] 13\n\nx &lt;- 4 + 5\nx\n\n[1] 9\n\n\n\n\n\n\n\n\nNote that we defined the object x twice. When defining an object that already exists, the old object is overridden.\n\n\n\n\n\n\n\n\n\nTo assign a value to an object, you can also use = instead of &lt;-. However, this is often unclear and may be confused with defining arguments in functions. It is therefore strongly recommended to only assign objects using &lt;-.\n\n\n\n\n\nVectors\nWhen we want to assign multiple values to a single variable, we can create a vector. There are two simple ways to create a vector. First, we can use the c function (c()), that we saw before when discussing functions. c() creates a simple collection of any type of value. We call this collection a vector.\n\nx &lt;- c(4, 6, 9, 3, 2)\nx\n\n[1] 4 6 9 3 2\n\n# Using a vector in the sum function\nsum(x)\n\n[1] 24\n\n\nYou can also create a vector of sequential integers by using ::\n\nx &lt;- 5:17\nx\n\n [1]  5  6  7  8  9 10 11 12 13 14 15 16 17\n\n\nAdditionally, you can create any sequence using the seq() function which takes the arguments from, to, and by, meaning respectively the start, finish, and increments of the sequence.\n\nx &lt;- seq(5, 7, 0.5)\nx\n\n[1] 5.0 5.5 6.0 6.5 7.0\n\n\nWe could also multiply two vectors with each other (given they have the same length) or a vector with a single value:\n\nx &lt;- 1:5\ny &lt;- 5:1\n\nx * y\n\n[1] 5 8 9 8 5\n\nx * 2\n\n[1]  2  4  6  8 10\n\n\nLastly, you could create a named vector (i.e., each value has a name):\n\nx &lt;- c(\"Obs1\" = 42, \"Obs2\" = 28, \"Obs3\" = 91)\nx\n\nObs1 Obs2 Obs3 \n  42   28   91 \n\n\n\n\nLists\nA list is also a collection of data, but it can store much more than just values, such as vectors, and whole data sets:\n\nx &lt;- list(head(iris, 3), head(mtcars, 3))\nx\n\n[[1]]\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n\n[[2]]\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\nHowever, you cannot immediately apply mathematic operators on a list or use a list in data. If we have a list with data (for example different objects), we first have to unlist:\n\nx &lt;- list(4, 2)\nunlist(x) * 2\n\n[1] 8 4\n\n\nWhen you create a model, they are always stored in lists too, with many information alongside the results. We will come across this later in the tutorial.\n\n\nMatrices\nIf we want data with more than one dimension (i.e., columns and rows), we could create a matrix with the matrix function:\n\nx &lt;- matrix(c(31, 3, 18, 7, 84, 20), nrow = 3, ncol = 2)\nx\n\n     [,1] [,2]\n[1,]   31    7\n[2,]    3   84\n[3,]   18   20\n\n\nWe can also supply a single value that fills the entire matrix:\n\nx &lt;- matrix(\"Hello, World!\", nrow = 5, ncol = 3)\nx\n\n     [,1]            [,2]            [,3]           \n[1,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[2,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[3,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[4,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n[5,] \"Hello, World!\" \"Hello, World!\" \"Hello, World!\"\n\n\nMatrices are useful because they have multiple dimensions, which allows us to store different variables of the same person in multiple columns along the same row.\n\n\nData frames\nMatrices give us a flexible way to store data with rows and columns, but miss some flexibility when it comes to manipulating the data and performing calculations, loading it into functions, etc. In this case, data frames offer a good solution. Data frames look exactly matrices, but are much easier to manipulate and use for analyses. Data frames are likely what will compose most of the data you use in R.\nWe can create a data frame with the data.frame() function:\n\nx &lt;- data.frame(id = 1:5,\n                value1 = c(5, 2, 0, 2, 4),\n                value2 = c(9.4, 8.3, 2.8, 5.6, 2.7))\nx\n\n  id value1 value2\n1  1      5    9.4\n2  2      2    8.3\n3  3      0    2.8\n4  4      2    5.6\n5  5      4    2.7\n\n\nWhen working with data frames, there are some useful functions you can use:\n\nTo determine how many rows and columns a data frame (or matrix) has, you can use nrow() and ncol().\nTo change the row and column names, you can use rownames() and colnames(). To see how these functions work, you can access the examples in their documentation with ?rownames and ?colnames.\nTo change a data frame to a matrix or a matrix to a data frame, you can use as.matrix() and as.data.frame().",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#the-global-environment",
-    "href": "creating.html#the-global-environment",
-    "title": "Creating data",
-    "section": "The global environment",
-    "text": "The global environment\nWe have seen some ways to create and store data now. However, where can we find back what we have created? This is where the global environment comes in. Whenever you create an object in your code, that object will be stored in the global environment, which is just a general storage space. A great benefit that RStudio gives us is being able to see the global environment and whatever is stored in there, and to get a quick indication of what kind of data is stored.\nBefore we see the global environment, let’s first clean it with the following code:\nrm(list = ls())\nWith the rm() function, we can remove objects from our global environment, and here we specify that the list of variables to be removed (list =), is the whole global environment (ls()). It is useful to remove objects you do not need to keep your global environment clean. Not only does it help in available working memory, it is also good to work in an organized (global) environment.\nNow let’s create some new data to showcase the global environment in RStudio:\n# Load pre-existing data frame\ndata &lt;- iris\n\n# Create vector\nvector &lt;- 1:13\n\n# Create single value\nval &lt;- 42\n\n# Create vector of strings\nstrings &lt;- c(\"Hello\", \"I\", \"am\", \"a\", \"vector\")\nNow let’s look at our global environment. If you remember, the upper right window of the RStudio interface shows the global environment. With the data we just created, it will look like Figure 2 (a) (the colours might differ depending on your theme).\nFrom the global environment, we can learn a few things:\n\nThe current memory usage is 121 MiB, in the upper middle of the image.\nWe have one structured data object, data. This data object has 150 observations (rows) of 5 variables (columns).\nstrings is a character (chr) with 5 values ([1:5). We then see the first values.\nval is a single value, 42.\nvector is an integener (int) with 13 values ([1:13]`) and we can see the first values.\n\nThis already gives us quite some information, but we can also get some more information on the structured data. If you press the small blue button with an arrow, next to data, you will see that it opens, as in Figure 2 (b). This let’s us learn the following information about data:\n\nWe can see each of the columns of data. The first four are numerical (num).\nThe fifth column, Species, is a factor (i.e., categorical) with three levels (of which the first one is “setosa”).\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Global environment\n\n\n\n\n\n\n\n\n\n\n\n(b) Global environment with opened data\n\n\n\n\n\n\n\nFigure 2: The global environment",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#dealing-with-warnings-and-errors",
-    "href": "creating.html#dealing-with-warnings-and-errors",
-    "title": "Creating data",
-    "section": "Dealing with warnings and errors",
-    "text": "Dealing with warnings and errors\nWe have now gone through the basics of creating and storing data. However, sometimes, we supply a wrong value to a function or mess up a parenthesis somewhere. This can give either warnings or errors. In both cases, it is important to realize what is happening. Warnings are messages printed in the console that try to tell us that something might be wrong in the data or not suited, or that the data was manipulated in the function to make sure the function could work. For example, if I try to change a character string to numeric with as.numeric(), I will get the warning: Warning message: NAs introduced by coercion, but the function still completed.\nSometimes, warnings are expected or not a problem. In that case, you can put the whole code inside the function supressWarnings(), to silence the warning. It is however always of paramount importance that you annotate what the warning was and why it can be suppressed.\nSometimes, you might get an error instead of a warning. This means that the function could not continue to run and you have to fix the error before being able to run the function.\nNot all errors are as clear and you can not always figure out by yourself what is going wrong. Luckily, we have the internet! You can easily google the error and add ‘R’ at the end to find other people who encountered the same or similar problems and find solutions. If you can find nothing, you could always ask on coding forums, such as stackoverflow. When you ask a solution to a coding question, always supply your question with a reproducible example, so that a responder can run the code themselves and see where it goes wrong.",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#exercises",
-    "href": "creating.html#exercises",
-    "title": "Creating data",
-    "section": "Exercises",
-    "text": "Exercises\n\n1. Create and store numbers\nCreate a vector of the integers 5, 6, 7, 8, 9, and 10 and store it in an object called vec.\n\n\nAnswer\n# Answer 1: using c()\nvec &lt;- c(5, 6, 7, 8, 9, 10)\n\n# Answer 2: using the `:` operator\nvec &lt;- 5:10\n\n# Answer 3: using seq()\nvev &lt;- seq(5, 10, 1)\n\n\n\n\n2. Calculate quantiles\nCalculate the 2.5th and 97.5th percentile of the object vec.\n\n\nAnswer\nquantile(vec, probs = c(0.025, 0.975))\n\n\n 2.5% 97.5% \n5.125 9.875 \n\n\n\n\n3. Create a matrix\nUsing the data in vec, create a matrix with two columns and three rows.\n\n\nAnswer\nmatrix(vec, nrow = 3, ncol = 2)\n\n\n     [,1] [,2]\n[1,]    5    8\n[2,]    6    9\n[3,]    7   10\n\n\n\n\n4. Getting help\nOpen the documentation for rm().\n\n\nAnswer\n?rm\n\n\n\n\n5. Cleaning up\nNow use rm() to remove vec again.\n\n\nAnswer\nrm(vec)",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "creating.html#next-topic",
-    "href": "creating.html#next-topic",
-    "title": "Creating data",
-    "section": "Next topic",
-    "text": "Next topic\nNow that we went through the basics of creating and storing data, we can start talking about accessing and manipulating data.\nNext: Using data",
-    "crumbs": [
-      "The basics",
-      "Creating data"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction",
-    "section": "",
-    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio), but also take you further, showing you different alternatives to reach the same goal and learning some useful tricks to quickly become an efficient R user. The general focus is on using R for epidemiologic data analysis, such as how to perform regression analyses and plot results, although it also contains a comprehensive introduction to R.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\nThis tutorial might feel rather dense and time-consuming as compared to other tutorials but you do not have to do everything at once. Although it is a good idea to do the basics and learn about the tidyverse, other sections might be studied on a need-to-know basis. Additionally, this tutorial will (hopefully) leave you with knowledge about using R, but also hand you the tools to learn more yourself and quickly understand new concepts and functions.\n\nExercises\n0: Open the answer\n\n\nAnswer\n# Well done!\n\n\nNext: R",
-    "crumbs": [
-      "Start",
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "packages.html",
-    "href": "packages.html",
-    "title": "Packages",
-    "section": "",
-    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#packages",
-    "href": "packages.html#packages",
-    "title": "Packages",
-    "section": "",
-    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#pre-installed-packages",
-    "href": "packages.html#pre-installed-packages",
-    "title": "Packages",
-    "section": "Pre-installed packages",
-    "text": "Pre-installed packages\nSome packages come pre-installed with R. For example, sum() comes from the base package, while sd() comes from the stats package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in Figure 1. Mind you that in Figure 1, there might be different packages than in your window, depending on what packages are already or not yet installed.\nIn Figure 1, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.\n\n\n\n\n\n\nFigure 1: Installed packages\n\n\n\nIf we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:\n?stats\nWe could also open an extensive overview of a package’s details using library():\nlibrary(help = \"stats\")\nThis overview shows us not only detailed information on the package, but also the functions the package supplies.\n\n\n\n\n\n\nWhen we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called {base}.",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#installing-packages",
-    "href": "packages.html#installing-packages",
-    "title": "Packages",
-    "section": "Installing packages",
-    "text": "Installing packages\nAlthough the pre-installed packages give us a lot of functionality, we might still want more. Yes, with {stats} we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the {survival} package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: ‘choose a website identical to the original download website, but with a different server’. This way, you can pick a server in your own country increasing download speeds.\ninstall.packages(\"survival\")\n\n\nWhen packages are installed, they will always give the message MD5 sums checked. MD5 is an algorithm that can help identify unintentional data/file corruption (more).\nWhen we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.\n\nR tools\nSometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from CRAN.\n\n\nPackage versions\nPackages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases:\n\nThe package is built for your current version of R: there will be no problem.\nThe package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.\nThe package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or, less ideally, switch back to an older version of R.\n\n\n\nInstalling from GitHub\nSometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install {devtools}:\ninstall.packages(\"devtools\")\nFrom {devtools}, we can use the install_github() function to install a package. For instance, if we wanted to install {KMunicate} from GitHub, we could run:\ninstall_github(\"ellessenne/KMunicate-package\")\nwhere ellessenne is the GitHub user’s username and KMunicate-package the repository of the package.",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#loading-packages",
-    "href": "packages.html#loading-packages",
-    "title": "Packages",
-    "section": "Loading packages",
-    "text": "Loading packages\nThe good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using library(). If we wanted to load {survival} after installing it previously, we can do:\nlibrary(\"survival\")\nWe could also load multiple packages at once with library():\nlibrary(\"survival\", \"stats\")\nThe help function for library() shows that there is also a function called require(). In general, this works similar to library() but is used more often within functions. Whereas library() will return an error if the package is not installed, require() will only give a warning.\n\nMasking\nSometimes, we may get the warning that certain functions become masked:\n\n# Here we set the mirror for downloading, but this is only needed for the tutorial to render: in your own R, you do not need to do this.\noptions(repos = c(CRAN = \"https://mirror.lyrahosting.com/CRAN/\"))\n\n# Install dplyr\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"dplyr\", quiet = TRUE)\n\npackage 'dplyr' successfully unpacked and MD5 sums checked\n\n\nWarning: cannot remove prior installation of package 'dplyr'\n\n\nWarning in file.copy(savedcopy, lib, recursive = TRUE): problem copying\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\00LOCK\\dplyr\\libs\\x64\\dplyr.dll\nto\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\dplyr\\libs\\x64\\dplyr.dll:\nPermission denied\n\n\nWarning: restored 'dplyr'\n\n\n\n# Load dplyr\nlibrary(\"dplyr\")\n\nWarning: package 'dplyr' was built under R version 4.4.1\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nLoading the package {dplyr} caused, among others, the function filter() from {stats} to be masked. This means that if we call filter(), we will call the function from {dplyr}, not from {stats}, which might have a different functionality. If we still want to use filter() from {stats}, we can prespecify the package with a double colon :::\nstats::filter()\n\n\n\n\n\n\nIn general, we can call functions from installed packages without loading the package, by using ::. Without loading {survival}, we can still call survival::coxph(), so long as {survival} is installed.\n\n\n\n\n\nPacman\nIt can be a hassle to first install packages and then load them with library. By using the package {pacman}, we can simplify this process. We only need to install it once on our device and after that we load any package with:\npacman::p_load(\"survival\", \"dplyr\")\n{pacman} will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function p_load() immediately from {pacman} with ::, we do not need to load {pacman} first.\nNote that {pacman} does not tell you whether a function becomes masked.\n\n\nAnnotating package loading\nAlthough we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:\n# Load packages\npacman::p_load(\"dplyr\",         # Data manipulation\n               \"tidyr\",         # Pivoting data\n               \"magrittr\",      # Efficient pipe structures\n               \"stringr\",       # Better regexing\n               \"mice\",          # Multiple imputation\n               \"summarytools\",  # Summarizing data frames\n               \"haven\"          # Load SPSS data\n)",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#learning-how-to-work-with-packages",
-    "href": "packages.html#learning-how-to-work-with-packages",
-    "title": "Packages",
-    "section": "Learning how to work with packages",
-    "text": "Learning how to work with packages\n\nDemos\nPackages can supply demos on how to work with certain functions in the package. To see this for the packages loaded by the base package, we can use demo():\ndemo()\nWe could also see the demos for all packages installed:\ndemo(package = .packages(all.available = TRUE))\n\n\nVignettes\nMore commonly, packages offer vignettes instead of demos. Vignettes are long guides on how to apply a certain concept using different functions in the package. To see the available vignettes of a package, we can use browseVignettes():\nbrowseVignettes(\"survival\")\nWe can also immediately select a vignette of interest:\nvignette(\"splines\")\nTo see the object names to open vignettes from vignette(), we can supply only the package:\nvignette(package = \"survival\")",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#updating-and-unistalling-packages",
-    "href": "packages.html#updating-and-unistalling-packages",
-    "title": "Packages",
-    "section": "Updating and unistalling packages",
-    "text": "Updating and unistalling packages\n\nUpdating\nSometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio (Figure 1). Alternatively, we can just rerun the package installation using install.packages() to update it. Note that we cannot use {pacman} here, as {pacman} will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use update.packages(), although this might not update packages to a version suitable for new major R versions.\n\n\nUninstalling\nIf we want to get rid of a package, maybe to clean up some space on our device, we can remove it using remove.packages().\n\n\n\n\n\n\nSometimes we want to update a package, but that package needs an updated version of a package such as {rlang}. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that {rlang} can be updated too. However, if we agree, the R session will restart and immediately load {rlang} again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of {rlang} (or similar cases), first we need to use remove.packages() to uninstall {rlang}, then reinstall {rlang}, and then update the package we wanted to update originally.",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#a-warning",
-    "href": "packages.html#a-warning",
-    "title": "Packages",
-    "section": "A warning",
-    "text": "A warning\nAlthough packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.\n\nDependencies\nAlmost all R packages are built using another R package. This is why installing {dplyr} actually installs a lot of other packages, which are all required to allow {dplyr} to function. These are called dependencies. Because packages are dependent on other packages, deprecation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as {dplyr}, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is deprecated). Dependencies can become dangerous quickly, as talked about shortly here and here.\n\n\nDeprecate: to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. Link.\n\n\nTrust\nAnyone can write packages for R, including you and me. On the one hand, this means that everyone can contribute their code to the ease of all other R users. However, this also means that individuals with malicious intent can create R packages. Therefore, you should always be careful when installing R packages. Although CRAN is an archive with many trusted packages, it is not a protection against malicious packages or a guarantee of safety. More on this can be read here.",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#exercises",
-    "href": "packages.html#exercises",
-    "title": "Packages",
-    "section": "Exercises",
-    "text": "Exercises\n\n1. Installing a new package\nInstall the package {tidyverse}.\n\n\nAnswer\n# Answer 1: using {pacman}\npacman::p_load(\"tidyverse\")\n\n\nalso installing the dependencies 'ps', 'processx', 'blob', 'gargle', 'uuid', 'ids', 'rematch2', 'timechange', 'systemfonts', 'textshaping', 'callr', 'selectr', 'conflicted', 'dbplyr', 'dtplyr', 'googledrive', 'googlesheets4', 'lubridate', 'modelr', 'ragg', 'reprex', 'rvest', 'xml2'\n\n\nWarning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:\n  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'\n\n\n\n  There are binary versions available but the source versions are later:\n     binary source needs_compilation\nps    1.7.7  1.8.0              TRUE\nragg  1.3.2  1.3.3              TRUE\n\npackage 'processx' successfully unpacked and MD5 sums checked\npackage 'blob' successfully unpacked and MD5 sums checked\npackage 'gargle' successfully unpacked and MD5 sums checked\npackage 'uuid' successfully unpacked and MD5 sums checked\npackage 'ids' successfully unpacked and MD5 sums checked\npackage 'rematch2' successfully unpacked and MD5 sums checked\npackage 'timechange' successfully unpacked and MD5 sums checked\npackage 'systemfonts' successfully unpacked and MD5 sums checked\npackage 'textshaping' successfully unpacked and MD5 sums checked\npackage 'callr' successfully unpacked and MD5 sums checked\npackage 'selectr' successfully unpacked and MD5 sums checked\npackage 'conflicted' successfully unpacked and MD5 sums checked\npackage 'dbplyr' successfully unpacked and MD5 sums checked\npackage 'dtplyr' successfully unpacked and MD5 sums checked\npackage 'googledrive' successfully unpacked and MD5 sums checked\npackage 'googlesheets4' successfully unpacked and MD5 sums checked\npackage 'lubridate' successfully unpacked and MD5 sums checked\npackage 'modelr' successfully unpacked and MD5 sums checked\npackage 'reprex' successfully unpacked and MD5 sums checked\npackage 'rvest' successfully unpacked and MD5 sums checked\npackage 'xml2' successfully unpacked and MD5 sums checked\npackage 'tidyverse' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Temp\\RtmpsvjtpR\\downloaded_packages\n\n\ninstalling the source packages 'ps', 'ragg'\n\n\n\ntidyverse installed\n\n\nWarning: package 'tidyverse' was built under R version 4.4.1\n\n\nWarning: package 'ggplot2' was built under R version 4.4.1\n\n\nWarning: package 'tibble' was built under R version 4.4.1\n\n\nWarning: package 'tidyr' was built under R version 4.4.1\n\n\nWarning: package 'readr' was built under R version 4.4.1\n\n\nWarning: package 'purrr' was built under R version 4.4.1\n\n\nWarning: package 'stringr' was built under R version 4.4.1\n\n\nWarning: package 'forcats' was built under R version 4.4.1\n\n\nWarning: package 'lubridate' was built under R version 4.4.1\n\n\nAnswer\n# Answer 2: using install.packages()\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"tidyverse\", quiet = TRUE)\n\n\nWarning: package 'tidyverse' is in use and will not be installed\n\n\n\n\n2. Loading a new package\nNow load the package {tidyverse}\n\n\nAnswer\n# Answer 1: using {pacman}, the package is already loaded after installing\n\n# Answer 2: using library() after install.packages()\nlibrary(\"tidyverse\")",
-    "crumbs": [
-      "The basics",
-      "Packages"
-    ]
-  },
-  {
-    "objectID": "packages.html#next-topic",
-    "href": "packages.html#next-topic",
-    "title": "Packages",
-    "section": "Next topic",
-    "text": "Next topic\nNow that we know the basics of R packages, let’s start looking at how we can harness their power to load our own data.\nNext: Data",
-    "crumbs": [
-      "The basics",
-      "Packages"
+      "New skills",
+      "Plotting"
     ]
   },
   {

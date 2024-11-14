@@ -17,32 +17,36 @@
     <lastmod>2023-07-12T08:08:30.063Z</lastmod>
   </url>
   <url>
-    <loc>https://rjjanse.github.io/rt/magrittr.html</loc>
-    <lastmod>2024-11-13T11:00:45.721Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/dplyr.html</loc>
-    <lastmod>2024-11-12T12:34:30.277Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/data.html</loc>
-    <lastmod>2024-11-12T12:34:00.118Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/creating.html</loc>
-    <lastmod>2023-07-11T21:01:02.507Z</lastmod>
-  </url>
-  <url>
-    <loc>https://rjjanse.github.io/rt/datatable.html</loc>
-    <lastmod>2024-11-13T08:46:44.382Z</lastmod>
+    <loc>https://rjjanse.github.io/rt/packages.html</loc>
+    <lastmod>2023-10-21T20:51:26.000Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/index.html</loc>
     <lastmod>2023-07-17T20:37:26.250Z</lastmod>
   </url>
   <url>
-    <loc>https://rjjanse.github.io/rt/packages.html</loc>
-    <lastmod>2023-10-21T20:51:26.000Z</lastmod>
+    <loc>https://rjjanse.github.io/rt/datatable.html</loc>
+    <lastmod>2024-11-13T08:46:44.382Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/creating.html</loc>
+    <lastmod>2024-11-14T18:13:31.039Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/data.html</loc>
+    <lastmod>2024-11-14T18:17:53.447Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/dplyr.html</loc>
+    <lastmod>2024-11-12T12:34:30.277Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/magrittr.html</loc>
+    <lastmod>2024-11-14T18:19:07.843Z</lastmod>
+  </url>
+  <url>
+    <loc>https://rjjanse.github.io/rt/plotting.html</loc>
+    <lastmod>2024-11-14T19:21:10.465Z</lastmod>
   </url>
   <url>
     <loc>https://rjjanse.github.io/rt/regex.html</loc>
