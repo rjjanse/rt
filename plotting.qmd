@@ -1,0 +1,120 @@
+---
+title: "Plotting"
+---
+
+## Plotting in R
+A lot of analyses are represented by figures in the final papers. Additionally, visualization of data may allow better scrutiny of data patterns. As such, creating figures in R, or 'plotting' (because we are making plots).
+
+The way plots are created varies, but two large methods stand out. The first we will discuss is implemented by the `{ggplot2}` package. This package is based on the grammar of graphics, a landmark work on statistical graphics (ergo 'gg' for 'grammr of graphics'). The second method we will discuss is the base R plotting, which is part of the R `{graphics}` package.
+
+As example data, we will use the package `{palmerpenguins}`, which contains data on 344 penguins from three islands in the Palmer Archipelago, Antarctica (more [here](https://allisonhorst.github.io/palmerpenguins/)).
+
+We will also load the `{ggplot2}` package. The `{graphics}` package is installed and loaded by default.
+
+```{r}
+# Load packages
+pacman::p_load("ggplot2",          # Data visualization
+               "palmerpenguins"    # Example data
+               )
+```
+
+## `{ggplot2}`
+Basically, the grammar of graphics provides a foundation that describes how any statistical graphic can be build up, which is based on layers. This layered system gives rise to how the package `{ggplot2}` allows us to create figures (i.e. plots).
+
+### Layer 1: the data
+The first layer we specify is the data layer. In this layer, we specify our data and the mapping of the aesthetics, meaning we define what our x-axis will portray, the y-axis, what colours, etc. will portray. This first layer is called using `ggplot()`:
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm))
+
+```
+
+Here, we specified the first argument (`data = penguins`) to be our dataset. For the second argument (`mapping = aes()`), we supply a function: `aes()`. This function allows us to specify what will make up the aesthetics of the graph: the x-axis will be 'body_mass_g' and the y-axis will be 'flipper_length_mm'. Because we did not supply any other layer, we can see that the figure remains largely empty, only having some automatically set limits and titles for the axes.
+
+### Layer 2: the geometries
+Now we can add the geometries. We are offered a large number of geometries by `{ggplot2}`, with some basics including points, lines, bars, histograms, rectangles, segments, steps, and ribbons. Each geometry is called by a `geom_...()` function, such as `geom_point()` and `geom_line()`.
+
+For our figure, we will add points.
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    # Geometries
+    geom_point()
+
+```
+
+You may notice that layers in these plots are added together by using a plus (`+`) sign. Additionally, the warning you is just `{ggplot2}` telling you there were some `NA`'s that could not be drawn in the plot. Note that this error is also given if you have some values that are outside of the boundaries of your plot.
+
+Within each geometry, we can edit many things, such as the colour, fill (i.e. the colour of shapes that contain an inside), size, alpha (i.e. transparency), and shape (or linetype for lines). Much more is possible, but can be learned from the help functions for each geometry.
+
+Note that any geometry is applied in subsequent order. If we add a trendline (`geom_smooth(method = "lm", formula = "y ~ x")`), this will be drawn on top of the points if we specify it after `geom_point()` or before if we specify it before `geom_point()`.
+
+Let's do this now:
+```{r}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    # Geometries
+    geom_point(shape = 5) +
+    geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) 
+
+```
+
+We specified shape as a number, for which you can find [online](http://www.sthda.com/english/wiki/ggplot2-point-shapes) what different numbers mean. We specified the colour as a hex code, but you can also use the `rgb()` function for RGB specification, or English language for a number of colours that can be found [here](https://r-charts.com/colors/). Lastly, we specify the British English colour instead of the American English color. `{ggplot2}` will accept both, for arguments and for functions (e.g. `scale_color_manual()` and `scale_colour_manual()` both exist and do the same thing).
+
+### Layer 3: the scaling
+For the third layer, we will apply scaling, which means we will edit anything that can be a scale (e.g. axes, colours, fill).
+
+::: {.callout-note}
+Note that we deviate from the grammar of graphics in building our plot. The order in which we specify our layers does not adhere to the grammar of graphics. Luckily, in the background, `{ggplot2}` ignores this, only keeping the order in which we called geometries for geometries, but for instance not drawing theming prior to geometries, even if we specify so.
+:::
+
+In our current plot, we have two scales: the x-axis and y-axis. We can edit these using scale functions that concur with the scale type (i.e. continuous, discrete, etc.). In our case, both scales are continuous, so we will use `scale_x_continuous()` and `scale_y_continuous()`. For other types of scales, we might also use `scale_x_discrete()`, `scale_x_date()`, etc.
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    # Geometries
+    geom_point(shape = 5) +
+    geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ",")) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10))                     
+
+```
+
+In the scale functions, we can give the name of the axis, the limits of the axis, at which points there should be ticks (`breaks`), and the labels given to each tick.
+
+### Layer 4: labels
+In the next layer, we will apply labels to the plot, which includes the title, subtitle, axes labels, and legends.
+
+For the axes labels, we can use `xlab()` and `ylab()` respectively. We won't need these as we specified the name already in the scaling function, but they 
+might be useful if you do not need the scale function. The title can be specified using the `ggtitle()` function, which also allows you to specify a subtitle. Alternatively,
+this can be done through the `labs()` function, which allows much more control, such as a tag (for multipanel labels where you want to tag A, B, C, etc.), a caption, and 
+alt text (for accessibility purposes).
+
+For the plot we're building, we will aply a title and a subtitle.
+
+```{r}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    # Geometries
+    geom_point(shape = 5) +
+    geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ",")) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins")                 
+
+```
+
+### Layer 5: coordinates and transformations
+
+### Layer 6: theme

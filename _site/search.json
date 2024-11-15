@@ -187,17 +187,6 @@
     ]
   },
   {
-    "objectID": "tidyr.html#indicate-non-hurricanes",
-    "href": "tidyr.html#indicate-non-hurricanes",
-    "title": "Tidyr",
-    "section": "2. Indicate non-hurricanes",
-    "text": "2. Indicate non-hurricanes\nAs an alternative, set category to -1 if the storm was not a hurricane (and therefore the category is NA).\n\n\nAnswer\n# Set NA's to -1\nstorms_replaced &lt;- replace_na(storms, list(category = -1))\n\n# See categories in storms_replaced\ntable(storms_replaced[[\"category\"]], useNA = \"always\")\n\n\n\n   -1     1     2     3     4     5  &lt;NA&gt; \n14734  2548   993   593   553   116     0",
-    "crumbs": [
-      "Into the tidyverse",
-      "Tidyr"
-    ]
-  },
-  {
     "objectID": "tidyr.html#next-topic",
     "href": "tidyr.html#next-topic",
     "title": "Tidyr",
@@ -297,201 +286,124 @@
     ]
   },
   {
-    "objectID": "magrittr.html",
-    "href": "magrittr.html",
-    "title": "Magrittr",
+    "objectID": "packages.html",
+    "href": "packages.html",
+    "title": "Packages",
     "section": "",
-    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "magrittr.html#magrittr",
-    "href": "magrittr.html#magrittr",
-    "title": "Magrittr",
+    "objectID": "packages.html#packages",
+    "href": "packages.html#packages",
+    "title": "Packages",
     "section": "",
-    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
+    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
     "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html",
-    "href": "dplyr.html",
-    "title": "Dplyr",
-    "section": "",
-    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R). If you have not already installed and loaded {dplyr}, you can do so with:\n\n# Load dplyr\npacman::p_load(\"dplyr\")\n\nIn this section, we will work with the starwars dataset, that is automatically loaded in when you load {dplyr}.\n\n# Show first 5 rows of starwars\nhead(starwars, n = 5)\n\n# A tibble: 5 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…\n2 C-3PO        167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n3 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n4 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…\n5 Leia Org…    150    49 brown      light      brown           19   fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n\nLet’s load the starwars data into our Global Environment so that we can easily access it:\n\n# Load starwars into Global Environment object called sw\nsw &lt;- starwars\n\nAll {dplyr} functions that take a data frame or tibble start with the .data argument. Therefore, in all examples below, we first specify our .data as sw before supplying arguments of the function.",
+    "objectID": "packages.html#pre-installed-packages",
+    "href": "packages.html#pre-installed-packages",
+    "title": "Packages",
+    "section": "Pre-installed packages",
+    "text": "Pre-installed packages\nSome packages come pre-installed with R. For example, sum() comes from the base package, while sd() comes from the stats package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in Figure 1. Mind you that in Figure 1, there might be different packages than in your window, depending on what packages are already or not yet installed.\nIn Figure 1, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.\n\n\n\n\n\n\nFigure 1: Installed packages\n\n\n\nIf we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:\n?stats\nWe could also open an extensive overview of a package’s details using library():\nlibrary(help = \"stats\")\nThis overview shows us not only detailed information on the package, but also the functions the package supplies.\n\n\n\n\n\n\nWhen we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called {base}.",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html#dplyr",
-    "href": "dplyr.html#dplyr",
-    "title": "Dplyr",
-    "section": "",
-    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R). If you have not already installed and loaded {dplyr}, you can do so with:\n\n# Load dplyr\npacman::p_load(\"dplyr\")\n\nIn this section, we will work with the starwars dataset, that is automatically loaded in when you load {dplyr}.\n\n# Show first 5 rows of starwars\nhead(starwars, n = 5)\n\n# A tibble: 5 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…\n2 C-3PO        167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n3 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n4 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…\n5 Leia Org…    150    49 brown      light      brown           19   fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n\nLet’s load the starwars data into our Global Environment so that we can easily access it:\n\n# Load starwars into Global Environment object called sw\nsw &lt;- starwars\n\nAll {dplyr} functions that take a data frame or tibble start with the .data argument. Therefore, in all examples below, we first specify our .data as sw before supplying arguments of the function.",
+    "objectID": "packages.html#installing-packages",
+    "href": "packages.html#installing-packages",
+    "title": "Packages",
+    "section": "Installing packages",
+    "text": "Installing packages\nAlthough the pre-installed packages give us a lot of functionality, we might still want more. Yes, with {stats} we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the {survival} package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: ‘choose a website identical to the original download website, but with a different server’. This way, you can pick a server in your own country increasing download speeds.\ninstall.packages(\"survival\")\n\n\nWhen packages are installed, they will always give the message MD5 sums checked. MD5 is an algorithm that can help identify unintentional data/file corruption (more).\nWhen we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.\n\nR tools\nSometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from CRAN.\n\n\nPackage versions\nPackages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases:\n\nThe package is built for your current version of R: there will be no problem.\nThe package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.\nThe package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or, less ideally, switch back to an older version of R.\n\n\n\nInstalling from GitHub\nSometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install {devtools}:\ninstall.packages(\"devtools\")\nFrom {devtools}, we can use the install_github() function to install a package. For instance, if we wanted to install {KMunicate} from GitHub, we could run:\ninstall_github(\"ellessenne/KMunicate-package\")\nwhere ellessenne is the GitHub user’s username and KMunicate-package the repository of the package.",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html#renaming-and-relocating",
-    "href": "dplyr.html#renaming-and-relocating",
-    "title": "Dplyr",
-    "section": "Renaming and relocating",
-    "text": "Renaming and relocating\nBefore we can do anything to the data itself, we should make sure we like the names of the variables. Three of the variables contain the word ‘color’ (hair_color, skin_color, eye_color). However, we might think it is intuitive enough that these variables indicate colour, so maybe we want to change those names. For this we can use the function rename(). In rename(), we specify any number of arguments we want, where the left hand side of the argument indicates the new column name and the righth and side of the argument indicates the column that needs to be changed (and therefore the old column name). The right hand side can also be the position of the column (e.g., 2 for the second column).\n\n# Rename variables\nsw &lt;- rename(sw, hair = hair_color, skin = skin_color, eye = eye_color)\n\n\n\n\n\n\n\nMany functions, among which functions in {dplyr} like rename() have an argument called .... This ellipsis simply means that you can supply any number of arguments of the type that the function uses. For rename(), this means we can supply an endless list of variables to be renamed.\n\n\n\nNow our data has some changed names, but we are not done yet. It might also be preferable that sex and gender are mentioned immediately after the name. To do this, we can simply use relocate(). In relocate(), we specify a group of columns and specify before (argument .before) or after (argument .after) which column they should be placed.\n\n# Relocate variables\nsw &lt;- relocate(sw, sex:gender, .after = name)\n\n# This has the same effect\nsw &lt;- relocate(sw, c(sex, gender), .before = height)",
+    "objectID": "packages.html#loading-packages",
+    "href": "packages.html#loading-packages",
+    "title": "Packages",
+    "section": "Loading packages",
+    "text": "Loading packages\nThe good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using library(). If we wanted to load {survival} after installing it previously, we can do:\nlibrary(\"survival\")\nWe could also load multiple packages at once with library():\nlibrary(\"survival\", \"stats\")\nThe help function for library() shows that there is also a function called require(). In general, this works similar to library() but is used more often within functions. Whereas library() will return an error if the package is not installed, require() will only give a warning.\n\nMasking\nSometimes, we may get the warning that certain functions become masked:\n\n# Here we set the mirror for downloading, but this is only needed for the tutorial to render: in your own R, you do not need to do this.\noptions(repos = c(CRAN = \"https://mirror.lyrahosting.com/CRAN/\"))\n\n# Install dplyr\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"dplyr\", quiet = TRUE)\n\npackage 'dplyr' successfully unpacked and MD5 sums checked\n\n\nWarning: cannot remove prior installation of package 'dplyr'\n\n\nWarning in file.copy(savedcopy, lib, recursive = TRUE): problem copying\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\00LOCK\\dplyr\\libs\\x64\\dplyr.dll\nto\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\dplyr\\libs\\x64\\dplyr.dll:\nPermission denied\n\n\nWarning: restored 'dplyr'\n\n\n\n# Load dplyr\nlibrary(\"dplyr\")\n\nWarning: package 'dplyr' was built under R version 4.4.1\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nLoading the package {dplyr} caused, among others, the function filter() from {stats} to be masked. This means that if we call filter(), we will call the function from {dplyr}, not from {stats}, which might have a different functionality. If we still want to use filter() from {stats}, we can prespecify the package with a double colon :::\nstats::filter()\n\n\n\n\n\n\nIn general, we can call functions from installed packages without loading the package, by using ::. Without loading {survival}, we can still call survival::coxph(), so long as {survival} is installed.\n\n\n\n\n\nPacman\nIt can be a hassle to first install packages and then load them with library. By using the package {pacman}, we can simplify this process. We only need to install it once on our device and after that we load any package with:\npacman::p_load(\"survival\", \"dplyr\")\n{pacman} will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function p_load() immediately from {pacman} with ::, we do not need to load {pacman} first.\nNote that {pacman} does not tell you whether a function becomes masked.\n\n\nAnnotating package loading\nAlthough we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:\n# Load packages\npacman::p_load(\"dplyr\",         # Data manipulation\n               \"tidyr\",         # Pivoting data\n               \"magrittr\",      # Efficient pipe structures\n               \"stringr\",       # Better regexing\n               \"mice\",          # Multiple imputation\n               \"summarytools\",  # Summarizing data frames\n               \"haven\"          # Load SPSS data\n)",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html#filtering-and-selecting",
-    "href": "dplyr.html#filtering-and-selecting",
-    "title": "Dplyr",
-    "section": "Filtering and selecting",
-    "text": "Filtering and selecting\nNow that our data is a bit more how we (or I?) wanted it, we can also determine whether there are some columns or rows that we do not actually want or need. First of, because I am not interested in any data from outside the starwars universe, we can remove the column films. To do this, we use select(), which allows us to either specify the columns we want to keep, or specify the columns we want to drop. To keep columns, we simply name them and to drop columns we name them with a dash/minus sign before (-).\n\n# Drop films column\nsw &lt;- select(sw, -films)\n\n# This does the same thing\nsw &lt;- select(sw, name:species, vehicles:starships)\n\nAdditionally, I am not interested in any character (i.e., row) of who we do not know the mass or who is from Tatooine. Tatooine is full of sand and I don’t like sand. It’s coarse and rough. To remove rows, we can use the filter() function. In filter(), we supply conditions to which rows must adhere to stay.\n\n# Remove rows with missing mass or with characters from Tatooine\nsw &lt;- filter(sw, !is.na(mass) & !is.na(height) & homeworld != \"Tatooine\")\n\nHere, we use is.na() to see what rows are missing in the column mass and then take the reverse (!). We do the same for height. Additionally (&), the homeworld should not equal (!=) Tatooine.",
+    "objectID": "packages.html#learning-how-to-work-with-packages",
+    "href": "packages.html#learning-how-to-work-with-packages",
+    "title": "Packages",
+    "section": "Learning how to work with packages",
+    "text": "Learning how to work with packages\n\nDemos\nPackages can supply demos on how to work with certain functions in the package. To see this for the packages loaded by the base package, we can use demo():\ndemo()\nWe could also see the demos for all packages installed:\ndemo(package = .packages(all.available = TRUE))\n\n\nVignettes\nMore commonly, packages offer vignettes instead of demos. Vignettes are long guides on how to apply a certain concept using different functions in the package. To see the available vignettes of a package, we can use browseVignettes():\nbrowseVignettes(\"survival\")\nWe can also immediately select a vignette of interest:\nvignette(\"splines\")\nTo see the object names to open vignettes from vignette(), we can supply only the package:\nvignette(package = \"survival\")",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html#mutating-and-conditionals",
-    "href": "dplyr.html#mutating-and-conditionals",
-    "title": "Dplyr",
-    "section": "Mutating and conditionals",
-    "text": "Mutating and conditionals\nNow that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with mutate(). In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.\nA great characteristic of mutate() is that we can immediately use a variable we just calculted within the same mutate() function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.\n\n# Calculate BMI and overweight indicator\nsw &lt;- mutate(sw, \n             # Change height to meters\n             height = height / 100,\n             # Calculate BMI\n             bmi = mass / height ^ 2,\n             # Create indicator for overweight\n             overweight = ifelse(bmi &gt;= 25, 1, 0))\n\n# Show summary of BMI\nsummary(sw[[\"bmi\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  12.89   19.48   23.83   32.40   25.86  443.43 \n\n# Show table of overweight\ntable(sw[[\"overweight\"]])\n\n\n 0  1 \n32 16 \n\n\nWhat we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, ifelse() checks the condition bmi &gt;= 25. If that condition is TRUE, then the variable overweight is assigned a 1, otherwise a 0.\nIf we want to be able to assign more than two values based on a single conditions, we can use two approaches. First, we can nest multiple ifelse() statements. Below, we code a variable weight_status which indicates underweight (BMI &lt; 18, 1), normal weight (BMI 18-25, 2), overweight (BMI &gt;25, 3), and obesity (BMI &gt;30, 4).\n\n# Create new variable weight status\nsw &lt;- mutate(sw, \n             # Create indicator for weight status\n             weight_status = ifelse(bmi &lt; 18, 1,\n                                    ifelse(bmi &gt;= 18 & bmi &lt;= 25, 2,\n                                           ifelse(bmi &gt; 25 & bmi &lt;= 30, 3, 4))))\n\nThis can quickly become unreadable if more groups should be made. Luckily, {dplyr} offers us case_when() and case_match(). Using case_when(), we only need to call one function and then supply all conditions. In case_when() this is written as condition ~ result:\n# Create new variable weight status\nsw &lt;- mutate(sw, \n             # Create indicator for weight status\n             weight_status = case_when(bmi &lt; 18 ~ 1,\n                                       bmi &gt;= 18 & bmi &lt;= 25 ~ 2,\n                                       bmi &gt; 25 & bmi &lt;= 30 ~ 3,\n                                       .default = 4))\nWe also specify .default = 4, which means that any row without a matched condition should receive the value 4. However, be careful if you have missing data, as .default will also fill in those values. If .default is not supplied, any row not matching a condition will get an NA.\ncase_when() is a great function and especially useful for multiple conditions that can be matched based on multiple columns or when we want to use conditions (&gt;, &lt;=, etc). Nonetheless, if we want to use only a single variable and do not need conditions, we can also use case_match(), where first the used variable is specified and then the matches, without having to respecify the variable in every match:\n\n# Create new variable weight status\nsw &lt;- mutate(sw,\n             # Create indicator for weight status\n             weight_status = case_match(species,\n                                        \"Human\" ~ \"Humanoid\",\n                                        \"Yoda's species\" ~ \"Small, green, and wrinkly with pointy ears\",\n                                        .default = species))",
+    "objectID": "packages.html#updating-and-unistalling-packages",
+    "href": "packages.html#updating-and-unistalling-packages",
+    "title": "Packages",
+    "section": "Updating and unistalling packages",
+    "text": "Updating and unistalling packages\n\nUpdating\nSometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio (Figure 1). Alternatively, we can just rerun the package installation using install.packages() to update it. Note that we cannot use {pacman} here, as {pacman} will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use update.packages(), although this might not update packages to a version suitable for new major R versions.\n\n\nUninstalling\nIf we want to get rid of a package, maybe to clean up some space on our device, we can remove it using remove.packages().\n\n\n\n\n\n\nSometimes we want to update a package, but that package needs an updated version of a package such as {rlang}. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that {rlang} can be updated too. However, if we agree, the R session will restart and immediately load {rlang} again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of {rlang} (or similar cases), first we need to use remove.packages() to uninstall {rlang}, then reinstall {rlang}, and then update the package we wanted to update originally.",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html#working-across-columns",
-    "href": "dplyr.html#working-across-columns",
-    "title": "Dplyr",
-    "section": "Working across columns",
-    "text": "Working across columns\nThere might be a case where we want to change all numeric variables to character. In such case, we could write an extensive mutate argument as follows:\n# Change numerics to character\nsw &lt;- mutate(sw,\n             # Change height\n             height = as.character(height),\n             # Change mass\n             mass = as.character(mass),\n             # Change birth year\n             birth_year = as.character(birth_year),\n             # Change BMI\n             bmi = as.character(bmi))\nEven without the way of annotating that I try to circulate, this code would be unefficient to write. {dplyr} offers us across() to make our lives easier in such cases. With across(), we can apply multiple functions immediately to mulitple columns. If we want to change all those columns to character and check how many characters each has, we could simply do:\n\n# Change numerics to character and show last 7 columns\nmutate(sw, across(c(height, mass, birth_year, bmi), list(char = as.character, charn = nchar)))[18:24]\n\n# A tibble: 48 × 7\n   height_charn mass_char mass_charn birth_year_char birth_year_charn bmi_char  \n          &lt;int&gt; &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                      &lt;int&gt; &lt;chr&gt;     \n 1            4 32                 2 33                             2 34.722222…\n 2            3 49                 2 19                             2 21.777777…\n 3            4 77                 2 57                             2 23.245984…\n 4            4 112                3 200                            3 21.545090…\n 5            3 80                 2 29                             2 24.691358…\n 6            4 74                 2 44                             2 24.725182…\n 7            4 1358               4 600                            3 443.42857…\n 8            3 77                 2 21                             2 26.643598…\n 9            3 110                3 &lt;NA&gt;                          NA 33.950617…\n10            3 75                 2 82                             2 25.951557…\n# ℹ 38 more rows\n# ℹ 1 more variable: bmi_charn &lt;int&gt;",
+    "objectID": "packages.html#a-warning",
+    "href": "packages.html#a-warning",
+    "title": "Packages",
+    "section": "A warning",
+    "text": "A warning\nAlthough packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.\n\nDependencies\nAlmost all R packages are built using another R package. This is why installing {dplyr} actually installs a lot of other packages, which are all required to allow {dplyr} to function. These are called dependencies. Because packages are dependent on other packages, deprecation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as {dplyr}, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is deprecated). Dependencies can become dangerous quickly, as talked about shortly here and here.\n\n\nDeprecate: to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. Link.\n\n\nTrust\nAnyone can write packages for R, including you and me. On the one hand, this means that everyone can contribute their code to the ease of all other R users. However, this also means that individuals with malicious intent can create R packages. Therefore, you should always be careful when installing R packages. Although CRAN is an archive with many trusted packages, it is not a protection against malicious packages or a guarantee of safety. More on this can be read here.",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html#the-pipe",
-    "href": "dplyr.html#the-pipe",
-    "title": "Dplyr",
-    "section": "The pipe: %>%",
-    "text": "The pipe: %&gt;%\nBefore we continue with other useful {dplyr} functions, we should talk about the pipe operator %&gt;%. Although %&gt;% is not originally from {dplyr} but instead imported from {magrittr} that we will discuss after this section.\nNormally, if we wanted to apply multiple functions at the same time (for instance, filter() and select() after one another), we would nest the functions:\n\n# Keep only the birth year column and then keep only birth years above 100\nfilter(select(starwars, birth_year), birth_year &gt; 100)\n\n# A tibble: 5 × 1\n  birth_year\n       &lt;dbl&gt;\n1        112\n2        200\n3        600\n4        896\n5        102\n\n\nHowever, this quickly becomes unreadable. With %&gt;%, we can transform this into more readable code. What %&gt;% does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called .data or data (if this argument is available). We will go into more detail in {magrittr}.\nSo, with %&gt;%, we can rewrite the above code as:\n\n# Take starwars data\nstarwars %&gt;%\n    # Keep only birth year column\n    select(birth_year) %&gt;%\n    # Keep only birth years above 100\n    filter(birth_year &gt; 100)\n\n# A tibble: 5 × 1\n  birth_year\n       &lt;dbl&gt;\n1        112\n2        200\n3        600\n4        896\n5        102\n\n\n\n\n\n\n\n\nSome more about annotation: with pipe operators, we can make our code much clearer and with that also our annotations. My personal preference is to annotate each new function after a pipe, so that it becomes even more readable. These annotations might just describe what we are doing, or give more details about why we are doing it. This makes it understandable to people who might not understand R equally well or know the functions we are using and allows better understanding of choices we made.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#grouping-and-slicing",
-    "href": "dplyr.html#grouping-and-slicing",
-    "title": "Dplyr",
-    "section": "Grouping and slicing",
-    "text": "Grouping and slicing\nNow that we know about pipe operators, we can apply them to some nice {dplyr} functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with arrange(), which arranges variables in the order that you supply them to the function. If you want to arrange a variable in descending order, you can wrap it in desc(). Subsequently, we make the groups with group_by(), which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with ungroup(). For example, if we want to calculate the mean BMI per sex, we can do the following:\n\n# Calculate mean BMI in strata of sex\nsw &lt;- sw %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Calculate mean BMI\n    mutate(mean_bmi = mean(bmi)) %&gt;%\n    # Ungroup again\n    ungroup()\n\nHowever, I am actually interested in the mean BMI per groups of sex and gender and only want to keep one row per group. For this, we can use slice(), which allows us subset rows based on their position.\n\n# Calculate mean BMI in strata of sex\nsw %&gt;%\n    # Arrange for grouping\n    arrange(sex, gender) %&gt;%\n    # Group on sex and then gender\n    group_by(sex, gender) %&gt;%\n    # Calculate mean BMI\n    mutate(mean_bmi = mean(bmi)) %&gt;%\n    # Keep one row per group\n    slice(1L) %&gt;%           # Note that 1L means that 1 is an integer\n    # Ungroup again\n    ungroup() %&gt;%\n    # Keep only sex, gender, and mean BMI\n    select(sex, gender, mean_bmi)\n\n# A tibble: 5 × 3\n  sex            gender    mean_bmi\n  &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;\n1 female         feminine      17.8\n2 hermaphroditic masculine    443. \n3 male           masculine     24.6\n4 none           masculine     34.7\n5 &lt;NA&gt;           &lt;NA&gt;          24.6\n\n\nslice() is a general function but has some more specifications such as slice_head() and slice_tail() which you can read about in the slice() help function (?slice).\n\nGrouping functions\nWhen we group our data, we can also extract some metadata about the groups we created with the following functions:\n\ngroup_data(): metadata that defines the grouping structure\ngroup_keys(): metadata that describes the groups\ngroup_rows(): location of the rows in the original data per group\ngroup_indices(): a vector with the group to which each row belongs\ngroup_vars(): names of the grouping variables as a character\ngroups(): names of the grouping variables as a list\ngroup_size(): size of each group\nn_groups(): the number of groups",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#summarising-groups",
-    "href": "dplyr.html#summarising-groups",
-    "title": "Dplyr",
-    "section": "Summarising groups",
-    "text": "Summarising groups\nOf course it is great to be able to calculate variables within groups, but there is an easier way to quickly get information on a group level with summarise(). This function creates a new data frame with any summary statistic that we specify per group. For instance, to calculate the mean and standard deviation of the birth year and the proportion of individuals without hair per planet, we can do:\n\n# Use starwars\nsw %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Calculate summary statistics\n    summarise(# Mean\n              mean = mean(birth_year, na.rm = TRUE),\n              # Standard deviation\n              sd = sd(birth_year, na.rm = TRUE),\n              # Proportion of no hair\n              prop_no_hair = sum(hair == \"none\", na.rm = TRUE) / n())\n\n# A tibble: 5 × 4\n  sex             mean    sd prop_no_hair\n  &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;\n1 female          42.2  14.5        0.375\n2 hermaphroditic 600    NA          0    \n3 male            57.6  42.5        0.6  \n4 none            33    NA          0    \n5 &lt;NA&gt;           NaN    NA          0.333\n\n\n\n\nThe code for calculating the proportion of no hair was kindly supplied by Vera Broek.\nNote that the NAs in the output result from the fact that we cannot take the standard deviation of a single observation. One of the functions we used was n(). This is one of the context functions supplied by {dplyr}, which allows us to quickly compute a group-specific variable. The available context functions are:\n\nn(): the number of rows/observations in the group\ncur_group(): the group keys (grouping variables)\ncur_group_id(): gives the group a unique identifier\ncur_group_rows(): gives the row indices in the ungrouped data for the current group\ncur_column(): gives the name of the current column (only works in across())\n\n\nCount and tally\ntally() and count() are two wrappers around summarise:\n\ntally() is equal to summarise but automatically calls n() (if it’s the first tally) or sum() (if it’s the second tally), and therefore an easy shorthand for summarise(n = n()).\ncount() is equal to group_by() followed by summarise(n = n()) and closed with ungroup().",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#joins",
-    "href": "dplyr.html#joins",
-    "title": "Dplyr",
-    "section": "Joins",
-    "text": "Joins\nThere might be times where we work with data that is stored in different data sets. If we want to combine these data sets, e.g., x and y, into one bigger data set, we will often want to do this on the basis of one or more variables, such as a unique study participant identifier and/or a visit number. In this case, we can use joins from {dplyr}, which offers four joins. These joins all add the data together, but differ in what they do with individuals that are not matched in either dataset.\n\n\n\n\n\n\n\n\nFunction\nWill keep all observations in\nCan drop observations in\n\n\n\n\ninner_join()\nneither\nx and y\n\n\nleft_join()\nx\ny\n\n\nright_join()\ny\nx\n\n\nfull_join()\nx and y\nneither\n\n\n\nTo use a join function, we use a pipe operator after the data we want to be joined on (x) and then specify on what column we want to join the data.\n# Get some columns from starwars\nstarwars_x &lt;- starwars[, 1:3]\n\n# Get some more columns from starwars\nstarwars_y &lt;- starwars[, c(1, 4:6)]\n\n# Join data together based on the name\nstarwars_z &lt;- starwars_x %&gt;%\n    # Join some more columns from starwars\n    left_join(starwars_y, \"name\")\nIf we would want to join on more columns than only name, we can put the joining columns in a vector with c().",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#understanding-pipelines",
-    "href": "dplyr.html#understanding-pipelines",
-    "title": "Dplyr",
-    "section": "Understanding pipelines",
-    "text": "Understanding pipelines\nWith the {dplyr} functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help us.\n# Extensive pipeline\nstarwars %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Create new variable BMI based on mass and height\n    mutate(bmi = mass / (height / 100) ^ 2) %&gt;%\n    # Drop individuals with missing BMI\n    filter(!is.na(bmi))\n\nTidy data tutor\nWith tidy data tutor, we can run your pipeline on data that can be loaded into R from packages, such as starwars from {dplyr}, and visualize what happens at each pipe operator. We can simply paste the pipeline and load in available data and run it to get a visualization. An example for the above code can be found here.\n\n\nMicrosoft datamations\nAnother possibliity is {datamations}, which gives us animations of how the pipeline operates. To use {datamations}, you can first install it with:\n# Install datamations from github\ndevtools::install_github(\"microsoft/datamations\")\nNext, we can write your pipeline as you normally would. Subsequently, we put the whole pipeline between apostrophes to turn it into a string and use datamation_sanddance() to generate the animation:\n\"# Pipeline\nstarwars %&gt;%\n    # Remove hermaphroditic sex as this gives a large outlier\n    filter(sex != 'hermaphroditic') %&gt;%\n    # Calculate BMI\n    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%\n     # Group on sex\n    group_by(sex) %&gt;%\n    # Get mean BMI per group\n    summarise(mean_bmi = mean(bmi))\" %&gt;% \n    # Get animation\n    datamation_sanddance()\nNote that {datamations} cannot use every {dplyr} function however. More information on {datamations} can be found here.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#other-useful-functions",
-    "href": "dplyr.html#other-useful-functions",
-    "title": "Dplyr",
-    "section": "Other useful functions",
-    "text": "Other useful functions\nWe now discussed some of the most useful functions in {dplyr}, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might recognize when you are trying to perform an operation for which {dplyr} has an efficient implementation. Moreover, this list is not exhaustive, but just a selection of useful functions; for everything available in {dplyr}, see here.\n\nSelecting parts of our data\n\npull(): we can extract a single column with pull(), which is similar to subsetting with the $ operator.\npick(): if we are inside a function such as mutate() or summarise(), we can use pick() to subset multiple columns.\nslice_sample(): select random rows. This is especially useful if you have a rather large data set and first want to test your code on a random subset of your data before running it on the complete data, which might take longer.\ndistinct(): keep only one row per unique combination of columns supplied to the function. This function drops all columns not specified, unless .keep_all = TRUE.\n\n\n\nGetting information on and in our data\n\nlag(): take a column’s value from the previous row (will be NA for the first row).\nlead(): take a column’s value from the next row (will be NA for the last row).\nfirst(), last(), and nth(): take the first, last, or nth (can be specified in the function) value in a column.\nn_distinct(): count the total number of unique values.\nglimpse(): get a quick glimpse of your data, similar to pressing on the blue button in front of the data in the global environment.\n\n\n\nManipulating our data\n\nrows(): perform row-based modifications on a data frame using information in another data frame. See ?rows for a detailed explanation.\nbind_rows(): add data frames together based on rows. This is a more efficient implementation of rbind() and does not require the different data frames to all have the same columns (the final data frame will have all columns of the individual data frames that are bound).\nbind_cols(): similar to bind_rows() but for columns, improving on cbind().\nrowwise(): perform a function per row in the data. This is useful when a vectorized function (i.e., a function that operates over the entire vector) is not available. For more detailed explanation, see ?rowwise.\nna_if(): replace a certain value y in vector x with NA.\nif_else(): an improved version of ifelse() that can also take into account missings.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#extensions",
-    "href": "dplyr.html#extensions",
-    "title": "Dplyr",
-    "section": "Extensions",
-    "text": "Extensions\n\n{dtplyr}\n{data.table} is a package that works with data frames at a much higher speed than other R packages. Although {data.table} is discussed in more detail in another section, here we shortly discuss the {dplyr} integration with {data.table}.\nWe can use lazy_dt() to create a data table that tracks any operations and then transform it using as.data.table(), as.data.frame(), or as_tibble().\nAlthough {dtplyr} is not as fast as {data.table}, it does allow using the readable {dplyr} while approaching the speed of {data.table}.\n\n\n{dbplyr}\nSometimes, our data is not stored locally but in a remote database, such as SQL. In that case, you can use {dbplyr} to manipulate the data as if it were in-memory using {dplyr} functionality.\nUsing the dbConnect() from {DBI}, we can connect a data base from SQL to an object in R and then manipulate it. Behind the scenes, your R code is translated into SQL code. To get started, you can look up the vignette (vignette(sql)) or see here and here.\n\n\n{sparklyr}\nApache Spark is a powerful framework for processing data quickly and efficiently. It is popular due to it’s speed with big data. Although not officially a {dplyr} extension, {dplyr} and other R code can be used to access Apache Spark through {sparklyr}. You can find more information here.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#wrapping-up",
-    "href": "dplyr.html#wrapping-up",
-    "title": "Dplyr",
-    "section": "Wrapping up",
-    "text": "Wrapping up\nWe now saw the majority of functions that {dplyr} offers us to manipulate our data into taking the shape we want it to take. If you ever want to have a quick look at what functions are available again, without the explanations in this tutorial, you can check out the {dplyr} reference guide or the documentation.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
-    ]
-  },
-  {
-    "objectID": "dplyr.html#exercises",
-    "href": "dplyr.html#exercises",
-    "title": "Dplyr",
+    "objectID": "packages.html#exercises",
+    "href": "packages.html#exercises",
+    "title": "Packages",
     "section": "Exercises",
-    "text": "Exercises\n\n1. Subset data\nFrom the data mtcars, keep only cars with a weight (wt) of 3 or higher and store this into an object dat\n\n\nAnswer\ndat &lt;- filter(mtcars, wt &gt;= 3)\n\n\n\n\n2. Create weight category\nCreate a column wt_cat categorizing wt into smaller than 4 (0) and 4 or greater (1) in dat.\n\n\nAnswer\n# Solution 1: using ifelse\ndat &lt;- mutate(dat, wt_cat = ifelse(wt &lt; 4, 0, 1))\n\n# Solution 2: using if_else\ndat &lt;- mutate(dat, wt_cat = if_else(wt &lt; 4, 0, 1))\n\n# Solution 3: using case_when\ndat &lt;- mutate(dat, wt_cat = case_when(wt &lt; 4 ~ 0, .default = 1))\n\n\n\n\n3. Drop columns\nRemove the hp and vs columns from dat.\n\n\nAnswer\ndat &lt;- select(dat, -c(hp, vs))\n\n\n\n\n4. Get group statistics\nDetermine the number of cars for each level of cyl\n\n\nAnswer\n# Solution 1: using group_by and summarise\ndat %&gt;%\n    # Arrange data for grouping\n    arrange(cyl) %&gt;% \n    # Group per level of cylinders\n    group_by(cyl) %&gt;% \n    # Get count per level of cylinders\n    summarise(n = n())\n\n\n# A tibble: 3 × 2\n    cyl     n\n  &lt;dbl&gt; &lt;int&gt;\n1     4     2\n2     6     4\n3     8    14\n\n\nAnswer\n# Solution 2: using group_by and tally\ndat %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Group per level of cylinders\n    group_by(cyl) %&gt;%\n    # Tally per group of cylinders\n    tally()\n\n\n# A tibble: 3 × 2\n    cyl     n\n  &lt;dbl&gt; &lt;int&gt;\n1     4     2\n2     6     4\n3     8    14\n\n\nAnswer\n# Solution 3: using count\ndat %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Count per group of cylinders\n    count(cyl)\n\n\n  cyl  n\n1   4  2\n2   6  4\n3   8 14\n\n\nAnswer\n# Solution 4: using gropu_by and mutate\ndat %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Group per level of cylinders\n    group_by(cyl) %&gt;%\n    # Per group, calculate number of cylinders\n    mutate(n = n()) %&gt;%\n    # Per group, keep one row\n    slice(1L) %&gt;%\n    # Ungroup again\n    ungroup() %&gt;%\n    # Keep only relevant columns\n    select(cyl, n)\n\n\n# A tibble: 3 × 2\n    cyl     n\n  &lt;dbl&gt; &lt;int&gt;\n1     4     2\n2     6     4\n3     8    14\n\n\n\n\n5. Put it all in a pipeline\nNow perform exercises 1 through 4 but use one continuous pipeline\n\n\nAnswer\n# You can combine any of the solutions of exercise 1 through 4, here I show just one:\ndat &lt;- mtcars %&gt;%\n    # Keep only cars with weight &gt;= 3\n    filter(wt &gt;= 3) %&gt;%\n    # Create category for weight\n    mutate(wt_cat = ifelse(wt &lt; 4, 0, 1)) %&gt;%\n    # Remove columns hp and vs\n    select(-c(hp, vs)) %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Count per group of cylinders\n    count(cyl)",
+    "text": "Exercises\n\n1. Installing a new package\nInstall the package {tidyverse}.\n\n\nAnswer\n# Answer 1: using {pacman}\npacman::p_load(\"tidyverse\")\n\n\nalso installing the dependencies 'ps', 'processx', 'blob', 'gargle', 'uuid', 'ids', 'rematch2', 'timechange', 'systemfonts', 'textshaping', 'callr', 'selectr', 'conflicted', 'dbplyr', 'dtplyr', 'googledrive', 'googlesheets4', 'lubridate', 'modelr', 'ragg', 'reprex', 'rvest', 'xml2'\n\n\nWarning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:\n  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'\n\n\n\n  There are binary versions available but the source versions are later:\n     binary source needs_compilation\nps    1.7.7  1.8.0              TRUE\nragg  1.3.2  1.3.3              TRUE\n\npackage 'processx' successfully unpacked and MD5 sums checked\npackage 'blob' successfully unpacked and MD5 sums checked\npackage 'gargle' successfully unpacked and MD5 sums checked\npackage 'uuid' successfully unpacked and MD5 sums checked\npackage 'ids' successfully unpacked and MD5 sums checked\npackage 'rematch2' successfully unpacked and MD5 sums checked\npackage 'timechange' successfully unpacked and MD5 sums checked\npackage 'systemfonts' successfully unpacked and MD5 sums checked\npackage 'textshaping' successfully unpacked and MD5 sums checked\npackage 'callr' successfully unpacked and MD5 sums checked\npackage 'selectr' successfully unpacked and MD5 sums checked\npackage 'conflicted' successfully unpacked and MD5 sums checked\npackage 'dbplyr' successfully unpacked and MD5 sums checked\npackage 'dtplyr' successfully unpacked and MD5 sums checked\npackage 'googledrive' successfully unpacked and MD5 sums checked\npackage 'googlesheets4' successfully unpacked and MD5 sums checked\npackage 'lubridate' successfully unpacked and MD5 sums checked\npackage 'modelr' successfully unpacked and MD5 sums checked\npackage 'reprex' successfully unpacked and MD5 sums checked\npackage 'rvest' successfully unpacked and MD5 sums checked\npackage 'xml2' successfully unpacked and MD5 sums checked\npackage 'tidyverse' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Temp\\RtmpsvjtpR\\downloaded_packages\n\n\ninstalling the source packages 'ps', 'ragg'\n\n\n\ntidyverse installed\n\n\nWarning: package 'tidyverse' was built under R version 4.4.1\n\n\nWarning: package 'ggplot2' was built under R version 4.4.1\n\n\nWarning: package 'tibble' was built under R version 4.4.1\n\n\nWarning: package 'tidyr' was built under R version 4.4.1\n\n\nWarning: package 'readr' was built under R version 4.4.1\n\n\nWarning: package 'purrr' was built under R version 4.4.1\n\n\nWarning: package 'stringr' was built under R version 4.4.1\n\n\nWarning: package 'forcats' was built under R version 4.4.1\n\n\nWarning: package 'lubridate' was built under R version 4.4.1\n\n\nAnswer\n# Answer 2: using install.packages()\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"tidyverse\", quiet = TRUE)\n\n\nWarning: package 'tidyverse' is in use and will not be installed\n\n\n\n\n2. Loading a new package\nNow load the package {tidyverse}\n\n\nAnswer\n# Answer 1: using {pacman}, the package is already loaded after installing\n\n# Answer 2: using library() after install.packages()\nlibrary(\"tidyverse\")",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
     ]
   },
   {
-    "objectID": "dplyr.html#next-topic",
-    "href": "dplyr.html#next-topic",
-    "title": "Dplyr",
+    "objectID": "packages.html#next-topic",
+    "href": "packages.html#next-topic",
+    "title": "Packages",
     "section": "Next topic",
-    "text": "Next topic\nNow that we know the grammar of {dplyr}, we can see how {tidyr} assists us if the data we want to manipulate is not quite tidy enough yet.\nNext: Tidyr",
+    "text": "Next topic\nNow that we know the basics of R packages, let’s start looking at how we can harness their power to load our own data.\nNext: Data",
     "crumbs": [
-      "Into the tidyverse",
-      "Dplyr"
+      "The basics",
+      "Packages"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio), but also take you further, showing you different alternatives to reach the same goal and learning some useful tricks to quickly become an efficient R user. The general focus is on using R for epidemiologic data analysis, such as how to perform regression analyses and plot results, although it also contains a comprehensive introduction to R.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\nThis tutorial might feel rather dense and time-consuming as compared to other tutorials but you do not have to do everything at once. Although it is a good idea to do the basics and learn about the tidyverse, other sections might be studied on a need-to-know basis. Additionally, this tutorial will (hopefully) leave you with knowledge about using R, but also hand you the tools to learn more yourself and quickly understand new concepts and functions.\n\nExercises\n0: Open the answer\n\n\nAnswer\n# Well done!\n\n\nNext: R",
+    "crumbs": [
+      "Start",
+      "Introduction"
     ]
   },
   {
@@ -748,124 +660,300 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction",
+    "objectID": "dplyr.html",
+    "href": "dplyr.html",
+    "title": "Dplyr",
     "section": "",
-    "text": "Hi and welcome to this R tutorial! This tutorial aims to teach you the basics of R (and RStudio), but also take you further, showing you different alternatives to reach the same goal and learning some useful tricks to quickly become an efficient R user. The general focus is on using R for epidemiologic data analysis, such as how to perform regression analyses and plot results, although it also contains a comprehensive introduction to R.\nThroughout the tutorial, there will be example code. Feel free to also write and run this on your own device and play around with changing things up to see what happens.\nAdditionally, there will be exercises you can make to keep track of your learning progress. Answers to the exercises are available under the ‘Answer’ button. An example is shown below.\nThis tutorial might feel rather dense and time-consuming as compared to other tutorials but you do not have to do everything at once. Although it is a good idea to do the basics and learn about the tidyverse, other sections might be studied on a need-to-know basis. Additionally, this tutorial will (hopefully) leave you with knowledge about using R, but also hand you the tools to learn more yourself and quickly understand new concepts and functions.\n\nExercises\n0: Open the answer\n\n\nAnswer\n# Well done!\n\n\nNext: R",
+    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R). If you have not already installed and loaded {dplyr}, you can do so with:\n\n# Load dplyr\npacman::p_load(\"dplyr\")\n\nIn this section, we will work with the starwars dataset, that is automatically loaded in when you load {dplyr}.\n\n# Show first 5 rows of starwars\nhead(starwars, n = 5)\n\n# A tibble: 5 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…\n2 C-3PO        167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n3 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n4 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…\n5 Leia Org…    150    49 brown      light      brown           19   fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n\nLet’s load the starwars data into our Global Environment so that we can easily access it:\n\n# Load starwars into Global Environment object called sw\nsw &lt;- starwars\n\nAll {dplyr} functions that take a data frame or tibble start with the .data argument. Therefore, in all examples below, we first specify our .data as sw before supplying arguments of the function.",
     "crumbs": [
-      "Start",
-      "Introduction"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html",
-    "href": "packages.html",
-    "title": "Packages",
+    "objectID": "dplyr.html#dplyr",
+    "href": "dplyr.html#dplyr",
+    "title": "Dplyr",
     "section": "",
-    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
+    "text": "{dplyr}, a combination of data and plier, is a package that allows manipulation of data in an easy and efficient way. Whether you want to drop columns, drop rows, create new variables, or change old variables, {dplyr} allows you to do this in an intuitive way which requires little code (especially compared to base R). If you have not already installed and loaded {dplyr}, you can do so with:\n\n# Load dplyr\npacman::p_load(\"dplyr\")\n\nIn this section, we will work with the starwars dataset, that is automatically loaded in when you load {dplyr}.\n\n# Show first 5 rows of starwars\nhead(starwars, n = 5)\n\n# A tibble: 5 × 14\n  name      height  mass hair_color skin_color eye_color birth_year sex   gender\n  &lt;chr&gt;      &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; \n1 Luke Sky…    172    77 blond      fair       blue            19   male  mascu…\n2 C-3PO        167    75 &lt;NA&gt;       gold       yellow         112   none  mascu…\n3 R2-D2         96    32 &lt;NA&gt;       white, bl… red             33   none  mascu…\n4 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…\n5 Leia Org…    150    49 brown      light      brown           19   fema… femin…\n# ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,\n#   vehicles &lt;list&gt;, starships &lt;list&gt;\n\n\nLet’s load the starwars data into our Global Environment so that we can easily access it:\n\n# Load starwars into Global Environment object called sw\nsw &lt;- starwars\n\nAll {dplyr} functions that take a data frame or tibble start with the .data argument. Therefore, in all examples below, we first specify our .data as sw before supplying arguments of the function.",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#packages",
-    "href": "packages.html#packages",
-    "title": "Packages",
-    "section": "",
-    "text": "We now know how we can access our data and manipulate it. However, everything that we saw until now is by default available in R. Nonetheless, we cannot expect the maintainers of R (the R Core Team) to implement every idea, optimalization, and statistical method. This is where packages come in.\nPackages are libraries of functions created by other people implementing certain methods, ideas, and optimalizations. These packages allow us to implement certain methods, perform certain analyses, and improve our code, without having to program this all ourselves.",
+    "objectID": "dplyr.html#renaming-and-relocating",
+    "href": "dplyr.html#renaming-and-relocating",
+    "title": "Dplyr",
+    "section": "Renaming and relocating",
+    "text": "Renaming and relocating\nBefore we can do anything to the data itself, we should make sure we like the names of the variables. Three of the variables contain the word ‘color’ (hair_color, skin_color, eye_color). However, we might think it is intuitive enough that these variables indicate colour, so maybe we want to change those names. For this we can use the function rename(). In rename(), we specify any number of arguments we want, where the left hand side of the argument indicates the new column name and the righth and side of the argument indicates the column that needs to be changed (and therefore the old column name). The right hand side can also be the position of the column (e.g., 2 for the second column).\n\n# Rename variables\nsw &lt;- rename(sw, hair = hair_color, skin = skin_color, eye = eye_color)\n\n\n\n\n\n\n\nMany functions, among which functions in {dplyr} like rename() have an argument called .... This ellipsis simply means that you can supply any number of arguments of the type that the function uses. For rename(), this means we can supply an endless list of variables to be renamed.\n\n\n\nNow our data has some changed names, but we are not done yet. It might also be preferable that sex and gender are mentioned immediately after the name. To do this, we can simply use relocate(). In relocate(), we specify a group of columns and specify before (argument .before) or after (argument .after) which column they should be placed.\n\n# Relocate variables\nsw &lt;- relocate(sw, sex:gender, .after = name)\n\n# This has the same effect\nsw &lt;- relocate(sw, c(sex, gender), .before = height)",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#pre-installed-packages",
-    "href": "packages.html#pre-installed-packages",
-    "title": "Packages",
-    "section": "Pre-installed packages",
-    "text": "Pre-installed packages\nSome packages come pre-installed with R. For example, sum() comes from the base package, while sd() comes from the stats package. We can see the currently installed packages in RStudio in the lower right window in the tab ‘packages’, as seen in Figure 1. Mind you that in Figure 1, there might be different packages than in your window, depending on what packages are already or not yet installed.\nIn Figure 1, you can see a checkbox, which indicates whether a package is loaded (more on that in a few lines), the package name, a description, a version, and buttons to the homepage, and an option to remove the package.\n\n\n\n\n\n\nFigure 1: Installed packages\n\n\n\nIf we want to check out what a package does, we can ask for help on a package in the same way as we ask for help on a function:\n?stats\nWe could also open an extensive overview of a package’s details using library():\nlibrary(help = \"stats\")\nThis overview shows us not only detailed information on the package, but also the functions the package supplies.\n\n\n\n\n\n\nWhen we talk about packages, for example when asking a question on stack overflow, packages can be denoted with curly brackets. For instance, the base package could be called {base}.",
+    "objectID": "dplyr.html#filtering-and-selecting",
+    "href": "dplyr.html#filtering-and-selecting",
+    "title": "Dplyr",
+    "section": "Filtering and selecting",
+    "text": "Filtering and selecting\nNow that our data is a bit more how we (or I?) wanted it, we can also determine whether there are some columns or rows that we do not actually want or need. First of, because I am not interested in any data from outside the starwars universe, we can remove the column films. To do this, we use select(), which allows us to either specify the columns we want to keep, or specify the columns we want to drop. To keep columns, we simply name them and to drop columns we name them with a dash/minus sign before (-).\n\n# Drop films column\nsw &lt;- select(sw, -films)\n\n# This does the same thing\nsw &lt;- select(sw, name:species, vehicles:starships)\n\nAdditionally, I am not interested in any character (i.e., row) of who we do not know the mass or who is from Tatooine. Tatooine is full of sand and I don’t like sand. It’s coarse and rough. To remove rows, we can use the filter() function. In filter(), we supply conditions to which rows must adhere to stay.\n\n# Remove rows with missing mass or with characters from Tatooine\nsw &lt;- filter(sw, !is.na(mass) & !is.na(height) & homeworld != \"Tatooine\")\n\nHere, we use is.na() to see what rows are missing in the column mass and then take the reverse (!). We do the same for height. Additionally (&), the homeworld should not equal (!=) Tatooine.",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#installing-packages",
-    "href": "packages.html#installing-packages",
-    "title": "Packages",
-    "section": "Installing packages",
-    "text": "Installing packages\nAlthough the pre-installed packages give us a lot of functionality, we might still want more. Yes, with {stats} we can do a linear regression, but not Cox regression. If we want to perform a Cox regression, we could use the {survival} package. To install it, we can use the below code. You might be prompted to pick a mirror for installation, which basically just means: ‘choose a website identical to the original download website, but with a different server’. This way, you can pick a server in your own country increasing download speeds.\ninstall.packages(\"survival\")\n\n\nWhen packages are installed, they will always give the message MD5 sums checked. MD5 is an algorithm that can help identify unintentional data/file corruption (more).\nWhen we install a package, the package is downloaded from the Comprehensive R Archive Network (CRAN), which is the same place where you also downloaded R itself.\n\nR tools\nSometimes you might get an error message when installing a package, which indicates that you need a program called RTools to install the package. To resolve this error, you can install RTools from CRAN.\n\n\nPackage versions\nPackages have two versions: the version of the package and the version of R for which they were build. The package version simply indicates the progress of development of that package, but the version of R for which the package was built is more important. There can be three cases:\n\nThe package is built for your current version of R: there will be no problem.\nThe package is built for a newer version of R: you will receive a warning, but other than that, this will not be a problem.\nThe package is built for an older version of R: you cannot use the package with your current version of R. You can look if there is another package which offers the same functionalities or, less ideally, switch back to an older version of R.\n\n\n\nInstalling from GitHub\nSometimes, packages do not exist on CRAN yet; the package might not be fully ready yet or still be edited frequently. In such a case, you could install a package from GitHub. To do this, first you need to install {devtools}:\ninstall.packages(\"devtools\")\nFrom {devtools}, we can use the install_github() function to install a package. For instance, if we wanted to install {KMunicate} from GitHub, we could run:\ninstall_github(\"ellessenne/KMunicate-package\")\nwhere ellessenne is the GitHub user’s username and KMunicate-package the repository of the package.",
+    "objectID": "dplyr.html#mutating-and-conditionals",
+    "href": "dplyr.html#mutating-and-conditionals",
+    "title": "Dplyr",
+    "section": "Mutating and conditionals",
+    "text": "Mutating and conditionals\nNow that we have the data that we want, we might want to create some new variables. For instance, it would be interesting to know the Body Mass Index (BMI) of the characters, which we can calculate because we have height and mass. We can do that with mutate(). In this function, we can specify any number of arguments, with the left hand side of the argument being the name of the new variable and the right hand side being the value it should take.\nA great characteristic of mutate() is that we can immediately use a variable we just calculted within the same mutate() function call. For instance, if we calculate BMI, we can immediately create a variable that indicates whether according to commonly used BMI dichotomisation for humans, a character classifies as overweight or not.\n\n# Calculate BMI and overweight indicator\nsw &lt;- mutate(sw, \n             # Change height to meters\n             height = height / 100,\n             # Calculate BMI\n             bmi = mass / height ^ 2,\n             # Create indicator for overweight\n             overweight = ifelse(bmi &gt;= 25, 1, 0))\n\n# Show summary of BMI\nsummary(sw[[\"bmi\"]])\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  12.89   19.48   23.83   32.40   25.86  443.43 \n\n# Show table of overweight\ntable(sw[[\"overweight\"]])\n\n\n 0  1 \n32 16 \n\n\nWhat we used to create the overweight variable was an if-else clause, which is a commonly used clause in programming. Simply, it checks whether a condition is true. If a condition is true, then it does A, otherwise it does B. In this case, ifelse() checks the condition bmi &gt;= 25. If that condition is TRUE, then the variable overweight is assigned a 1, otherwise a 0.\nIf we want to be able to assign more than two values based on a single conditions, we can use two approaches. First, we can nest multiple ifelse() statements. Below, we code a variable weight_status which indicates underweight (BMI &lt; 18, 1), normal weight (BMI 18-25, 2), overweight (BMI &gt;25, 3), and obesity (BMI &gt;30, 4).\n\n# Create new variable weight status\nsw &lt;- mutate(sw, \n             # Create indicator for weight status\n             weight_status = ifelse(bmi &lt; 18, 1,\n                                    ifelse(bmi &gt;= 18 & bmi &lt;= 25, 2,\n                                           ifelse(bmi &gt; 25 & bmi &lt;= 30, 3, 4))))\n\nThis can quickly become unreadable if more groups should be made. Luckily, {dplyr} offers us case_when() and case_match(). Using case_when(), we only need to call one function and then supply all conditions. In case_when() this is written as condition ~ result:\n# Create new variable weight status\nsw &lt;- mutate(sw, \n             # Create indicator for weight status\n             weight_status = case_when(bmi &lt; 18 ~ 1,\n                                       bmi &gt;= 18 & bmi &lt;= 25 ~ 2,\n                                       bmi &gt; 25 & bmi &lt;= 30 ~ 3,\n                                       .default = 4))\nWe also specify .default = 4, which means that any row without a matched condition should receive the value 4. However, be careful if you have missing data, as .default will also fill in those values. If .default is not supplied, any row not matching a condition will get an NA.\ncase_when() is a great function and especially useful for multiple conditions that can be matched based on multiple columns or when we want to use conditions (&gt;, &lt;=, etc). Nonetheless, if we want to use only a single variable and do not need conditions, we can also use case_match(), where first the used variable is specified and then the matches, without having to respecify the variable in every match:\n\n# Create new variable weight status\nsw &lt;- mutate(sw,\n             # Create indicator for weight status\n             weight_status = case_match(species,\n                                        \"Human\" ~ \"Humanoid\",\n                                        \"Yoda's species\" ~ \"Small, green, and wrinkly with pointy ears\",\n                                        .default = species))",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#loading-packages",
-    "href": "packages.html#loading-packages",
-    "title": "Packages",
-    "section": "Loading packages",
-    "text": "Loading packages\nThe good thing about installing packages is that we only have to install them once on our device. Once they are installed, at the beginning of your R session, you can load them in using library(). If we wanted to load {survival} after installing it previously, we can do:\nlibrary(\"survival\")\nWe could also load multiple packages at once with library():\nlibrary(\"survival\", \"stats\")\nThe help function for library() shows that there is also a function called require(). In general, this works similar to library() but is used more often within functions. Whereas library() will return an error if the package is not installed, require() will only give a warning.\n\nMasking\nSometimes, we may get the warning that certain functions become masked:\n\n# Here we set the mirror for downloading, but this is only needed for the tutorial to render: in your own R, you do not need to do this.\noptions(repos = c(CRAN = \"https://mirror.lyrahosting.com/CRAN/\"))\n\n# Install dplyr\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"dplyr\", quiet = TRUE)\n\npackage 'dplyr' successfully unpacked and MD5 sums checked\n\n\nWarning: cannot remove prior installation of package 'dplyr'\n\n\nWarning in file.copy(savedcopy, lib, recursive = TRUE): problem copying\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\00LOCK\\dplyr\\libs\\x64\\dplyr.dll\nto\nC:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Programs\\R\\R-4.4.0\\library\\dplyr\\libs\\x64\\dplyr.dll:\nPermission denied\n\n\nWarning: restored 'dplyr'\n\n\n\n# Load dplyr\nlibrary(\"dplyr\")\n\nWarning: package 'dplyr' was built under R version 4.4.1\n\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\nLoading the package {dplyr} caused, among others, the function filter() from {stats} to be masked. This means that if we call filter(), we will call the function from {dplyr}, not from {stats}, which might have a different functionality. If we still want to use filter() from {stats}, we can prespecify the package with a double colon :::\nstats::filter()\n\n\n\n\n\n\nIn general, we can call functions from installed packages without loading the package, by using ::. Without loading {survival}, we can still call survival::coxph(), so long as {survival} is installed.\n\n\n\n\n\nPacman\nIt can be a hassle to first install packages and then load them with library. By using the package {pacman}, we can simplify this process. We only need to install it once on our device and after that we load any package with:\npacman::p_load(\"survival\", \"dplyr\")\n{pacman} will first check if a package is installed. If it is not, the package will first be installed from CRAN and then loaded, otherwise it will just be loaded. By calling the function p_load() immediately from {pacman} with ::, we do not need to load {pacman} first.\nNote that {pacman} does not tell you whether a function becomes masked.\n\n\nAnnotating package loading\nAlthough we might know why we load certain packages, another person reading our code might not. Therefore, it is good practice to annotate for what reason we load certain packages. For example, you can annotate package loading as such:\n# Load packages\npacman::p_load(\"dplyr\",         # Data manipulation\n               \"tidyr\",         # Pivoting data\n               \"magrittr\",      # Efficient pipe structures\n               \"stringr\",       # Better regexing\n               \"mice\",          # Multiple imputation\n               \"summarytools\",  # Summarizing data frames\n               \"haven\"          # Load SPSS data\n)",
+    "objectID": "dplyr.html#working-across-columns",
+    "href": "dplyr.html#working-across-columns",
+    "title": "Dplyr",
+    "section": "Working across columns",
+    "text": "Working across columns\nThere might be a case where we want to change all numeric variables to character. In such case, we could write an extensive mutate argument as follows:\n# Change numerics to character\nsw &lt;- mutate(sw,\n             # Change height\n             height = as.character(height),\n             # Change mass\n             mass = as.character(mass),\n             # Change birth year\n             birth_year = as.character(birth_year),\n             # Change BMI\n             bmi = as.character(bmi))\nEven without the way of annotating that I try to circulate, this code would be unefficient to write. {dplyr} offers us across() to make our lives easier in such cases. With across(), we can apply multiple functions immediately to mulitple columns. If we want to change all those columns to character and check how many characters each has, we could simply do:\n\n# Change numerics to character and show last 7 columns\nmutate(sw, across(c(height, mass, birth_year, bmi), list(char = as.character, charn = nchar)))[18:24]\n\n# A tibble: 48 × 7\n   height_charn mass_char mass_charn birth_year_char birth_year_charn bmi_char  \n          &lt;int&gt; &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;                      &lt;int&gt; &lt;chr&gt;     \n 1            4 32                 2 33                             2 34.722222…\n 2            3 49                 2 19                             2 21.777777…\n 3            4 77                 2 57                             2 23.245984…\n 4            4 112                3 200                            3 21.545090…\n 5            3 80                 2 29                             2 24.691358…\n 6            4 74                 2 44                             2 24.725182…\n 7            4 1358               4 600                            3 443.42857…\n 8            3 77                 2 21                             2 26.643598…\n 9            3 110                3 &lt;NA&gt;                          NA 33.950617…\n10            3 75                 2 82                             2 25.951557…\n# ℹ 38 more rows\n# ℹ 1 more variable: bmi_charn &lt;int&gt;",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#learning-how-to-work-with-packages",
-    "href": "packages.html#learning-how-to-work-with-packages",
-    "title": "Packages",
-    "section": "Learning how to work with packages",
-    "text": "Learning how to work with packages\n\nDemos\nPackages can supply demos on how to work with certain functions in the package. To see this for the packages loaded by the base package, we can use demo():\ndemo()\nWe could also see the demos for all packages installed:\ndemo(package = .packages(all.available = TRUE))\n\n\nVignettes\nMore commonly, packages offer vignettes instead of demos. Vignettes are long guides on how to apply a certain concept using different functions in the package. To see the available vignettes of a package, we can use browseVignettes():\nbrowseVignettes(\"survival\")\nWe can also immediately select a vignette of interest:\nvignette(\"splines\")\nTo see the object names to open vignettes from vignette(), we can supply only the package:\nvignette(package = \"survival\")",
+    "objectID": "dplyr.html#the-pipe",
+    "href": "dplyr.html#the-pipe",
+    "title": "Dplyr",
+    "section": "The pipe: %>%",
+    "text": "The pipe: %&gt;%\nBefore we continue with other useful {dplyr} functions, we should talk about the pipe operator %&gt;%. Although %&gt;% is not originally from {dplyr} but instead imported from {magrittr} that we will discuss after this section.\nNormally, if we wanted to apply multiple functions at the same time (for instance, filter() and select() after one another), we would nest the functions:\n\n# Keep only the birth year column and then keep only birth years above 100\nfilter(select(starwars, birth_year), birth_year &gt; 100)\n\n# A tibble: 5 × 1\n  birth_year\n       &lt;dbl&gt;\n1        112\n2        200\n3        600\n4        896\n5        102\n\n\nHowever, this quickly becomes unreadable. With %&gt;%, we can transform this into more readable code. What %&gt;% does is that it takes the outputted result from the previous function and feeds it into an argument in the next function called .data or data (if this argument is available). We will go into more detail in {magrittr}.\nSo, with %&gt;%, we can rewrite the above code as:\n\n# Take starwars data\nstarwars %&gt;%\n    # Keep only birth year column\n    select(birth_year) %&gt;%\n    # Keep only birth years above 100\n    filter(birth_year &gt; 100)\n\n# A tibble: 5 × 1\n  birth_year\n       &lt;dbl&gt;\n1        112\n2        200\n3        600\n4        896\n5        102\n\n\n\n\n\n\n\n\nSome more about annotation: with pipe operators, we can make our code much clearer and with that also our annotations. My personal preference is to annotate each new function after a pipe, so that it becomes even more readable. These annotations might just describe what we are doing, or give more details about why we are doing it. This makes it understandable to people who might not understand R equally well or know the functions we are using and allows better understanding of choices we made.",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#updating-and-unistalling-packages",
-    "href": "packages.html#updating-and-unistalling-packages",
-    "title": "Packages",
-    "section": "Updating and unistalling packages",
-    "text": "Updating and unistalling packages\n\nUpdating\nSometimes, an R package might get an update to resolve a mistake or to add an extra feature. If we want to update our R packages, we could so from the list of packages in the package view in RStudio (Figure 1). Alternatively, we can just rerun the package installation using install.packages() to update it. Note that we cannot use {pacman} here, as {pacman} will notice the package is installed already and therefore only load it, not (re)install it. To update packages, we can also use update.packages(), although this might not update packages to a version suitable for new major R versions.\n\n\nUninstalling\nIf we want to get rid of a package, maybe to clean up some space on our device, we can remove it using remove.packages().\n\n\n\n\n\n\nSometimes we want to update a package, but that package needs an updated version of a package such as {rlang}. This package is always running in the background, so we will be asked whether we want to terminate the activate session of R so that {rlang} can be updated too. However, if we agree, the R session will restart and immediately load {rlang} again, as this is a package that is always loaded. Therefore, to update packages when they need an updated version of {rlang} (or similar cases), first we need to use remove.packages() to uninstall {rlang}, then reinstall {rlang}, and then update the package we wanted to update originally.",
+    "objectID": "dplyr.html#grouping-and-slicing",
+    "href": "dplyr.html#grouping-and-slicing",
+    "title": "Dplyr",
+    "section": "Grouping and slicing",
+    "text": "Grouping and slicing\nNow that we know about pipe operators, we can apply them to some nice {dplyr} functions. Sometimes, we might want to calculate some statistics per group in our data. To do this, we can group the data on the variable(s) that define the groups and then run our analyses. Before we group, we must make sure the data are sorted so that all variables are already ordered in groups. We can do this with arrange(), which arranges variables in the order that you supply them to the function. If you want to arrange a variable in descending order, you can wrap it in desc(). Subsequently, we make the groups with group_by(), which makes groups in the order that the variables are supplied. When we are done working in the groups, we can ungroup the data again with ungroup(). For example, if we want to calculate the mean BMI per sex, we can do the following:\n\n# Calculate mean BMI in strata of sex\nsw &lt;- sw %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Calculate mean BMI\n    mutate(mean_bmi = mean(bmi)) %&gt;%\n    # Ungroup again\n    ungroup()\n\nHowever, I am actually interested in the mean BMI per groups of sex and gender and only want to keep one row per group. For this, we can use slice(), which allows us subset rows based on their position.\n\n# Calculate mean BMI in strata of sex\nsw %&gt;%\n    # Arrange for grouping\n    arrange(sex, gender) %&gt;%\n    # Group on sex and then gender\n    group_by(sex, gender) %&gt;%\n    # Calculate mean BMI\n    mutate(mean_bmi = mean(bmi)) %&gt;%\n    # Keep one row per group\n    slice(1L) %&gt;%           # Note that 1L means that 1 is an integer\n    # Ungroup again\n    ungroup() %&gt;%\n    # Keep only sex, gender, and mean BMI\n    select(sex, gender, mean_bmi)\n\n# A tibble: 5 × 3\n  sex            gender    mean_bmi\n  &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;\n1 female         feminine      17.8\n2 hermaphroditic masculine    443. \n3 male           masculine     24.6\n4 none           masculine     34.7\n5 &lt;NA&gt;           &lt;NA&gt;          24.6\n\n\nslice() is a general function but has some more specifications such as slice_head() and slice_tail() which you can read about in the slice() help function (?slice).\n\nGrouping functions\nWhen we group our data, we can also extract some metadata about the groups we created with the following functions:\n\ngroup_data(): metadata that defines the grouping structure\ngroup_keys(): metadata that describes the groups\ngroup_rows(): location of the rows in the original data per group\ngroup_indices(): a vector with the group to which each row belongs\ngroup_vars(): names of the grouping variables as a character\ngroups(): names of the grouping variables as a list\ngroup_size(): size of each group\nn_groups(): the number of groups",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#a-warning",
-    "href": "packages.html#a-warning",
-    "title": "Packages",
-    "section": "A warning",
-    "text": "A warning\nAlthough packages are a great way of avoiding writing all kinds of code ourselves, they do not come without their warnings.\n\nDependencies\nAlmost all R packages are built using another R package. This is why installing {dplyr} actually installs a lot of other packages, which are all required to allow {dplyr} to function. These are called dependencies. Because packages are dependent on other packages, deprecation of one package might lead to another package not working anymore. Although this is not likely to happen with commonly used packages such as {dplyr}, sometimes this might still cause a package we want to use not to work anymore (or the package we want to use itself is deprecated). Dependencies can become dangerous quickly, as talked about shortly here and here.\n\n\nDeprecate: to withdraw official support for or discourage the use of (something, such as a software product) in favor of a newer or better alternative. Link.\n\n\nTrust\nAnyone can write packages for R, including you and me. On the one hand, this means that everyone can contribute their code to the ease of all other R users. However, this also means that individuals with malicious intent can create R packages. Therefore, you should always be careful when installing R packages. Although CRAN is an archive with many trusted packages, it is not a protection against malicious packages or a guarantee of safety. More on this can be read here.",
+    "objectID": "dplyr.html#summarising-groups",
+    "href": "dplyr.html#summarising-groups",
+    "title": "Dplyr",
+    "section": "Summarising groups",
+    "text": "Summarising groups\nOf course it is great to be able to calculate variables within groups, but there is an easier way to quickly get information on a group level with summarise(). This function creates a new data frame with any summary statistic that we specify per group. For instance, to calculate the mean and standard deviation of the birth year and the proportion of individuals without hair per planet, we can do:\n\n# Use starwars\nsw %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Calculate summary statistics\n    summarise(# Mean\n              mean = mean(birth_year, na.rm = TRUE),\n              # Standard deviation\n              sd = sd(birth_year, na.rm = TRUE),\n              # Proportion of no hair\n              prop_no_hair = sum(hair == \"none\", na.rm = TRUE) / n())\n\n# A tibble: 5 × 4\n  sex             mean    sd prop_no_hair\n  &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;\n1 female          42.2  14.5        0.375\n2 hermaphroditic 600    NA          0    \n3 male            57.6  42.5        0.6  \n4 none            33    NA          0    \n5 &lt;NA&gt;           NaN    NA          0.333\n\n\n\n\nThe code for calculating the proportion of no hair was kindly supplied by Vera Broek.\nNote that the NAs in the output result from the fact that we cannot take the standard deviation of a single observation. One of the functions we used was n(). This is one of the context functions supplied by {dplyr}, which allows us to quickly compute a group-specific variable. The available context functions are:\n\nn(): the number of rows/observations in the group\ncur_group(): the group keys (grouping variables)\ncur_group_id(): gives the group a unique identifier\ncur_group_rows(): gives the row indices in the ungrouped data for the current group\ncur_column(): gives the name of the current column (only works in across())\n\n\nCount and tally\ntally() and count() are two wrappers around summarise:\n\ntally() is equal to summarise but automatically calls n() (if it’s the first tally) or sum() (if it’s the second tally), and therefore an easy shorthand for summarise(n = n()).\ncount() is equal to group_by() followed by summarise(n = n()) and closed with ungroup().",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#exercises",
-    "href": "packages.html#exercises",
-    "title": "Packages",
+    "objectID": "dplyr.html#joins",
+    "href": "dplyr.html#joins",
+    "title": "Dplyr",
+    "section": "Joins",
+    "text": "Joins\nThere might be times where we work with data that is stored in different data sets. If we want to combine these data sets, e.g., x and y, into one bigger data set, we will often want to do this on the basis of one or more variables, such as a unique study participant identifier and/or a visit number. In this case, we can use joins from {dplyr}, which offers four joins. These joins all add the data together, but differ in what they do with individuals that are not matched in either dataset.\n\n\n\n\n\n\n\n\nFunction\nWill keep all observations in\nCan drop observations in\n\n\n\n\ninner_join()\nneither\nx and y\n\n\nleft_join()\nx\ny\n\n\nright_join()\ny\nx\n\n\nfull_join()\nx and y\nneither\n\n\n\nTo use a join function, we use a pipe operator after the data we want to be joined on (x) and then specify on what column we want to join the data.\n# Get some columns from starwars\nstarwars_x &lt;- starwars[, 1:3]\n\n# Get some more columns from starwars\nstarwars_y &lt;- starwars[, c(1, 4:6)]\n\n# Join data together based on the name\nstarwars_z &lt;- starwars_x %&gt;%\n    # Join some more columns from starwars\n    left_join(starwars_y, \"name\")\nIf we would want to join on more columns than only name, we can put the joining columns in a vector with c().",
+    "crumbs": [
+      "Into the tidyverse",
+      "Dplyr"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#understanding-pipelines",
+    "href": "dplyr.html#understanding-pipelines",
+    "title": "Dplyr",
+    "section": "Understanding pipelines",
+    "text": "Understanding pipelines\nWith the {dplyr} functions we have seen so far, we can manipulate our data quite easily and quickly. However, it might be confusing what some functions do, especially when a longer pipeline (i.e., multiple pipe operators) is used, such as the below example. If we want to better understand, we could run the code line for line and view the data frame to get a better understanding. However, external tools are also available to help us.\n# Extensive pipeline\nstarwars %&gt;%\n    # Arrange for grouping\n    arrange(sex) %&gt;%\n    # Group on sex\n    group_by(sex) %&gt;%\n    # Create new variable BMI based on mass and height\n    mutate(bmi = mass / (height / 100) ^ 2) %&gt;%\n    # Drop individuals with missing BMI\n    filter(!is.na(bmi))\n\nTidy data tutor\nWith tidy data tutor, we can run your pipeline on data that can be loaded into R from packages, such as starwars from {dplyr}, and visualize what happens at each pipe operator. We can simply paste the pipeline and load in available data and run it to get a visualization. An example for the above code can be found here.\n\n\nMicrosoft datamations\nAnother possibliity is {datamations}, which gives us animations of how the pipeline operates. To use {datamations}, you can first install it with:\n# Install datamations from github\ndevtools::install_github(\"microsoft/datamations\")\nNext, we can write your pipeline as you normally would. Subsequently, we put the whole pipeline between apostrophes to turn it into a string and use datamation_sanddance() to generate the animation:\n\"# Pipeline\nstarwars %&gt;%\n    # Remove hermaphroditic sex as this gives a large outlier\n    filter(sex != 'hermaphroditic') %&gt;%\n    # Calculate BMI\n    mutate(bmi =mass / (height / 100) ^ 2) %&gt;%\n     # Group on sex\n    group_by(sex) %&gt;%\n    # Get mean BMI per group\n    summarise(mean_bmi = mean(bmi))\" %&gt;% \n    # Get animation\n    datamation_sanddance()\nNote that {datamations} cannot use every {dplyr} function however. More information on {datamations} can be found here.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Dplyr"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#other-useful-functions",
+    "href": "dplyr.html#other-useful-functions",
+    "title": "Dplyr",
+    "section": "Other useful functions",
+    "text": "Other useful functions\nWe now discussed some of the most useful functions in {dplyr}, but there are other useful functions available. This list is not meant to make you remember everything, but more so to introduce you to them once, so that you might recognize when you are trying to perform an operation for which {dplyr} has an efficient implementation. Moreover, this list is not exhaustive, but just a selection of useful functions; for everything available in {dplyr}, see here.\n\nSelecting parts of our data\n\npull(): we can extract a single column with pull(), which is similar to subsetting with the $ operator.\npick(): if we are inside a function such as mutate() or summarise(), we can use pick() to subset multiple columns.\nslice_sample(): select random rows. This is especially useful if you have a rather large data set and first want to test your code on a random subset of your data before running it on the complete data, which might take longer.\ndistinct(): keep only one row per unique combination of columns supplied to the function. This function drops all columns not specified, unless .keep_all = TRUE.\n\n\n\nGetting information on and in our data\n\nlag(): take a column’s value from the previous row (will be NA for the first row).\nlead(): take a column’s value from the next row (will be NA for the last row).\nfirst(), last(), and nth(): take the first, last, or nth (can be specified in the function) value in a column.\nn_distinct(): count the total number of unique values.\nglimpse(): get a quick glimpse of your data, similar to pressing on the blue button in front of the data in the global environment.\n\n\n\nManipulating our data\n\nrows(): perform row-based modifications on a data frame using information in another data frame. See ?rows for a detailed explanation.\nbind_rows(): add data frames together based on rows. This is a more efficient implementation of rbind() and does not require the different data frames to all have the same columns (the final data frame will have all columns of the individual data frames that are bound).\nbind_cols(): similar to bind_rows() but for columns, improving on cbind().\nrowwise(): perform a function per row in the data. This is useful when a vectorized function (i.e., a function that operates over the entire vector) is not available. For more detailed explanation, see ?rowwise.\nna_if(): replace a certain value y in vector x with NA.\nif_else(): an improved version of ifelse() that can also take into account missings.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Dplyr"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#extensions",
+    "href": "dplyr.html#extensions",
+    "title": "Dplyr",
+    "section": "Extensions",
+    "text": "Extensions\n\n{dtplyr}\n{data.table} is a package that works with data frames at a much higher speed than other R packages. Although {data.table} is discussed in more detail in another section, here we shortly discuss the {dplyr} integration with {data.table}.\nWe can use lazy_dt() to create a data table that tracks any operations and then transform it using as.data.table(), as.data.frame(), or as_tibble().\nAlthough {dtplyr} is not as fast as {data.table}, it does allow using the readable {dplyr} while approaching the speed of {data.table}.\n\n\n{dbplyr}\nSometimes, our data is not stored locally but in a remote database, such as SQL. In that case, you can use {dbplyr} to manipulate the data as if it were in-memory using {dplyr} functionality.\nUsing the dbConnect() from {DBI}, we can connect a data base from SQL to an object in R and then manipulate it. Behind the scenes, your R code is translated into SQL code. To get started, you can look up the vignette (vignette(sql)) or see here and here.\n\n\n{sparklyr}\nApache Spark is a powerful framework for processing data quickly and efficiently. It is popular due to it’s speed with big data. Although not officially a {dplyr} extension, {dplyr} and other R code can be used to access Apache Spark through {sparklyr}. You can find more information here.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Dplyr"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#wrapping-up",
+    "href": "dplyr.html#wrapping-up",
+    "title": "Dplyr",
+    "section": "Wrapping up",
+    "text": "Wrapping up\nWe now saw the majority of functions that {dplyr} offers us to manipulate our data into taking the shape we want it to take. If you ever want to have a quick look at what functions are available again, without the explanations in this tutorial, you can check out the {dplyr} reference guide or the documentation.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Dplyr"
+    ]
+  },
+  {
+    "objectID": "dplyr.html#exercises",
+    "href": "dplyr.html#exercises",
+    "title": "Dplyr",
     "section": "Exercises",
-    "text": "Exercises\n\n1. Installing a new package\nInstall the package {tidyverse}.\n\n\nAnswer\n# Answer 1: using {pacman}\npacman::p_load(\"tidyverse\")\n\n\nalso installing the dependencies 'ps', 'processx', 'blob', 'gargle', 'uuid', 'ids', 'rematch2', 'timechange', 'systemfonts', 'textshaping', 'callr', 'selectr', 'conflicted', 'dbplyr', 'dtplyr', 'googledrive', 'googlesheets4', 'lubridate', 'modelr', 'ragg', 'reprex', 'rvest', 'xml2'\n\n\nWarning: unable to access index for repository http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4:\n  cannot open URL 'http://www.stats.ox.ac.uk/pub/RWin/bin/windows/contrib/4.4/PACKAGES'\n\n\n\n  There are binary versions available but the source versions are later:\n     binary source needs_compilation\nps    1.7.7  1.8.0              TRUE\nragg  1.3.2  1.3.3              TRUE\n\npackage 'processx' successfully unpacked and MD5 sums checked\npackage 'blob' successfully unpacked and MD5 sums checked\npackage 'gargle' successfully unpacked and MD5 sums checked\npackage 'uuid' successfully unpacked and MD5 sums checked\npackage 'ids' successfully unpacked and MD5 sums checked\npackage 'rematch2' successfully unpacked and MD5 sums checked\npackage 'timechange' successfully unpacked and MD5 sums checked\npackage 'systemfonts' successfully unpacked and MD5 sums checked\npackage 'textshaping' successfully unpacked and MD5 sums checked\npackage 'callr' successfully unpacked and MD5 sums checked\npackage 'selectr' successfully unpacked and MD5 sums checked\npackage 'conflicted' successfully unpacked and MD5 sums checked\npackage 'dbplyr' successfully unpacked and MD5 sums checked\npackage 'dtplyr' successfully unpacked and MD5 sums checked\npackage 'googledrive' successfully unpacked and MD5 sums checked\npackage 'googlesheets4' successfully unpacked and MD5 sums checked\npackage 'lubridate' successfully unpacked and MD5 sums checked\npackage 'modelr' successfully unpacked and MD5 sums checked\npackage 'reprex' successfully unpacked and MD5 sums checked\npackage 'rvest' successfully unpacked and MD5 sums checked\npackage 'xml2' successfully unpacked and MD5 sums checked\npackage 'tidyverse' successfully unpacked and MD5 sums checked\n\nThe downloaded binary packages are in\n    C:\\Users\\rjjanse.LUMCNET\\AppData\\Local\\Temp\\RtmpsvjtpR\\downloaded_packages\n\n\ninstalling the source packages 'ps', 'ragg'\n\n\n\ntidyverse installed\n\n\nWarning: package 'tidyverse' was built under R version 4.4.1\n\n\nWarning: package 'ggplot2' was built under R version 4.4.1\n\n\nWarning: package 'tibble' was built under R version 4.4.1\n\n\nWarning: package 'tidyr' was built under R version 4.4.1\n\n\nWarning: package 'readr' was built under R version 4.4.1\n\n\nWarning: package 'purrr' was built under R version 4.4.1\n\n\nWarning: package 'stringr' was built under R version 4.4.1\n\n\nWarning: package 'forcats' was built under R version 4.4.1\n\n\nWarning: package 'lubridate' was built under R version 4.4.1\n\n\nAnswer\n# Answer 2: using install.packages()\n# We only use quiet = TRUE here to reduce output shown in the tutorial, you do not need to do this in your own code.\ninstall.packages(\"tidyverse\", quiet = TRUE)\n\n\nWarning: package 'tidyverse' is in use and will not be installed\n\n\n\n\n2. Loading a new package\nNow load the package {tidyverse}\n\n\nAnswer\n# Answer 1: using {pacman}, the package is already loaded after installing\n\n# Answer 2: using library() after install.packages()\nlibrary(\"tidyverse\")",
+    "text": "Exercises\n\n1. Subset data\nFrom the data mtcars, keep only cars with a weight (wt) of 3 or higher and store this into an object dat\n\n\nAnswer\ndat &lt;- filter(mtcars, wt &gt;= 3)\n\n\n\n\n2. Create weight category\nCreate a column wt_cat categorizing wt into smaller than 4 (0) and 4 or greater (1) in dat.\n\n\nAnswer\n# Solution 1: using ifelse\ndat &lt;- mutate(dat, wt_cat = ifelse(wt &lt; 4, 0, 1))\n\n# Solution 2: using if_else\ndat &lt;- mutate(dat, wt_cat = if_else(wt &lt; 4, 0, 1))\n\n# Solution 3: using case_when\ndat &lt;- mutate(dat, wt_cat = case_when(wt &lt; 4 ~ 0, .default = 1))\n\n\n\n\n3. Drop columns\nRemove the hp and vs columns from dat.\n\n\nAnswer\ndat &lt;- select(dat, -c(hp, vs))\n\n\n\n\n4. Get group statistics\nDetermine the number of cars for each level of cyl\n\n\nAnswer\n# Solution 1: using group_by and summarise\ndat %&gt;%\n    # Arrange data for grouping\n    arrange(cyl) %&gt;% \n    # Group per level of cylinders\n    group_by(cyl) %&gt;% \n    # Get count per level of cylinders\n    summarise(n = n())\n\n\n# A tibble: 3 × 2\n    cyl     n\n  &lt;dbl&gt; &lt;int&gt;\n1     4     2\n2     6     4\n3     8    14\n\n\nAnswer\n# Solution 2: using group_by and tally\ndat %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Group per level of cylinders\n    group_by(cyl) %&gt;%\n    # Tally per group of cylinders\n    tally()\n\n\n# A tibble: 3 × 2\n    cyl     n\n  &lt;dbl&gt; &lt;int&gt;\n1     4     2\n2     6     4\n3     8    14\n\n\nAnswer\n# Solution 3: using count\ndat %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Count per group of cylinders\n    count(cyl)\n\n\n  cyl  n\n1   4  2\n2   6  4\n3   8 14\n\n\nAnswer\n# Solution 4: using gropu_by and mutate\ndat %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Group per level of cylinders\n    group_by(cyl) %&gt;%\n    # Per group, calculate number of cylinders\n    mutate(n = n()) %&gt;%\n    # Per group, keep one row\n    slice(1L) %&gt;%\n    # Ungroup again\n    ungroup() %&gt;%\n    # Keep only relevant columns\n    select(cyl, n)\n\n\n# A tibble: 3 × 2\n    cyl     n\n  &lt;dbl&gt; &lt;int&gt;\n1     4     2\n2     6     4\n3     8    14\n\n\n\n\n5. Put it all in a pipeline\nNow perform exercises 1 through 4 but use one continuous pipeline\n\n\nAnswer\n# You can combine any of the solutions of exercise 1 through 4, here I show just one:\ndat &lt;- mtcars %&gt;%\n    # Keep only cars with weight &gt;= 3\n    filter(wt &gt;= 3) %&gt;%\n    # Create category for weight\n    mutate(wt_cat = ifelse(wt &lt; 4, 0, 1)) %&gt;%\n    # Remove columns hp and vs\n    select(-c(hp, vs)) %&gt;%\n    # Arrange for grouping\n    arrange(cyl) %&gt;%\n    # Count per group of cylinders\n    count(cyl)",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
     ]
   },
   {
-    "objectID": "packages.html#next-topic",
-    "href": "packages.html#next-topic",
-    "title": "Packages",
+    "objectID": "dplyr.html#next-topic",
+    "href": "dplyr.html#next-topic",
+    "title": "Dplyr",
     "section": "Next topic",
-    "text": "Next topic\nNow that we know the basics of R packages, let’s start looking at how we can harness their power to load our own data.\nNext: Data",
+    "text": "Next topic\nNow that we know the grammar of {dplyr}, we can see how {tidyr} assists us if the data we want to manipulate is not quite tidy enough yet.\nNext: Tidyr",
     "crumbs": [
-      "The basics",
-      "Packages"
+      "Into the tidyverse",
+      "Dplyr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html",
+    "href": "magrittr.html",
+    "title": "Magrittr",
+    "section": "",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#magrittr",
+    "href": "magrittr.html#magrittr",
+    "title": "Magrittr",
+    "section": "",
+    "text": "{magrittr} is a package that allows us to perform more operations within a timeline to make our code more efficient to write and to read. Its main implementation is the pipe (%&gt;%) which we already discussed in Dplyr. However, it also offers as a number of aliases to make operators available in our pipelines.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#and",
+    "href": "magrittr.html#and",
+    "title": "Magrittr",
+    "section": ". and `",
+    "text": ". and `\nBefore we get into the aliases offered by {magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).\nFor instance, take the below data frame:\n\n# Create example data\nvec_fib &lt;- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)\n\nIf we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to NA, we could do the following:\n\n# First, load magrittr\npacman::p_load(\"magrittr\")\n\n# Start pipeline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    `-`(3) %&gt;%\n    # Multiply by 1.5\n    `*`(1.5) %&gt;%\n    # Set all negative values to NA\n    ifelse(. &lt; 0, NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#aliases",
+    "href": "magrittr.html#aliases",
+    "title": "Magrittr",
+    "section": "Aliases",
+    "text": "Aliases\nHowever, by using {magrittr} allows us functions instead of these operators that improve readability of the code and are easier to use, which are called the aliases. Using those aliase, we would write the above code as:\n\n# Start piepline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    subtract(3) %&gt;%\n    # Multiply by 1.5\n    multiply_by(1.5) %&gt;%\n    # Set all negative values to NA\n    # Here, the alias is perhaps not as useful, as we use . &lt; 0 in a function. The aliases are mostly useful as first function in each piece of the pipeline\n    ifelse(is_less_than(., 0), NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0\n\n\nThe available aliases (also available here or in the help function of each alias in R) are:\n\n\n\nDescription\nSymbol\n\n\n\n\nextract2\n`[[`\n\n\ninset\n`[&lt;-`\n\n\ninset2\n`[[&lt;-`\n\n\nuse_series\n`$`\n\n\nadd\n`+`\n\n\nsubtract\n`-`\n\n\nmultiply_by\n`*`\n\n\nraise_to_power\n`^`\n\n\nmultiply_by_matrix\n`%*%`\n\n\ndivide_by\n`/`\n\n\ndivide_by_int\n`%/%`\n\n\nmod\n`%%`\n\n\nis_in\n`%in%`\n\n\nand\n`&`\n\n\nor\n`|`\n\n\nequals\n`==`\n\n\nis_greater_than\n`&gt;`\n\n\nis_weakly_greater_than\n`&gt;=`\n\n\nis_less_than\n`&lt;`\n\n\nis_weakly_less_than\n`&lt;=`\n\n\nnot (n’est pas)\n`!`\n\n\nset_colnames\n`colnames&lt;-`\n\n\nset_rownames\n`rownames&lt;-`\n\n\nset_names\n`names&lt;-`\n\n\nset_class\n`class&lt;-`\n\n\nset_attributes\n`attributes&lt;-`\n\n\nset_attr\n`attr&lt;-`",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#section",
+    "href": "magrittr.html#section",
+    "title": "Magrittr",
+    "section": "|>",
+    "text": "|&gt;\nBesides the pipe implemented by {magrittr}, R also offers a native pipe: |&gt;. Instead of existing data being called by the dot (.), you can use a low dash (_). Although in general the pipes function the same, there are some differences in what they can do and how they are used. The tidyverse has a more elaborate explanation on this topic here and more details are also available here and here.",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#other-pipes",
+    "href": "magrittr.html#other-pipes",
+    "title": "Magrittr",
+    "section": "Other pipes",
+    "text": "Other pipes\nThe %&gt;% pipe is not the only pipe {magrittr} offers us.\n\n%T&gt;%\nThe Tee pipe returns the left-hand side of the value instead of the right-hand side. In other words, it returns the input into the function instead of the output of the function. This is helpful when we are only interested in the side-effects of a function, instead of its main output (e.g. printing in console).\nImagine we are interested in only the description of a .csv file, but not actually loading it into our global environment. In that case, I could use the read_csv() function from {readr} with the Tee pipe:\n\n# Load readr\npacman::p_load(\"readr\")\n\n# Get information on .csv file available online\n\"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download\" %T&gt;% \n    # Print only data information\n    read_csv()\n\nRows: 100 Columns: 12\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (10): Customer Id, First Name, Last Name, Company, City, Country, Phone...\ndbl   (1): Index\ndate  (1): Subscription Date\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n[1] \"https://drive.google.com/uc?id=1zO8ekHWx9U7mrbx_0Hoxxu6od7uxJqWw&export=download\"\n\n\n\n\n%$%\nThe exposition pipe gives the names of the data to the next function, which is especially useful if the function does not have a data argument, such as table():\n\n# Just piping iris into table will not work (commented out to prevent error)\n# iris %&gt;% table(Species)\n\n# Using an exposition pipe, it will work\niris %$% table(Species)\n\nSpecies\n    setosa versicolor  virginica \n        50         50         50 \n\n\n\n\n$&lt;&gt;$\nThe assignment pipe is a shorthand pipe for a pipeline that assigns the final value back into the object that was used as the start of the pipeline (i.e. it is short for x &lt;- x %&gt;% ...). For example:\n\n# Starting value\nx &lt;- 5; y &lt;- 5\n\n# With the assignment operator\nx &lt;- x %&gt;%\n    # Divide by 2\n    divide_by(2)\n\n# With the assignment pipe\ny %&lt;&gt;%\n    # Divide by 2\n    divide_by(2)\n\n# Check whether results are equal\nx == y\n\n[1] TRUE",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#exercises",
+    "href": "magrittr.html#exercises",
+    "title": "Magrittr",
+    "section": "Exercises",
+    "text": "Exercises\n\n1. Use aliases to change values\nFrom the starwars dataset (available in {dplyr}, ), extract the column height and divide by 100.\n\n\nAnswer\n# Load dplyr for data\npacman::p_load(\"dplyr\")\n\n# Start pipe with starwars data\nstarwars %&gt;%\n    # Extract column height (unnamed)\n    extract2(\"height\") %&gt;%\n    # Divide by 100\n    divide_by(100)\n\n\n [1] 1.72 1.67 0.96 2.02 1.50 1.78 1.65 0.97 1.83 1.82 1.88 1.80 2.28 1.80 1.73\n[16] 1.75 1.70 1.80 0.66 1.70 1.83 2.00 1.90 1.77 1.75 1.80 1.50   NA 0.88 1.60\n[31] 1.93 1.91 1.70 1.85 1.96 2.24 2.06 1.83 1.37 1.12 1.83 1.63 1.75 1.80 1.78\n[46] 0.79 0.94 1.22 1.63 1.88 1.98 1.96 1.71 1.84 1.88 2.64 1.88 1.96 1.85 1.57\n[61] 1.83 1.83 1.70 1.66 1.65 1.93 1.91 1.83 1.68 1.98 2.29 2.13 1.67 0.96 1.93\n[76] 1.91 1.78 2.16 2.34 1.88 1.78 2.06   NA   NA   NA   NA   NA\n\n\n\n\n2. Use different pipes to meddle with starwars\nNow, reassign a frequency table of species to the object name starwars of individuals of at least 2 meters tall using the pipe operators from {magrittr}.\n\n\nAnswer\n# Start pipe with starwars data and immediately reassign\nstarwars %&lt;&gt;%\n    # Keep only individuals above 2 meters tall\n    filter(height &gt;= 200) %$%\n    # Get table of species\n    table(species)\n\n# Check result\nstarwars\n\n\nspecies\n   Droid   Gungan    Human  Kaleesh Kaminoan   Pau'an Quermian  Wookiee \n       1        2        1        1        2        1        1        2",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "magrittr.html#next-topic",
+    "href": "magrittr.html#next-topic",
+    "title": "Magrittr",
+    "section": "Next topic",
+    "text": "Next topic\nWith that, we discussed a large part of the tidyverse. Although some other packages exist, we discuss these in other sections. Now that we know part of the basic grammar of the tidyverse, we can learn a new set of skills useful for any data analysis.\nNext: Plotting",
+    "crumbs": [
+      "Into the tidyverse",
+      "Magrittr"
+    ]
+  },
+  {
+    "objectID": "plotting.html",
+    "href": "plotting.html",
+    "title": "Plotting",
+    "section": "",
+    "text": "A lot of analyses are represented by figures in the final papers. Additionally, visualization of data may allow better scrutiny of data patterns. As such, creating figures in R, or ‘plotting’ (because we are making plots).\nThe way plots are created varies, but two large methods stand out. The first we will discuss is implemented by the {ggplot2} package. This package is based on the grammar of graphics, a landmark work on statistical graphics (ergo ‘gg’ for ‘grammr of graphics’). The second method we will discuss is the base R plotting, which is part of the R {graphics} package.\nAs example data, we will use the package {palmerpenguins}, which contains data on 344 penguins from three islands in the Palmer Archipelago, Antarctica (more here).\nWe will also load the {ggplot2} package. The {graphics} package is installed and loaded by default.\n\n\nAnswer\n# Load packages\npacman::p_load(\"ggplot2\",          # Data visualization\n               \"palmerpenguins\"    # Example data\n               )",
+    "crumbs": [
+      "New skills",
+      "Plotting"
+    ]
+  },
+  {
+    "objectID": "plotting.html#plotting-in-r",
+    "href": "plotting.html#plotting-in-r",
+    "title": "Plotting",
+    "section": "",
+    "text": "A lot of analyses are represented by figures in the final papers. Additionally, visualization of data may allow better scrutiny of data patterns. As such, creating figures in R, or ‘plotting’ (because we are making plots).\nThe way plots are created varies, but two large methods stand out. The first we will discuss is implemented by the {ggplot2} package. This package is based on the grammar of graphics, a landmark work on statistical graphics (ergo ‘gg’ for ‘grammr of graphics’). The second method we will discuss is the base R plotting, which is part of the R {graphics} package.\nAs example data, we will use the package {palmerpenguins}, which contains data on 344 penguins from three islands in the Palmer Archipelago, Antarctica (more here).\nWe will also load the {ggplot2} package. The {graphics} package is installed and loaded by default.\n\n\nAnswer\n# Load packages\npacman::p_load(\"ggplot2\",          # Data visualization\n               \"palmerpenguins\"    # Example data\n               )",
+    "crumbs": [
+      "New skills",
+      "Plotting"
+    ]
+  },
+  {
+    "objectID": "plotting.html#ggplot2",
+    "href": "plotting.html#ggplot2",
+    "title": "Plotting",
+    "section": "{ggplot2}",
+    "text": "{ggplot2}\nBasically, the grammar of graphics provides a foundation that describes how any statistical graphic can be build up, which is based on layers. This layered system gives rise to how the package {ggplot2} allows us to create figures (i.e. plots).\n\nLayer 1: the data\nThe first layer we specify is the data layer. In this layer, we specify our data and the mapping of the aesthetics, meaning we define what our x-axis will portray, the y-axis, what colours, etc. will portray. This first layer is called using ggplot():\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm))\n\n\n\n\n\n\n\n\n\nHere, we specified the first argument (data = penguins) to be our dataset. For the second argument (mapping = aes()), we supply a function: aes(). This function allows us to specify what will make up the aesthetics of the graph: the x-axis will be ‘body_mass_g’ and the y-axis will be ‘flipper_length_mm’. Because we did not supply any other layer, we can see that the figure remains largely empty, only having some automatically set limits and titles for the axes.\n\n\nLayer 2: the geometries\nNow we can add the geometries. We are offered a large number of geometries by {ggplot2}, with some basics including points, lines, bars, histograms, rectangles, segments, steps, and ribbons. Each geometry is called by a geom_...() function, such as geom_point() and geom_line().\nFor our figure, we will add points.\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n    # Geometries\n    geom_point()\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nYou may notice that layers in these plots are added together by using a plus (+) sign. Additionally, the warning you is just {ggplot2} telling you there were some NA’s that could not be drawn in the plot. Note that this error is also given if you have some values that are outside of the boundaries of your plot.\nWithin each geometry, we can edit many things, such as the colour, fill (i.e. the colour of shapes that contain an inside), size, alpha (i.e. transparency), and shape (or linetype for lines). Much more is possible, but can be learned from the help functions for each geometry.\nNote that any geometry is applied in subsequent order. If we add a trendline (geom_smooth(method = \"lm\", formula = \"y ~ x\")), this will be drawn on top of the points if we specify it after geom_point() or before if we specify it before geom_point().\nLet’s do this now:\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n    # Geometries\n    geom_point(shape = 5) +\n    geom_smooth(method = \"lm\", formula = \"y ~ x\", colour = \"#B58900\", fill = \"#B58900\", alpha = 0.3) \n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nWe specified shape as a number, for which you can find online what different numbers mean. We specified the colour as a hex code, but you can also use the rgb() function for RGB specification, or English language for a number of colours that can be found here. Lastly, we specify the British English colour instead of the American English color. {ggplot2} will accept both, for arguments and for functions (e.g. scale_color_manual() and scale_colour_manual() both exist and do the same thing).\n\n\nLayer 3: the scaling\nFor the third layer, we will apply scaling, which means we will edit anything that can be a scale (e.g. axes, colours, fill).\n\n\n\n\n\n\nNote\n\n\n\nNote that we deviate from the grammar of graphics in building our plot. The order in which we specify our layers does not adhere to the grammar of graphics. Luckily, in the background, {ggplot2} ignores this, only keeping the order in which we called geometries for geometries, but for instance not drawing theming prior to geometries, even if we specify so.\n\n\nIn our current plot, we have two scales: the x-axis and y-axis. We can edit these using scale functions that concur with the scale type (i.e. continuous, discrete, etc.). In our case, both scales are continuous, so we will use scale_x_continuous() and scale_y_continuous(). For other types of scales, we might also use scale_x_discrete(), scale_x_date(), etc.\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n    # Geometries\n    geom_point(shape = 5) +\n    geom_smooth(method = \"lm\", formula = \"y ~ x\", colour = \"#B58900\", fill = \"#B58900\", alpha = 0.3) +\n    # Scaling\n    scale_x_continuous(name = \"Body mass (grams)\",\n                       limits = c(2500, 6500),\n                       breaks = seq(2500, 6500, 500),\n                       labels = prettyNum(seq(2500, 6500, 500), big.mark = \",\")) +\n    scale_y_continuous(name = \"Flipper length (millimeters)\",\n                       limits = c(170, 240),\n                       breaks = seq(170, 240, 10))                     \n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\nIn the scale functions, we can give the name of the axis, the limits of the axis, at which points there should be ticks (breaks), and the labels given to each tick.\n\n\nLayer 4: labels\nIn the next layer, we will apply labels to the plot, which includes the title, subtitle, axes labels, and legends.\nFor the axes labels, we can use xlab() and ylab() respectively. We won’t need these as we specified the name already in the scaling function, but they might be useful if you do not need the scale function. The title can be specified using the ggtitle() function, which also allows you to specify a subtitle. Alternatively, this can be done through the labs() function, which allows much more control, such as a tag (for multipanel labels where you want to tag A, B, C, etc.), a caption, and alt text (for accessibility purposes).\nFor the plot we’re building, we will aply a title and a subtitle.\n\n\nAnswer\nggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +\n    # Geometries\n    geom_point(shape = 5) +\n    geom_smooth(method = \"lm\", formula = \"y ~ x\", colour = \"#B58900\", fill = \"#B58900\", alpha = 0.3) +\n    # Scaling\n    scale_x_continuous(name = \"Body mass (grams)\",\n                       limits = c(2500, 6500),\n                       breaks = seq(2500, 6500, 500),\n                       labels = prettyNum(seq(2500, 6500, 500), big.mark = \",\")) +\n    scale_y_continuous(name = \"Flipper length (millimeters)\",\n                       limits = c(170, 240),\n                       breaks = seq(170, 240, 10)) +\n    # Labels\n    ggtitle(\"Relation between penguin body mass and flipper length\", subtitle = \"Data from the Palmer Archipelago penguins\")                 \n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nLayer 5: coordinates and transformations\n\n\nLayer 6: theme",
+    "crumbs": [
+      "New skills",
+      "Plotting"
     ]
   },
   {
@@ -965,83 +1053,6 @@
     "crumbs": [
       "Into the tidyverse",
       "Tidyverse"
-    ]
-  },
-  {
-    "objectID": "magrittr.html#and-before-we-get-into-the-aliases-offered-bymagrittr-we-should-realize-that-we-can-do-without-these-aliases-by-using-dots-.-and-backticks-.-here-the-dot-indicates-the-data-in-its-current-form-i.e.-after-all-previous-operations-have-been-applied-and-the-backticks-are-put-around-the-operator-e.g.-.-the-operator-is-then-treated-as-a-function-i.e.-parentheses-are-required.",
-    "href": "magrittr.html#and-before-we-get-into-the-aliases-offered-bymagrittr-we-should-realize-that-we-can-do-without-these-aliases-by-using-dots-.-and-backticks-.-here-the-dot-indicates-the-data-in-its-current-form-i.e.-after-all-previous-operations-have-been-applied-and-the-backticks-are-put-around-the-operator-e.g.-.-the-operator-is-then-treated-as-a-function-i.e.-parentheses-are-required.",
-    "title": "Magrittr",
-    "section": ". and Before we get into the aliases offered by{magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).",
-    "text": ". and Before we get into the aliases offered by{magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).\nFor instance, take the below data frame:\n\n# Create example data\nvec_fib &lt;- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)\n\nIf we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to NA, we could do the following:\n\n# First, load magrittr\npacman::p_load(\"magrittr\")\n\n# Start pipeline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    `-`(3) %&gt;%\n    # Multiply by 1.5\n    `*`(1.5) %&gt;%\n    # Set all negative values to NA\n    ifelse(. &lt; 0, NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0",
-    "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
-    ]
-  },
-  {
-    "objectID": "magrittr.html#aliases",
-    "href": "magrittr.html#aliases",
-    "title": "Magrittr",
-    "section": "Aliases",
-    "text": "Aliases\nHowever, by using {magrittr} allows us functions instead of these operators that improve readability of the code and are easier to use, which are called the aliases. Using those aliase, we would write the above code as:\n\n# Start piepline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    subtract(3) %&gt;%\n    # Multiply by 1.5\n    multiply_by(1.5) %&gt;%\n    # Set all negative values to NA\n    # Here, the alias is perhaps not as useful, as we use . &lt; 0 in a function. The aliases are mostly useful as first function in each piece of the pipeline\n    ifelse(is_less_than(., 0), NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0\n\n\nThe available aliases (also available here or in the help function of each alias in R) are:\n\n\n\nDescription\nSymbol\n\n\n\n\nextract2\n[[\n\n\ninset\n[&lt;-\n\n\ninset2\n[[&lt;-\n\n\nuse_series\n$\n\n\nadd\n+\n\n\nsubtract\n-\n\n\nmultiply_by\n*\n\n\nraise_to_power\n^\n\n\nmultiply_by_matrix\n%*%\n\n\ndivide_by\n/\n\n\ndivide_by_int\n%/%\n\n\nmod\n%%\n\n\nis_in\n%in%\n\n\nand\n&\n\n\nor\n|\n\n\nequals\n==\n\n\nis_greater_than\n&gt;\n\n\nis_weakly_greater_than\n&gt;=\n\n\nis_less_than\n&lt;\n\n\nis_weakly_less_than\n&lt;=\n\n\nnot (n’est pas)\n!\n\n\nset_colnames\ncolnames&lt;-\n\n\nset_rownames\nrownames&lt;-\n\n\nset_names\nnames&lt;-\n\n\nset_class\nclass&lt;-\n\n\nset_attributes\nattributes&lt;-\n\n\nset_attr\nattr&lt;-",
-    "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
-    ]
-  },
-  {
-    "objectID": "magrittr.html#section",
-    "href": "magrittr.html#section",
-    "title": "Magrittr",
-    "section": "|>",
-    "text": "|&gt;\nBesides the pipe implemented by {magrittr}, R also offers a native pipe: |&gt;. Instead of existing data being called by the dot (.), you can use a low dash (_). Although in general the pipes function the same, there are some differences in what they can do and how they are used. The tidyverse has a more elaborate explanation on this topic here and more details are also available here and here.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
-    ]
-  },
-  {
-    "objectID": "magrittr.html#other-pipes",
-    "href": "magrittr.html#other-pipes",
-    "title": "Magrittr",
-    "section": "Other pipes",
-    "text": "Other pipes\nThe %&gt;% pipe is not the only pipe {magrittr} offers us.",
-    "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
-    ]
-  },
-  {
-    "objectID": "magrittr.html#exercises",
-    "href": "magrittr.html#exercises",
-    "title": "Magrittr",
-    "section": "Exercises",
-    "text": "Exercises\n\n1. Use aliases to rewrite a function\nFrom the starwars dataset (available in {dplyr}, ), extract the column height and divide by 100.\n\n\nAnswer\n# Load dplyr for data\npacman::p_load(\"dplyr\")\n\n# Start pipe with starwars data\nstarwars %&gt;%\n    # Extract column height (unnamed)\n    extract2(\"height\") %&gt;%\n    # Divide by 100\n    divide_by(100)\n\n\n [1] 1.72 1.67 0.96 2.02 1.50 1.78 1.65 0.97 1.83 1.82 1.88 1.80 2.28 1.80 1.73\n[16] 1.75 1.70 1.80 0.66 1.70 1.83 2.00 1.90 1.77 1.75 1.80 1.50   NA 0.88 1.60\n[31] 1.93 1.91 1.70 1.85 1.96 2.24 2.06 1.83 1.37 1.12 1.83 1.63 1.75 1.80 1.78\n[46] 0.79 0.94 1.22 1.63 1.88 1.98 1.96 1.71 1.84 1.88 2.64 1.88 1.96 1.85 1.57\n[61] 1.83 1.83 1.70 1.66 1.65 1.93 1.91 1.83 1.68 1.98 2.29 2.13 1.67 0.96 1.93\n[76] 1.91 1.78 2.16 2.34 1.88 1.78 2.06   NA   NA   NA   NA   NA",
-    "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
-    ]
-  },
-  {
-    "objectID": "magrittr.html#next-topic",
-    "href": "magrittr.html#next-topic",
-    "title": "Magrittr",
-    "section": "Next topic",
-    "text": "Next topic\nWith that, we discussed a large part of the tidyverse. Although some other packages exist, we discuss these in other sections. Now that we know part of the basic grammar of the tidyverse, we can learn a new set of skills useful for any data analysis.\nNext: Plotting",
-    "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
-    ]
-  },
-  {
-    "objectID": "magrittr.html#and",
-    "href": "magrittr.html#and",
-    "title": "Magrittr",
-    "section": ". and `",
-    "text": ". and `\nBefore we get into the aliases offered by {magrittr}, we should realize that we can do without these aliases by using dots (.) and backticks (`). Here, the dot indicates the data in its current form (i.e. after all previous operations have been applied) and the backticks are put around the operator (e.g. +). The operator is then treated as a function (i.e. parentheses are required).\nFor instance, take the below data frame:\n\n# Create example data\nvec_fib &lt;- c(1, 1, 2, 3, 5, 8, 13, 21, 34, 55)\n\nIf we want to subtract 3 from all numbers, multiply by 1.5, and then set all negative values to NA, we could do the following:\n\n# First, load magrittr\npacman::p_load(\"magrittr\")\n\n# Start pipeline with vector\nvec_fib %&gt;%\n    # Subtract 3\n    `-`(3) %&gt;%\n    # Multiply by 1.5\n    `*`(1.5) %&gt;%\n    # Set all negative values to NA\n    ifelse(. &lt; 0, NA, .)\n\n [1]   NA   NA   NA  0.0  3.0  7.5 15.0 27.0 46.5 78.0",
-    "crumbs": [
-      "Into the tidyverse",
-      "Magrittr"
     ]
   }
 ]
