@@ -361,7 +361,10 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
 
               const clone = child.cloneNode(true);
               clone.style.opacity = 1;
+<<<<<<< Updated upstream
               clone.style.pointerEvents = null;
+=======
+>>>>>>> Stashed changes
               clone.style.display = null;
               toggleContents.append(clone);
             }
@@ -499,6 +502,7 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
               panelTabsetEl = panelTabsetEl.parentElement;
             }
 
+<<<<<<< Updated upstream
             if (panelTabsetEl) {
               const prevSib = panelTabsetEl.previousElementSibling;
               if (
@@ -522,6 +526,73 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
           layoutMarginEls();
         });
     }
+=======
+  const layoutMarginEls = () => {
+    let lastBottom = 0;
+    for (const marginChild of marginChildren) {
+      if (marginChild.offsetParent !== null) {
+        // clear the top margin so we recompute it
+        marginChild.style.marginTop = null;
+        const top = marginChild.getBoundingClientRect().top + window.scrollY;
+        if (top < lastBottom) {
+          const margin = lastBottom - top;
+          marginChild.style.marginTop = `${margin}px`;
+        }
+        const styles = window.getComputedStyle(marginChild);
+        const marginTop = parseFloat(styles["marginTop"]);
+        lastBottom =
+          top + marginChild.getBoundingClientRect().height + marginTop;
+      }
+    }
+  };
+  nexttick(layoutMarginEls);
+
+  const tabEls = document.querySelectorAll('a[data-bs-toggle="tab"]');
+  for (const tabEl of tabEls) {
+    const id = tabEl.getAttribute("data-bs-target");
+    if (id) {
+      const columnEl = document.querySelector(
+        `${id} .column-margin, .tabset-margin-content`
+      );
+      if (columnEl)
+        tabEl.addEventListener("shown.bs.tab", function (event) {
+
+          const el = event.srcElement;
+          if (el) {
+            const visibleCls = `${el.id}-margin-content`;
+            // walk up until we find a parent tabset
+            let panelTabsetEl = el.parentElement;
+            while (panelTabsetEl) {
+              if (panelTabsetEl.classList.contains("panel-tabset")) {
+                break;
+              }
+              panelTabsetEl = panelTabsetEl.parentElement;
+            }
+
+            if (panelTabsetEl) {
+              const prevSib = panelTabsetEl.previousElementSibling;
+              if (
+                prevSib &&
+                prevSib.classList.contains("tabset-margin-container")
+              ) {
+                const childNodes = prevSib.querySelectorAll(
+                  ".tabset-margin-content"
+                );
+                for (const childEl of childNodes) {
+                  if (childEl.classList.contains(visibleCls)) {
+                    childEl.classList.remove("collapse");
+                  } else {
+                    childEl.classList.add("collapse");
+                  }
+                }
+              }
+            }
+          }
+
+          layoutMarginEls();
+        });
+    }
+>>>>>>> Stashed changes
   }
 
   // Manage the visibility of the toc and the sidebar
@@ -744,7 +815,10 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
     // Process the collapse state if this is an UL
     if (el.tagName === "UL") {
       if (tocOpenDepth === -1 && depth > 1) {
+<<<<<<< Updated upstream
         // toc-expand: false
+=======
+>>>>>>> Stashed changes
         el.classList.add("collapse");
       } else if (
         depth <= tocOpenDepth ||

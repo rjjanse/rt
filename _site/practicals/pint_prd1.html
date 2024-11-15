@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.306">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Roemer J. Janse">
+<meta name="dcterms.date" content="2024-09-19">
+
+<title>PINT - Prediction Practical 1</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating slimcontent">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">PINT - Prediction Practical 1</li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Start</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Set-up</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RStudio</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">The basics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../creating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../using.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Using data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../packages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Packages</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">External data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Into the tidyverse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tidyverse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tidyverse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Dplyr</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">External data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">magrittr.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Into the multiverse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">datatable.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">shiny.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">New skills</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">random.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">functions.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">looping.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">iterating.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">regex.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Workflow</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">scripts.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">rmarkdown.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">General use</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">regression.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">plotting.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">table1.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
+ <span class="menu-text">Specific use</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">imputation.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">confounding.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">prediction.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">competing_risks.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true">
+ <span class="menu-text">Recap</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">rython.qmd</span>
+  </li>
+          <li class="sidebar-item">
+ <span class="menu-text">slow.qmd</span>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface"><span class="header-section-number">1</span> Preface</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">2</span> Introduction</a></li>
+  <li><a href="#setting-up-r" id="toc-setting-up-r" class="nav-link" data-scroll-target="#setting-up-r"><span class="header-section-number">3</span> Setting up R</a></li>
+  <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data"><span class="header-section-number">4</span> Loading data</a></li>
+  <li><a href="#predicting-an-unfavourable-outcome" id="toc-predicting-an-unfavourable-outcome" class="nav-link" data-scroll-target="#predicting-an-unfavourable-outcome"><span class="header-section-number">5</span> Predicting an unfavourable outcome</a>
+  <ul>
+  <li><a href="#getting-to-know-our-data" id="toc-getting-to-know-our-data" class="nav-link" data-scroll-target="#getting-to-know-our-data"><span class="header-section-number">5.1</span> Getting to know our data</a></li>
+  <li><a href="#method-i-glm" id="toc-method-i-glm" class="nav-link" data-scroll-target="#method-i-glm"><span class="header-section-number">5.2</span> Method I: glm()</a>
+  <ul class="collapse">
+  <li><a href="#developing-the-prediction-model" id="toc-developing-the-prediction-model" class="nav-link" data-scroll-target="#developing-the-prediction-model"><span class="header-section-number">5.2.1</span> Developing the prediction model</a></li>
+  <li><a href="#validating-the-prediction-model" id="toc-validating-the-prediction-model" class="nav-link" data-scroll-target="#validating-the-prediction-model"><span class="header-section-number">5.2.2</span> Validating the prediction model</a></li>
+  </ul></li>
+  <li><a href="#method-ii-lrm" id="toc-method-ii-lrm" class="nav-link" data-scroll-target="#method-ii-lrm"><span class="header-section-number">5.3</span> Method II: lrm()</a>
+  <ul class="collapse">
+  <li><a href="#developing-the-prediction-model-1" id="toc-developing-the-prediction-model-1" class="nav-link" data-scroll-target="#developing-the-prediction-model-1"><span class="header-section-number">5.3.1</span> Developing the prediction model</a></li>
+  <li><a href="#validating-the-prediction-model-1" id="toc-validating-the-prediction-model-1" class="nav-link" data-scroll-target="#validating-the-prediction-model-1"><span class="header-section-number">5.3.2</span> Validating the prediction model</a></li>
+  </ul></li>
+  <li><a href="#method-i-or-method-ii" id="toc-method-i-or-method-ii" class="nav-link" data-scroll-target="#method-i-or-method-ii"><span class="header-section-number">5.4</span> Method I or Method II?</a></li>
+  <li><a href="#the-curse-of-the-model-fit-object" id="toc-the-curse-of-the-model-fit-object" class="nav-link" data-scroll-target="#the-curse-of-the-model-fit-object"><span class="header-section-number">5.5</span> The curse of the model fit object</a></li>
+  </ul></li>
+  <li><a href="#predicting-survival-in-advanced-lung-cancer" id="toc-predicting-survival-in-advanced-lung-cancer" class="nav-link" data-scroll-target="#predicting-survival-in-advanced-lung-cancer"><span class="header-section-number">6</span> Predicting survival in advanced lung cancer</a>
+  <ul>
+  <li><a href="#getting-to-know-our-data-1" id="toc-getting-to-know-our-data-1" class="nav-link" data-scroll-target="#getting-to-know-our-data-1"><span class="header-section-number">6.1</span> Getting to know our data</a></li>
+  <li><a href="#method-i-coxph" id="toc-method-i-coxph" class="nav-link" data-scroll-target="#method-i-coxph"><span class="header-section-number">6.2</span> Method I: coxph()</a></li>
+  <li><a href="#method-ii-cph" id="toc-method-ii-cph" class="nav-link" data-scroll-target="#method-ii-cph"><span class="header-section-number">6.3</span> Method II: cph()</a></li>
+  <li><a href="#the-curse-of-the-model-fit-object-revisited" id="toc-the-curse-of-the-model-fit-object-revisited" class="nav-link" data-scroll-target="#the-curse-of-the-model-fit-object-revisited"><span class="header-section-number">6.4</span> The curse of the model fit object revisited</a></li>
+  </ul></li>
+  <li><a href="#final-words" id="toc-final-words" class="nav-link" data-scroll-target="#final-words"><span class="header-section-number">7</span> Final words</a></li>
+  <li><a href="#postscript" id="toc-postscript" class="nav-link" data-scroll-target="#postscript"><span class="header-section-number">8</span> Postscript</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PINT - Prediction Practical 1</h1>
+<p class="subtitle lead">Analysis and Reporting of Prediction Modelling Studies</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Roemer J. Janse </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 19, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="preface" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Preface</h1>
+<p>This R practical will discuss the necessities for prediction modelling in R. However, we assume some basic knowledge on how R works. If you are new to R, we suggest you take a look at <a href="https://rjjanse.github.io/rt">this</a> freely available R tutorial. Following the tutorial up until the section ‘dplyr’ should be enough to understand this practical.</p>
+</section>
+<section id="introduction" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Introduction</h1>
+<p>In this practical, we will see what are the minimal requirements to develop a prediction model in R (i.e.&nbsp;not from a statistical point of view) and develop a prediction model ourselves.</p>
+<p>At the end of this practical, you will know what is required to develop and validate a prediction model in R. Additionally, you will understand the differences between different packages for prediction modelling.</p>
+</section>
+<section id="setting-up-r" class="level1 page-columns page-full" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Setting up R</h1>
+<p>Before we get into the fun part, of course we have to load a number of packages that will help us.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Loading packages</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"dplyr"</span>,         <span class="co"># Data wrangling</span></span>
+<span id="cb1-3"><a href="#cb1-3"></a>               <span class="st">"magrittr"</span>,      <span class="co"># More efficient pipelines</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>               <span class="st">"rio"</span>,           <span class="co"># Importing data</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>               <span class="st">"DescTools"</span>,     <span class="co"># C-statistic for logistic models</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>               <span class="st">"pROC"</span>,          <span class="co"># C-statistic for logistic models</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>               <span class="st">"rms"</span>,           <span class="co"># Developing prediction models and restricted cubic splines</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>               <span class="st">"survival"</span>,      <span class="co"># Developing Cox prediction models</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>               <span class="st">"splines"</span>,       <span class="co"># Natural cubic splines</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>               <span class="st">"mice"</span>,          <span class="co"># Multiple imputation of data</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>               <span class="st">"ggplot2"</span>,       <span class="co"># Data visualization</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>               <span class="st">"ggExtra"</span>        <span class="co"># Add-ons for ggplot2</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Note that we use <a href="https://rjjanse.github.io/rt/packages.html#pacman"><code>{pacman}</code></a> instead of the usual approach with <code>install.packages()</code> and <code>library()</code>, but that this requires a one-time prior installation of <code>{pacman}</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">install.packages</span>(<span class="st">"pacman"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></section>
+<section id="loading-data" class="level1 page-columns page-full" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Loading data</h1>
+<p>For this practical, we will use two datasets: * Traumatic brain injury (TBI) data This dataset contains 2,159 patients from the international and US Tirilazad trials (distributed here for didactic purposes only). The primary outcome was the Glasgow Outcome (range 1 through 5) at 6 months. * NCCTG lung cancer data The NCCTG lung cancer dataset contains 228 patients from the North Central Cancer Treatment group, with information on time until death and performance scores.</p>
+<p>The TBI dataset was sent to you together with this practical and can be loaded from your local device:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Specify path of TBI dataset</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>path <span class="ot">&lt;-</span> <span class="st">"C:/users/avid_PINT_student/documents/pint/TBI.txt"</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co"># Load TBI data</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>tbi <span class="ot">&lt;-</span> <span class="fu">import</span>(path)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in (function (input = "", file = NULL, text = NULL, cmd = NULL, :
+Detected 24 column names but the data has 25 columns (i.e. invalid file). Added
+1 extra default column name for the first column which is guessed to be row
+names or an index. Use setnames() afterwards if this guess is not correct, or
+fix the file write command that created the file to create a valid file.</code></pre>
+</div>
+</div>
+<p>The warning we receive is the result of row numbers being present in the .txt file (as also guessed by <code>import()</code>). Given that <code>import()</code> guessed correct, we can ignore this warning and treat the extra column V1 as individual identifiers.</p>
+<p>The NCCTG lung cancer dataset is provided by the <code>{survival}</code> package and can be loaded from within R:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>lung <span class="ot">&lt;-</span> lung</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>More formally, we could call the lung dataset with:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">data</span>(cancer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, this will show all related cancer datasets available in <code>{survival}</code> as promises (i.e.&nbsp;available to you but not loaded into memory). If you run lung once, it will be loaded into your global environment:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>lung</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Nonetheless, the other datasets remain visible as promises in your global environment, which can be rather messy.</p>
+</div></div><p>Below are the codebooks for both the TBI and the lung data.</p>
+<table class="table-striped table-hover table-sm small table">
+<caption>Codebooks for the TBI and lung datasets</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 29%">
+<col style="width: 10%">
+<col style="width: 47%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td><strong>TBI</strong></td>
+<td></td>
+<td><strong>Lung</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Variable</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Variable</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="odd">
+<td>V1</td>
+<td>Identifier</td>
+<td>inst</td>
+<td>Institution code</td>
+</tr>
+<tr class="even">
+<td>trial</td>
+<td>Trial identification</td>
+<td>time</td>
+<td>Survival time (<em>days</em>)</td>
+</tr>
+<tr class="odd">
+<td>d.gos</td>
+<td><p>Glasgow Outcome Scale at 6 months</p>
+<ol type="1">
+<li>dead</li>
+<li>vegetative</li>
+<li>severe disability</li>
+<li>moderate disability</li>
+<li>good recovery</li>
+</ol></td>
+<td>status</td>
+<td><p>Censoring status:</p>
+<ol type="1">
+<li>Censored</li>
+<li>Dead</li>
+</ol></td>
+</tr>
+<tr class="even">
+<td>d.mort</td>
+<td>Mortality at 6 months</td>
+<td>age</td>
+<td>Age (<em>yrs</em>)</td>
+</tr>
+<tr class="odd">
+<td>d.unfav</td>
+<td>Unfavourable outcome at 6 months</td>
+<td>sex</td>
+<td><p>Biological sex</p>
+<ol type="1">
+<li>Male</li>
+<li>Female</li>
+</ol></td>
+</tr>
+<tr class="even">
+<td>cause</td>
+<td><p>Cause of injury</p>
+<ol start="3" type="1">
+<li>road traffic accident</li>
+<li>motorbike</li>
+<li>assault</li>
+<li>domestic/fall</li>
+<li>other</li>
+</ol></td>
+<td>ph.ecog</td>
+<td><p>ECOG performance score as rated by the physician</p>
+<ol start="0" type="1">
+<li>asymptomatic</li>
+<li>symptomatic but completely ambulatory</li>
+<li>in bed &lt;50% of the day</li>
+<li>in bed &gt;50% of the day but not bedbound</li>
+<li>bedbound</li>
+</ol></td>
+</tr>
+<tr class="odd">
+<td>age</td>
+<td>Age (<em>yrs</em>)</td>
+<td>ph.karno</td>
+<td>Karnofsky performance score rated by the physician (range 0-100)</td>
+</tr>
+<tr class="even">
+<td>d.motor</td>
+<td>Admission motor score (range 1-6)</td>
+<td>pat.karno</td>
+<td>Karnofsky performance score as rated by patient</td>
+</tr>
+<tr class="odd">
+<td>d.pupil</td>
+<td><p>Pupillary reactivity</p>
+<ol type="1">
+<li>both reactive</li>
+<li>one reactive</li>
+<li>none reactive</li>
+</ol></td>
+<td>meal.cal</td>
+<td>Calories consumed at meals</td>
+</tr>
+<tr class="even">
+<td>pupil.i</td>
+<td>Single imputed pupillary reactivity</td>
+<td>wt.loss</td>
+<td>Weight loss in last six months (<em>pounds</em>)</td>
+</tr>
+<tr class="odd">
+<td>hypoxia</td>
+<td>Hypoxia before or at admission</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>hypotens</td>
+<td>Hypotension before or at admission</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ctclass</td>
+<td>Marshall CT classification (range 1-6)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>tsah</td>
+<td>tSAH at CT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>edh</td>
+<td>EDH at CT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>cisterns</td>
+<td><p>Compressed cisterns at CT</p>
+<ol start="0" type="1">
+<li>no</li>
+<li>slightly</li>
+<li>fully</li>
+</ol></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>shift</td>
+<td>Midline shift &gt;5 mm at CT</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>glucose</td>
+<td>Glucose at admission (<em>mmol/L</em>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>glucoset</td>
+<td>Truncated glucose values (<em>mmol/L</em>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ph</td>
+<td>pH</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>sodium</td>
+<td>Sodium (<em>mmol/L</em>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>hb</td>
+<td>Hemoglobin (<em>g/dL</em>)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>hbt</td>
+<td>Truncated hemoglobin (<em>g/dL</em>)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="predicting-an-unfavourable-outcome" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Predicting an unfavourable outcome</h1>
+<p>We will develop a prediction model for the risk of an unfavourable outcome after a TBI. As a first step, let’s better understand our data.</p>
+<section id="getting-to-know-our-data" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="getting-to-know-our-data"><span class="header-section-number">5.1</span> Getting to know our data</h2>
+<p>The degree to which a prediction model is likely not overfitted depends in part on the number of cases and non-cases:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Counts of non-cases and cases</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">table</span>(tbi[[<span class="st">"d.unfav"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+   0    1 
+1308  851 </code></pre>
+</div>
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># Distribution of non-cases and cases (as %)</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">proportions</span>(<span class="fu">table</span>(tbi[[<span class="st">"d.unfav"</span>]])) <span class="sc">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+      0       1 
+60.5836 39.4164 </code></pre>
+</div>
+</div>
+<p>In the TBI dataset, we can see that we have quite a lot of cases (n = 851, 39.4%).</p>
+<p>We (hypothetically) consulted some TBI experts, who told us that the most important predictors we want to include are motor activity (‘d.motor’), pupillary reactivity (‘d.pupil’), TBI cause (‘cause’), and age (‘age’). Although we will estimate quite a lot of coefficients (12) because motor activity, pupillary reactivity, and cause are categorical, we also have quite some events so we are not too worried about overfitting.</p>
+<p>Because age is continuous, we should investigate whether adding it as a linear term is sufficient or if we model it non-linearly. We can do this by modelling the outcome as a function of age and visually inspecting the results.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a><span class="co"># Model the outcome as a function of age</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-2" class="code-annotation-target"><a href="#annotated-cell-6-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(d.unfav <span class="sc">~</span> age, <span class="at">data =</span> tbi, <span class="at">family =</span> binomial)</span>
+<span id="annotated-cell-6-3"><a href="#annotated-cell-6-3"></a></span>
+<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4"></a><span class="co"># Plot predicted probabilities vs. age</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-5" class="code-annotation-target"><a href="#annotated-cell-6-5"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tbi, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> fit[[<span class="st">"fitted.values"</span>]])) <span class="sc">+</span></span>
+<span id="annotated-cell-6-6"><a href="#annotated-cell-6-6"></a>    <span class="co"># Geometries</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-6-7" class="code-annotation-target"><a href="#annotated-cell-6-7"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="annotated-cell-6-8"><a href="#annotated-cell-6-8"></a>    <span class="co"># Labels</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-6-9" class="code-annotation-target"><a href="#annotated-cell-6-9"></a>    <span class="fu">xlab</span>(<span class="st">"Age (yrs)"</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">"Predicted probability"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-6-10"><a href="#annotated-cell-6-10"></a>    <span class="co"># Aesthetics</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-6-11" class="code-annotation-target"><a href="#annotated-cell-6-11"></a>    <span class="fu">theme_bw</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="2" data-code-cell="annotated-cell-6" data-code-annotation="1">Fit a logistic regression model with the outcome ‘d.unfav’ as a function of age.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-6" data-code-annotation="2">Create the basis for a plot, where age is on the x-axis and the fitted values from the logistic regression model are on the y-axis.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="7" data-code-cell="annotated-cell-6" data-code-annotation="3">Draw points in the plot based on the data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-lines="9" data-code-cell="annotated-cell-6" data-code-annotation="4">Change the axes labels.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-lines="11" data-code-cell="annotated-cell-6" data-code-annotation="5">Change the look of the plot to a pre-specified theme.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<p><img src="pint_prd1_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>From the figure, we can see that age is linearly associated with the outcome, so we do not need to apply any further transformation.</p>
+</section>
+<section id="method-i-glm" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="method-i-glm"><span class="header-section-number">5.2</span> Method I: glm()</h2>
+<section id="developing-the-prediction-model" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="developing-the-prediction-model"><span class="header-section-number">5.2.1</span> Developing the prediction model</h3>
+<p>We can now develop our prediction model. Because the outcome is binary, we will use a logistic regression model. Because a logistic regression model is part of the generalized linear models (GLM) family, we can use the <code>glm()</code> function as already done above. We specify that the family (i.e.&nbsp;the distribution of the data) is binomial (0 or 1), which specifies that we are fitting a logistic model.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1"></a><span class="co"># Develop the prediction model</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-7-2" class="code-annotation-target"><a href="#annotated-cell-7-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(d.unfav <span class="sc">~</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-7-3" class="code-annotation-target"><a href="#annotated-cell-7-3"></a>               age <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-7-4" class="code-annotation-target"><a href="#annotated-cell-7-4"></a>               <span class="fu">as.factor</span>(d.motor) <span class="sc">+</span></span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5"></a>               <span class="fu">as.factor</span>(d.pupil) <span class="sc">+</span></span>
+<span id="annotated-cell-7-6"><a href="#annotated-cell-7-6"></a>               <span class="fu">as.factor</span>(cause), </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-7-7" class="code-annotation-target"><a href="#annotated-cell-7-7"></a>           <span class="at">data =</span> tbi, <span class="at">family =</span> binomial)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="2" data-code-cell="annotated-cell-7" data-code-annotation="1">Fit a logistic regression model with the outcome ‘d.unfav’.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="3" data-code-cell="annotated-cell-7" data-code-annotation="2">Add age as a normal predictor (because we saw it was linearly associated with the outcome).</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="4" data-code-cell="annotated-cell-7" data-code-annotation="3">Add the categorical predictors as factors (to make sure R recognizes them as categories).</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-lines="7" data-code-cell="annotated-cell-7" data-code-annotation="4">Specify that the data source and the family to define a logistic model.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Let’s see what the output looks like:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># Print output</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = d.unfav ~ age + as.factor(d.motor) + as.factor(d.pupil) + 
+    as.factor(cause), family = binomial, data = tbi)
+
+Coefficients:
+                                       Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                           -1.633692   0.660303  -2.474 0.013355 *  
+age                                    0.037503   0.004037   9.289  &lt; 2e-16 ***
+as.factor(d.motor)2                    0.648468   0.621264   1.044 0.296583    
+as.factor(d.motor)3                    0.057519   0.614843   0.094 0.925466    
+as.factor(d.motor)4                   -0.660139   0.609902  -1.082 0.279089    
+as.factor(d.motor)5                   -1.304401   0.610827  -2.135 0.032723 *  
+as.factor(d.motor)6                   -1.628588   0.680168  -2.394 0.016648 *  
+as.factor(d.pupil)no reactive pupils   1.285761   0.148476   8.660  &lt; 2e-16 ***
+as.factor(d.pupil)one reactive         0.552311   0.148264   3.725 0.000195 ***
+as.factor(cause)domestic/fall          0.326742   0.247825   1.318 0.187357    
+as.factor(cause)Motorbike              0.162727   0.245626   0.662 0.507652    
+as.factor(cause)other                  0.435268   0.245729   1.771 0.076505 .  
+as.factor(cause)Road traffic accident  0.183664   0.231363   0.794 0.427292    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2726.7  on 2035  degrees of freedom
+Residual deviance: 2251.5  on 2023  degrees of freedom
+  (123 observations deleted due to missingness)
+AIC: 2277.5
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<p>The attentive reader might notice that in one of the last lines, the following message is printed:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>(123 observations deleted due to missingness)</code></pre>
+</div>
+</div>
+<p>It is important to realize that, like much statistical software, individuals with missing values are excluded by default. However, if the missingness is informative (which is often the case), this likely results in a biased prediction model (and we lose some power). Luckily, the TBI data is supplied with the variable ‘pupil.i’. This is a single imputed version of ‘d.pupil’. Although single imputation is often unsatisfactory, for our current didactic purposes it is enough.</p>
+<p>If we refit the model with the imputed variable, we get:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy"><code class="sourceCode r"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a><span class="co"># Develop the prediction model</span></span>
+<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(d.unfav <span class="sc">~</span></span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a>               age <span class="sc">+</span></span>
+<span id="annotated-cell-9-4"><a href="#annotated-cell-9-4"></a>               <span class="fu">as.factor</span>(d.motor) <span class="sc">+</span></span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5"></a>               <span class="fu">as.factor</span>(pupil.i) <span class="sc">+</span></span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6"></a>               <span class="fu">as.factor</span>(cause), </span>
+<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7"></a>           <span class="at">data =</span> tbi, <span class="at">family =</span> binomial)</span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8"></a></span>
+<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9"></a><span class="co"># Print output</span></span>
+<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = d.unfav ~ age + as.factor(d.motor) + as.factor(pupil.i) + 
+    as.factor(cause), family = binomial, data = tbi)
+
+Coefficients:
+                                       Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                           -1.462684   0.643773  -2.272  0.02308 *  
+age                                    0.037715   0.003887   9.703  &lt; 2e-16 ***
+as.factor(d.motor)2                    0.482682   0.607106   0.795  0.42658    
+as.factor(d.motor)3                   -0.068894   0.601206  -0.115  0.90877    
+as.factor(d.motor)4                   -0.739708   0.596682  -1.240  0.21509    
+as.factor(d.motor)5                   -1.378086   0.597590  -2.306  0.02111 *  
+as.factor(d.motor)6                   -1.784168   0.667584  -2.673  0.00753 ** 
+as.factor(pupil.i)no reactive pupils   1.270588   0.142312   8.928  &lt; 2e-16 ***
+as.factor(pupil.i)one reactive         0.578122   0.142276   4.063 4.84e-05 ***
+as.factor(cause)domestic/fall          0.182092   0.235049   0.775  0.43852    
+as.factor(cause)Motorbike              0.075287   0.233211   0.323  0.74683    
+as.factor(cause)other                  0.356963   0.232921   1.533  0.12539    
+as.factor(cause)Road traffic accident  0.117619   0.219094   0.537  0.59138    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 2895.5  on 2158  degrees of freedom
+Residual deviance: 2410.3  on 2146  degrees of freedom
+AIC: 2436.3
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<p>The message on observations removed due to missingness is now gone (because no individuals were removed).</p>
+</section>
+<section id="validating-the-prediction-model" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="validating-the-prediction-model"><span class="header-section-number">5.2.2</span> Validating the prediction model</h3>
+<p>Now that we have a prediction model, we have to make sure it actually works. To do this, we compare the observed and the predicted values. To this end, we will have to somehow get the predicted values from the prediction model.</p>
+<p>There are two easy ways to do that:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a><span class="co"># Get predicted values from model fit object</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-10-2" class="code-annotation-target"><a href="#annotated-cell-10-2"></a>tbi[[<span class="st">"preds"</span>]] <span class="ot">&lt;-</span> fit[[<span class="st">"fitted.values"</span>]]</span>
+<span id="annotated-cell-10-3"><a href="#annotated-cell-10-3"></a></span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4"></a><span class="co"># Get predicted values from function</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-10-5" class="code-annotation-target"><a href="#annotated-cell-10-5"></a>preds_fun <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="annotated-cell-10-6"><a href="#annotated-cell-10-6"></a></span>
+<span id="annotated-cell-10-7"><a href="#annotated-cell-10-7"></a><span class="co"># Compare values</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-10-8" class="code-annotation-target"><a href="#annotated-cell-10-8"></a><span class="fu">table</span>(tbi[[<span class="st">"preds"</span>]] <span class="sc">==</span> preds_fun)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="2" data-code-cell="annotated-cell-10" data-code-annotation="1">The predicted values are already stored in the model fit object. This makes it easy for us to extract and use those values.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-10" data-code-annotation="2">We can also use the predict function. The predict function contains many subclasses that recognize what type of model we fitted. In this case, R automatically detects it should use the subclass <code>predict.glm()</code>. By defining ‘response’, we tell R that we want the predicted probabilities. The advantage of <code>predict()</code> is that we can also supply the <code>newdata</code> argument. By supplying <code>newdata</code> with a data frame with column names corresponding to the predictors, the <code>predict()</code> function calculates predictions for this new data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="8" data-code-cell="annotated-cell-10" data-code-annotation="3">We can see that the predictions are the same for each individual.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+TRUE 
+2159 </code></pre>
+</div>
+</div>
+<p>With these predictions, we can calculate our C-statistic:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># Calculate C-statistic with the Cstat() function from the {DescTools} package.</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="fu">Cstat</span>(fit)                              </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7651261</code></pre>
+</div>
+</div>
+<p>To calculate our calibration intercept and calibration slope, we will need the linear predictors.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1"></a><span class="co"># Get linear predictors from model fit for calibration intercept and slope</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2"></a>tbi[[<span class="st">"lps"</span>]] <span class="ot">&lt;-</span> fit[[<span class="st">"linear.predictors"</span>]]</span>
+<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3"></a></span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4"></a><span class="co"># Calculate calibration intercept and slope </span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-12-5" class="code-annotation-target"><a href="#annotated-cell-12-5"></a>fit_lps <span class="ot">&lt;-</span> <span class="fu">glm</span>(d.unfav <span class="sc">~</span> lps, <span class="at">data =</span> tbi, <span class="at">family =</span> binomial)</span>
+<span id="annotated-cell-12-6"><a href="#annotated-cell-12-6"></a></span>
+<span id="annotated-cell-12-7"><a href="#annotated-cell-12-7"></a><span class="co"># Get intercept and slope</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-12-8" class="code-annotation-target"><a href="#annotated-cell-12-8"></a><span class="fu">cat</span>(<span class="st">"Intercept:"</span>, <span class="fu">format</span>(<span class="fu">round</span>(fit_lps[[<span class="st">"coefficients"</span>]][[<span class="st">"(Intercept)"</span>]], <span class="dv">3</span>), <span class="at">nsmall =</span> <span class="dv">3</span>))</span>
+<span id="annotated-cell-12-9"><a href="#annotated-cell-12-9"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Slope:"</span>, <span class="fu">format</span>(<span class="fu">round</span>(fit_lps[[<span class="st">"coefficients"</span>]][[<span class="st">"lps"</span>]], <span class="dv">3</span>), <span class="at">nsmall =</span> <span class="dv">3</span>))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="2" data-code-cell="annotated-cell-12" data-code-annotation="1">As with getting the predicted values, we can use the model fit, or use the <code>predict()</code> function with <code>type = "link"</code>, which has the advantage of allowing new data.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-12" data-code-annotation="2">We refit the regression model used to develop our prediction model with the outcome as a function of the linear predictors.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="8" data-code-cell="annotated-cell-12" data-code-annotation="3">Print the intercept and the slope (i.e.&nbsp;the regression coefficient for the linear predictors). <code>round()</code> rounds the values and <code>format()</code> prints the decimals up to the value supplied in <code>nsmall</code>, even if they are only 0’s.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Intercept: 0.000
+Slope: 1.000</code></pre>
+</div>
+</div>
+<p>Finally, we can make our calibration plot:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-13-1"><a href="#annotated-cell-13-1"></a><span class="co"># Create calibration plot</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-13-2" class="code-annotation-target"><a href="#annotated-cell-13-2"></a><span class="fu">ggplot</span>(tbi, <span class="fu">aes</span>(<span class="at">x =</span> preds, <span class="at">y =</span> d.unfav)) <span class="sc">+</span></span>
+<span id="annotated-cell-13-3"><a href="#annotated-cell-13-3"></a>    <span class="co"># Geometries</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-13-4" class="code-annotation-target"><a href="#annotated-cell-13-4"></a>    <span class="fu">geom_abline</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.33</span>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-13-5" class="code-annotation-target"><a href="#annotated-cell-13-5"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.33</span>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-13-6" class="code-annotation-target"><a href="#annotated-cell-13-6"></a>    <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"#785EF0"</span>, <span class="at">fill =</span> <span class="st">"#785EF0"</span>, <span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-13-7" class="code-annotation-target"><a href="#annotated-cell-13-7"></a>    <span class="co"># Labels</span></span>
+<span id="annotated-cell-13-8"><a href="#annotated-cell-13-8"></a>    <span class="fu">xlab</span>(<span class="st">"Predicted probability"</span>) <span class="sc">+</span>            </span>
+<span id="annotated-cell-13-9"><a href="#annotated-cell-13-9"></a>    <span class="fu">ylab</span>(<span class="st">"Observed probability"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-13-10"><a href="#annotated-cell-13-10"></a>    <span class="co"># Aesthetics                            </span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="6" onclick="event.preventDefault();">6</a><span id="annotated-cell-13-11" class="code-annotation-target"><a href="#annotated-cell-13-11"></a>    <span class="fu">theme_bw</span>()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="2" data-code-cell="annotated-cell-13" data-code-annotation="1">We create a base layer with the data for the calibration plot.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="4" data-code-cell="annotated-cell-13" data-code-annotation="2">We add the harmonisation line that shows perfect calibration, which is 67% transparent (<code>alpha = 0.33</code>).</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-13" data-code-annotation="3">We draw points on the plot that represent the predicted vs.&nbsp;observed values for each individual.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-lines="6" data-code-cell="annotated-cell-13" data-code-annotation="4">Because we have this data, we can also draw a locally estimated scatterplot smoothing (LOESS) curve which shows the calibration over the range of predicted values.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-lines="7" data-code-cell="annotated-cell-13" data-code-annotation="5">We define the labels for the axes.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-lines="11" data-code-cell="annotated-cell-13" data-code-annotation="6">We change the look of the plot based on a prespecified theme.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<p><img src="pint_prd1_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can also add the histogram of predicted probabilities using <code>ggMarginal()</code> from <code>{ggExtras}</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-14-1"><a href="#annotated-cell-14-1"></a><span class="co"># Create calibration plot</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-14-2" class="code-annotation-target"><a href="#annotated-cell-14-2"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(tbi, <span class="fu">aes</span>(<span class="at">x =</span> preds, <span class="at">y =</span> d.unfav, <span class="at">colour =</span> <span class="fu">as.factor</span>(d.unfav))) <span class="sc">+</span></span>
+<span id="annotated-cell-14-3"><a href="#annotated-cell-14-3"></a>    <span class="co"># Geometries</span></span>
+<span id="annotated-cell-14-4"><a href="#annotated-cell-14-4"></a>    <span class="fu">geom_abline</span>(<span class="at">linewidth =</span> <span class="dv">1</span>, <span class="at">colour =</span> <span class="st">"black"</span>, <span class="at">alpha =</span> <span class="fl">0.33</span>) <span class="sc">+</span>   </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-14-5" class="code-annotation-target"><a href="#annotated-cell-14-5"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.33</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-14-6"><a href="#annotated-cell-14-6"></a>    <span class="fu">geom_smooth</span>(<span class="at">colour =</span> <span class="st">"#785EF0"</span>, <span class="at">fill =</span> <span class="st">"#785EF0"</span>, <span class="at">method =</span> <span class="st">"loess"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>) <span class="sc">+</span>  </span>
+<span id="annotated-cell-14-7"><a href="#annotated-cell-14-7"></a>    <span class="co"># Scaling</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-14-8" class="code-annotation-target"><a href="#annotated-cell-14-8"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#648FFF"</span>, <span class="st">"#FFB000"</span>),</span>
+<span id="annotated-cell-14-9"><a href="#annotated-cell-14-9"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Favourable outcome"</span>, <span class="st">"Unfavourable outcome"</span>)) <span class="sc">+</span></span>
+<span id="annotated-cell-14-10"><a href="#annotated-cell-14-10"></a>    <span class="co"># Labels                               </span></span>
+<span id="annotated-cell-14-11"><a href="#annotated-cell-14-11"></a>    <span class="fu">xlab</span>(<span class="st">"Predicted probability"</span>) <span class="sc">+</span>            </span>
+<span id="annotated-cell-14-12"><a href="#annotated-cell-14-12"></a>    <span class="fu">ylab</span>(<span class="st">"Observed probability"</span>) <span class="sc">+</span></span>
+<span id="annotated-cell-14-13"><a href="#annotated-cell-14-13"></a>    <span class="co"># Aesthetics                            </span></span>
+<span id="annotated-cell-14-14"><a href="#annotated-cell-14-14"></a>    <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="annotated-cell-14-15"><a href="#annotated-cell-14-15"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="annotated-cell-14-16"><a href="#annotated-cell-14-16"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>())  </span>
+<span id="annotated-cell-14-17"><a href="#annotated-cell-14-17"></a></span>
+<span id="annotated-cell-14-18"><a href="#annotated-cell-14-18"></a><span class="co"># Add histograms</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-14-19" class="code-annotation-target"><a href="#annotated-cell-14-19"></a><span class="fu">ggMarginal</span>(p, <span class="at">type =</span> <span class="st">"histogram"</span>, <span class="at">margins =</span> <span class="st">"x"</span>, <span class="at">binwidth =</span> <span class="fl">0.01</span>, <span class="at">groupFill =</span> <span class="cn">TRUE</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="2" data-code-cell="annotated-cell-14" data-code-annotation="1">To have two separately coloured histograms for individuals with and without the outcome, we need to specify on what variable to stratify colour. As a side effect, this also colours the points drawn with <code>geom_point()</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-14" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="8" data-code-cell="annotated-cell-14" data-code-annotation="2">With a manual scale, we define the colours and labels corresponding to each colour.</span>
+</dd>
+<dt data-target-cell="annotated-cell-14" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="5,15" data-code-cell="annotated-cell-14" data-code-annotation="3">We slightly adjust the theme by moving the legend to the bottom of the plot and removing the title of the legend.</span>
+</dd>
+<dt data-target-cell="annotated-cell-14" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-lines="19" data-code-cell="annotated-cell-14" data-code-annotation="4">We add the histograms to the plot.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output-display">
+<p><img src="pint_prd1_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="method-ii-lrm" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="method-ii-lrm"><span class="header-section-number">5.3</span> Method II: lrm()</h2>
+<p>We now used the <code>glm()</code> function from one of the base R packages (<code>{stats}</code>). However, there is another package that is often used to develop prediction models: <code>{rms}</code>.</p>
+<section id="developing-the-prediction-model-1" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="developing-the-prediction-model-1"><span class="header-section-number">5.3.1</span> Developing the prediction model</h3>
+<p>To develop our prediction model using <code>{rms}</code>, we use the function <code>lrm()</code> for a logistic regression model.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-15"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-15-1"><a href="#annotated-cell-15-1"></a><span class="co"># First, set numeric variables to factor (lrm() does not work with as.factor())</span></span>
+<span id="annotated-cell-15-2"><a href="#annotated-cell-15-2"></a>tbi[[<span class="st">"d.motor"</span>]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tbi[[<span class="st">"d.motor"</span>]])</span>
+<span id="annotated-cell-15-3"><a href="#annotated-cell-15-3"></a></span>
+<span id="annotated-cell-15-4"><a href="#annotated-cell-15-4"></a><span class="co"># Develop the prediction model</span></span>
+<span id="annotated-cell-15-5"><a href="#annotated-cell-15-5"></a>fit_rms <span class="ot">&lt;-</span> <span class="fu">lrm</span>(d.unfav <span class="sc">~</span>                        </span>
+<span id="annotated-cell-15-6"><a href="#annotated-cell-15-6"></a>                   age <span class="sc">+</span>                        </span>
+<span id="annotated-cell-15-7"><a href="#annotated-cell-15-7"></a>                   d.motor <span class="sc">+</span>         </span>
+<span id="annotated-cell-15-8"><a href="#annotated-cell-15-8"></a>                   pupil.i <span class="sc">+</span></span>
+<span id="annotated-cell-15-9"><a href="#annotated-cell-15-9"></a>                   cause, </span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-15" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-15-10" class="code-annotation-target"><a href="#annotated-cell-15-10"></a>               <span class="at">data =</span> tbi, <span class="at">x =</span> <span class="cn">TRUE</span>, <span class="at">y =</span> <span class="cn">TRUE</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-15" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="10" data-code-cell="annotated-cell-15" data-code-annotation="1">We have to specify x and y as TRUE to use the functions for validation in <code>{rms}</code>.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="validating-the-prediction-model-1" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="validating-the-prediction-model-1"><span class="header-section-number">5.3.2</span> Validating the prediction model</h3>
+<p>The <code>{rms}</code> package offers an easy function validate prediction models: <code>validate()</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># Validate the model</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="fu">validate</span>(fit_rms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>          index.orig training    test optimism index.corrected  n
+Dxy           0.5303   0.5365  0.5258   0.0107          0.5196 40
+R2            0.2726   0.2792  0.2676   0.0116          0.2609 40
+Intercept     0.0000   0.0000 -0.0149   0.0149         -0.0149 40
+Slope         1.0000   1.0000  0.9646   0.0354          0.9646 40
+Emax          0.0000   0.0000  0.0104   0.0104          0.0104 40
+D             0.2243   0.2305  0.2197   0.0109          0.2134 40
+U            -0.0009  -0.0009  0.0003  -0.0013          0.0003 40
+Q             0.2252   0.2315  0.2193   0.0121          0.2131 40
+B             0.1879   0.1865  0.1890  -0.0024          0.1903 40
+g             1.2470   1.2745  1.2332   0.0413          1.2057 40
+gp            0.2538   0.2567  0.2513   0.0054          0.2484 40</code></pre>
+</div>
+</div>
+<p>How do we interpret this output? The <code>validate()</code> function applies resampling, which is a method to account for overfitting, with the results being printed in the ‘index.corrected’ column. However, if we are just interested in the apparent performance, we can just look at ‘index.orig’. To calculate the C-statistic, we can use <span class="math inline">\(c = \frac{Dxy}{2} + 0.5\)</span>. In our case, the C-statistic would be:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># Calculate C-statistic</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="fl">0.5390</span> <span class="sc">/</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7695</code></pre>
+</div>
+</div>
+<p>The intercept and slope are given under ‘Intercept’ and ‘Slope’. To get the calibration plot, we can use the <code>calibrate()</code> function (which aims to give overfitting-corrected estimates):</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="co"># Get calibration data</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">plot</span>(<span class="fu">calibrate</span>(fit_rms))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pint_prd1_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+n=2159   Mean absolute error=0.003   Mean squared error=2e-05
+0.9 Quantile of absolute error=0.008</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="method-i-or-method-ii" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="method-i-or-method-ii"><span class="header-section-number">5.4</span> Method I or Method II?</h2>
+<p>So why would we pick one method over the other? Well, both methods have their advantages and disadvantages. It may be clear that <code>{rms}</code> has more native (i.e.&nbsp;inherent in the package) support for prediction modelling in the terms of validation with functions such as <code>validate()</code> and <code>calibate()</code>. Additionally, it makes it easy to get optimism-corrected performance measures. However, <code>{rms}</code> forces you to keep using the functions from its package, which are not always user intuitive. Moreover, only a few packages have been created as add-ons to <code>{rms}</code>, which makes it difficult to integrate into other analyses, or analyses that were not implemented/supported by the author. Conversely, <code>glm()</code> is part of the <code>{stats}</code> package, one of the base packages of R. A huge amount of packages have been developed which built on results from <code>glm()</code>. Additionally, as a base function of R, there is more focus on intuitive use and error-proofing.</p>
+</section>
+<section id="the-curse-of-the-model-fit-object" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="the-curse-of-the-model-fit-object"><span class="header-section-number">5.5</span> The curse of the model fit object</h2>
+<p>Whether we develop a prediction model using <code>glm()</code> or <code>lrm()</code>, functions such as <code>predict()</code>, <code>validate()</code>, and <code>calibrate()</code>, require us to supply the model fit object: the R object which contains the fitted model. This makes it much easier for the developer of the prediction model (who has the model fit object) to determine performance. However, validation becomes much more difficult. Either the validator needs to be supplied with the model fit object (meaning a certain level of skill in the corresponding programming language of the model fit object is required), or the validator needs to use functions that do not require the model fit.</p>
+<p>Because the model fit object is often not supplied, the validator has to resot to the functions that do not require the model fit. For the C-statistic, this could be <code>roc()</code> from the <code>{pROC}</code> package. However, to get the linear predictors, the modeller could use <code>predict()</code>, but the validator will have to calculate these based on the coefficients. This can mean a lot of (unnecessary) manual work, including the risk of error when writing down the predictor coefficients.</p>
+</section>
+</section>
+<section id="predicting-survival-in-advanced-lung-cancer" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Predicting survival in advanced lung cancer</h1>
+<p>We will now also develop a survival prediction model based on Cox regression using the lung dataset. We will use the <code>{survival}</code> package, which is part of the core R packages and which is closely related to the <code>glm()</code> function. As a second method, we will use the <code>cph()</code> function from <code>{rms}</code> package.</p>
+<section id="getting-to-know-our-data-1" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="getting-to-know-our-data-1"><span class="header-section-number">6.1</span> Getting to know our data</h2>
+<p>We (again hypothetically) consulted some lung cancer experts, who told us that the most important predictors we want to include are age (‘age’), biological sex (‘sex’), and weight loss in the last six months (‘wt.loss’) and that we should predict death within two years. Because weight loss had some missings, we used single imputation. Again, given the didactic purpose of this practical, this is fine, but in a real research setting, multiple imputation should be used.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># Single imputation of dat</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>lung <span class="ot">&lt;-</span> <span class="fu">complete</span>(<span class="fu">mice</span>(lung, <span class="at">m =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ iter imp variable
+  1   1  inst  ph.ecog  ph.karno  pat.karno  meal.cal  wt.loss
+  2   1  inst  ph.ecog  ph.karno  pat.karno  meal.cal  wt.loss
+  3   1  inst  ph.ecog  ph.karno  pat.karno  meal.cal  wt.loss
+  4   1  inst  ph.ecog  ph.karno  pat.karno  meal.cal  wt.loss
+  5   1  inst  ph.ecog  ph.karno  pat.karno  meal.cal  wt.loss</code></pre>
+</div>
+</div>
+<p>Additionally, some survival times go beyond two years, so let’s cap those survival times.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-20"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-20-1"><a href="#annotated-cell-20-1"></a><span class="co"># Cap survival times to two years</span></span>
+<span id="annotated-cell-20-2"><a href="#annotated-cell-20-2"></a>lung <span class="ot">&lt;-</span> lung <span class="sc">%&gt;%</span></span>
+<span id="annotated-cell-20-3"><a href="#annotated-cell-20-3"></a>    <span class="co"># Change variables</span></span>
+<span id="annotated-cell-20-4"><a href="#annotated-cell-20-4"></a>    <span class="fu">mutate</span>(<span class="co"># Set status to censored if we observed individuals longer than two years </span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-20-5" class="code-annotation-target"><a href="#annotated-cell-20-5"></a>           <span class="at">status =</span> <span class="fu">ifelse</span>(time <span class="sc">&gt;</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>, <span class="dv">1</span>, status),</span>
+<span id="annotated-cell-20-6"><a href="#annotated-cell-20-6"></a>           <span class="co"># Cap time to two years</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-20" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-20-7" class="code-annotation-target"><a href="#annotated-cell-20-7"></a>           <span class="at">time =</span> <span class="fu">ifelse</span>(time <span class="sc">&gt;</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>, <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>, time))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-20" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-20" data-code-annotation="1">If individuals died after two years, we did not observe an event within two years, therefore they become censored. Two years is defined by <code>365.25 * 2</code>. ::: {.column-margin} Note that we use 365.25 days in a year. Although formally this should be <a href="https://en.wikipedia.org/wiki/Year#Calendar_year">365.24</a>, the second decimal is negligible for most follow-up durations in medical studies. :::</span>
+</dd>
+<dt data-target-cell="annotated-cell-20" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="7" data-code-cell="annotated-cell-20" data-code-annotation="2">We change the time until event to a maximum of two years. If the time is already shorter than two years, we keep that time.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>The degree to which a prediction model is likely not overfitted depends in part on the number of cases and non-cases:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="co"># First, recode status to 0 and 1</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>lung[[<span class="st">"status"</span>]] <span class="ot">&lt;-</span> lung[[<span class="st">"status"</span>]] <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a></span>
+<span id="cb28-4"><a href="#cb28-4"></a><span class="co"># Counts of non-cases and cases</span></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="fu">table</span>(lung[[<span class="st">"status"</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  0   1 
+ 69 159 </code></pre>
+</div>
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="co"># Distribution of non-cases and cases (as %)</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="fu">proportions</span>(<span class="fu">table</span>(lung[[<span class="st">"status"</span>]])) <span class="sc">*</span> <span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+       0        1 
+30.26316 69.73684 </code></pre>
+</div>
+</div>
+<p>In the lung dataset, we can see that we have more cases than non-cases. In this case, we look at the number of non-cases to get an idea of the risk of overfitting. Given the already small sample size and the small number of non-cases (n = 69, 30.3%), we likely have a high risk of overfitting. Given the scope of this practical, we will leave that be for now, but recommend that in real research settings, you evaluate this risk and carefully choose a path forward.</p>
+<p>Because age and weight loss are continuous, we should investigate whether adding them as a linear term is sufficient or if we should model them non-linearly. Instead of the predicted probability, we plot the log relative hazard as a function of the predictor, using a function from <code>{Hmisc}</code>, which combines functions from <code>{rms}</code> and <code>{survival}</code>.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="co"># Model the outcome as a function of age</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>dat_plot <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">"cbind"</span>, <span class="fu">rcspline.plot</span>(<span class="at">x =</span> lung[[<span class="st">"age"</span>]], <span class="at">y =</span> lung[[<span class="st">"time"</span>]], <span class="at">noprint =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb32-3"><a href="#cb32-3"></a>                                           <span class="at">event =</span> lung[[<span class="st">"status"</span>]], <span class="at">model =</span> <span class="st">"cox"</span>, <span class="at">statloc =</span> <span class="st">"none"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="co"># Change to data frame</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Although the function already gives us a plot, the author of this practical is of the opinion that it is quite an ugly plot, so we will plot it ourselves:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># Get plot</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="fu">ggplot</span>(dat_plot, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> V3)) <span class="sc">+</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>    <span class="co"># Geometries</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> V4, <span class="at">ymax =</span> V5), <span class="at">fill =</span> <span class="st">"#785EF0"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"#785EF0"</span>) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>    <span class="co"># Scaling</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">min</span>(dat_plot[[<span class="st">"V4"</span>]]) <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">max</span>(dat_plot[[<span class="st">"V5"</span>]]) <span class="sc">+</span> <span class="dv">1</span>), </span>
+<span id="cb33-8"><a href="#cb33-8"></a>                       <span class="at">name =</span> <span class="st">"Log relative hazard"</span>) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9"></a>    <span class="co"># Labelling</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a>    <span class="fu">xlab</span>(<span class="st">"Age (yrs)"</span>) <span class="sc">+</span></span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="co"># Aesthetics</span></span>
+<span id="cb33-12"><a href="#cb33-12"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pint_prd1_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Now we repeat this for weight loss.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="co"># Model the outcome as a function of age</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>dat_plot <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">"cbind"</span>, <span class="fu">rcspline.plot</span>(<span class="at">x =</span> lung[[<span class="st">"wt.loss"</span>]], <span class="at">y =</span> lung[[<span class="st">"time"</span>]], <span class="at">noprint =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb34-3"><a href="#cb34-3"></a>                                           <span class="at">event =</span> lung[[<span class="st">"status"</span>]], <span class="at">model =</span> <span class="st">"cox"</span>, <span class="at">statloc =</span> <span class="st">"none"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a>    <span class="co"># Change to data frame</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a>    <span class="fu">as.data.frame</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="co"># Get plot</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a><span class="fu">ggplot</span>(dat_plot, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> V3)) <span class="sc">+</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="co"># Geometries</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> V4, <span class="at">ymax =</span> V5), <span class="at">fill =</span> <span class="st">"#785EF0"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">"#785EF0"</span>) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="co"># Scaling</span></span>
+<span id="cb35-7"><a href="#cb35-7"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">min</span>(dat_plot[[<span class="st">"V4"</span>]]) <span class="sc">-</span> <span class="dv">1</span>, <span class="fu">max</span>(dat_plot[[<span class="st">"V5"</span>]]) <span class="sc">+</span> <span class="dv">1</span>), </span>
+<span id="cb35-8"><a href="#cb35-8"></a>                       <span class="at">name =</span> <span class="st">"Log relative hazard"</span>) <span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9"></a>    <span class="co"># Labelling</span></span>
+<span id="cb35-10"><a href="#cb35-10"></a>    <span class="fu">xlab</span>(<span class="st">"Weight loss in last 6 months (pounds)"</span>) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>    <span class="co"># Aesthetics</span></span>
+<span id="cb35-12"><a href="#cb35-12"></a>    <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="pint_prd1_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Although for age a linear association is fine, we will need some kind of non-linear transformation for weight loss to accurately capture it in the prediction model.</p>
+</section>
+<section id="method-i-coxph" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="method-i-coxph"><span class="header-section-number">6.2</span> Method I: coxph()</h2>
+<p>To develop the prediction model, we will use the <code>coxph()</code> function from the <code>{survival}</code> package. This works just like <code>glm()</code> in how we specify the prediction model, except that we specify the outcome using the <code>Surv()</code> function.</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-27"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-27-1"><a href="#annotated-cell-27-1"></a><span class="co"># Develop the prediction model</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-27-2" class="code-annotation-target"><a href="#annotated-cell-27-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">coxph</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-27-3" class="code-annotation-target"><a href="#annotated-cell-27-3"></a>               age <span class="sc">+</span></span>
+<span id="annotated-cell-27-4"><a href="#annotated-cell-27-4"></a>               sex <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-27-5" class="code-annotation-target"><a href="#annotated-cell-27-5"></a>               <span class="fu">ns</span>(wt.loss, <span class="at">knots =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">17</span>)),</span>
+<span id="annotated-cell-27-6"><a href="#annotated-cell-27-6"></a>           <span class="at">data =</span> lung)                       </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-27" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="2" data-code-cell="annotated-cell-27" data-code-annotation="1">Fit a Cox regression model, with the outcome being a survival object containing the event and time to event.</span>
+</dd>
+<dt data-target-cell="annotated-cell-27" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="3" data-code-cell="annotated-cell-27" data-code-annotation="2">Add predictors age (linearly) and sex.</span>
+</dd>
+<dt data-target-cell="annotated-cell-27" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-27" data-code-annotation="3">Add weight loss as a natural cubic spline using the <code>ns()</code> function from <code>{splines}</code>. We put knots at 0 and 17 based on the previous graph.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Let’s see what the output looks like:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="co"># Print output</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="fu">summary</span>(fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Call:
+coxph(formula = Surv(time, status) ~ age + sex + ns(wt.loss, 
+    knots = c(0, 17)), data = lung)
+
+  n= 228, number of events= 159 
+
+                                    coef exp(coef)  se(coef)      z Pr(&gt;|z|)   
+age                             0.017326  1.017477  0.009467  1.830  0.06724 . 
+sex                            -0.543317  0.580819  0.171707 -3.164  0.00156 **
+ns(wt.loss, knots = c(0, 17))1 -0.197963  0.820401  0.495679 -0.399  0.68962   
+ns(wt.loss, knots = c(0, 17))2 -2.448763  0.086400  1.732283 -1.414  0.15748   
+ns(wt.loss, knots = c(0, 17))3 -1.036500  0.354694  0.963225 -1.076  0.28190   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+                               exp(coef) exp(-coef) lower .95 upper .95
+age                               1.0175     0.9828  0.998771    1.0365
+sex                               0.5808     1.7217  0.414842    0.8132
+ns(wt.loss, knots = c(0, 17))1    0.8204     1.2189  0.310530    2.1674
+ns(wt.loss, knots = c(0, 17))2    0.0864    11.5740  0.002897    2.5765
+ns(wt.loss, knots = c(0, 17))3    0.3547     2.8193  0.053698    2.3429
+
+Concordance= 0.605  (se = 0.025 )
+Likelihood ratio test= 17.6  on 5 df,   p=0.003
+Wald test            = 16.69  on 5 df,   p=0.005
+Score (logrank) test = 17.14  on 5 df,   p=0.004</code></pre>
+</div>
+</div>
+<p>We see that weight loss has three coefficients, one for the lowest value through 0 (1), one for 0 through 10 (2), and one for 10 through the highest value (3). Also note that we do not have an intercept: to calculate the final predicted risk, we need to use the baseline hazard instead of the intercept. However, the baseline hazard is different for each timepoint.</p>
+<p>We can use <code>basehaz()</code> to calculate the baseline hazard at our timepoint of interest (2 years):</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="co"># Retrieve baseline hazard at 2 years</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="fu">filter</span>(<span class="fu">basehaz</span>(fit), time <span class="sc">==</span> <span class="fl">365.25</span> <span class="sc">*</span> <span class="dv">2</span>)[[<span class="st">"hazard"</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.143102</code></pre>
+</div>
+</div>
+<p>Discrimination of this model can be calculated using Harrell’s C-statistic: * The function <code>cindex()</code> from the <code>{dynpred}</code> package (does not require model fit, but does require development formula). * The function <code>rcorr.cens()</code> from the <code>{Hmisc}</code> package (does not require model fit, but may be slow). * The function <code>cIndex()</code> from the <code>{intsurv}</code> package.</p>
+<p>The calibration slope can be calculated as before, using <code>coxph()</code> and a calibration can also be drawn using the same methods as discussed before. In the case of competing risks, take note of validation measures for competing risk settings. More on that can be found in <a href="https://doi.org/10.1136/bmj-2021-069249">Van Geloven <em>et al.</em> 2021</a> and <a href="https://doi.org/10.1093/ije/dyab256">Ramspek <em>et al.</em> 2021</a>.</p>
+</section>
+<section id="method-ii-cph" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="method-ii-cph"><span class="header-section-number">6.3</span> Method II: cph()</h2>
+<p>We can also use <code>cph()</code> from <code>{rms}</code>. Although this is an extension of <code>coxph()</code> from <code>{survival}</code>, the returned model fit object can be used with the <code>validate()</code> and <code>calibrate()</code> functions from <code>{rms}</code>:</p>
+<div class="cell">
+<details>
+<summary>Answer</summary>
+<div class="sourceCode cell-code" id="annotated-cell-30"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-30-1"><a href="#annotated-cell-30-1"></a><span class="co"># Develop the prediction model</span></span>
+<span id="annotated-cell-30-2"><a href="#annotated-cell-30-2"></a>fit <span class="ot">&lt;-</span> <span class="fu">cph</span>(<span class="fu">Surv</span>(time, status) <span class="sc">~</span>                                 </span>
+<span id="annotated-cell-30-3"><a href="#annotated-cell-30-3"></a>               age <span class="sc">+</span>                                            </span>
+<span id="annotated-cell-30-4"><a href="#annotated-cell-30-4"></a>               sex <span class="sc">+</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-30" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-30-5" class="code-annotation-target"><a href="#annotated-cell-30-5"></a>               <span class="fu">rcs</span>(wt.loss),</span>
+<span id="annotated-cell-30-6"><a href="#annotated-cell-30-6"></a>           <span class="at">data =</span> lung)                       </span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-30" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-30" data-code-annotation="1">This time, we use <code>rcs()</code> from <code>{rms}</code> instead of <code>ns()</code> from <code>{splines}</code>. The advantage of <code>rcs()</code> is that it does not transform the underlying variable (i.e.&nbsp;not a B-spline matrix basis for a natural cubic spline) and is therefore easier to interpret and write down in a concise formula. However, we are forced to use at least 3 knots meaning more coefficients are estimated, whilst <code>ns()</code> allows us to use a single knot. Note that we can both use <code>rcs()</code> and <code>ns()</code> in both <code>coxph()</code> and <code>cph()</code>.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>number of knots in rcs defaulting to 5</code></pre>
+</div>
+</div>
+</section>
+<section id="the-curse-of-the-model-fit-object-revisited" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="the-curse-of-the-model-fit-object-revisited"><span class="header-section-number">6.4</span> The curse of the model fit object revisited</h2>
+<p>We already saw that with the model fit object, validation of a prediction model becomes quite easy.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Using <code>predict()</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we use <code>predict()</code> to calculate the survival probability for an individual based on a Cox regression model (thus using <code>predict(fit, type = "survival")</code>, note that the survival probability is not the probability at our specified time horizon, but at the end of their observed follow-up. Therefore, we cannot use this to calculate predictions (see also <a href="https://github.com/therneau/survival/issues/251">this issue</a> opened by the author of this practical, who turned out to be wrong but learned along the way)</p>
+<p>To get individual predictions, instead use <code>predict(fit, type = "lp")</code> and calculate the survival probability from the linear predictor using <span class="math inline">\(\hat{y}(t) = 1 - S_0(t)^{e^{LP_i}}\)</span> where <span class="math inline">\(S_0(t) = e^{-H_0(t)}\)</span> and <span class="math inline">\(H_0(t)\)</span> is the baseline hazard.</p>
+</div>
+</div>
+<p>However, in the absence of a model fit object, the validator may struggle more, especially for Cox regression models. By default, both <code>coxph()</code> and <code>cph()</code> estimate a centered Cox regression model. This means that the reference individual for the model is not someone without any binary predictor and with all continuous variables at 0, but someone without any binary predictor and with all continuous variables at the mean of that variable. If we then want to calculate an individual’s linear predictor, we also should have the linear predictor of the sample (<span class="math inline">\(LP_{sample}\)</span>). To calculate an individual’s linear predictor for the final prediction, we substract <span class="math inline">\(LP_{sample}\)</span> from their individual linear predictor <span class="math inline">\(LP_{individual}\)</span>: <span class="math inline">\(\hat{y}(t) = 1 - S_0(t)^{e^{LP_{individual} - LP_{sample}}}\)</span>. More on this can be found in <a href="https://missingdatasolutions.rbind.io/2022/12/cox-baseline-hazard/">this blogpost</a>.</p>
+</section>
+</section>
+<section id="final-words" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Final words</h1>
+<p>We have now taken a look at the basics for prediction modelling in R. Although many more packages are available for our goals (e.g.&nbsp;<code>{riskRegression</code>), we introduced the two most commonly used packages. If you start developing or validating a prediction model on your own, look back to this practical and never be afraid to ask, whether that be an experienced modeller, the internet, or (with due caution applied) a large language model.</p>
+</section>
+<section id="postscript" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Postscript</h1>
+<p>This practical was developed on:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.4.1 (2024-06-14 ucrt)
+Platform: x86_64-w64-mingw32/x64
+Running under: Windows 11 x64 (build 22631)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=English_United Kingdom.utf8 
+[2] LC_CTYPE=English_United Kingdom.utf8   
+[3] LC_MONETARY=English_United Kingdom.utf8
+[4] LC_NUMERIC=C                           
+[5] LC_TIME=English_United Kingdom.utf8    
+
+time zone: Europe/Amsterdam
+tzcode source: internal
+
+attached base packages:
+[1] splines   stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] ggExtra_0.10.1    ggplot2_3.5.1     mice_3.16.0       survival_3.6-4   
+ [5] rms_6.8-2         Hmisc_5.1-3       pROC_1.18.5       DescTools_0.99.56
+ [9] rio_1.2.1         magrittr_2.0.3    dplyr_1.1.4      
+
+loaded via a namespace (and not attached):
+  [1] gridExtra_2.3      gld_2.6.6          sandwich_3.1-1    
+  [4] readxl_1.4.3       rlang_1.1.4        multcomp_1.4-26   
+  [7] e1071_1.7-14       polspline_1.1.25   compiler_4.4.1    
+ [10] mgcv_1.9-1         vctrs_0.6.5        quantreg_5.98     
+ [13] stringr_1.5.1      pkgconfig_2.0.3    shape_1.4.6.1     
+ [16] fastmap_1.2.0      backports_1.5.0    labeling_0.4.3    
+ [19] utf8_1.2.4         promises_1.3.0     rmarkdown_2.27    
+ [22] nloptr_2.1.1       MatrixModels_0.5-3 purrr_1.0.2       
+ [25] xfun_0.46          glmnet_4.1-8       jomo_2.7-6        
+ [28] jsonlite_1.8.8     later_1.3.2        pan_1.9           
+ [31] broom_1.0.6        cluster_2.1.6      R6_2.5.1          
+ [34] stringi_1.8.4      boot_1.3-30        rpart_4.1.23      
+ [37] cellranger_1.1.0   Rcpp_1.0.13        iterators_1.0.14  
+ [40] knitr_1.48         zoo_1.8-12         R.utils_2.12.3    
+ [43] base64enc_0.1-3    pacman_0.5.1       httpuv_1.6.15     
+ [46] Matrix_1.7-0       nnet_7.3-19        tidyselect_1.2.1  
+ [49] rstudioapi_0.16.0  yaml_2.3.10        codetools_0.2-20  
+ [52] miniUI_0.1.1.1     lattice_0.22-6     tibble_3.2.1      
+ [55] plyr_1.8.9         shiny_1.9.1        withr_3.0.1       
+ [58] evaluate_0.24.0    foreign_0.8-86     proxy_0.4-27      
+ [61] pillar_1.9.0       checkmate_2.3.2    foreach_1.5.2     
+ [64] generics_0.1.3     munsell_0.5.1      scales_1.3.0      
+ [67] rootSolve_1.8.2.4  minqa_1.2.7        xtable_1.8-4      
+ [70] class_7.3-22       glue_1.7.0         lmom_3.0          
+ [73] tools_4.4.1        data.table_1.15.4  lme4_1.1-35.5     
+ [76] SparseM_1.84-2     Exact_3.3          mvtnorm_1.3-1     
+ [79] grid_4.4.1         tidyr_1.3.1        colorspace_2.1-1  
+ [82] nlme_3.1-164       htmlTable_2.4.3    Formula_1.2-5     
+ [85] cli_3.6.3          fansi_1.0.6        expm_1.0-0        
+ [88] gtable_0.3.5       R.methodsS3_1.8.2  digest_0.6.36     
+ [91] TH.data_1.1-2      farver_2.1.2       htmlwidgets_1.6.4 
+ [94] R.oo_1.26.0        htmltools_0.5.8.1  lifecycle_1.0.4   
+ [97] httr_1.4.7         mitml_0.4-5        mime_0.12         
+[100] MASS_7.3-60.2     </code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

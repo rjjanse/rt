@@ -42,8 +42,11 @@ const announceRegister = () => {
 window.document.addEventListener("DOMContentLoaded", function () {
   let init = false;
 
+<<<<<<< Updated upstream
   announceRegister();
 
+=======
+>>>>>>> Stashed changes
   // Manage the back to top button, if one is present.
   let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
   const scrollDownBuffer = 5;
@@ -273,7 +276,10 @@ window.document.addEventListener("DOMContentLoaded", function () {
     const links = window.document.querySelectorAll("a");
     for (let i = 0; i < links.length; i++) {
       if (links[i].href) {
+<<<<<<< Updated upstream
         links[i].dataset.originalHref = links[i].href;
+=======
+>>>>>>> Stashed changes
         links[i].href = links[i].href.replace(/\/index\.html/, "/");
       }
     }

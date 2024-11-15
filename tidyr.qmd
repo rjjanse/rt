@@ -1,4 +1,5 @@
 ---
+<<<<<<< Updated upstream
 title: "Tidyr"
 ---
 
@@ -252,3 +253,7 @@ table(storms_replaced[["category"]], useNA = "always")
 Now that we have seen how we tidy our data, the last thing left for us to discuss in the tidyverse is how to combine all these functions into efficient pipelines using `{magrittr}` and the pipe (`%>%`).
 
 **Next:** [Magrittr](magrittr.qmd)
+=======
+title: "External data"
+---
+>>>>>>> Stashed changes

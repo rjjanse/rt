@@ -8,10 +8,12 @@ You have made it to the end of the tutorial! I hope you have learned a lot. Alth
 ## Useful resources
 No resource on R will ever be comprehensive, but there are some resources available online for free that are very useful. Here are some you might want to check out:
 
-| Resource        | Description                                                                               |                                                      |
-|-----------------|-------------------------------------------------------------------------------------------|------------------------------------------------------|
-| R Graph Gallery | Making plots with `{base}` and `{ggplot2}`                                                | [Link](https://r-graph-gallery.com/)                         |
-| The R Inferno   | 'If you are using R and you think you're in hell, this is a map for you.' - Patrick Burns | [Link](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf) |
+| Resource                      | Description                                                                               |                                                              |
+|-------------------------------|-------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| The Epidemiologist R Handbook | A more extensive R tutorial with a specific focus on epidemiology                         | [Link](https://www.epirhandbook.com/en/)                     |  
+| RStudio Education             | A short interactive online tutorial made by the RStudio developers                        | [Link](https://education.rstudio.com/learn/beginner/)        |       
+| R Graph Gallery               | Making plots with `{base}` and `{ggplot2}`                                                | [Link](https://r-graph-gallery.com/)                         |
+| The R Inferno                 | 'If you are using R and you think you're in hell, this is a map for you.' - Patrick Burns | [Link](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf) |
 
 ## Acknowledgements
 Besides thanking all authors of R packages who have so meticuously documented their work and all resources that have made me learn R, I specifically want to thank Mark Smeets for his contributions to this tutorial.

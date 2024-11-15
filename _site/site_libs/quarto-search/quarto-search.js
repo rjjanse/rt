@@ -378,6 +378,7 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
     focusSearchInput();
   };
 
+<<<<<<< Updated upstream
   document.addEventListener("keyup", (event) => {
     const { key } = event;
     const kbds = quartoSearchOptions["keyboard-shortcut"];
@@ -404,6 +405,8 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
     }
   });
 
+=======
+>>>>>>> Stashed changes
   // Remove the labeleledby attribute since it is pointing
   // to a non-existent label
   if (quartoSearchOptions.type === "overlay") {
