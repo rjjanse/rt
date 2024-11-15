@@ -983,7 +983,7 @@
     "href": "summary.html#useful-resources",
     "title": "Summary",
     "section": "Useful resources",
-    "text": "Useful resources\nNo resource on R will ever be comprehensive, but there are some resources available online for free that are very useful. Here are some you might want to check out:\n\n\n\nResource\nDescription\n\n\n\n\n\nR Graph Gallery\nMaking plots with {base} and {ggplot2}\nLink\n\n\nThe R Inferno\n‘If you are using R and you think you’re in hell, this is a map for you.’ - Patrick Burns\nLink",
+    "text": "Useful resources\nNo resource on R will ever be comprehensive, but there are some resources available online for free that are very useful. Here are some you might want to check out:\n\n\n\nResource\nDescription\n\n\n\n\n\nThe Epidemiologist R Handbook\nA more extensive R tutorial with a specific focus on epidemiology\nLink\n\n\nRStudio Education\nA short interactive online tutorial made by the RStudio developers\nLink\n\n\nR Graph Gallery\nMaking plots with {base} and {ggplot2}\nLink\n\n\nThe R Inferno\n‘If you are using R and you think you’re in hell, this is a map for you.’ - Patrick Burns\nLink",
     "crumbs": [
       "Recap",
       "Summary"
