@@ -424,13 +424,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>As example data, we will use the package <code>{palmerpenguins}</code>, which contains data on 344 penguins from three islands in the Palmer Archipelago, Antarctica (more <a href="https://allisonhorst.github.io/palmerpenguins/">here</a>).</p>
 <p>We will also load the <code>{ggplot2}</code> package. The <code>{graphics}</code> package is installed and loaded by default.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Load packages</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>pacman<span class="sc">::</span><span class="fu">p_load</span>(<span class="st">"ggplot2"</span>,          <span class="co"># Data visualization</span></span>
 <span id="cb1-3"><a href="#cb1-3"></a>               <span class="st">"palmerpenguins"</span>    <span class="co"># Example data</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a>               )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 </section>
 <section id="ggplot2" class="level2">
@@ -440,10 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="layer-1-the-data">Layer 1: the data</h3>
 <p>The first layer we specify is the data layer. In this layer, we specify our data and the mapping of the aesthetics, meaning we define what our x-axis will portray, the y-axis, what colours, etc. will portray. This first layer is called using <code>ggplot()</code>:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -459,12 +453,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now we can add the geometries. We are offered a large number of geometries by <code>{ggplot2}</code>, with some basics including points, lines, bars, histograms, rectangles, segments, steps, and ribbons. Each geometry is called by a <code>geom_...()</code> function, such as <code>geom_point()</code> and <code>geom_line()</code>.</p>
 <p>For our figure, we will add points.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a>    <span class="co"># Geometries</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a>    <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -482,13 +473,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Note that any geometry is applied in subsequent order. If we add a trendline (<code>geom_smooth(method = "lm", formula = "y ~ x")</code>), this will be drawn on top of the points if we specify it after <code>geom_point()</code> or before if we specify it before <code>geom_point()</code>.</p>
 <p>Let’s do this now:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>    <span class="co"># Geometries</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">colour =</span> <span class="st">"#B58900"</span>, <span class="at">fill =</span> <span class="st">"#B58900"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
@@ -525,8 +513,6 @@ Note
 </div>
 <p>In our current plot, we have two scales: the x-axis and y-axis. We can edit these using scale functions that concur with the scale type (i.e.&nbsp;continuous, discrete, etc.). In our case, both scales are continuous, so we will use <code>scale_x_continuous()</code> and <code>scale_y_continuous()</code>. For other types of scales, we might also use <code>scale_x_discrete()</code>, <code>scale_x_date()</code>, etc.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>    <span class="co"># Geometries</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
@@ -539,7 +525,6 @@ Note
 <span id="cb8-10"><a href="#cb8-10"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
 <span id="cb8-11"><a href="#cb8-11"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
 <span id="cb8-12"><a href="#cb8-12"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>))                     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
@@ -559,8 +544,6 @@ Note
 <p>In the scale functions, we can give the name of the axis, the limits of the axis, at which points there should be ticks (<code>breaks</code>), and the labels given to each tick.</p>
 <p>One more thing we can do in the scale functions is determine the expansion. By default, <code>{ggplot2}</code> expands the axes a bit so that the figure does not seem too cropped. Sometimes, however, we might want to remove or change this. If we want to remove this, we can use <code>expand = c(0, 0)</code> in the scaling arguments for each axis:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>    <span class="co"># Geometries</span></span>
 <span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
@@ -569,12 +552,11 @@ Note
 <span id="cb11-6"><a href="#cb11-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
 <span id="cb11-7"><a href="#cb11-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
 <span id="cb11-8"><a href="#cb11-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
-<span id="cb11-9"><a href="#cb11-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
-<span id="cb11-12"><a href="#cb11-12"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>),</span>
-<span id="cb11-13"><a href="#cb11-13"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))                     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb11-9"><a href="#cb11-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb11-10"><a href="#cb11-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb11-13"><a href="#cb11-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>))                     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
@@ -599,8 +581,6 @@ Note
 <p>For the axes labels, we can use <code>xlab()</code> and <code>ylab()</code> respectively. We won’t need these as we specified the name already in the scaling function, but they might be useful if you do not need the scale function. The title can be specified using the <code>ggtitle()</code> function, which also allows you to specify a subtitle. Alternatively, this can be done through the <code>labs()</code> function, which allows much more control, such as a tag (for multipanel labels where you want to tag A, B, C, etc.), a caption, and alt text (for accessibility purposes).</p>
 <p>For the plot we’re building, we will aply a title and a subtitle.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>    <span class="co"># Geometries</span></span>
 <span id="cb14-3"><a href="#cb14-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
@@ -615,7 +595,6 @@ Note
 <span id="cb14-12"><a href="#cb14-12"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
 <span id="cb14-13"><a href="#cb14-13"></a>    <span class="co"># Labels</span></span>
 <span id="cb14-14"><a href="#cb14-14"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>)                 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
@@ -639,8 +618,6 @@ Note
 <h4 class="anchored" data-anchor-id="coord_cartesian"><code>coord_cartesian()</code></h4>
 <p>We have already seen that we can limit our axes using the <code>limits</code> argument in the scaling functions. However, if we limit our axis too much, data that falls outside of this range will be removed. If we want to limit the axes without data being removed, we can use the arguments <code>xlim =</code> and <code>ylim =</code> in the function <code>coord_cartesian()</code>. As an example:</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Answer</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>    <span class="co"># Geometries</span></span>
 <span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
@@ -656,8 +633,7 @@ Note
 <span id="cb17-13"><a href="#cb17-13"></a>    <span class="co"># Labels</span></span>
 <span id="cb17-14"><a href="#cb17-14"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
 <span id="cb17-15"><a href="#cb17-15"></a>    <span class="co"># Transformations</span></span>
-<span id="cb17-16"><a href="#cb17-16"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">220</span>))             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb17-16"><a href="#cb17-16"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3000</span>, <span class="dv">5000</span>))             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
