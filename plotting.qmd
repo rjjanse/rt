@@ -12,6 +12,7 @@ As example data, we will use the package `{palmerpenguins}`, which contains data
 We will also load the `{ggplot2}` package. The `{graphics}` package is installed and loaded by default.
 
 ```{r}
+#| code-fold: false
 # Load packages
 pacman::p_load("ggplot2",          # Data visualization
                "palmerpenguins"    # Example data
@@ -25,6 +26,7 @@ Basically, the grammar of graphics provides a foundation that describes how any 
 The first layer we specify is the data layer. In this layer, we specify our data and the mapping of the aesthetics, meaning we define what our x-axis will portray, the y-axis, what colours, etc. will portray. This first layer is called using `ggplot()`:
 
 ```{r}
+#| code-fold: false
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm))
 
 ```
@@ -37,6 +39,7 @@ Now we can add the geometries. We are offered a large number of geometries by `{
 For our figure, we will add points.
 
 ```{r}
+#| code-fold: false
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
     # Geometries
     geom_point()
@@ -51,6 +54,7 @@ Note that any geometry is applied in subsequent order. If we add a trendline (`g
 
 Let's do this now:
 ```{r}
+#| code-fold: false
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
     # Geometries
     geom_point(shape = 5) +
@@ -70,6 +74,7 @@ Note that we deviate from the grammar of graphics in building our plot. The orde
 In our current plot, we have two scales: the x-axis and y-axis. We can edit these using scale functions that concur with the scale type (i.e. continuous, discrete, etc.). In our case, both scales are continuous, so we will use `scale_x_continuous()` and `scale_y_continuous()`. For other types of scales, we might also use `scale_x_discrete()`, `scale_x_date()`, etc.
 
 ```{r}
+#| code-fold: false
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
     # Geometries
     geom_point(shape = 5) +
@@ -87,6 +92,28 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
 
 In the scale functions, we can give the name of the axis, the limits of the axis, at which points there should be ticks (`breaks`), and the labels given to each tick.
 
+One more thing we can do in the scale functions is determine the expansion. By default, `{ggplot2}` expands the axes a bit so that the figure does not seem too cropped. Sometimes, however, we might want to remove or change this. If we want to remove this, we can use `expand = c(0, 0)` in the scaling arguments for each axis:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    # Geometries
+    geom_point(shape = 5) +
+    geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10))                     
+
+```
+
+Above we only removed the expansion for the y-axis. We can also change the amount of expansion (by addition or multiplication) by supplying the `expansion()` function to the `expand = ` argument. We will leave the expansion to its default again while working on our example.
+
 ### Layer 4: labels
 In the next layer, we will apply labels to the plot, which includes the title, subtitle, axes labels, and legends.
 
@@ -98,6 +125,7 @@ alt text (for accessibility purposes).
 For the plot we're building, we will aply a title and a subtitle.
 
 ```{r}
+#| code-fold: false
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
     # Geometries
     geom_point(shape = 5) +
@@ -116,5 +144,35 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
 ```
 
 ### Layer 5: coordinates and transformations
+#### `coord_cartesian()`
+We have already seen that we can limit our axes using the `limits` argument in the scaling functions. However, if we limit our axis too much, data that falls outside of this range will be removed. If we want to limit the axes without data being removed, we can use the arguments `xlim =` and `ylim =` in the function `coord_cartesian()`. As an example:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+    # Geometries
+    geom_point(shape = 5) +
+    geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ",")) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins") +
+    # Transformations
+    coord_cartesian(xlim = c(3000, 5000))             
+
+```
+
+Note that now the panel is cropped on the x-axis according to `coord_cartesian()`, but that our data has remained. This is for instance useful when we have some confidence intervals that become very broad but we do not want to show the range of the y-axis over the whole range of the confidence interval. For now, we will leave it out, but it's good to have it in our toolbox.
+
+#### `facet_grid()` and `facet_panel()`
+
 
 ### Layer 6: theme
+
+### Common errors
