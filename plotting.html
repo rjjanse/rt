@@ -382,7 +382,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#layer-1-the-data" id="toc-layer-1-the-data" class="nav-link" data-scroll-target="#layer-1-the-data">Layer 1: the data</a></li>
   <li><a href="#layer-2-the-geometries" id="toc-layer-2-the-geometries" class="nav-link" data-scroll-target="#layer-2-the-geometries">Layer 2: the geometries</a></li>
-  <li><a href="#layer-3-the-scaling" id="toc-layer-3-the-scaling" class="nav-link" data-scroll-target="#layer-3-the-scaling">Layer 3: the scaling</a></li>
+  <li><a href="#layer-3-the-scaling" id="toc-layer-3-the-scaling" class="nav-link" data-scroll-target="#layer-3-the-scaling">Layer 3: the scaling</a>
+  <ul class="collapse">
+  <li><a href="#axes" id="toc-axes" class="nav-link" data-scroll-target="#axes">Axes</a></li>
+  <li><a href="#aesthetics" id="toc-aesthetics" class="nav-link" data-scroll-target="#aesthetics">Aesthetics</a></li>
+  </ul></li>
   <li><a href="#layer-4-labels" id="toc-layer-4-labels" class="nav-link" data-scroll-target="#layer-4-labels">Layer 4: labels</a></li>
   <li><a href="#layer-5-coordinates-and-transformations" id="toc-layer-5-coordinates-and-transformations" class="nav-link" data-scroll-target="#layer-5-coordinates-and-transformations">Layer 5: coordinates and transformations</a>
   <ul class="collapse">
@@ -493,7 +497,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>We specified shape as a number, for which you can find <a href="http://www.sthda.com/english/wiki/ggplot2-point-shapes">online</a> what different numbers mean. We specified the colour as a hex code, but you can also use the <code>rgb()</code> function for RGB specification, or English language for a number of colours that can be found <a href="https://r-charts.com/colors/">here</a>. Lastly, we specify the British English colour instead of the American English color. <code>{ggplot2}</code> will accept both, for arguments and for functions (e.g.&nbsp;<code>scale_color_manual()</code> and <code>scale_colour_manual()</code> both exist and do the same thing).</p>
+<p>We specified point shape as a number, for which you can find <a href="http://www.sthda.com/english/wiki/ggplot2-point-shapes">online</a> what different numbers mean. We specified the colour as a hex code, but you can also use the <code>rgb()</code> function for RGB specification, or English language for a number of colours that can be found <a href="https://r-charts.com/colors/">here</a>. Lastly, we specify the British English colour instead of the American English color. <code>{ggplot2}</code> will accept both, for arguments and for functions (e.g.&nbsp;<code>scale_color_manual()</code> and <code>scale_colour_manual()</code> both exist and do the same thing). We will revert the points back to their default for the remainder of the plot.</p>
 </section>
 <section id="layer-3-the-scaling" class="level3">
 <h3 class="anchored" data-anchor-id="layer-3-the-scaling">Layer 3: the scaling</h3>
@@ -511,11 +515,13 @@ Note
 <p>Note that we deviate from the grammar of graphics in building our plot. The order in which we specify our layers does not adhere to the grammar of graphics. Luckily, in the background, <code>{ggplot2}</code> ignores this, only keeping the order in which we called geometries for geometries, but for instance not drawing theming prior to geometries, even if we specify so.</p>
 </div>
 </div>
+<section id="axes" class="level4">
+<h4 class="anchored" data-anchor-id="axes">Axes</h4>
 <p>In our current plot, we have two scales: the x-axis and y-axis. We can edit these using scale functions that concur with the scale type (i.e.&nbsp;continuous, discrete, etc.). In our case, both scales are continuous, so we will use <code>scale_x_continuous()</code> and <code>scale_y_continuous()</code>. For other types of scales, we might also use <code>scale_x_discrete()</code>, <code>scale_x_date()</code>, etc.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>    <span class="co"># Geometries</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">colour =</span> <span class="st">"#B58900"</span>, <span class="at">fill =</span> <span class="st">"#B58900"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb8-5"><a href="#cb8-5"></a>    <span class="co"># Scaling</span></span>
 <span id="cb8-6"><a href="#cb8-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
@@ -546,7 +552,7 @@ Note
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a>    <span class="co"># Geometries</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">colour =</span> <span class="st">"#B58900"</span>, <span class="at">fill =</span> <span class="st">"#B58900"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb11-5"><a href="#cb11-5"></a>    <span class="co"># Scaling</span></span>
 <span id="cb11-6"><a href="#cb11-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
@@ -575,26 +581,31 @@ Note
 </div>
 <p>Above we only removed the expansion for the y-axis. We can also change the amount of expansion (by addition or multiplication) by supplying the <code>expansion()</code> function to the <code>expand =</code> argument. We will leave the expansion to its default again while working on our example.</p>
 </section>
-<section id="layer-4-labels" class="level3">
-<h3 class="anchored" data-anchor-id="layer-4-labels">Layer 4: labels</h3>
-<p>In the next layer, we will apply labels to the plot, which includes the title, subtitle, axes labels, and legends.</p>
-<p>For the axes labels, we can use <code>xlab()</code> and <code>ylab()</code> respectively. We won’t need these as we specified the name already in the scaling function, but they might be useful if you do not need the scale function. The title can be specified using the <code>ggtitle()</code> function, which also allows you to specify a subtitle. Alternatively, this can be done through the <code>labs()</code> function, which allows much more control, such as a tag (for multipanel labels where you want to tag A, B, C, etc.), a caption, and alt text (for accessibility purposes).</p>
-<p>For the plot we’re building, we will aply a title and a subtitle.</p>
+<section id="aesthetics" class="level4">
+<h4 class="anchored" data-anchor-id="aesthetics">Aesthetics</h4>
+<p>Besides scaling the axes, we can also specify specific scales of our plot. Before we do that, let’s go through the different scales we can define in <code>aes()</code>:</p>
+<ul>
+<li><code>colour</code> (or <code>color</code>): this defines the colour of all geometries. For geometries with an inside area, <code>colour</code> will only colour the outside/circumference.</li>
+<li><code>fill</code>: this defines the colour of the inside of all geometries.</li>
+<li><code>linetype</code>: for any geometry that draws a line, this defines the linetype.</li>
+<li><code>size</code>: this determines the line of certain geometries, such as points.</li>
+</ul>
+<p>There are a number of other scales, but these are the most important to understand the basics.</p>
+<p>Let’s stratify the plots by island. To do this, we can specify that colour, fill, and linetype should be different for the different levels of <code>island</code>. We can do this in the <code>aes()</code> function. Note that we will remove the <code>colour</code> and <code>fill</code> specification in <code>geom_smooth()</code> as these are now specified in <code>aes()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a>    <span class="co"># Geometries</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">colour =</span> <span class="st">"#B58900"</span>, <span class="at">fill =</span> <span class="st">"#B58900"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5"></a>    <span class="co"># Scaling</span></span>
 <span id="cb14-6"><a href="#cb14-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
 <span id="cb14-7"><a href="#cb14-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
 <span id="cb14-8"><a href="#cb14-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
-<span id="cb14-9"><a href="#cb14-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
-<span id="cb14-10"><a href="#cb14-10"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
-<span id="cb14-11"><a href="#cb14-11"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
-<span id="cb14-12"><a href="#cb14-12"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13"></a>    <span class="co"># Labels</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>)                 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-9"><a href="#cb14-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb14-10"><a href="#cb14-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb14-13"><a href="#cb14-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>))                     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
@@ -611,29 +622,24 @@ Note
 </div>
 </div>
 </div>
-</section>
-<section id="layer-5-coordinates-and-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="layer-5-coordinates-and-transformations">Layer 5: coordinates and transformations</h3>
-<section id="coord_cartesian" class="level4">
-<h4 class="anchored" data-anchor-id="coord_cartesian"><code>coord_cartesian()</code></h4>
-<p>We have already seen that we can limit our axes using the <code>limits</code> argument in the scaling functions. However, if we limit our axis too much, data that falls outside of this range will be removed. If we want to limit the axes without data being removed, we can use the arguments <code>xlim =</code> and <code>ylim =</code> in the function <code>coord_cartesian()</code>. As an example:</p>
+<p>As you can see, <code>{ggplot2}</code> automatically selected colours for us, as well as create a legend, and perform any statistical operations (such as the LOESS smoother) within groups.</p>
+<p>Now we can use scales to change these scales to our preferences:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2"></a>    <span class="co"># Geometries</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, <span class="at">colour =</span> <span class="st">"#B58900"</span>, <span class="at">fill =</span> <span class="st">"#B58900"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
 <span id="cb17-5"><a href="#cb17-5"></a>    <span class="co"># Scaling</span></span>
 <span id="cb17-6"><a href="#cb17-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
 <span id="cb17-7"><a href="#cb17-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
 <span id="cb17-8"><a href="#cb17-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
-<span id="cb17-9"><a href="#cb17-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>)) <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
-<span id="cb17-11"><a href="#cb17-11"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
-<span id="cb17-12"><a href="#cb17-12"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb17-13"><a href="#cb17-13"></a>    <span class="co"># Labels</span></span>
-<span id="cb17-14"><a href="#cb17-14"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
-<span id="cb17-15"><a href="#cb17-15"></a>    <span class="co"># Transformations</span></span>
-<span id="cb17-16"><a href="#cb17-16"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3000</span>, <span class="dv">5000</span>))             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-9"><a href="#cb17-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb17-10"><a href="#cb17-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb17-12"><a href="#cb17-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb17-13"><a href="#cb17-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))                    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
 (`stat_smooth()`).</code></pre>
@@ -650,14 +656,330 @@ Note
 </div>
 </div>
 </div>
+<p>Note that we specify <code>aesthetics =</code> in the colour scale, which allows us to use one scale for both colour and fill. Of course, we can also separately specify <code>scale_fill_manual()</code>.</p>
+<p>There are also implementations of well-known palettes for colours, for instance viridis which is a palette distinguishable also for people with the most common types of colourblindness:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb20-7"><a href="#cb20-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb20-8"><a href="#cb20-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb20-9"><a href="#cb20-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb20-10"><a href="#cb20-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb20-12"><a href="#cb20-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb20-13"><a href="#cb20-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a>    <span class="fu">scale_colour_viridis_d</span>(<span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"fill"</span>, <span class="st">"colour"</span>)) <span class="sc">+</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))                    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Linetypes can again be specified as numbers or text, for which a guide can be found <a href="https://r-charts.com/base-r/line-types/">here</a>.</p>
+</section>
+</section>
+<section id="layer-4-labels" class="level3">
+<h3 class="anchored" data-anchor-id="layer-4-labels">Layer 4: labels</h3>
+<p>In the next layer, we will apply labels to the plot, which includes the title, subtitle, axes labels, and legends.</p>
+<p>For the axes labels, we can use <code>xlab()</code> and <code>ylab()</code> respectively. We won’t need these as we specified the name already in the scaling function, but they might be useful if you do not need the scale function. The title can be specified using the <code>ggtitle()</code> function, which also allows you to specify a subtitle. Alternatively, this can be done through the <code>labs()</code> function, which allows much more control, such as a tag (for multipanel labels where you want to tag A, B, C, etc.), a caption, and alt text (for accessibility purposes).</p>
+<p>For the plot we’re building, we will aply a title and a subtitle.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb23-7"><a href="#cb23-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb23-8"><a href="#cb23-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb23-9"><a href="#cb23-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb23-10"><a href="#cb23-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb23-12"><a href="#cb23-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb23-13"><a href="#cb23-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, </span>
+<span id="cb23-18"><a href="#cb23-18"></a>            <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>)                 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Additionally, we can edit the legend by using <code>guide()</code>. <code>guide()</code> let’s us specify details about the legend for each scale that we used. In our case, we used <code>colour</code>, <code>fill</code>, and <code>linetype</code>. Imagine that we wanted to remove the legend for <code>fill</code> (which is combined with <code>linetype</code> and <code>colour</code> because they are based on the same variable), we can simply do:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb26-7"><a href="#cb26-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb26-8"><a href="#cb26-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb26-9"><a href="#cb26-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb26-10"><a href="#cb26-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb26-11"><a href="#cb26-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb26-13"><a href="#cb26-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb26-16"><a href="#cb26-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb26-17"><a href="#cb26-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, </span>
+<span id="cb26-18"><a href="#cb26-18"></a>            <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb26-19"><a href="#cb26-19"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>)             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Additionally, we can specify that we want the legend to take a different form (e.g.&nbsp;colourbar). We can also further modify the legend with <code>guide_legend()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb29-8"><a href="#cb29-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb29-9"><a href="#cb29-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb29-10"><a href="#cb29-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb29-12"><a href="#cb29-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb29-13"><a href="#cb29-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb29-14"><a href="#cb29-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb29-15"><a href="#cb29-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb29-17"><a href="#cb29-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, </span>
+<span id="cb29-18"><a href="#cb29-18"></a>            <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb29-19"><a href="#cb29-19"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb29-20"><a href="#cb29-20"></a>           <span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"bottom"</span>))             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Note that we can also specify <code>guide_legend()</code> within scale functions.</p>
+</section>
+<section id="layer-5-coordinates-and-transformations" class="level3">
+<h3 class="anchored" data-anchor-id="layer-5-coordinates-and-transformations">Layer 5: coordinates and transformations</h3>
+<section id="coord_cartesian" class="level4">
+<h4 class="anchored" data-anchor-id="coord_cartesian"><code>coord_cartesian()</code></h4>
+<p>We have already seen that we can limit our axes using the <code>limits</code> argument in the scaling functions. However, if we limit our axis too much, data that falls outside of this range will be removed. If we want to limit the axes without data being removed, we can use the arguments <code>xlim =</code> and <code>ylim =</code> in the function <code>coord_cartesian()</code>. As an example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb32-7"><a href="#cb32-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb32-8"><a href="#cb32-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb32-9"><a href="#cb32-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb32-10"><a href="#cb32-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb32-11"><a href="#cb32-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb32-12"><a href="#cb32-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb32-13"><a href="#cb32-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb32-14"><a href="#cb32-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb32-15"><a href="#cb32-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb32-16"><a href="#cb32-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb32-18"><a href="#cb32-18"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb32-19"><a href="#cb32-19"></a>           <span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb32-20"><a href="#cb32-20"></a>    <span class="co"># Transformations</span></span>
+<span id="cb32-21"><a href="#cb32-21"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">3000</span>, <span class="dv">5000</span>))             </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>Note that now the panel is cropped on the x-axis according to <code>coord_cartesian()</code>, but that our data has remained. This is for instance useful when we have some confidence intervals that become very broad but we do not want to show the range of the y-axis over the whole range of the confidence interval. For now, we will leave it out, but it’s good to have it in our toolbox.</p>
 </section>
 <section id="facet_grid-and-facet_panel" class="level4">
 <h4 class="anchored" data-anchor-id="facet_grid-and-facet_panel"><code>facet_grid()</code> and <code>facet_panel()</code></h4>
+<p>Sometimes, instead of using scales, we might want to show different groups using facets. This is where <code>facet_grid()</code> and <code>facet_wrap()</code> come in handy. If we have just one variable on which we want to stratify, we can create facets using <code>facet_wrap()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb35-7"><a href="#cb35-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb35-8"><a href="#cb35-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb35-9"><a href="#cb35-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb35-10"><a href="#cb35-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb35-12"><a href="#cb35-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb35-13"><a href="#cb35-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb35-14"><a href="#cb35-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb35-15"><a href="#cb35-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb35-16"><a href="#cb35-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb35-17"><a href="#cb35-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb35-18"><a href="#cb35-18"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb35-19"><a href="#cb35-19"></a>           <span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb35-20"><a href="#cb35-20"></a>    <span class="co"># Transformations</span></span>
+<span id="cb35-21"><a href="#cb35-21"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(island))            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If we have multiply varialbes, <code>facet_grid()</code> can help us out:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb38-6"><a href="#cb38-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb38-7"><a href="#cb38-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb38-8"><a href="#cb38-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb38-9"><a href="#cb38-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb38-10"><a href="#cb38-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb38-11"><a href="#cb38-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb38-12"><a href="#cb38-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb38-13"><a href="#cb38-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb38-14"><a href="#cb38-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb38-15"><a href="#cb38-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb38-16"><a href="#cb38-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb38-17"><a href="#cb38-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb38-18"><a href="#cb38-18"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb38-19"><a href="#cb38-19"></a>           <span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb38-20"><a href="#cb38-20"></a>    <span class="co"># Transformations</span></span>
+<span id="cb38-21"><a href="#cb38-21"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(species), <span class="at">cols =</span> <span class="fu">vars</span>(island))            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the facet functions, you can specify multiple things, including the labels given to the strips at the top and whether the axes should be allowed to differ between plots (which can be useful if you just want to create facets of a lot of histograms to show distributions).</p>
+<p>Note that we still specified our scales such as <code>colour</code>, but that this is not required.</p>
 </section>
 </section>
 <section id="layer-6-theme" class="level3">
 <h3 class="anchored" data-anchor-id="layer-6-theme">Layer 6: theme</h3>
+<p>The last layer we will discuss is the theme. <code>{ggplot2}</code> allows us to edit the aesthetics of the plot using <code>theme()</code> and offers some basic themes. For instance, we can just make a simple looking plot using <code>theme_bw()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb41-5"><a href="#cb41-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb41-7"><a href="#cb41-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb41-8"><a href="#cb41-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb41-9"><a href="#cb41-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb41-10"><a href="#cb41-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb41-11"><a href="#cb41-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb41-12"><a href="#cb41-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb41-13"><a href="#cb41-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb41-14"><a href="#cb41-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb41-15"><a href="#cb41-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb41-16"><a href="#cb41-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb41-17"><a href="#cb41-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb41-18"><a href="#cb41-18"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb41-19"><a href="#cb41-19"></a>           <span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb41-20"><a href="#cb41-20"></a>    <span class="co"># Aesthetics</span></span>
+<span id="cb41-21"><a href="#cb41-21"></a>    <span class="fu">theme_bw</span>()            </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="common-errors" class="level3">
 <h3 class="anchored" data-anchor-id="common-errors">Common errors</h3>
