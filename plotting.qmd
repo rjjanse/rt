@@ -62,7 +62,7 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
 
 ```
 
-We specified shape as a number, for which you can find [online](http://www.sthda.com/english/wiki/ggplot2-point-shapes) what different numbers mean. We specified the colour as a hex code, but you can also use the `rgb()` function for RGB specification, or English language for a number of colours that can be found [here](https://r-charts.com/colors/). Lastly, we specify the British English colour instead of the American English color. `{ggplot2}` will accept both, for arguments and for functions (e.g. `scale_color_manual()` and `scale_colour_manual()` both exist and do the same thing).
+We specified point shape as a number, for which you can find [online](http://www.sthda.com/english/wiki/ggplot2-point-shapes) what different numbers mean. We specified the colour as a hex code, but you can also use the `rgb()` function for RGB specification, or English language for a number of colours that can be found [here](https://r-charts.com/colors/). Lastly, we specify the British English colour instead of the American English color. `{ggplot2}` will accept both, for arguments and for functions (e.g. `scale_color_manual()` and `scale_colour_manual()` both exist and do the same thing). We will revert the points back to their default for the remainder of the plot.
 
 ### Layer 3: the scaling
 For the third layer, we will apply scaling, which means we will edit anything that can be a scale (e.g. axes, colours, fill).
@@ -71,13 +71,14 @@ For the third layer, we will apply scaling, which means we will edit anything th
 Note that we deviate from the grammar of graphics in building our plot. The order in which we specify our layers does not adhere to the grammar of graphics. Luckily, in the background, `{ggplot2}` ignores this, only keeping the order in which we called geometries for geometries, but for instance not drawing theming prior to geometries, even if we specify so.
 :::
 
+#### Axes
 In our current plot, we have two scales: the x-axis and y-axis. We can edit these using scale functions that concur with the scale type (i.e. continuous, discrete, etc.). In our case, both scales are continuous, so we will use `scale_x_continuous()` and `scale_y_continuous()`. For other types of scales, we might also use `scale_x_discrete()`, `scale_x_date()`, etc.
 
 ```{r}
 #| code-fold: false
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
     # Geometries
-    geom_point(shape = 5) +
+    geom_point() +
     geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
     # Scaling
     scale_x_continuous(name = "Body mass (grams)",
@@ -98,7 +99,7 @@ One more thing we can do in the scale functions is determine the expansion. By d
 #| code-fold: false
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
     # Geometries
-    geom_point(shape = 5) +
+    geom_point() +
     geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
     # Scaling
     scale_x_continuous(name = "Body mass (grams)",
@@ -114,6 +115,86 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
 
 Above we only removed the expansion for the y-axis. We can also change the amount of expansion (by addition or multiplication) by supplying the `expansion()` function to the `expand = ` argument. We will leave the expansion to its default again while working on our example.
 
+#### Aesthetics
+Besides scaling the axes, we can also specify specific scales of our plot. Before we do that, let's go through the different scales we can define in `aes()`:
+
+- `colour` (or `color`): this defines the colour of all geometries. For geometries with an inside area, `colour` will only colour the outside/circumference.
+- `fill`: this defines the colour of the inside of all geometries.
+- `linetype`: for any geometry that draws a line, this defines the linetype.
+- `size`:  this determines the line of certain geometries, such as points.
+
+There are a number of other scales, but these are the most important to understand the basics.
+
+Let's stratify the plots by island. To do this, we can specify that colour, fill, and linetype should be different for the different levels of `island`. We can do this in the `aes()` function. Note that we will remove the `colour` and `fill` specification in `geom_smooth()` as these are now specified in `aes()`.
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10))                     
+
+```
+
+As you can see, `{ggplot2}` automatically selected colours for us, as well as create a legend, and perform any statistical operations (such as the LOESS smoother) within groups.
+
+Now we can use scales to change these scales to our preferences:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))                    
+
+```
+
+Note that we specify `aesthetics = ` in the colour scale, which allows us to use one scale for both colour and fill. Of course, we can also separately specify `scale_fill_manual()`.
+
+There are also implementations of well-known palettes for colours, for instance viridis which is a palette distinguishable also for people with the most common types of colourblindness:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_viridis_d(aesthetics = c("fill", "colour")) +
+    scale_linetype_manual(values = c(2, 4, 6))                    
+
+```
+
+Linetypes can again be specified as numbers or text, for which a guide can be found [here](https://r-charts.com/base-r/line-types/).
+
 ### Layer 4: labels
 In the next layer, we will apply labels to the plot, which includes the title, subtitle, axes labels, and legends.
 
@@ -126,22 +207,81 @@ For the plot we're building, we will aply a title and a subtitle.
 
 ```{r}
 #| code-fold: false
-ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
     # Geometries
-    geom_point(shape = 5) +
-    geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
     # Scaling
     scale_x_continuous(name = "Body mass (grams)",
                        limits = c(2500, 6500),
                        breaks = seq(2500, 6500, 500),
-                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ",")) +
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
     scale_y_continuous(name = "Flipper length (millimeters)",
                        limits = c(170, 240),
                        breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
     # Labels
-    ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins")                 
+    ggtitle("Relation between penguin body mass and flipper length", 
+            subtitle = "Data from the Palmer Archipelago penguins")                 
 
 ```
+
+Additionally, we can edit the legend by using `guide()`. `guide()` let's us specify details about the legend for each scale that we used. In our case, we used `colour`, `fill`, and `linetype`. Imagine that we wanted to remove the legend for `fill` (which is combined with `linetype` and `colour` because they are based on the same variable), we can simply do:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", 
+            subtitle = "Data from the Palmer Archipelago penguins") +
+    guides(fill = "none")             
+
+```
+
+Additionally, we can specify that we want the legend to take a different form (e.g. colourbar). We can also further modify the legend with `guide_legend()`:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", 
+            subtitle = "Data from the Palmer Archipelago penguins") +
+    guides(fill = "none",
+           colour = guide_legend(ncol = 2, position = "bottom"))             
+
+```
+
+Note that we can also specify `guide_legend()` within scale functions.
 
 ### Layer 5: coordinates and transformations
 #### `coord_cartesian()`
@@ -149,20 +289,25 @@ We have already seen that we can limit our axes using the `limits` argument in t
 
 ```{r}
 #| code-fold: false
-ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
     # Geometries
-    geom_point(shape = 5) +
-    geom_smooth(method = "lm", formula = "y ~ x", colour = "#B58900", fill = "#B58900", alpha = 0.3) +
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
     # Scaling
     scale_x_continuous(name = "Body mass (grams)",
                        limits = c(2500, 6500),
                        breaks = seq(2500, 6500, 500),
-                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ",")) +
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
     scale_y_continuous(name = "Flipper length (millimeters)",
                        limits = c(170, 240),
                        breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
     # Labels
     ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins") +
+    guides(fill = "none",
+           colour = guide_legend(ncol = 2, position = "bottom")) +
     # Transformations
     coord_cartesian(xlim = c(3000, 5000))             
 
@@ -171,8 +316,93 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
 Note that now the panel is cropped on the x-axis according to `coord_cartesian()`, but that our data has remained. This is for instance useful when we have some confidence intervals that become very broad but we do not want to show the range of the y-axis over the whole range of the confidence interval. For now, we will leave it out, but it's good to have it in our toolbox.
 
 #### `facet_grid()` and `facet_panel()`
+Sometimes, instead of using scales, we might want to show different groups using facets. This is where `facet_grid()` and `facet_wrap()` come in handy. If we have just one variable on which we want to stratify, we can create facets using `facet_wrap()`:
 
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins") +
+    guides(fill = "none",
+           colour = guide_legend(ncol = 2, position = "bottom")) +
+    # Transformations
+    facet_wrap(vars(island))            
+
+```
+
+If we have multiply varialbes, `facet_grid()` can help us out:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins") +
+    guides(fill = "none",
+           colour = guide_legend(ncol = 2, position = "bottom")) +
+    # Transformations
+    facet_grid(rows = vars(species), cols = vars(island))            
+
+```
+
+In the facet functions, you can specify multiple things, including the labels given to the strips at the top and whether the axes should be allowed to differ between plots (which can be useful if you just want to create facets of a lot of histograms to show distributions). 
+
+Note that we still specified our scales such as `colour`, but that this is not required.
 
 ### Layer 6: theme
+The last layer we will discuss is the theme. `{ggplot2}` allows us to edit the aesthetics of the plot using `theme()` and offers some basic themes. For instance, we can just make a simple looking plot using `theme_bw()`:
+
+```{r}
+#| code-fold: false
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins") +
+    guides(fill = "none",
+           colour = guide_legend(ncol = 2, position = "bottom")) +
+    # Aesthetics
+    theme_bw()            
+
+```
 
 ### Common errors
