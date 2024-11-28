@@ -980,9 +980,100 @@ Note
 </div>
 </div>
 </div>
+<p><code>{ggplot2}</code> offers us <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">some themes</a> with presets, but we can also specify a theme ourselves with <code>theme()</code>. The figure we have currently been making has a white background, but the website does not. Additionally, it would be nice to make the title bold and justify it to the middle. Let’s do that now:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-4"><a href="#cb44-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb44-6"><a href="#cb44-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb44-7"><a href="#cb44-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb44-8"><a href="#cb44-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb44-9"><a href="#cb44-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb44-10"><a href="#cb44-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="#cb44-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb44-12"><a href="#cb44-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb44-13"><a href="#cb44-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb44-14"><a href="#cb44-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb44-15"><a href="#cb44-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb44-16"><a href="#cb44-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb44-17"><a href="#cb44-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb44-18"><a href="#cb44-18"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb44-19"><a href="#cb44-19"></a>           <span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">position =</span> <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb44-20"><a href="#cb44-20"></a>    <span class="co"># Aesthetics</span></span>
+<span id="cb44-21"><a href="#cb44-21"></a>    <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"#002b36"</span>, <span class="at">fill =</span> <span class="st">"#002b36"</span>),</span>
+<span id="cb44-22"><a href="#cb44-22"></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, we specify different elements of the plot and provide them with an element function. This is either <code>element_blank()</code> which simply turns that element off, or an element corresponding to that geometry (text for text, line for lines, and rect for rectangles). Besides the plot, which is the whole figure, we can also specify the panel in which the data is shown with panel elements. We set the plot background to match the colour of the website and the title to the horizontal center (<code>hjust</code>) and made it bold (<code>face</code>). Let’s make some more additions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g, <span class="at">y =</span> flipper_length_mm, <span class="at">colour =</span> island, <span class="at">fill =</span> island, <span class="at">linetype =</span> island)) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>    <span class="co"># Geometries</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> <span class="st">"y ~ x"</span>, , <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5"></a>    <span class="co"># Scaling</span></span>
+<span id="cb47-6"><a href="#cb47-6"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">name =</span> <span class="st">"Body mass (grams)"</span>,</span>
+<span id="cb47-7"><a href="#cb47-7"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2500</span>, <span class="dv">6500</span>),</span>
+<span id="cb47-8"><a href="#cb47-8"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>),</span>
+<span id="cb47-9"><a href="#cb47-9"></a>                       <span class="at">labels =</span> <span class="fu">prettyNum</span>(<span class="fu">seq</span>(<span class="dv">2500</span>, <span class="dv">6500</span>, <span class="dv">500</span>), <span class="at">big.mark =</span> <span class="st">","</span>),</span>
+<span id="cb47-10"><a href="#cb47-10"></a>                       <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb47-11"><a href="#cb47-11"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">name =</span> <span class="st">"Flipper length (millimeters)"</span>,</span>
+<span id="cb47-12"><a href="#cb47-12"></a>                       <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">170</span>, <span class="dv">240</span>),</span>
+<span id="cb47-13"><a href="#cb47-13"></a>                       <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">170</span>, <span class="dv">240</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb47-14"><a href="#cb47-14"></a>    <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkorange"</span>, <span class="st">"purple"</span>, <span class="st">"cyan4"</span>), <span class="at">aesthetics =</span> <span class="fu">c</span>(<span class="st">"colour"</span>, <span class="st">"fill"</span>)) <span class="sc">+</span></span>
+<span id="cb47-15"><a href="#cb47-15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>))  <span class="sc">+</span></span>
+<span id="cb47-16"><a href="#cb47-16"></a>    <span class="co"># Labels</span></span>
+<span id="cb47-17"><a href="#cb47-17"></a>    <span class="fu">ggtitle</span>(<span class="st">"Relation between penguin body mass and flipper length"</span>, <span class="at">subtitle =</span> <span class="st">"Data from the Palmer Archipelago penguins"</span>) <span class="sc">+</span></span>
+<span id="cb47-18"><a href="#cb47-18"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">"none"</span>,</span>
+<span id="cb47-19"><a href="#cb47-19"></a>           <span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="at">position =</span> <span class="st">"bottom"</span>)) <span class="sc">+</span></span>
+<span id="cb47-20"><a href="#cb47-20"></a>    <span class="co"># Aesthetics</span></span>
+<span id="cb47-21"><a href="#cb47-21"></a>    <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"#002b36"</span>, <span class="at">fill =</span> <span class="st">"#002b36"</span>),</span>
+<span id="cb47-22"><a href="#cb47-22"></a>          <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"#FFFFFF"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"bold"</span>),</span>
+<span id="cb47-23"><a href="#cb47-23"></a>          <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"#FFFFFF"</span>, <span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">face =</span> <span class="st">"italic"</span>),</span>
+<span id="cb47-24"><a href="#cb47-24"></a>          <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb47-25"><a href="#cb47-25"></a>          <span class="at">panel.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb47-26"><a href="#cb47-26"></a>          <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">"#FFFFFF"</span>),</span>
+<span id="cb47-27"><a href="#cb47-27"></a>          <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"#FFFFFF"</span>),</span>
+<span id="cb47-28"><a href="#cb47-28"></a>          <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"#FFFFFF"</span>),</span>
+<span id="cb47-29"><a href="#cb47-29"></a>          <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb47-30"><a href="#cb47-30"></a>          <span class="at">legend.background =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb47-31"><a href="#cb47-31"></a>          <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">colour =</span> <span class="st">"#FFFFFF"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plotting_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We now specified a whole lot more, from the axes details to the gridlines in the panel and more parts of the legend. We can be happy now with our plot, but know that you can modify almost anything imaginable. If you wonder whether it’s possible, just try to look it up and likely you’ll find some solution to do it.</p>
 </section>
 <section id="common-errors" class="level3">
 <h3 class="anchored" data-anchor-id="common-errors">Common errors</h3>
+<p>We have been seeing two errors be repeated the whole time:</p>
 
 
 </section>
