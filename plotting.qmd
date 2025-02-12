@@ -491,7 +491,7 @@ When you see these warnings, be aware of what they mean. As the warnings say, th
 :::
 
 ## `{graphics}`
-A popular alternative to `{ggplot2}` is base R plotting which is accessible through the (by default installed) `{graphics}` package. Although
+An alternative to `{ggplot2}` is base R plotting which is accessible through the (by default installed) `{graphics}` package. Although
 this author is of the opinion that `{ggplot2}` offers superior flexibility and clarity in making figures, there is no harm in going through the basics.
 
 We can first use the general function `plot()` to create a base scatter plot:
@@ -511,22 +511,6 @@ plot(x = x, y = y,
 ```
 
 This plot is now initiated and we can add on layers by calling new functions (instead of using the `+` operator as in `{ggplot2}`):
-
-```{r}
-#| code-fold: false
-# Create LOESS smoother to add to data
-smoother <- loess(y ~ x)
-
-plot(x = x, y = y,
-     main = "Relation between penguin body mass and flipper length",
-     sub = "Data from the Palmer Archipelago penguins",
-     xlab = "Body mass (grams)",
-     ylab = "Flipper length (millimeters)")
-
-# Add line to initiated plot
-lines(predict(smoother), col = "#B58900")
-
-```
 
 In all honesty, this author is not versed enough in base R plotting to recreate the figure made with `{ggplot2}`. Whereas `{ggplot2}` is more verbose to create simple plots, the 
 infinite amount of customisation one can do and the structured way each plot is built up make it a favourite that foregoes any effort to gain in-depth knowledge of a different plotting system. 
@@ -564,13 +548,82 @@ shape of the [R graph gallery](https://r-graph-gallery.com/). This website conta
 
 ## Patching plots together
 ### `{patchwork}`
+If we want to combine multiple ggplots, the easiest way to do so is by using `{patchwork}`. This package adds plots together using intuitive syntax and allows you to combine elements of the plots. For
+illustration purposes, let's make three different plots:
+- Plot A: distribution of species per island
+- Plot B: box plot of body mass per island
+- Plot C: scatter plot of flipper length vs. body mass
+
+```{r}
+#| code-fold: false
+# Plot A: distribution of species per island
+p_a <- ggplot(penguins, aes(x = island, fill = species)) +
+    # Geometries
+    geom_bar(position = "dodge") +
+    # Scaling
+    scale_x_discrete(name = "Island") +
+    scale_y_continuous(name = "Count",
+                     expand = expansion(add = c(0, 20))) +
+    scale_fill_manual(values = c("darkorange", "purple", "cyan4")) +
+    # Aesthetics
+    theme(plot.background = element_rect(colour = "#002b36", fill = "#002b36"),
+          plot.title = element_text(colour = "#FFFFFF", hjust = 0.5, face = "bold"),
+          plot.subtitle = element_text(colour = "#FFFFFF", hjust = 0.5, face = "italic"),
+          panel.grid = element_blank(),
+          panel.background = element_blank(),
+          axis.line = element_line(colour = "#FFFFFF"),
+          axis.text = element_text(colour = "#FFFFFF"),
+          axis.title = element_text(colour = "#FFFFFF"),
+          axis.ticks = element_line(colour = "#FFFFFF"),
+          legend.title = element_blank(),
+          legend.background = element_blank(),
+          legend.text = element_text(colour = "#FFFFFF")) 
+
+
+
+
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, colour = island, fill = island, linetype = island)) +
+    # Geometries
+    geom_point() +
+    geom_smooth(method = "lm", formula = "y ~ x", , alpha = 0.3) +
+    # Scaling
+    scale_x_continuous(name = "Body mass (grams)",
+                       limits = c(2500, 6500),
+                       breaks = seq(2500, 6500, 500),
+                       labels = prettyNum(seq(2500, 6500, 500), big.mark = ","),
+                       expand = c(0, 0)) +
+    scale_y_continuous(name = "Flipper length (millimeters)",
+                       limits = c(170, 240),
+                       breaks = seq(170, 240, 10)) +
+    scale_colour_manual(values = c("darkorange", "purple", "cyan4"), aesthetics = c("colour", "fill")) +
+    scale_linetype_manual(values = c(2, 4, 6))  +
+    # Labels
+    ggtitle("Relation between penguin body mass and flipper length", subtitle = "Data from the Palmer Archipelago penguins") +
+    guides(fill = "none",
+           colour = guide_legend(position = "bottom")) +
+    # Aesthetics
+    theme(plot.background = element_rect(colour = "#002b36", fill = "#002b36"),
+          plot.title = element_text(colour = "#FFFFFF", hjust = 0.5, face = "bold"),
+          plot.subtitle = element_text(colour = "#FFFFFF", hjust = 0.5, face = "italic"),
+          panel.grid = element_blank(),
+          panel.background = element_blank(),
+          axis.line = element_line(colour = "#FFFFFF"),
+          axis.text = element_text(colour = "#FFFFFF"),
+          axis.title = element_text(colour = "#FFFFFF"),
+          axis.ticks = element_line(colour = "#FFFFFF"),
+          legend.title = element_blank(),
+          legend.background = element_blank(),
+          legend.text = element_text(colour = "#FFFFFF"))  
+
+
+
+```
 
 ### `{graphics}`
 
 
 ## Interactive plots
-Another method of creating plots in R is using the `{plotly}` package. Although this package is able to create plots on its own, it can also effectively be used to create interactive plots. This can simply be done 
-by using the function `plotly()` for `{plotly}` plots or `ggplotly()` for `{ggplot2}` plots:
+Another method of creating plots in R is using the `{plotly}` package. Although this package is able to create plots on its own, it can also effectively be used to create interactive plots. This can simply be done by using the function `plotly()` for `{plotly}` plots or `ggplotly()` for `{ggplot2}` plots:
 
 ```{r}
 #| code-fold: false
