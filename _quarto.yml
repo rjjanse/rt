@@ -33,27 +33,14 @@ website:
             - looping.qmd
             - iterating.qmd
             - regex.qmd
+            - table1.qmd
         - section: "Workflow"
           contents:
             - scripts.qmd
             - rmarkdown.qmd
-        - section: "Parts of a paper"
-          contents:
-            - regression.qmd
-            - table1.qmd
-            - imputation.qmd
-            - confounding.qmd
-            - prediction.qmd
-            - competing_risks.qmd
-        - section: "Into the multiverse"
-          contents:
-            - datatable.qmd
-            - shiny.qmd
         - section: "Recap"
           contents: 
             - summary.qmd
-            - rython.qmd
-            - slow.qmd
      
 format:
   html:
